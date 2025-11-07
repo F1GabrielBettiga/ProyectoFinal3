@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="NavBar_Master.Master.cs">
       <DependentUpon>NavBar_Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="NavBar_Master.Master.designer.cs">
       <DependentUpon>NavBar_Master.Master</DependentUpon>
