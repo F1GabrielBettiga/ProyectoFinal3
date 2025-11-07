@@ -1,0 +1,6 @@
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Dominio\bin\Debug\Dominio.dll
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Dominio\bin\Debug\Dominio.pdb
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Dominio\obj\Debug\Dominio.dll
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Dominio\obj\Debug\Dominio.pdb
