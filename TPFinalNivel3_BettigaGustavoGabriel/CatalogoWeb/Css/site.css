@@ -1,0 +1,70 @@
+﻿/* ===========================
+   ESTILOS GENERALES DEL SITIO
+   =========================== */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background-color: #001E3C; /* azul más oscuro estilo Puma */
+    color: #f8f9fa; /* texto base claro */
+}
+
+/* ===========================
+   NAVBAR
+   =========================== */
+
+.navbar {
+    background-color: #000000 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+    .navbar a.nav-link {
+        color: #dcdcdc !important;
+        transition: color 0.3s ease;
+    }
+
+        .navbar a.nav-link:hover {
+            color: #0d6efd !important;
+        }
+
+/* ===========================
+   BOTONES GENERALES
+   =========================== */
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    transition: all 0.2s ease-in-out;
+}
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+        box-shadow: 0 0 4px rgba(13, 110, 253, 0.4);
+    }
+
+/* Pequeña animación al pasar el mouse sobre cualquier botón */
+button,
+.btn {
+    transition: transform 0.15s ease-in-out;
+}
+
+    button:hover,
+    .btn:hover {
+        transform: scale(1.03);
+    }
+
+
+
+/* ===========================
+   TEXTOS GENERALES
+   =========================== */
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+p {
+    color: #e6e6e6;
+}

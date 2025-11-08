@@ -61,3 +61,5 @@ C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TP
 C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\CatalogoWeb\obj\Debug\Catalogo.4B0600ED.Up2Date
 C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\CatalogoWeb\obj\Debug\CatalogoWeb.dll
 C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\CatalogoWeb\obj\Debug\CatalogoWeb.pdb
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\CatalogoWeb\bin\AccesoDatos.dll
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\CatalogoWeb\bin\AccesoDatos.pdb

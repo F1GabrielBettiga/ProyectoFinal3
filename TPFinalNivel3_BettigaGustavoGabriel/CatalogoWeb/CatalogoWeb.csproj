@@ -69,6 +69,8 @@
   <ItemGroup>
     <Content Include="ABM_Articulos.aspx" />
     <Content Include="AdminArticulos.aspx" />
+    <Content Include="Css\Default.css" />
+    <Content Include="Css\site.css" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="Global.asax" />
