@@ -5,9 +5,10 @@
 body {
     margin: 0;
     padding: 0;
+    padding-top: 70px; /* 👉 esto baja todo el contenido */
     font-family: "Segoe UI", Roboto, sans-serif;
-    background-color: #001E3C; /* azul más oscuro estilo Puma */
-    color: #f8f9fa; /* texto base claro */
+    background-color: #001E3C;
+    color: #f8f9fa;
 }
 
 /* ===========================

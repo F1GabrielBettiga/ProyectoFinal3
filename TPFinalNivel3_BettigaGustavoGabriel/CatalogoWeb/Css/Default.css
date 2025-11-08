@@ -24,8 +24,11 @@
    =========================== */
 
 .productos-grid {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 4rem; /* antes 1.5rem */
+    padding-right: 4rem; /* antes 1.5rem */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px; /* mantiene el contenido centrado */
 }
 
     /* Tarjeta de producto */
@@ -33,15 +36,18 @@
         height: 100%;
         min-height: 320px;
         border-radius: 8px;
-        background-color: #0b1b33;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        background-color: #1E3D6B; /* azul más claro que el fondo general */
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
     }
 
-        /* Efecto hover: levanta y brilla con tono azul flúor */
+        /* Hover con brillo */
         .productos-grid .tarjeta-producto:hover {
             transform: translateY(-6px);
-            box-shadow: 0 0 15px rgba(13, 110, 253, 0.5), 0 0 25px rgba(13, 110, 253, 0.25); /* doble capa de brillo azul */
+            background-color: #1E3D6B; /* mantiene el color base */
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.7), /* resplandor azul brillante */
+            0 0 20px rgba(13, 110, 253, 0.4); /* halo exterior más suave */
+            border: 1px solid #0d6efd; /* borde azul flúor */
         }
 
     /* Imagen */

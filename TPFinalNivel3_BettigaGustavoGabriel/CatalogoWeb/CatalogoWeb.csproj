@@ -74,6 +74,8 @@
     <Content Include="Default.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\no-image.png" />
+    <Content Include="Images\no-user.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="MiPerfil.aspx" />
     <Content Include="MisFavoritos.aspx" />

@@ -15,6 +15,15 @@ namespace CatalogoWeb
     {
 
         /// <summary>
+        /// Control updTarjetas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updTarjetas;
+
+        /// <summary>
         /// Control repetidorDeTarjetas.
         /// </summary>
         /// <remarks>
@@ -22,5 +31,14 @@ namespace CatalogoWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater repetidorDeTarjetas;
+
+        /// <summary>
+        /// Control btnCargarMas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCargarMas;
     }
 }
