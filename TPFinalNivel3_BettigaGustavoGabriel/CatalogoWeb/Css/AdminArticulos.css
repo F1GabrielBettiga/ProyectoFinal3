@@ -1,0 +1,125 @@
+﻿/* ===========================
+   TÍTULO ADMINISTRACIÓN
+   =========================== */
+
+.titulo-admin-articulos {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+
+/* ===========================
+   TABLA ADMIN ARTÍCULOS
+   =========================== */
+
+.tabla-admin-articulos {
+    width: 95%;
+    margin: 0 auto 20px auto;
+    background-color: transparent;
+    border: 1px solid #1E3D6B;
+    border-radius: 8px;
+    overflow: hidden; /* el borde redondeado también afecta al contenido */
+}
+
+    /* Cabecera */
+    .tabla-admin-articulos thead tr {
+        background-color: #0b1b33; /* similar a las tarjetas */
+    }
+
+    .tabla-admin-articulos th {
+        color: #ffffff;
+        font-weight: 600;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Filas */
+    .tabla-admin-articulos td {
+        padding: 0.6rem 1rem;
+        color: #e6e6e6;
+        background-color: #001E3C; /* un poco más oscuro que las tarjetas */
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    /* Rayado propio (por si Bootstrap no aplica bien) */
+    .tabla-admin-articulos tbody tr:nth-child(even) td {
+        background-color: #02152a;
+    }
+
+    /* Hover bien marcado en TODAS las filas */
+    .tabla-admin-articulos tbody tr:hover td {
+        background-color: #2a4c82 !important;
+        transition: background-color 0.15s ease-in-out;
+    }
+
+    /* Columna de Acción más angosta y centrada */
+    .tabla-admin-articulos td:last-child,
+    .tabla-admin-articulos th:last-child {
+        text-align: center;
+        width: 80px;
+    }
+
+
+    /* ===========================
+   PAGINADO
+   =========================== */
+
+    /* Fila del pager: mismo fondo que la página */
+    .tabla-admin-articulos tr.pager-admin {
+        background-color: #001E3C !important;
+        text-align: center;
+        border-top: none;
+    }
+
+        /* Tabla interna del pager (donde están los 1,2,3...) */
+        .tabla-admin-articulos tr.pager-admin table {
+            display: inline-block;
+            max-width: 100%;
+            white-space: nowrap;
+            margin: 8px auto;
+            background-color: transparent;
+        }
+
+            .tabla-admin-articulos tr.pager-admin table td {
+                padding: 0 1px !important;
+                margin: 0;
+            }
+
+        /* Botones del pager */
+        .tabla-admin-articulos tr.pager-admin a,
+        .tabla-admin-articulos tr.pager-admin span {
+            display: inline-block;
+            min-width: 28px;
+            text-align: center;
+            padding: 5px 8px;
+            margin: 0 2px;
+            border-radius: 6px;
+            background-color: #1f1f1f; /* gris oscuro que se funde con la tabla */
+            color: #f8f9fa;
+            border: 1px solid #1E3D6B;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.15s ease;
+        }
+
+            /* Hover / foco: gris, sin recuadro ni halo azul */
+            .tabla-admin-articulos tr.pager-admin a:hover,
+            .tabla-admin-articulos tr.pager-admin a:focus {
+                background-color: #2a2a2a !important;
+                color: #ffffff;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+
+        /* Página activa */
+        .tabla-admin-articulos tr.pager-admin span {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            font-weight: 600;
+        }
