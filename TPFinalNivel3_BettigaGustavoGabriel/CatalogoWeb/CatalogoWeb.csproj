@@ -71,10 +71,12 @@
     <Content Include="AdminArticulos.aspx" />
     <Content Include="Css\AdminArticulos.css" />
     <Content Include="Css\Default.css" />
+    <Content Include="Css\DetalleProducto.css" />
     <Content Include="Css\site.css" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\fav-empty.png" />
     <Content Include="Images\no-image.png" />
     <Content Include="Images\no-user.jpg" />
     <Content Include="Login.aspx" />

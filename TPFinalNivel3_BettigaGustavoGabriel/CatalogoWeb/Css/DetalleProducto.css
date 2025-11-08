@@ -1,0 +1,166 @@
+﻿/* ===========================
+   CONTENEDOR GENERAL
+   =========================== */
+
+.detalle-container {
+    max-width: 1000px;
+    margin: 20px auto 40px auto;
+    padding: 20px 24px;
+    background-color: #0b1b33; /* similar a tarjetas / admin */
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+
+/* ===========================
+   TÍTULOS
+   =========================== */
+
+.titulo-detalle {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.subtitulo-detalle {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #c9c9c9;
+    margin-bottom: 25px;
+}
+
+    /* Para resaltar un poquito las etiquetas "Código", "Marca", "Categoría" */
+    .subtitulo-detalle span {
+        font-weight: 600;
+        color: #e6e6e6;
+    }
+
+
+/* ===========================
+   LAYOUT PRINCIPAL
+   =========================== */
+
+.detalle-producto {
+    display: flex;
+    flex-wrap: wrap; /* para que en pantallas chicas se apile */
+    gap: 20px;
+}
+
+/* Columna izquierda: imagen */
+.detalle-imagen {
+    flex: 1 1 40%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+    /* Imagen del producto */
+    .detalle-imagen img {
+        max-width: 100%;
+        max-height: 380px;
+        border-radius: 8px;
+        background-color: #ffffff; /* como las tarjetas de la home */
+        padding: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+    }
+
+/* Columna derecha: info */
+.detalle-info {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+    /* ===========================
+   PRECIO Y DESCRIPCIÓN
+   =========================== */
+
+    .detalle-info h3 {
+        font-size: 1.1rem;
+        color: #ffffff;
+        margin-bottom: 4px;
+    }
+
+.precio {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #00e676; /* verde llamativo para el precio */
+    margin-bottom: 12px;
+}
+
+.descripcion {
+    font-size: 0.98rem;
+    color: #e0e0e0;
+    line-height: 1.5;
+}
+
+
+/* ===========================
+   BOTONES DE ACCIÓN
+   =========================== */
+
+.acciones-detalle {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+    /* Botón "Volver al inicio" ya trae clases de Bootstrap (btn btn-outline-light),
+   pero le damos un leve ajuste si hace falta */
+    .acciones-detalle .btn {
+        font-size: 0.95rem;
+        padding: 6px 14px;
+    }
+
+/* Botón de favoritos (ImageButton) */
+.btn-favorito {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #0d6efd;
+    background-color: #001E3C;
+    padding: 4px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+    /* Efecto hover en el corazoncito */
+    .btn-favorito:hover {
+        background-color: #0d6efd;
+        box-shadow: 0 0 10px rgba(13, 110, 253, 0.6);
+        transform: translateY(-1px);
+    }
+
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+/* En pantallas chicas, que se apile todo en una columna */
+@media (max-width: 768px) {
+    .detalle-container {
+        margin: 15px 10px 30px 10px;
+        padding: 16px;
+    }
+
+    .detalle-producto {
+        flex-direction: column;
+    }
+
+    .detalle-imagen,
+    .detalle-info {
+        flex: 1 1 100%;
+    }
+
+    .titulo-detalle {
+        font-size: 1.6rem;
+    }
+}

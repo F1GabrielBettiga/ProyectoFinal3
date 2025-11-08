@@ -44,6 +44,22 @@ namespace CatalogoWeb
             }
         }
 
+
+
+        protected void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string id = btn.CommandArgument;
+            Response.Redirect("DetalleProducto.aspx?id=" + id);
+
+        }
+
+        protected void btnCargarMas_Click(object sender, EventArgs e)
+        {
+            // Cada vez que tocan el botón, muestro 8 más
+            cargarTarjetas();
+        }
+
         private void cargarTarjetas()
         {
             // Si la lista está vacía o nula, oculto el botón y no hago nada
@@ -75,10 +91,8 @@ namespace CatalogoWeb
             btnCargarMas.Visible = cantidadMostrada < listaArticulos.Count;
         }
 
-        protected void btnCargarMas_Click(object sender, EventArgs e)
-        {
-            // Cada vez que tocan el botón, muestro 8 más
-            cargarTarjetas();
-        }
+        
+
+        
     }
 }
