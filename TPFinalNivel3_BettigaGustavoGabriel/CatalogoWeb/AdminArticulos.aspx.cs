@@ -34,11 +34,27 @@ namespace CatalogoWeb
 
         }
 
-        protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
+        protected void dgvArticulos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // Obtenemos el ID del artículo
+            int id = Convert.ToInt32(e.CommandArgument);
+
+            if (e.CommandName == "Editar")
+            {
+                // Redirigir a la pantalla de edición
+                Response.Redirect("ABM_Articulos.aspx?id=" + id);
+            }
+            else if (e.CommandName == "Borrar")
+            {
+                // Confirmar o eliminar el artículo (ejemplo simple)
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                // negocio.EliminarArticulo(id);
+
+                // Recargamos la grilla
+                cargarGrid();
+            }
 
         }
-
 
 
         void cargarGrid()
@@ -68,5 +84,6 @@ namespace CatalogoWeb
 
         }
 
+        
     }
 }

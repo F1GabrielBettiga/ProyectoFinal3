@@ -75,45 +75,62 @@
     5 = Categoría, 6 = URL, 7 = Precio, 8 = Acción)
    =========================== */
 
+    /* ===========================
+   ANCHOS DE COLUMNAS
+   (1 = Código, 2 = Nombre, 3 = Descripción, 4 = Marca,
+    5 = Categoría, 6 = URL, 7 = Precio, 8 = Acción)
+   =========================== */
+
+    /* Código */
     .tabla-admin-articulos th:nth-child(1),
     .tabla-admin-articulos td:nth-child(1) {
-        width: 8%;
+        width: 10%;
     }
-    /* Código */
+
+    /* Nombre */
     .tabla-admin-articulos th:nth-child(2),
     .tabla-admin-articulos td:nth-child(2) {
-        width: 16%;
+        width: 14%;
     }
-    /* Nombre */
+
+    /* Descripción (sigue grande, pero un toque menos) */
     .tabla-admin-articulos th:nth-child(3),
     .tabla-admin-articulos td:nth-child(3) {
-        width: 30%;
+        width: 24%;
     }
-    /* Descripción (más grande) */
+
+    /* Marca */
     .tabla-admin-articulos th:nth-child(4),
     .tabla-admin-articulos td:nth-child(4) {
         width: 10%;
     }
-    /* Marca (un toque más chica) */
+
+    /* Categoría */
     .tabla-admin-articulos th:nth-child(5),
     .tabla-admin-articulos td:nth-child(5) {
-        width: 10%;
+        width: 9%;
     }
-    /* Categoría (un toque más chica) */
+
+    /* URL Imagen (un pelito más grande para compensar) */
     .tabla-admin-articulos th:nth-child(6),
     .tabla-admin-articulos td:nth-child(6) {
-        width: 12%;
+        width: 8%;
     }
-    /* URL Imagen (chica) */
+
+    /* Precio */
     .tabla-admin-articulos th:nth-child(7),
     .tabla-admin-articulos td:nth-child(7) {
         width: 8%;
     }
-    /* Precio */
+
+    /* Acción – más ancha para que entren Editar y Borrar */
     .tabla-admin-articulos th:nth-child(8),
     .tabla-admin-articulos td:nth-child(8) {
-        width: 6%;
+        width: 17%;
     }
+
+
+
     /* Acción (ya no corta la palabra) */
 
 

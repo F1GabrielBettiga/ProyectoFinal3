@@ -9,56 +9,68 @@
     <h1 class="titulo-admin-articulos">Administración de Artículos</h1>
 
     <asp:GridView
-    ID="dgvArticulos"
-    runat="server"
-    CssClass=" tabla-admin-articulos"
-    DataKeyNames="Id"
-    AutoGenerateColumns="false"
-    AllowPaging="true"
-    PageSize="4"    
-    OnPageIndexChanging="dgvArticulos_PageIndexChanging"
-    OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged">
+        ID="dgvArticulos"
+        runat="server"
+        CssClass=" tabla-admin-articulos"
+        DataKeyNames="Id"
+        AutoGenerateColumns="false"
+        AllowPaging="true"
+        PageSize="4"
+        OnPageIndexChanging="dgvArticulos_PageIndexChanging"       
+        OnRowCommand="dgvArticulos_RowCommand">
 
-    <Columns>
-        <%-- Código --%>
-        <asp:BoundField HeaderText="Código" DataField="codigo" />
+        <Columns>
+            <%-- Código --%>
+            <asp:BoundField HeaderText="Código" DataField="codigo" />
 
-        <%-- Nombre --%>
-        <asp:BoundField HeaderText="Nombre" DataField="nombre" />
+            <%-- Nombre --%>
+            <asp:BoundField HeaderText="Nombre" DataField="nombre" />
 
-        <%-- Descripción --%>
-        <asp:BoundField HeaderText="Descripción" DataField="descripcion" />
+            <%-- Descripción --%>
+            <asp:BoundField HeaderText="Descripción" DataField="descripcion" />
 
-        <%-- Marca --%>
-        <asp:TemplateField HeaderText="Marca">
-            <ItemTemplate>
-                <%# Eval("marca.descripcion") %>
-            </ItemTemplate>
-        </asp:TemplateField>
+            <%-- Marca --%>
+            <asp:TemplateField HeaderText="Marca">
+                <ItemTemplate>
+                    <%# Eval("marca.descripcion") %>
+                </ItemTemplate>
+            </asp:TemplateField>
 
-        <%-- Categoría  --%>
-        <asp:TemplateField HeaderText="Categoría">
-            <ItemTemplate>
-                <%# Eval("categoria.descripcion") %>
-            </ItemTemplate>
-        </asp:TemplateField>
+            <%-- Categoría  --%>
+            <asp:TemplateField HeaderText="Categoría">
+                <ItemTemplate>
+                    <%# Eval("categoria.descripcion") %>
+                </ItemTemplate>
+            </asp:TemplateField>
 
-        <%-- URL imagen --%>
-        <asp:BoundField HeaderText="URL Imagen" DataField="imagenUrl" />
+            <%-- URL imagen --%>
+            <asp:BoundField HeaderText="URL Imagen" DataField="imagenUrl" />
 
-        <%-- Precio --%>
-        <asp:BoundField HeaderText="Precio"
-                        DataField="precio"
-                        DataFormatString="${0:N2}"
-                        HtmlEncode="false" />
+            <%-- Precio --%>
+            <asp:BoundField HeaderText="Precio"
+                DataField="precio"
+                DataFormatString="${0:N2}"
+                HtmlEncode="false" />
 
-        <%-- Acción --%>
-        <asp:CommandField HeaderText="Acción"
-                          ShowSelectButton="true"
-                          SelectText="✏️" />
-    </Columns>
+            <%-- Acción --%>
+            <asp:TemplateField HeaderText="Acción">
+                <ItemTemplate>
+                    <asp:Button runat="server"
+                        Text="Editar"
+                        CssClass="btn btn-primary btn-sm"
+                        CommandName="Editar"
+                        CommandArgument='<%# Eval("Id") %>' />
 
-    <PagerStyle CssClass="pager-admin" HorizontalAlign="Center" />
-</asp:GridView>
+                    <asp:Button runat="server"
+                        Text="Borrar"
+                        CssClass="btn btn-danger btn-sm"
+                        CommandName="Borrar"
+                        CommandArgument='<%# Eval("Id") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+
+        <PagerStyle CssClass="pager-admin" HorizontalAlign="Center" />
+    </asp:GridView>
 
 </asp:Content>
