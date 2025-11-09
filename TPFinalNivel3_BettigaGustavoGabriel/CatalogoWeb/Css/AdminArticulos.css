@@ -20,16 +20,17 @@
 .tabla-admin-articulos {
     width: 95%;
     margin: 0 auto 20px auto;
-    background-color: transparent;
-    border: 1px solid #1E3D6B;
+    background-color: #1E3D6B; /* color base de la tabla */
+    border: 1px solid #000000; /* borde negro */
     border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45); /* leve glow alrededor */
     overflow: hidden; /* el borde redondeado también afecta al contenido */
     table-layout: fixed; /* reparte el ancho según las columnas que marcamos */
 }
 
     /* Cabecera */
     .tabla-admin-articulos thead tr {
-        background-color: #0b1b33;
+        background-color: #1E3D6B;
     }
 
     .tabla-admin-articulos th {
@@ -40,24 +41,23 @@
         text-align: left;
     }
 
-    /* Filas */
+    /* Filas base (impares) – mismo azul que la cabecera */
     .tabla-admin-articulos td {
         padding: 0.6rem 1rem;
         color: #e6e6e6;
-        background-color: #001E3C;
+        background-color: #1E3D6B;
         border-top: 1px solid rgba(255, 255, 255, 0.03);
-        /* que no crezcan en altura y corten con "..." */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
-    /* Rayado */
+    /* Filas rayadas (pares) – fondo negro */
     .tabla-admin-articulos tbody tr:nth-child(even) td {
-        background-color: #02152a;
+        background-color: #000000;
     }
 
-    /* Hover */
+    /* Hover sobre cualquier fila */
     .tabla-admin-articulos tbody tr:hover td {
         background-color: #2a4c82 !important;
         transition: background-color 0.15s ease-in-out;

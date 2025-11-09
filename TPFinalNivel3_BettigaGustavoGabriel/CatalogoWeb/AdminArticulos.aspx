@@ -11,11 +11,11 @@
     <asp:GridView
     ID="dgvArticulos"
     runat="server"
-    CssClass="table table-dark table-striped table-hover tabla-admin-articulos"
+    CssClass=" tabla-admin-articulos"
     DataKeyNames="Id"
     AutoGenerateColumns="false"
     AllowPaging="true"
-    PageSize="2"    
+    PageSize="4"    
     OnPageIndexChanging="dgvArticulos_PageIndexChanging"
     OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged">
 
