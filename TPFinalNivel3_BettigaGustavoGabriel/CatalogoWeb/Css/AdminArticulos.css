@@ -13,7 +13,6 @@
     color: #ffffff;
 }
 
-
 /* ===========================
    TABLA ADMIN ARTÍCULOS
    =========================== */
@@ -25,11 +24,12 @@
     border: 1px solid #1E3D6B;
     border-radius: 8px;
     overflow: hidden; /* el borde redondeado también afecta al contenido */
+    table-layout: fixed; /* reparte el ancho según las columnas que marcamos */
 }
 
     /* Cabecera */
     .tabla-admin-articulos thead tr {
-        background-color: #0b1b33; /* similar a las tarjetas */
+        background-color: #0b1b33;
     }
 
     .tabla-admin-articulos th {
@@ -37,47 +37,96 @@
         font-weight: 600;
         padding: 0.75rem 1rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        text-align: left;
     }
 
     /* Filas */
     .tabla-admin-articulos td {
         padding: 0.6rem 1rem;
         color: #e6e6e6;
-        background-color: #001E3C; /* un poco más oscuro que las tarjetas */
+        background-color: #001E3C;
         border-top: 1px solid rgba(255, 255, 255, 0.03);
+        /* que no crezcan en altura y corten con "..." */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    /* Rayado propio (por si Bootstrap no aplica bien) */
+    /* Rayado */
     .tabla-admin-articulos tbody tr:nth-child(even) td {
         background-color: #02152a;
     }
 
-    /* Hover bien marcado en TODAS las filas */
+    /* Hover */
     .tabla-admin-articulos tbody tr:hover td {
         background-color: #2a4c82 !important;
         transition: background-color 0.15s ease-in-out;
     }
 
-    /* Columna de Acción más angosta y centrada */
+    /* Columna de Acción centrada */
     .tabla-admin-articulos td:last-child,
     .tabla-admin-articulos th:last-child {
         text-align: center;
-        width: 80px;
     }
+
+    /* ===========================
+   ANCHOS DE COLUMNAS
+   (1 = Código, 2 = Nombre, 3 = Descripción, 4 = Marca,
+    5 = Categoría, 6 = URL, 7 = Precio, 8 = Acción)
+   =========================== */
+
+    .tabla-admin-articulos th:nth-child(1),
+    .tabla-admin-articulos td:nth-child(1) {
+        width: 8%;
+    }
+    /* Código */
+    .tabla-admin-articulos th:nth-child(2),
+    .tabla-admin-articulos td:nth-child(2) {
+        width: 16%;
+    }
+    /* Nombre */
+    .tabla-admin-articulos th:nth-child(3),
+    .tabla-admin-articulos td:nth-child(3) {
+        width: 30%;
+    }
+    /* Descripción (más grande) */
+    .tabla-admin-articulos th:nth-child(4),
+    .tabla-admin-articulos td:nth-child(4) {
+        width: 10%;
+    }
+    /* Marca (un toque más chica) */
+    .tabla-admin-articulos th:nth-child(5),
+    .tabla-admin-articulos td:nth-child(5) {
+        width: 10%;
+    }
+    /* Categoría (un toque más chica) */
+    .tabla-admin-articulos th:nth-child(6),
+    .tabla-admin-articulos td:nth-child(6) {
+        width: 12%;
+    }
+    /* URL Imagen (chica) */
+    .tabla-admin-articulos th:nth-child(7),
+    .tabla-admin-articulos td:nth-child(7) {
+        width: 8%;
+    }
+    /* Precio */
+    .tabla-admin-articulos th:nth-child(8),
+    .tabla-admin-articulos td:nth-child(8) {
+        width: 6%;
+    }
+    /* Acción (ya no corta la palabra) */
 
 
     /* ===========================
    PAGINADO
    =========================== */
 
-    /* Fila del pager: mismo fondo que la página */
     .tabla-admin-articulos tr.pager-admin {
         background-color: #001E3C !important;
         text-align: center;
         border-top: none;
     }
 
-        /* Tabla interna del pager (donde están los 1,2,3...) */
         .tabla-admin-articulos tr.pager-admin table {
             display: inline-block;
             max-width: 100%;
@@ -91,7 +140,6 @@
                 margin: 0;
             }
 
-        /* Botones del pager */
         .tabla-admin-articulos tr.pager-admin a,
         .tabla-admin-articulos tr.pager-admin span {
             display: inline-block;
@@ -100,7 +148,7 @@
             padding: 5px 8px;
             margin: 0 2px;
             border-radius: 6px;
-            background-color: #1f1f1f; /* gris oscuro que se funde con la tabla */
+            background-color: #1f1f1f;
             color: #f8f9fa;
             border: 1px solid #1E3D6B;
             text-decoration: none;
@@ -108,7 +156,6 @@
             transition: background-color 0.15s ease;
         }
 
-            /* Hover / foco: gris, sin recuadro ni halo azul */
             .tabla-admin-articulos tr.pager-admin a:hover,
             .tabla-admin-articulos tr.pager-admin a:focus {
                 background-color: #2a2a2a !important;
@@ -117,7 +164,6 @@
                 box-shadow: none !important;
             }
 
-        /* Página activa */
         .tabla-admin-articulos tr.pager-admin span {
             background-color: #0d6efd;
             border-color: #0d6efd;
