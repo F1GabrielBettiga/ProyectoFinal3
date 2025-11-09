@@ -1,0 +1,227 @@
+﻿/* ===========================
+   TÍTULO "MI PERFIL"
+   =========================== */
+/* Título principal de la página Mi Perfil */
+.titulo-perfil {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+/* ===========================
+   CONTENEDOR GENERAL
+   =========================== */
+/* Contenedor general que centra la tarjeta de perfil en la página */
+.perfil-container {
+    max-width: 900px;
+    margin: 20px auto 40px auto;
+    padding: 0 15px;
+}
+
+/* Tarjeta principal que envuelve todo el contenido de Mi Perfil */
+.perfil-card {
+    background-color: #1E3D6B; /* mismo tono que tarjetas / admin */
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* Ajuste general de columnas para que tengan separación vertical en pantallas chicas */
+.perfil-col-izquierda,
+.perfil-col-derecha {
+    margin-bottom: 15px;
+}
+
+/* ===========================
+   COLUMNA IZQUIERDA: IMAGEN + TIPO + ID
+   =========================== */
+/* Imagen de perfil, circular y con sombra */
+.img-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #0d6efd;
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.6);
+    background-color: #000; /* por si la imagen tiene partes transparentes */
+}
+
+/* Input de subida de imagen de perfil */
+.input-imagen-perfil {
+    width: 100%;
+    margin-top: 10px;
+    color: #f8f9fa;
+}
+
+/* Título "Tipo de usuario:" */
+.etiqueta-tipo-usuario {
+    display: block;
+    font-size: 0.9rem;
+    color: #c9c9c9;
+}
+
+/* Valor del tipo de usuario (Admin / Usuario común) */
+.valor-tipo-usuario {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Título "ID de usuario:" */
+.etiqueta-id-usuario {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #c9c9c9;
+}
+
+/* Valor del ID de usuario */
+.valor-id-usuario {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* Etiqueta del combo de tipo de usuario (para admins) */
+.etiqueta-editar-tipo {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #c9c9c9;
+}
+
+/* Combo para cambiar tipo de usuario */
+.ddl-tipo-usuario {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #0d6efd;
+    background-color: #001E3C;
+    color: #f8f9fa;
+}
+
+/* ===========================
+   COLUMNA DERECHA: CAMPOS DE TEXTO
+   =========================== */
+/* Cada fila de campo (Nombre, Apellido, Email, etc.) */
+.form-group {
+    margin-bottom: 12px;
+}
+
+    /* Etiquetas de los campos (Nombre, Apellido, Email, etc.) */
+    .form-group > label {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 0.9rem;
+        color: #e6e6e6;
+    }
+
+/* Campos de texto en general dentro del perfil */
+.perfil-card .form-control {
+    background-color: #001E3C;
+    border: 1px solid #0d6efd;
+    color: #f8f9fa;
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+    /* Color del texto dentro de los inputs */
+    .perfil-card .form-control::placeholder {
+        color: #a0a0a0;
+    }
+
+/* ===========================
+   SECCIÓN PASSWORD
+   =========================== */
+/* Fila que agrupa: password + checkbox "Mostrar" + botón Cambiar */
+.fila-password {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Campo de contraseña */
+.campo-password {
+    flex: 1 1 200px;
+}
+
+/* Checkbox "Mostrar" */
+.chk-mostrar-password {
+    color: #e6e6e6;
+    font-size: 0.9rem;
+    margin-left: 4px;
+}
+
+/* Botón "Cambiar contraseña" */
+.btn-cambiar-password {
+    white-space: nowrap;
+}
+
+/* Bloque donde están "Nueva contraseña" y "Repetir contraseña"
+   (después lo vas a mostrar/ocultar desde el code-behind o JS) */
+#bloqueCambioPassword {
+    margin-top: 10px;
+}
+
+/* ===========================
+   BOTONES FINALES
+   =========================== */
+/* Contenedor de los botones Guardar y Volver */
+.acciones-perfil {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+    /* Botón principal de guardar cambios */
+    .acciones-perfil .btn-primary {
+        min-width: 150px;
+    }
+
+    /* Botón secundario de volver */
+    .acciones-perfil .btn-outline-light {
+        min-width: 140px;
+    }
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+/* Ajustes para pantallas chicas (celu) */
+@media (max-width: 768px) {
+
+    .perfil-card {
+        padding: 16px 14px;
+    }
+
+    .img-perfil {
+        width: 130px;
+        height: 130px;
+    }
+
+    .fila-password {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .acciones-perfil {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .acciones-perfil .btn-primary,
+        .acciones-perfil .btn-outline-light {
+            width: 100%;
+            text-align: center;
+        }
+}
