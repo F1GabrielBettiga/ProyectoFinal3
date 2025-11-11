@@ -13,5 +13,21 @@ namespace CatalogoWeb
         {
 
         }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCrearCuenta_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Registro.aspx");
+
+        }
+
+        protected void chkMostrarPass_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

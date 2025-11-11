@@ -73,7 +73,9 @@
     <Content Include="Css\AdminArticulos.css" />
     <Content Include="Css\Default.css" />
     <Content Include="Css\DetalleProducto.css" />
+    <Content Include="Css\Login.css" />
     <Content Include="Css\MiPerfil.css" />
+    <Content Include="Css\Registro.css" />
     <Content Include="Css\site.css" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleProducto.aspx" />
