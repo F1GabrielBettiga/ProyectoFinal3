@@ -1,0 +1,165 @@
+﻿/* ===========================
+   TÍTULO ADMINISTRACIÓN USUARIOS
+   =========================== */
+
+.titulo-admin-usuarios {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+/* ===========================
+   TABLA ADMIN USUARIOS
+   =========================== */
+
+.tabla-admin-usuarios {
+    width: 95%;
+    margin: 0 auto 20px auto;
+    background-color: #1E3D6B; /* color base de la tabla */
+    border: 1px solid #000000; /* borde negro */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45); /* leve glow alrededor */
+    overflow: hidden; /* el borde redondeado también afecta al contenido */
+    table-layout: fixed; /* reparte el ancho según las columnas que marcamos */
+}
+
+    /* Cabecera */
+    .tabla-admin-usuarios thead tr {
+        background-color: #1E3D6B;
+    }
+
+    .tabla-admin-usuarios th {
+        color: #ffffff;
+        font-weight: 600;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        text-align: left;
+    }
+
+    /* Filas base (impares) – mismo azul que la cabecera */
+    .tabla-admin-usuarios td {
+        padding: 0.6rem 1rem;
+        color: #e6e6e6;
+        background-color: #1E3D6B;
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Filas rayadas (pares) – fondo negro */
+    .tabla-admin-usuarios tbody tr:nth-child(even) td {
+        background-color: #000000;
+    }
+
+    /* Hover sobre cualquier fila */
+    .tabla-admin-usuarios tbody tr:hover td {
+        background-color: #2a4c82 !important;
+        transition: background-color 0.15s ease-in-out;
+    }
+
+    /* Columna de Acción centrada */
+    .tabla-admin-usuarios td:last-child,
+    .tabla-admin-usuarios th:last-child {
+        text-align: center;
+    }
+
+    /* ===========================
+   ANCHOS DE COLUMNAS
+   (1 = Id, 2 = Nombre, 3 = Apellido,
+    4 = Email, 5 = Usuario, 6 = Acción)
+   =========================== */
+
+    /* Id */
+    .tabla-admin-usuarios th:nth-child(1),
+    .tabla-admin-usuarios td:nth-child(1) {
+        width: 8%;
+    }
+
+    /* Nombre */
+    .tabla-admin-usuarios th:nth-child(2),
+    .tabla-admin-usuarios td:nth-child(2) {
+        width: 20%;
+    }
+
+    /* Apellido */
+    .tabla-admin-usuarios th:nth-child(3),
+    .tabla-admin-usuarios td:nth-child(3) {
+        width: 20%;
+    }
+
+    /* Email */
+    .tabla-admin-usuarios th:nth-child(4),
+    .tabla-admin-usuarios td:nth-child(4) {
+        width: 30%;
+    }
+
+    /* Usuario (rol: Admin / Estándar) */
+    .tabla-admin-usuarios th:nth-child(5),
+    .tabla-admin-usuarios td:nth-child(5) {
+        width: 10%;
+    }
+
+    /* Acción – para que entren Editar y Borrar cómodos */
+    .tabla-admin-usuarios th:nth-child(6),
+    .tabla-admin-usuarios td:nth-child(6) {
+        width: 12%;
+    }
+
+    /* ===========================
+   PAGINADO
+   =========================== */
+
+    .tabla-admin-usuarios tr.pager-admin {
+        background-color: #001E3C !important;
+        text-align: center;
+        border-top: none;
+    }
+
+        .tabla-admin-usuarios tr.pager-admin table {
+            display: inline-block;
+            max-width: 100%;
+            white-space: nowrap;
+            margin: 8px auto;
+            background-color: transparent;
+        }
+
+            .tabla-admin-usuarios tr.pager-admin table td {
+                padding: 0 1px !important;
+                margin: 0;
+            }
+
+        .tabla-admin-usuarios tr.pager-admin a,
+        .tabla-admin-usuarios tr.pager-admin span {
+            display: inline-block;
+            min-width: 28px;
+            text-align: center;
+            padding: 5px 8px;
+            margin: 0 2px;
+            border-radius: 6px;
+            background-color: #1f1f1f;
+            color: #f8f9fa;
+            border: 1px solid #1E3D6B;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.15s ease;
+        }
+
+            .tabla-admin-usuarios tr.pager-admin a:hover,
+            .tabla-admin-usuarios tr.pager-admin a:focus {
+                background-color: #2a2a2a !important;
+                color: #ffffff;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+
+        .tabla-admin-usuarios tr.pager-admin span {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            font-weight: 600;
+        }
