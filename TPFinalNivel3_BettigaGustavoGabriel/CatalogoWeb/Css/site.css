@@ -29,6 +29,35 @@ body {
             color: #0d6efd !important;
         }
 
+
+    /* ===========================
+   DROPDOWN NAVBAR
+   =========================== */
+
+    /* Fondo del menú desplegable */
+    .navbar .dropdown-menu {
+        background-color: #000000; /* mismo fondo que la navbar */
+        border: 1px solid #111111; /* borde discreto oscuro */
+        border-radius: 0; /* sin esquinas redondeadas (más "pro") */
+        padding: 0; /* que no quede con mucho aire raro */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.7); /* leve sombra hacia abajo */
+    }
+
+    /* Ítems dentro del dropdown */
+    .navbar .dropdown-item {
+        color: #dcdcdc; /* mismo color que los links de la navbar */
+        font-family: "Segoe UI", Roboto, sans-serif; /* misma tipografía */
+        font-size: 0.95rem;
+        padding: 0.5rem 1.25rem;
+    }
+
+        /* Hover de cada opción del menú */
+        .navbar .dropdown-item:hover,
+        .navbar .dropdown-item:focus {
+            background-color: #1E3D6B; /* negro-azulado fachero */
+            color: #ffffff; /* texto bien claro */
+        }
+
 /* ===========================
    BOTONES GENERALES
    =========================== */

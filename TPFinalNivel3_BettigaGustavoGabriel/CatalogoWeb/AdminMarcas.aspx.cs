@@ -23,9 +23,9 @@ namespace CatalogoWeb
         protected void dgvMarcas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvMarcas.PageIndex = e.NewPageIndex;
-            List<Categoria> listaAMostrar;
+            List<Marca> listaAMostrar;
 
-            listaAMostrar = (List<Categoria>)Session["listaCategorias"];
+            listaAMostrar = (List<Marca>)Session["listaMarcas"];
 
             dgvMarcas.DataSource = listaAMostrar;
             dgvMarcas.DataBind();
