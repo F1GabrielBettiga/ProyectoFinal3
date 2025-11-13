@@ -68,11 +68,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ABM_Articulos.aspx" />
+    <Content Include="ABM_Categorias.aspx" />
+    <Content Include="ABM_Marcas.aspx" />
+    <Content Include="ABM_Usuarios.aspx" />
     <Content Include="AdminArticulos.aspx" />
     <Content Include="AdminCategorias.aspx" />
     <Content Include="AdminMarcas.aspx" />
     <Content Include="AdminUsuarios.aspx" />
     <Content Include="Css\ABM_Articulos.css" />
+    <Content Include="Css\ABM_Usuarios.css" />
     <Content Include="Css\AdminArticulos.css" />
     <Content Include="Css\AdminCategorias.css" />
     <Content Include="Css\AdminMarcas.css" />
@@ -102,6 +106,27 @@
     </Compile>
     <Compile Include="ABM_Articulos.aspx.designer.cs">
       <DependentUpon>ABM_Articulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Categorias.aspx.cs">
+      <DependentUpon>ABM_Categorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM_Categorias.aspx.designer.cs">
+      <DependentUpon>ABM_Categorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Marcas.aspx.cs">
+      <DependentUpon>ABM_Marcas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM_Marcas.aspx.designer.cs">
+      <DependentUpon>ABM_Marcas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Usuarios.aspx.cs">
+      <DependentUpon>ABM_Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABM_Usuarios.aspx.designer.cs">
+      <DependentUpon>ABM_Usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminArticulos.aspx.cs">
       <DependentUpon>AdminArticulos.aspx</DependentUpon>

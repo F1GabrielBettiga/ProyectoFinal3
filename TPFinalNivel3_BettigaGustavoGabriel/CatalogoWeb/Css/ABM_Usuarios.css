@@ -1,0 +1,205 @@
+﻿/* ===========================
+   CONTENEDOR GENERAL ABM USUARIO
+   =========================== */
+
+.abm-usuario-container {
+    max-width: 900px;
+    margin: 25px auto 40px auto;
+    padding: 0 15px;
+}
+
+
+/* ===========================
+   TÍTULO PRINCIPAL
+   =========================== */
+
+.titulo-abm-usuario {
+    display: block;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+
+/* ===========================
+   TARJETA PRINCIPAL
+   =========================== */
+
+.abm-usuario-card {
+    background-color: #1E3D6B; /* mismo azul que el resto del sitio */
+    border-radius: 10px;
+    padding: 20px 22px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    border: 1px solid #000000;
+}
+
+
+/* ===========================
+   FILA ID USUARIO
+   =========================== */
+
+.fila-id-usuario {
+    margin-bottom: 12px;
+}
+
+    .fila-id-usuario .form-label {
+        color: #f5f5f5;
+        font-weight: 500;
+    }
+
+    /* TextBox del ID (readonly) */
+    .fila-id-usuario .txt-id-usuario {
+        background-color: #0b1b33;
+        border: 1px solid #000000;
+        color: #ffffff;
+        min-width: 80px;
+        max-width: 120px;
+        text-align: center;
+    }
+
+
+/* ===========================
+   CAMPOS GENERALES
+   (nombre, apellido, email, pass)
+   =========================== */
+
+.abm-usuario-card .form-label {
+    color: #f5f5f5;
+    font-weight: 500;
+}
+
+/* TextBox y demás inputs */
+.abm-usuario-card .form-control {
+    background-color: #0b1b33;
+    border: 1px solid #000000;
+    color: #ffffff;
+}
+
+    /* Placeholder clarito */
+    .abm-usuario-card .form-control::placeholder {
+        color: #9ba3c5;
+    }
+
+    /* Foco en inputs */
+    .abm-usuario-card .form-control:focus {
+        background-color: #0b1b33;
+        border-color: #0d6efd;
+        outline: none;
+        box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.35);
+    }
+
+
+/* ===========================
+   SELECT ROL (ddlRol)
+   =========================== */
+
+.abm-usuario-card .form-select {
+    background-color: #0b1b33;
+    border: 1px solid #000000;
+    color: #ffffff;
+}
+
+    .abm-usuario-card .form-select:focus {
+        background-color: #0b1b33;
+        border-color: #0d6efd;
+        outline: none;
+        box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.35);
+    }
+
+
+/* ===========================
+   IMAGEN DE PERFIL
+   =========================== */
+
+/* Marco donde va la imagen actual */
+.abm-usuario-imagen-wrapper {
+    background-color: #000000;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #0d6efd;
+}
+
+/* Imagen de preview del usuario */
+.abm-img-usuario {
+    max-width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    background-color: #ffffff;
+    border-radius: 6px;
+}
+
+/* Input file para nueva imagen */
+.abm-usuario-card input[type="file"] {
+    background-color: #0b1b33;
+    border: 1px solid #000000;
+    color: #ffffff;
+}
+
+
+/* ===========================
+   GRUPO CONTRASEÑA
+   (checkbox + ojito)
+   =========================== */
+
+.abm-usuario-card .input-group-text {
+    background-color: #0b1b33;
+    border: 1px solid #000000;
+    color: #ffffff;
+}
+
+    .abm-usuario-card .input-group-text span {
+        font-size: 0.9rem;
+    }
+
+
+/* ===========================
+   BOTONES DE ACCIÓN
+   =========================== */
+
+.abm-usuario-botones {
+    margin-top: 20px;
+}
+
+    /* Botón Guardar */
+    .abm-usuario-botones .btn-primary {
+        min-width: 120px;
+    }
+
+    /* Botón Cancelar */
+    .abm-usuario-botones .btn-outline-light {
+        min-width: 120px;
+    }
+
+    /* Animación ligera en ambos */
+    .abm-usuario-botones .btn {
+        transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+        .abm-usuario-botones .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.4);
+        }
+
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (max-width: 768px) {
+    .abm-usuario-container {
+        margin-top: 15px;
+    }
+
+    .abm-usuario-card {
+        padding: 16px;
+    }
+
+    .titulo-abm-usuario {
+        font-size: 1.7rem;
+    }
+}
