@@ -27,7 +27,9 @@ namespace CatalogoWeb
             if (e.CommandName == "Editar")
             {
                 // Redirigir a la pantalla de edición
-                Response.Redirect("MiPerfil.aspx?id=" + id);
+
+                Session["UsuarioEditar"] = id;
+                Response.Redirect("ABM_Usuarios.aspx");
             }
             else if (e.CommandName == "Borrar")
             {

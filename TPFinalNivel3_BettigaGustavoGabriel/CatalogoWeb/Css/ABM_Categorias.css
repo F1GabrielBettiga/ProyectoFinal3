@@ -1,0 +1,136 @@
+﻿/* ===========================
+   CONTENEDOR GENERAL
+   =========================== */
+.abm-categoria-container {
+    max-width: 650px;
+    margin: 35px auto 60px auto;
+    padding: 0 15px;
+}
+
+/* ===========================
+   TÍTULO PRINCIPAL
+   =========================== */
+.titulo-abm-categoria {
+    display: block;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* ===========================
+   TARJETA PRINCIPAL
+   =========================== */
+.abm-categoria-card {
+    background-color: #1E3D6B;
+    border: 1px solid #000000;
+    padding: 25px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+    /* Hover con brillo azul */
+    .abm-categoria-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 25px rgba(13, 110, 253, 0.85), 0 0 50px rgba(13, 110, 253, 0.45), inset 0 0 15px rgba(13, 110, 253, 0.25);
+    }
+
+/* ===========================
+   FILA ID
+   =========================== */
+.fila-id-categoria {
+    margin-bottom: 20px;
+}
+
+    .fila-id-categoria .form-label {
+        color: #ffffff;
+        font-weight: 500;
+    }
+
+    .fila-id-categoria .form-control {
+        background-color: #0b1b33;
+        border: 1px solid #000000;
+        color: #dfe7ff;
+    }
+
+/* ===========================
+   CAMPO NOMBRE CATEGORÍA
+   =========================== */
+.abm-categoria-card .form-label {
+    color: #f5f5f5;
+    font-weight: 500;
+}
+
+.abm-categoria-card .form-control {
+    background-color: #0b1b33;
+    border: 1px solid #000000;
+    color: #ffffff;
+}
+
+    .abm-categoria-card .form-control::placeholder {
+        color: #9ba3c5;
+    }
+
+    .abm-categoria-card .form-control:focus {
+        background-color: #0b1b33;
+        border-color: #0d6efd;
+        outline: none;
+        box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.35);
+    }
+
+/* ===========================
+   BOTONES
+   =========================== */
+.abm-categoria-botones .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    font-weight: 600;
+    width: 140px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+    .abm-categoria-botones .btn-primary:hover {
+        background-color: #0b5ed7;
+        box-shadow: 0 0 12px rgba(13, 110, 253, 0.55);
+        transform: translateY(-2px);
+    }
+
+.abm-categoria-botones .btn-outline-light {
+    font-weight: 600;
+    width: 140px;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+    .abm-categoria-botones .btn-outline-light:hover {
+        background-color: #ffffff;
+        color: #0b1b33;
+        transform: scale(1.03);
+    }
+
+/* ===========================
+   MENSAJE DE ERROR
+   =========================== */
+.abm-categoria-mensaje-error {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    color: #ffb3b3;
+    font-size: 0.9rem;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 576px) {
+    .abm-categoria-card {
+        padding: 18px 16px;
+    }
+
+    .titulo-abm-categoria {
+        font-size: 1.7rem;
+    }
+}

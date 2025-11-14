@@ -76,6 +76,8 @@
     <Content Include="AdminMarcas.aspx" />
     <Content Include="AdminUsuarios.aspx" />
     <Content Include="Css\ABM_Articulos.css" />
+    <Content Include="Css\ABM_Categorias.css" />
+    <Content Include="Css\ABM_Marcas.css" />
     <Content Include="Css\ABM_Usuarios.css" />
     <Content Include="Css\AdminArticulos.css" />
     <Content Include="Css\AdminCategorias.css" />

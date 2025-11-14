@@ -31,6 +31,7 @@ namespace CatalogoWeb
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
+            Response.Redirect("AdminArticulos.aspx");
 
         }
 
