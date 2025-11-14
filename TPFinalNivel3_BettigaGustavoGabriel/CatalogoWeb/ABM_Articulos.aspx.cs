@@ -29,6 +29,15 @@ namespace CatalogoWeb
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+            { 
+                actualizarArticulo();
+            }
+            else
+            {
+                // Código para agregar un nuevo artículo (no implementado en este snippet)
+            }
+
 
         }
 
@@ -48,7 +57,11 @@ namespace CatalogoWeb
                 
                 Articulo articulo = negocio.listarArticulos().FirstOrDefault(a => a.id == id);
 
-                
+                lblTituloABM.Text = "Modificar Artículo";
+                btnGuardar.Text = "Modificar";
+
+
+
                 if (articulo == null)
                     return;
 
@@ -142,6 +155,69 @@ namespace CatalogoWeb
             ddlCategoria.DataBind();
 
 
+        }
+
+        void actualizarArticulo()
+        {
+            Articulo articulo = new Articulo();
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            try
+            {
+                articulo.id = int.Parse(txtId.Text);
+
+                // --- Código ---
+                articulo.codigo = string.IsNullOrWhiteSpace(txtCodigo.Text)
+                    ? null
+                    : txtCodigo.Text.Trim();
+
+                // --- Nombre ---
+                articulo.nombre = string.IsNullOrWhiteSpace(txtNombre.Text)
+                    ? null
+                    : txtNombre.Text.Trim();
+
+                // --- Descripción ---
+                articulo.descripcion = string.IsNullOrWhiteSpace(txtDescripcion.Text)
+                    ? null
+                    : txtDescripcion.Text.Trim();
+
+                // --- Precio ---
+                if (string.IsNullOrWhiteSpace(txtPrecio.Text))
+                    articulo.precio = 0; 
+                else
+                    articulo.precio = decimal.Parse(txtPrecio.Text);
+
+                // --- Marca ---
+                articulo.marca = new Marca();
+                articulo.marca.id = int.Parse(ddlMarca.SelectedValue);
+
+                // --- Categoría ---
+                articulo.categoria = new Categoria();
+                articulo.categoria.id = int.Parse(ddlCategoria.SelectedValue);
+
+                // --- Imagen (por ahora ignorada) ---
+                // articulo.imagenUrl = null;
+
+                // Ejecutar actualización
+                bool exito = negocio.actualizarArticulo(articulo);
+
+                if (exito)
+                    Response.Redirect("AdminArticulos.aspx");
+                else
+                {
+                    //lblMensajeError.Text = "Error al actualizar el artículo.";
+                    //lblMensajeError.Visible = true;
+                }
+            }
+            catch (FormatException)
+            {
+                //lblMensajeError.Text = "El precio debe ser un número válido.";
+                //lblMensajeError.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 

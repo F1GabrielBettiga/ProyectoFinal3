@@ -52,6 +52,71 @@ namespace Negocio
             }
         }
 
+        public bool actualizarArticulo (Articulo articulo)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            // Función local para mapear string -> valor o NULL
+            object ValorONull(string valor)
+            {
+                return string.IsNullOrWhiteSpace(valor)
+                    ? (object)DBNull.Value
+                    : valor;
+            }
+
+
+            try
+            {
+                //"ImagenUrl = @ImagenUrl, " 
+                datos.setearConsulta(
+                    "UPDATE ARTICULOS SET " +
+                    "Codigo = @Codigo, " +
+                    "Nombre = @Nombre, " +
+                    "Descripcion = @Descripcion, " +
+                    "IdMarca = @IdMarca, " +
+                    "IdCategoria = @IdCategoria, " +
+                    
+                    "Precio = @Precio " +
+                    "WHERE Id = @Id"
+                );
+
+                // Strings: si vienen null o vacíos -> DB NULL
+                datos.agregarParametro("@Codigo", ValorONull(articulo.codigo));
+                datos.agregarParametro("@Nombre", ValorONull(articulo.nombre));
+                datos.agregarParametro("@Descripcion", ValorONull(articulo.descripcion));
+                //datos.agregarParametro("@ImagenUrl", ValorONull(articulo.imagenUrl));
+
+                
+                datos.agregarParametro("@IdMarca",
+                    articulo.marca != null ? articulo.marca.id : (object)DBNull.Value);
+
+                datos.agregarParametro("@IdCategoria",
+                    articulo.categoria != null ? articulo.categoria.id : (object)DBNull.Value);
+
+                datos.agregarParametro("@Precio", articulo.precio);
+
+                datos.agregarParametro("@Id", articulo.id);
+
+                int filas = datos.ejecutarAccion();
+
+                if (filas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
 
 
