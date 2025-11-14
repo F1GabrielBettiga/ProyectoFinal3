@@ -15,10 +15,13 @@ namespace CatalogoWeb
         {
             if (!IsPostBack)
             {
-                string id = Request.QueryString["id"];
-                if (!string.IsNullOrEmpty(id))
+                CargarDdlCategorias();
+                CargarDdlMarcas();
+
+                if (!string.IsNullOrEmpty(Request.QueryString["id"]))
                 {
-                    CargarDetalles(int.Parse(id));
+                        string id = Request.QueryString["id"];
+                        CargarDetalles(int.Parse(id));
                 }
             }
 
@@ -51,8 +54,6 @@ namespace CatalogoWeb
 
                 
                 txtId.Text = articulo.id.ToString();
-
-                // Campos de texto
                 txtCodigo.Text = articulo.codigo;
                 txtNombre.Text = articulo.nombre;
                 txtDescripcion.Text = articulo.descripcion;
@@ -60,18 +61,14 @@ namespace CatalogoWeb
 
                 // Marca
                 if (articulo.marca != null)
-                {
-                    // si en el DropDown guardás el Id
+                {   
                     ddlMarca.SelectedValue = articulo.marca.id.ToString();
-                    // o, si estás usando la descripción como Value:
-                    // ddlMarca.SelectedValue = articulo.marca.descripcion;
                 }
 
                 // Categoría
                 if (articulo.categoria != null)
                 {
                     ddlCategoria.SelectedValue = articulo.categoria.id.ToString();
-                    // o descripción, según cómo llenaste el combo
                 }
 
                 CargarImagen(articulo);
@@ -118,6 +115,37 @@ namespace CatalogoWeb
             imgArticulo.Attributes["onerror"] =
                 $"this.onerror=null; this.src='{fallback}';";
         }
+
+        void CargarDdlMarcas()
+        {
+            MarcaNegocio negocio = new MarcaNegocio();
+            List<Marca> lista = negocio.listarMarcas();
+
+            // Enlazo la lista directamente al DropDownList
+            ddlMarca.DataSource = lista;
+            ddlMarca.DataTextField = "descripcion";   // lo que ve el usuario
+            ddlMarca.DataValueField = "id";          // el valor que guardás (FK)
+            ddlMarca.DataBind();
+
+
+        }
+
+        void CargarDdlCategorias()
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            List<Categoria> lista = negocio.listarCategorias();
+
+            
+            ddlCategoria.DataSource = lista;
+            ddlCategoria.DataTextField = "descripcion";   
+            ddlCategoria.DataValueField = "id";          
+            ddlCategoria.DataBind();
+
+
+        }
+
+
+
 
 
     }

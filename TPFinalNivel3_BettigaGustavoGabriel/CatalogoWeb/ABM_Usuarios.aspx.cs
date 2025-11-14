@@ -87,6 +87,8 @@ namespace CatalogoWeb
             }
         }
 
+        
+
         private void CargarImagen(Usuario usuario)
         {
             // Imagen de respaldo (por defecto)
