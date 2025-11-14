@@ -75,7 +75,8 @@
                             AlternateText="Usuario" PostBackUrl="MiPerfil.aspx" />
 
                         <asp:Button ID="btnCerrarSesion" runat="server" Text="Salir"
-                            CssClass="btn btn-outline-primary me-2" />
+                            CssClass="btn btn-outline-primary me-2" 
+                            Onclick="btnCerrarSesion_Click" />
                     </div>
                 </div>
             </div>

@@ -13,5 +13,11 @@ namespace CatalogoWeb
         {
 
         }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear(); //BORRAMOS TODO PORQUE NO QUEREMOS NADA QUE CORRESPONDA A ESE USUARIO
+            Response.Redirect("Login.aspx");
+        }
     }
 }
