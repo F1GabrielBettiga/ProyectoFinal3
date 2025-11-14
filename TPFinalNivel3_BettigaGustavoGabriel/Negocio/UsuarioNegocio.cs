@@ -83,6 +83,45 @@ namespace Negocio
 
         }
 
+        public bool insertarUsuario(Usuario nuevo)
+        {
+            
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO USERS (nombre, apellido, email, pass, urlImagenPerfil, admin) " +
+                                     "VALUES (@nombre, @apellido, @email, @pass, @url, @admin)");
+                datos.agregarParametro("@nombre", nuevo.nombre);
+                datos.agregarParametro("@apellido", nuevo.apellido);
+                datos.agregarParametro("@email", nuevo.email);
+                datos.agregarParametro("@pass", nuevo.password);
+                datos.agregarParametro("@url", (object)nuevo.urlImagenPerfil ?? DBNull.Value);
+                datos.agregarParametro("@admin", nuevo.esAdmin);
+
+               int filas = datos.ejecutarAccion();
+
+                if (filas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
 
 
     }

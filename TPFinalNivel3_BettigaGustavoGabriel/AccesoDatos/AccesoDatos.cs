@@ -26,6 +26,7 @@ namespace AccesoDatos
 
         public void setearConsulta(string consulta)
         {
+            comando.Parameters.Clear();
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = consulta;
 
@@ -52,6 +53,22 @@ namespace AccesoDatos
                 throw ex;
             }
         }
+
+        public int ejecutarAccion()
+        {
+            try
+            {
+                
+                conexion.Open();
+               return comando.ExecuteNonQuery(); // Retorna el número de filas afectadas
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
 
         public void cerrarConexion()
         {
