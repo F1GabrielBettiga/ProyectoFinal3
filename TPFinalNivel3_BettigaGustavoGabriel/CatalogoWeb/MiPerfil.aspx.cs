@@ -13,13 +13,17 @@ namespace CatalogoWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Usuario usuario = (Usuario)Session["usuario"];
-
             
 
             if (!IsPostBack)
             {
-                CargarImagen((Usuario)Session["usuario"]);
+                if (Session["Usuario"] != null)
+                {
+                    int id = (int)Session["Usuario"];
+
+                    CargarDetalles(id);
+
+                }
             }
 
 
@@ -27,7 +31,36 @@ namespace CatalogoWeb
         }
 
 
+        private void CargarDetalles(int id)
+        {
+            try
+            {
 
+                UsuarioNegocio negocio = new UsuarioNegocio();
+
+
+                Usuario usuario = negocio.listarUsuarios().FirstOrDefault(a => a.id == id);
+
+
+                if (usuario == null)
+                    return;
+
+
+               
+                txtNombre.Text = usuario.nombre;
+                txtApellido.Text = usuario.apellido;
+                txtEmail.Text = usuario.email;
+                txtPassword.Attributes["value"] = usuario.password;
+                lblTipoUsuario.Text = usuario.esAdmin ? "Administrador" : "Estándar";          
+                CargarImagen(usuario);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
 
         private void CargarImagen(Usuario usuario)
@@ -56,5 +89,38 @@ namespace CatalogoWeb
 
         }
 
+        protected void btnCambiarPassword_Click(object sender, EventArgs e)
+        {
+            if (txtNuevaPassword.Visible == true)
+            {
+                lblNuevaPass.Visible = false;
+                txtNuevaPassword.Visible = false;
+
+                lblRepetirPass.Visible = false;
+                txtRepetirPassword.Visible = false;
+
+            }
+            else
+            {
+
+                lblNuevaPass.Visible = true;
+                txtNuevaPassword.Visible = true;
+
+                lblRepetirPass.Visible = true;
+                txtRepetirPassword.Visible = true;
+            }
+        }
+
+        protected void chkMostrarPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkMostrarPassword.Checked)
+            {
+                txtPassword.TextMode = TextBoxMode.SingleLine;
+            }
+            else
+            {
+                txtPassword.TextMode = TextBoxMode.Password;
+            }
+        }
     }
 }

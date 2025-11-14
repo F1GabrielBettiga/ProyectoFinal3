@@ -11,11 +11,10 @@
 
     <div class="perfil-container">
         <div class="perfil-card">
-
             <div class="row">
                 <!-- ===========================
-                     COLUMNA IZQUIERDA
-                     =========================== -->
+                 COLUMNA IZQUIERDA
+                 =========================== -->
                 <div class="col-md-4 col-sm-12 perfil-col-izquierda">
 
                     <!-- Imagen de perfil -->
@@ -25,7 +24,8 @@
 
                     <!-- Cargar nueva imagen -->
                     <div class="mt-3">
-                        <asp:FileUpload ID="fuImagenPerfil" runat="server" CssClass="input-imagen-perfil" />
+                        <asp:FileUpload ID="fuImagenPerfil" runat="server"
+                            CssClass="input-imagen-perfil" />
                     </div>
 
                     <!-- Tipo de usuario (solo lectura) -->
@@ -37,32 +37,10 @@
                             CssClass="valor-tipo-usuario"></asp:Label>
                     </div>
 
-                    <!-- ID de usuario (muestyro solo si es admin) -->
-                    <div class="mt-2">
-                        <asp:Label ID="lblIdUsuarioTitulo" runat="server"
-                            Text="ID de usuario:"
-                            CssClass="etiqueta-id-usuario"></asp:Label>
-                        <asp:Label ID="lblIdUsuario" runat="server"
-                            CssClass="valor-id-usuario"></asp:Label>
-                    </div>
-
-                    <!-- Combo para cambiar tipo de usuario (solo admins lo ´puede ver) -->
-                    <div class="mt-3">
-                        <asp:Label ID="lblEditarTipoUsuario" runat="server"
-                            Text="Cambiar tipo de usuario:"
-                            CssClass="etiqueta-editar-tipo"></asp:Label>
-                        <asp:DropDownList ID="ddlTipoUsuario" runat="server"
-                            CssClass="ddl-tipo-usuario">
-                            <asp:ListItem Text="Estándar" Value="Estándar"></asp:ListItem>
-                            <asp:ListItem Text="Administrador" Value="Administrador"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-
                 </div>
-
                 <!-- ===========================
-                     COLUMNA DERECHA
-                     =========================== -->
+                 COLUMNA DERECHA
+                 =========================== -->
                 <div class="col-md-8 col-sm-12 perfil-col-derecha">
 
                     <!-- Nombre -->
@@ -97,26 +75,35 @@
 
                             <asp:CheckBox ID="chkMostrarPassword" runat="server"
                                 Text="Mostrar"
-                                CssClass="chk-mostrar-password" />
+                                CssClass="chk-mostrar-password"
+                                AutoPostBack="true"
+                                OnCheckedChanged="chkMostrarPassword_CheckedChanged" />
 
                             <asp:Button ID="btnCambiarPassword" runat="server"
                                 Text="Cambiar contraseña"
-                                CssClass="btn btn-outline-light btn-sm btn-cambiar-password" />
+                                CssClass="btn btn-outline-light btn-sm btn-cambiar-password"
+                                Onclick="btnCambiarPassword_Click"  />
                         </div>
                     </div>
 
                     <!-- Nueva contraseña + repetir  -->
                     <div id="bloqueCambioPassword">
                         <div class="form-group">
-                            <label>Nueva contraseña</label>
-                            <asp:TextBox ID="txtNuevaPassword" runat="server"
+                            <asp:Label ID="lblNuevaPass" runat="server"
+                                Text="Nueva contraseña"
+                                Visible="false"
+                                CssClass="form-label" />
+                            <asp:TextBox ID="txtNuevaPassword" Visible="false" runat="server"
                                 CssClass="form-control"
                                 TextMode="Password"></asp:TextBox>
                         </div>
 
                         <div class="form-group">
-                            <label>Repetir contraseña</label>
-                            <asp:TextBox ID="txtRepetirPassword" runat="server"
+                            <asp:Label ID="lblRepetirPass" runat="server"
+                                Text="Repetir contraseña"
+                                Visible="false"
+                                CssClass="form-label" />
+                            <asp:TextBox ID="txtRepetirPassword" Visible="false" runat="server"
                                 CssClass="form-control"
                                 TextMode="Password"></asp:TextBox>
                         </div>
@@ -126,7 +113,7 @@
                     <div class="acciones-perfil">
                         <asp:Button ID="btnGuardar" runat="server"
                             Text="Guardar cambios"
-                            CssClass="btn btn-primary" />
+                            CssClass="btn btn-primary me-2" />
 
                         <asp:Button ID="btnVolverInicio" runat="server"
                             Text="Volver al inicio"

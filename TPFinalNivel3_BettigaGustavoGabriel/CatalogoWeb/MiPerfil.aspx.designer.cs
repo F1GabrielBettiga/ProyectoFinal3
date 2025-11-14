@@ -51,42 +51,6 @@ namespace CatalogoWeb
         protected global::System.Web.UI.WebControls.Label lblTipoUsuario;
 
         /// <summary>
-        /// Control lblIdUsuarioTitulo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIdUsuarioTitulo;
-
-        /// <summary>
-        /// Control lblIdUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIdUsuario;
-
-        /// <summary>
-        /// Control lblEditarTipoUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEditarTipoUsuario;
-
-        /// <summary>
-        /// Control ddlTipoUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
-
-        /// <summary>
         /// Control txtNombre.
         /// </summary>
         /// <remarks>
@@ -141,6 +105,15 @@ namespace CatalogoWeb
         protected global::System.Web.UI.WebControls.Button btnCambiarPassword;
 
         /// <summary>
+        /// Control lblNuevaPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNuevaPass;
+
+        /// <summary>
         /// Control txtNuevaPassword.
         /// </summary>
         /// <remarks>
@@ -148,6 +121,15 @@ namespace CatalogoWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNuevaPassword;
+
+        /// <summary>
+        /// Control lblRepetirPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRepetirPass;
 
         /// <summary>
         /// Control txtRepetirPassword.
