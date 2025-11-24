@@ -19,6 +19,7 @@ namespace CatalogoWeb
                 
                 if (!string.IsNullOrEmpty(Request.QueryString["id"]))
                 {
+                    lblTituloABMMarca.Text = "Editar marca";
                     string id = Request.QueryString["id"];
                     CargarDetalles(int.Parse(id));
                 }
@@ -30,6 +31,45 @@ namespace CatalogoWeb
         protected void btnGuardarMarca_Click(object sender, EventArgs e)
         {
 
+            if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+            {
+                actualizarMarca();
+            }
+            else
+            {
+                // Código para agregar un nuevo artículo (no implementado en este snippet)
+            }
+
+
+
+        }
+
+        private void actualizarMarca()
+        {
+            try
+            {
+                Marca marca = new Marca();
+                MarcaNegocio negocio = new MarcaNegocio();
+
+                marca.id = int.Parse(txtIdMarca.Text);
+                marca.descripcion = txtNombreMarca.Text;
+
+                bool exito = negocio.actualizarMarca(marca);
+
+                if (exito)
+                {
+                    Response.Redirect("AdminMarcas.aspx");
+                }
+                else
+                {
+                    //lblMensajeError.Text = "Error al actualizar el artículo.";
+                    //lblMensajeError.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
