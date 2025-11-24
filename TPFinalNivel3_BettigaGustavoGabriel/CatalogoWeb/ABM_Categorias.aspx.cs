@@ -18,6 +18,7 @@ namespace CatalogoWeb
 
                 if (!string.IsNullOrEmpty(Request.QueryString["id"]))
                 {
+                    lblTituloABMCategoria.Text = "Editar categoría";
                     string id = Request.QueryString["id"];
                     CargarDetalles(int.Parse(id));
                 }
@@ -29,7 +30,44 @@ namespace CatalogoWeb
 
         protected void btnGuardarCategoria_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+            {
+                actualizarCategoria();
+            }
+            else
+            {
+                // Código para agregar un nuevo artículo (no implementado en este snippet)
+            }
 
+
+        }
+
+        private void actualizarCategoria()
+        {
+            try
+            {
+                Categoria categoria = new Categoria();
+                CategoriaNegocio negocio = new CategoriaNegocio();
+
+                categoria.id = int.Parse(txtIdCategoria.Text);
+                categoria.descripcion = txtNombreCategoria.Text;
+
+                bool exito = negocio.actualizarCategoria(categoria);
+
+                if (exito)
+                {
+                    Response.Redirect("AdminCategorias.aspx");
+                }
+                else
+                {
+                    //lblMensajeError.Text = "Error al actualizar el artículo.";
+                    //lblMensajeError.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
