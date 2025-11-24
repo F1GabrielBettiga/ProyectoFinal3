@@ -20,12 +20,13 @@ namespace CatalogoWeb
 
                 if (Session["UsuarioEditar"] != null)
                 {
+                    lblTituloABMUsuario.Text = "Modificar Usuario";
                     int id = (int)Session["UsuarioEditar"];
 
                     CargarDetalles(id);
-                    
+
                 }
-                
+
             }
 
 
@@ -46,6 +47,17 @@ namespace CatalogoWeb
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (Session["UsuarioEditar"] != null)
+            {
+                actualizarUsuario();
+
+            }
+            else
+            {
+                // Código para agregar un nuevo artículo (no implementado en este snippet)
+            }
+
+
 
         }
 
@@ -54,6 +66,62 @@ namespace CatalogoWeb
             Response.Redirect("AdminUsuarios.aspx");
 
         }
+
+        void actualizarUsuario()
+        {
+            Usuario usuario = new Usuario();
+            UsuarioNegocio negocio = new UsuarioNegocio();
+
+            try
+            {
+                usuario.id = int.Parse(txtIdUsuario.Text);
+
+                // --- Email ---
+                usuario.email = string.IsNullOrWhiteSpace(txtEmail.Text)
+                    ? null
+                    : txtEmail.Text.Trim();
+
+                // --- Password ---
+                usuario.password = string.IsNullOrWhiteSpace(txtPassword.Text)
+                    ? null
+                    : txtPassword.Text.Trim();
+
+                // --- Nombre ---
+                usuario.nombre = string.IsNullOrWhiteSpace(txtNombre.Text)
+                    ? null
+                    : txtNombre.Text.Trim();
+
+                // --- apellido ---
+                usuario.apellido = string.IsNullOrWhiteSpace(txtApellido.Text)
+                    ? null
+                    : txtApellido.Text.Trim();
+                // --- esAdmin ---
+                usuario.esAdmin = ddlRol.SelectedValue.ToLower() == "true" ? true : false;
+
+
+
+
+
+                // --- Imagen (por ahora ignorada) ---
+                // usuario.urlImagenPerfil = null;
+
+                // Ejecutar actualización
+                bool exito = negocio.actualizarUsuario(usuario);
+
+                if (exito)
+                    Response.Redirect("AdminUsuarios.aspx");
+                else
+                {
+                    //lblMensajeError.Text = "Error al actualizar el artículo.";
+                    //lblMensajeError.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
         private void CargarDetalles(int id)
@@ -64,7 +132,7 @@ namespace CatalogoWeb
                 UsuarioNegocio negocio = new UsuarioNegocio();
 
 
-                Usuario usuario= negocio.listarUsuarios().FirstOrDefault(a => a.id == id);
+                Usuario usuario = negocio.listarUsuarios().FirstOrDefault(a => a.id == id);
 
 
                 if (usuario == null)
@@ -87,7 +155,7 @@ namespace CatalogoWeb
             }
         }
 
-        
+
 
         private void CargarImagen(Usuario usuario)
         {
@@ -113,5 +181,6 @@ namespace CatalogoWeb
             }
 
 
-    }   }
+        }
+    }
 }

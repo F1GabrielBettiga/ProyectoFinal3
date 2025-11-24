@@ -122,6 +122,65 @@ namespace Negocio
 
         }
 
+        public bool actualizarUsuario (Usuario usuario)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            // Función local para mapear string -> valor o NULL
+            object ValorONull(string valor)
+            {
+                return string.IsNullOrWhiteSpace(valor)
+                    ? (object)DBNull.Value
+                    : valor;
+            }
+
+
+            try
+            {
+                //"urlImagenPerfil = @UrlImagenPerfil " 
+                datos.setearConsulta(
+                    "UPDATE USERS SET " +
+                    "email = @Email, " +
+                    "nombre = @Nombre, " +
+                    "apellido = @Apellido, " +
+                    "pass = @Password, " +
+                    "admin = @Admin " +
+
+                    "WHERE Id = @Id"
+                );
+
+                // Strings: si vienen null o vacíos -> DB NULL
+                datos.agregarParametro("@Email", ValorONull(usuario.email));
+                datos.agregarParametro("@Nombre", ValorONull(usuario.nombre));
+                datos.agregarParametro("@Apellido", ValorONull(usuario.apellido));
+                datos.agregarParametro("@Password", ValorONull(usuario.password));
+                datos.agregarParametro("@Admin", usuario.esAdmin);
+                //datos.agregarParametro("@ImagenUrl", ValorONull(articulo.imagenUrl));
+
+
+                datos.agregarParametro("@Id", usuario.id);
+
+                int filas = datos.ejecutarAccion();
+
+                if (filas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
 
     }
