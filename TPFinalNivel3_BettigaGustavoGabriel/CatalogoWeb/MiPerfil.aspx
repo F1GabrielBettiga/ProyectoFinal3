@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="Css/MiPerfil.css" />
+    <script src="<%: ResolveUrl("~/Scripts/perfil.js") %>"></script>
 </asp:Content>
 
 
@@ -19,14 +20,23 @@
 
                     <!-- Imagen de perfil -->
                     <asp:Image ID="imgPerfil" runat="server"
+                        ClientIDMode="Static"
                         CssClass="img-perfil"
                         AlternateText="Imagen de perfil" />
 
                     <!-- Cargar nueva imagen -->
+                    <% if (btnGuardar.Visible == true)
+                       { 
+                    %>
                     <div class="mt-3">
-                        <asp:FileUpload ID="fuImagenPerfil" runat="server"
-                            CssClass="input-imagen-perfil" />
+                        <input type="file" id="fileImagenUsuario" runat="server"
+                            class="input-imagen-perfil"
+                            onchange="mostrarVistaPrevia(this, 'imgPerfil')" />
+
                     </div>
+                    <%
+                       } 
+                    %>
 
                     <!-- Tipo de usuario (solo lectura) -->
                     <div class="mt-3">
@@ -69,7 +79,7 @@
                         <label>Contraseña</label>
 
                         <div class="fila-password">
-                            <asp:TextBox ID="txtPassword" runat="server"
+                            <asp:TextBox ID="txtPassword" runat="server"                              
                                 CssClass="form-control campo-password"
                                 TextMode="Password"></asp:TextBox>
 
@@ -82,7 +92,7 @@
                             <asp:Button ID="btnCambiarPassword" runat="server"
                                 Text="Cambiar contraseña"
                                 CssClass="btn btn-outline-light btn-sm btn-cambiar-password"
-                                Onclick="btnCambiarPassword_Click"  />
+                                OnClick="btnCambiarPassword_Click" />
                         </div>
                     </div>
 
@@ -111,16 +121,26 @@
 
                     <!-- Botones de acción -->
                     <div class="acciones-perfil">
+                        <asp:Button ID="btnEditar" runat="server"
+                            Text="Editar perfil"
+                            CssClass="btn btn-outline-primary"
+                            OnClick="btnEditar_Click" />
                         <asp:Button ID="btnGuardar" runat="server"
                             Text="Guardar cambios"
-                            CssClass="btn btn-primary me-2" />
+                            Visible="false"
+                            CssClass="btn btn-primary me-2"
+                            OnClick="btnGuardar_Click" />
 
-                        <asp:Button ID="btnVolverInicio" runat="server"
-                            Text="Volver al inicio"
+                        <asp:Button ID="btnCancelar" runat="server"
+                            Text="Cancelar"
+                            Visible="false"
                             CssClass="btn btn-outline-light"
-                            PostBackUrl="~/Default.aspx" />
+                            OnClick="btnCancelar_Click" />
                     </div>
-
+                    <asp:Label ID="lblMensajeError" runat="server"
+                        Text=""
+                        Visible="false"
+                        CssClass="form-label" />
                 </div>
             </div>
 

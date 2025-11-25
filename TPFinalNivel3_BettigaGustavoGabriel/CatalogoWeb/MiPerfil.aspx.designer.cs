@@ -24,13 +24,13 @@ namespace CatalogoWeb
         protected global::System.Web.UI.WebControls.Image imgPerfil;
 
         /// <summary>
-        /// Control fuImagenPerfil.
+        /// Control fileImagenUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fuImagenPerfil;
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile fileImagenUsuario;
 
         /// <summary>
         /// Control lblTipoUsuarioTitulo.
@@ -141,6 +141,15 @@ namespace CatalogoWeb
         protected global::System.Web.UI.WebControls.TextBox txtRepetirPassword;
 
         /// <summary>
+        /// Control btnEditar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditar;
+
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>
@@ -150,12 +159,21 @@ namespace CatalogoWeb
         protected global::System.Web.UI.WebControls.Button btnGuardar;
 
         /// <summary>
-        /// Control btnVolverInicio.
+        /// Control btnCancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverInicio;
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
+
+        /// <summary>
+        /// Control lblMensajeError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensajeError;
     }
 }
