@@ -97,14 +97,9 @@ namespace CatalogoWeb
                     : txtApellido.Text.Trim();
                 // --- esAdmin ---
                 usuario.esAdmin = ddlRol.SelectedValue.ToLower() == "true" ? true : false;
-
-
-
-
-
-                // --- Imagen (por ahora ignorada) ---
-                // usuario.urlImagenPerfil = null;
-
+                // --- UrlImagen ---
+                guardarImagenDePerfil(usuario);
+                
                 // Ejecutar actualización
                 bool exito = negocio.actualizarUsuario(usuario);
 
@@ -154,6 +149,58 @@ namespace CatalogoWeb
                 throw ex;
             }
         }
+
+        private void guardarImagenDePerfil(Usuario user)
+        {
+            try
+            {
+                // ¿HAY ARCHIVO NUEVO?
+                if (fileImagenUsuario.PostedFile != null && fileImagenUsuario.PostedFile.ContentLength > 0 && !string.IsNullOrEmpty(fileImagenUsuario.PostedFile.FileName))
+                {
+                    string rutaFisica = Server.MapPath("~/Images/"); // carpeta interna
+                    string nombreArchivo = "perfil-" + user.id + ".jpg";
+
+                    // Guarda físicamente en la carpeta del proyecto
+                    fileImagenUsuario.PostedFile.SaveAs(rutaFisica + nombreArchivo);
+
+                    // Guarda la ruta virtual (accesible desde la web y portable entre equipos)
+                    user.urlImagenPerfil = "~/Images/" + nombreArchivo;
+
+                    // Actualiza el <asp:Image> para la vista previa
+                    imgUsuario.ImageUrl = user.urlImagenPerfil + "?v=" + DateTime.Now.Ticks;
+                }
+                else
+                {
+                    // NO SE SUBIÓ NADA NUEVO → CONSERVAR LA QUE YA TENÍA
+
+                    // Si en la página hay alguna imagen cargada, la reutilizo
+                    if (!string.IsNullOrWhiteSpace(imgUsuario.ImageUrl))
+                    {
+                        // Por si tiene el "?v=12345" de cache-busting, me quedo solo con la ruta
+                        string urlActual = imgUsuario.ImageUrl.Split('?')[0];
+
+                        // Si no es la imagen por defecto, la conservo
+                        if (!urlActual.EndsWith("no-image.png", StringComparison.OrdinalIgnoreCase))
+                        {
+                            user.urlImagenPerfil = urlActual;
+                        }
+                        else
+                        {
+                            // Imagen por defecto → guardo null en la entidad
+                            user.urlImagenPerfil = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
+
 
 
 

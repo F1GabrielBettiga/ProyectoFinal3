@@ -144,6 +144,7 @@ namespace Negocio
                     "nombre = @Nombre, " +
                     "apellido = @Apellido, " +
                     "pass = @Password, " +
+                    "urlImagenPerfil = @UrlImagenPerfil ,"+
                     "admin = @Admin " +
 
                     "WHERE Id = @Id"
@@ -154,10 +155,9 @@ namespace Negocio
                 datos.agregarParametro("@Nombre", ValorONull(usuario.nombre));
                 datos.agregarParametro("@Apellido", ValorONull(usuario.apellido));
                 datos.agregarParametro("@Password", ValorONull(usuario.password));
+                datos.agregarParametro("@UrlImagenPerfil", ValorONull(usuario.urlImagenPerfil));
                 datos.agregarParametro("@Admin", usuario.esAdmin);
-                //datos.agregarParametro("@ImagenUrl", ValorONull(articulo.imagenUrl));
-
-
+                
                 datos.agregarParametro("@Id", usuario.id);
 
                 int filas = datos.ejecutarAccion();

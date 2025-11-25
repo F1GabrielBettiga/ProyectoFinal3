@@ -99,6 +99,7 @@
     <Content Include="MiPerfil.aspx" />
     <Content Include="MisFavoritos.aspx" />
     <Content Include="Registro.aspx" />
+    <Content Include="Scripts\perfil.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
