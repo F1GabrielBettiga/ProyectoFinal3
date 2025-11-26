@@ -6,7 +6,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1 class="titulo-admin-articulos">Administración de Artículos</h1>
+    <div class="header-admin-articulos">
+        <h1 class="titulo-admin-articulos">Administración de Artículos</h1>
+
+        <asp:Button
+            ID="btnNuevoArticulo"
+            runat="server"
+            Text="Crear artículo"
+            CssClass="btn-crear-articulo"
+            OnClick="btnNuevoArticulo_Click" />
+    </div>
 
     <asp:GridView
         ID="dgvArticulos"
@@ -16,7 +25,7 @@
         AutoGenerateColumns="false"
         AllowPaging="true"
         PageSize="4"
-        OnPageIndexChanging="dgvArticulos_PageIndexChanging"       
+        OnPageIndexChanging="dgvArticulos_PageIndexChanging"
         OnRowCommand="dgvArticulos_RowCommand">
 
         <Columns>

@@ -19,6 +19,11 @@ namespace CatalogoWeb
             }
         }
 
+        protected void btnNuevaCategoria_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABM_Categorias.aspx");
+        }
+
         protected void dgvCategorias_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvCategorias.PageIndex = e.NewPageIndex;
@@ -84,6 +89,6 @@ namespace CatalogoWeb
 
         }
 
-
+        
     }
 }

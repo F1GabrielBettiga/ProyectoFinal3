@@ -7,7 +7,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1 class="titulo-admin-usuarios">Administración de Usuarios</h1>
+     <div class="header-admin-usuarios">
+     <h1 class="titulo-admin-usuarios">Administración de Usuarios</h1>
+
+     <asp:Button
+         ID="btnNuevoUsuario"
+         runat="server"
+         Text="Crear usuario"
+         CssClass="btn-crear-usuario"
+         OnClick="btnNuevoUsuario_Click"/>
+ </div>
 
     <asp:GridView
         ID="dgvUsuarios"

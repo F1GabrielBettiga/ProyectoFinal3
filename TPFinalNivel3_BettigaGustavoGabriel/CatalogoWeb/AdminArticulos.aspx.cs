@@ -22,6 +22,11 @@ namespace CatalogoWeb
 
         }
 
+        protected void btnNuevoArticulo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABM_Articulos.aspx");
+        }
+
         protected void dgvArticulos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvArticulos.PageIndex = e.NewPageIndex;
@@ -84,8 +89,6 @@ namespace CatalogoWeb
 
         }
 
-        
 
-        
     }
 }

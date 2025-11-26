@@ -84,6 +84,7 @@
                         <asp:Label ID="lblImagenActual" runat="server" Text="Imagen actual" CssClass="form-label" />
                         <div class="abm-imagen-wrapper">
                             <asp:Image ID="imgArticulo" runat="server"
+                                ImageUrl="~/Images/no-image.png"
                                 ClientIDMode="Static"
                                 CssClass="img-fluid abm-img-articulo"
                                 AlternateText="Imagen del artículo" />

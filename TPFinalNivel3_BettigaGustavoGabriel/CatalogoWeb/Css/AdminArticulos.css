@@ -1,17 +1,63 @@
 ﻿/* ===========================
-   TÍTULO ADMINISTRACIÓN
+   HEADER TÍTULO + BOTÓN NUEVO
    =========================== */
 
+.header-admin-articulos {
+    width: 95%;
+    margin: 20px auto 25px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centra el H1 */
+    position: relative; /* permite ubicar el botón */
+    padding-right: 160px; /* espacio para que el botón no invada el título */
+}
+
+/* Ajusto el título dentro del header */
 .titulo-admin-articulos {
-    margin-top: 20px;
-    margin-bottom: 25px;
-    text-align: center;
+    margin: 0;
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #ffffff;
 }
+
+/* ===========================
+   BOTÓN "CREAR ARTÍCULO"
+   =========================== */
+
+.btn-crear-articulo {
+    position: absolute; /* fija el botón dentro del header */
+    right: 0; /* alineado a la derecha */
+    top: 50%; /* centrado verticalmente */
+    transform: translateY(-50%);
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    border: 1px solid #198754;
+    background: #1fb06a; /* verde que combina con la pantalla */
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+    transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+    .btn-crear-articulo:hover {
+        background: #198754;
+        box-shadow: 0 3px 9px rgba(0, 0, 0, 0.38);
+        
+    }
+
+    .btn-crear-articulo:active {
+        background: #146c43;
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    }
+
+    .btn-crear-articulo:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.15rem rgba(25, 135, 84, 0.4);
+    }
 
 /* ===========================
    TABLA ADMIN ARTÍCULOS

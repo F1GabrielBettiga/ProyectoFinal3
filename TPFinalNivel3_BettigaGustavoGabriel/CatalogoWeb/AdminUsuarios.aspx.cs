@@ -82,5 +82,9 @@ namespace CatalogoWeb
 
         }
 
+        protected void btnNuevoUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

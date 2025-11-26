@@ -20,6 +20,11 @@ namespace CatalogoWeb
 
         }
 
+        protected void btnNuevaMarca_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABM_Marcas.aspx");
+        }
+
         protected void dgvMarcas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvMarcas.PageIndex = e.NewPageIndex;
@@ -81,5 +86,7 @@ namespace CatalogoWeb
 
 
         }
+
+        
     }
 }

@@ -3,7 +3,17 @@
      <link rel="stylesheet" type="text/css" href="Css/AdminCategorias.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div class="header-admin-categorias">
     <h1 class="titulo-admin-categorias">Administración de Categorias</h1>
+
+    <asp:Button
+        ID="btnNuevaCategoria"
+        runat="server"
+        Text="Crear categoria"
+        CssClass="btn-crear-categoria"
+        OnClick="btnNuevaCategoria_Click" />
+</div>
 
 <asp:GridView
     ID="dgvCategorias"
