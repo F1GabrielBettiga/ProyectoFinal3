@@ -120,14 +120,73 @@ namespace CatalogoWeb
             }
             else
             {
-                // Si es una ruta interna del proyecto (Images/loquesea.png, etc.)
-                imgArticulo.ImageUrl = ResolveUrl("~/") + imagenUrl.TrimStart('/');
+                //  Si el campo urlImagenPerfil está vacío o nulo
+                if (string.IsNullOrEmpty(imagenUrl))
+                {
+                    imgArticulo.ImageUrl = fallback;
+                }
+                else
+                {
+                    //  Si tiene algo, usamos lo que vino
+                    imgArticulo.ImageUrl = imagenUrl;
+                }
             }
 
             // Si la imagen falla al cargar en el navegador, usar la de respaldo
             imgArticulo.Attributes["onerror"] =
                 $"this.onerror=null; this.src='{fallback}';";
         }
+
+        private void guardarImagenDePerfil(Articulo art)
+        {
+            try
+            {
+                // ¿HAY ARCHIVO NUEVO?
+                if (txtImagen.PostedFile != null && txtImagen.PostedFile.ContentLength > 0 && !string.IsNullOrEmpty(txtImagen.PostedFile.FileName))
+                {
+                    string rutaFisica = Server.MapPath("~/Images/"); // carpeta interna
+                    string nombreArchivo = "art-" + art.id + ".jpg";
+
+                    // Guarda físicamente en la carpeta del proyecto
+                    txtImagen.PostedFile.SaveAs(rutaFisica + nombreArchivo);
+
+                    // Guarda la ruta virtual (accesible desde la web y portable entre equipos)
+                    art.imagenUrl = "~/Images/" + nombreArchivo;
+
+                    // Actualiza el <asp:Image> para la vista previa
+                    imgArticulo.ImageUrl = art.imagenUrl + "?v=" + DateTime.Now.Ticks;
+                }
+                else
+                {
+                    // NO SE SUBIÓ NADA NUEVO → CONSERVAR LA QUE YA TENÍA
+
+                    // Si en la página hay alguna imagen cargada, la reutilizo
+                    if (!string.IsNullOrWhiteSpace(imgArticulo.ImageUrl))
+                    {
+                        // Por si tiene el "?v=12345" de cache-busting, me quedo solo con la ruta
+                        string urlActual = imgArticulo.ImageUrl.Split('?')[0];
+
+                        // Si no es la imagen por defecto, la conservo
+                        if (!urlActual.EndsWith("no-image.png", StringComparison.OrdinalIgnoreCase))
+                        {
+                            art.imagenUrl = urlActual;
+                        }
+                        else
+                        {
+                            // Imagen por defecto → guardo null en la entidad
+                            art.imagenUrl = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
 
         void CargarDdlMarcas()
         {
@@ -196,7 +255,10 @@ namespace CatalogoWeb
                 articulo.categoria.id = int.Parse(ddlCategoria.SelectedValue);
 
                 // --- Imagen (por ahora ignorada) ---
-                // articulo.imagenUrl = null;
+
+                guardarImagenDePerfil(articulo);
+
+                
 
                 // Ejecutar actualización
                 bool exito = negocio.actualizarArticulo(articulo);

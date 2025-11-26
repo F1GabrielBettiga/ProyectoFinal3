@@ -75,7 +75,7 @@ namespace Negocio
                     "Descripcion = @Descripcion, " +
                     "IdMarca = @IdMarca, " +
                     "IdCategoria = @IdCategoria, " +
-                    
+                    "ImagenUrl = @ImagenUrl, " +
                     "Precio = @Precio " +
                     "WHERE Id = @Id"
                 );
@@ -84,7 +84,7 @@ namespace Negocio
                 datos.agregarParametro("@Codigo", ValorONull(articulo.codigo));
                 datos.agregarParametro("@Nombre", ValorONull(articulo.nombre));
                 datos.agregarParametro("@Descripcion", ValorONull(articulo.descripcion));
-                //datos.agregarParametro("@ImagenUrl", ValorONull(articulo.imagenUrl));
+                datos.agregarParametro("@ImagenUrl", ValorONull(articulo.imagenUrl));
 
                 
                 datos.agregarParametro("@IdMarca",

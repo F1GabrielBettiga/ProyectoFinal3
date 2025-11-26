@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <link rel="stylesheet" type="text/css" href="Css/ABM_Articulos.css" />
+    <script src="<%: ResolveUrl("~/Scripts/perfil.js") %>"></script>
 </asp:Content>
 
 
@@ -83,6 +84,7 @@
                         <asp:Label ID="lblImagenActual" runat="server" Text="Imagen actual" CssClass="form-label" />
                         <div class="abm-imagen-wrapper">
                             <asp:Image ID="imgArticulo" runat="server"
+                                ClientIDMode="Static"
                                 CssClass="img-fluid abm-img-articulo"
                                 AlternateText="Imagen del artículo" />
                         </div>
@@ -91,7 +93,7 @@
                     <!-- Campo para cambiar la imagen (URL) -->
                     <div class="mb-3">
                         <asp:Label ID="lblUrlImagen" runat="server" Text="Cargar imagen" CssClass="form-label" />
-                        <input type="file" id="txtImagen" runat="server" class="form-control" />
+                        <input type="file" id="txtImagen" runat="server" class="form-control" onchange="mostrarVistaPrevia(this, 'imgArticulo')"  />
                     </div>
 
                 </div>
