@@ -13,14 +13,14 @@
             <h1 class="titulo-lista-productos">Lista de Productos</h1>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 productos-grid">
-                <asp:Repeater ID="repetidorDeTarjetas" runat="server">
+                <asp:Repeater ID="repetidorDeTarjetas" runat="server" OnItemDataBound="repetidorDeTarjetas_ItemDataBound">
                     <ItemTemplate>
                         <div class="col">
                             <div class="card tarjeta-producto h-100">
-                                <img src="<%# Eval("imagenUrl") %>"
-                                    class="card-img-top img-producto"
-                                    alt="Imagen producto"
-                                    onerror="this.onerror=null; this.src='Images/no-image.png';" />
+                                <asp:Image ID="imgProducto"
+                                    runat="server"
+                                    CssClass="card-img-top img-producto"
+                                    ImageUrl='<%# Eval("imagenUrl") %>' />
                                 <div class="card-body">
                                     <h5 class="card-title titulo-producto"><%# Eval("nombre") %></h5>
                                     <p class="card-text descripcion-producto"><%# Eval("descripcion") %></p>

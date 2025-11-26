@@ -91,8 +91,24 @@ namespace CatalogoWeb
             btnCargarMas.Visible = cantidadMostrada < listaArticulos.Count;
         }
 
-        
+        protected void repetidorDeTarjetas_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var articulo = (Articulo)e.Item.DataItem;
+                var img = (Image)e.Item.FindControl("imgProducto");
 
-        
+                string fallback = ResolveUrl("~/Images/no-image.png");
+
+                // ✅ Asigna la imagen (o fallback si viene null/vacía)
+                img.ImageUrl = string.IsNullOrWhiteSpace(articulo.imagenUrl)
+                    ? fallback
+                    : ResolveUrl(articulo.imagenUrl);
+
+                // ✅ Si la imagen falla en el navegador → usa fallback automáticamente
+                img.Attributes["onerror"] =
+                    $"this.onerror=null; this.src='{fallback}';";
+            }
+        }
     }
 }
