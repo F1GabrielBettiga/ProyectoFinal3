@@ -51,7 +51,7 @@ namespace CatalogoWeb
 
             if (usuarioValido)
             {   
-                Session["Usuario"] = usuario.id;
+                Session["UsuarioLogueado"] = usuario;
                 Response.Redirect("MiPerfil.aspx");
             }
             else

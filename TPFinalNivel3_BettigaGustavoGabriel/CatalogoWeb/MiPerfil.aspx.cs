@@ -18,11 +18,11 @@ namespace CatalogoWeb
 
             if (!IsPostBack)
             {
-                if (Session["Usuario"] != null)
+                if (Session["UsuarioLogueado"] != null)
                 {
-                    int id = (int)Session["Usuario"];
+                    Usuario user = (Usuario)Session["UsuarioLogueado"];
 
-                    CargarDetalles(id);
+                    CargarDetalles(user.id);
                     ModoSoloLectura();
 
                 }
@@ -34,7 +34,7 @@ namespace CatalogoWeb
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (Session["Usuario"] != null)
+            if (Session["UsuarioLogueado"] != null)
             {
                 
                 actualizarPerfil();
@@ -154,7 +154,7 @@ namespace CatalogoWeb
 
             try
             {
-                usuario.id = (int)Session["Usuario"];
+                usuario = (Usuario)Session["UsuarioLogueado"];
 
                 // --- Email ---
                 usuario.email = string.IsNullOrWhiteSpace(txtEmail.Text)
