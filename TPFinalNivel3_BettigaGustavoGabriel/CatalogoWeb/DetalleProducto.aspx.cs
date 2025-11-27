@@ -32,34 +32,30 @@ namespace CatalogoWeb
 
         private void CargarImagen(Articulo articulo)
         {
-            // Imagen de respaldo
             string fallback = ResolveUrl("~/Images/no-image.png");
 
-            // Si el campo está vacío o tiene texto inválido
-            if (string.IsNullOrEmpty(articulo.imagenUrl) ||
-                articulo.imagenUrl.Length < 5 ||
-                articulo.imagenUrl.IndexOf("sin_imagen_para_que_de_error", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                articulo.imagenUrl.IndexOf("noimage", StringComparison.OrdinalIgnoreCase) >= 0)
+            //Si no hay imagen o vino algo inválido
+            if (string.IsNullOrWhiteSpace(articulo.imagenUrl))
             {
                 imgProducto.ImageUrl = fallback;
                 return;
             }
 
-            // Normalizo la url que viene de la BD
-            string imagenUrl = articulo.imagenUrl.Trim();
+            //Normalizo removiendo el ?v=123 si existiera
+            string imagenUrl = articulo.imagenUrl.Split('?')[0].Trim();
 
-            // Si es una URL completa (http o https)
+            //Si es URL completa (http/https)
             if (Uri.IsWellFormedUriString(imagenUrl, UriKind.Absolute))
             {
                 imgProducto.ImageUrl = imagenUrl;
             }
             else
             {
-                // Si es una ruta interna del proyecto (Images/loquesea.png, etc.)
-                imgProducto.ImageUrl = ResolveUrl("~/") + imagenUrl.TrimStart('/');
+                //ruta interna del proyecto
+                imgProducto.ImageUrl = ResolveUrl(imagenUrl);
             }
 
-            // Si la imagen falla al cargar en el navegador, usar la de respaldo
+            //Si falla al cargar en el navegador → fallback automático
             imgProducto.Attributes["onerror"] =
                 $"this.onerror=null; this.src='{fallback}';";
         }
