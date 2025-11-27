@@ -86,6 +86,52 @@ namespace Negocio
             }
         }
 
+        public bool agregarMarca(Marca marca)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            // Función local para mapear string -> valor o NULL
+            object ValorONull(string valor)
+            {
+                return string.IsNullOrWhiteSpace(valor)
+                    ? (object)DBNull.Value
+                    : valor;
+            }
+
+
+            try
+            {
+
+                datos.setearConsulta("INSERT INTO MARCAS (Descripcion)" +
+                                      "VALUES (@Descripcion);");
+
+                // Strings: si vienen null o vacíos -> DB NULL
+                datos.agregarParametro("@Descripcion", ValorONull(marca.descripcion));
+
+                
+
+                int filas = datos.ejecutarAccion();
+
+                if (filas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
 
 
 

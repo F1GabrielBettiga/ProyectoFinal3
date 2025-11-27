@@ -37,7 +37,7 @@ namespace CatalogoWeb
             }
             else
             {
-                // Código para agregar un nuevo artículo (no implementado en este snippet)
+                agregarMarca();
             }
 
 
@@ -100,6 +100,36 @@ namespace CatalogoWeb
 
                 throw ex;
             }
+        }
+
+        private void agregarMarca()
+        {
+
+            try
+            {
+                Marca marca = new Marca();
+                MarcaNegocio negocio = new MarcaNegocio();
+
+                
+                marca.descripcion = txtNombreMarca.Text;
+
+                bool exito = negocio.agregarMarca(marca);
+
+                if (exito)
+                {
+                    Response.Redirect("AdminMarcas.aspx");
+                }
+                else
+                {
+                    //lblMensajeError.Text = "Error al actualizar el artículo.";
+                    //lblMensajeError.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
 
