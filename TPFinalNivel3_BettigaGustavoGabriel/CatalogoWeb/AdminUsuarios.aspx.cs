@@ -84,6 +84,7 @@ namespace CatalogoWeb
 
         protected void btnNuevoUsuario_Click(object sender, EventArgs e)
         {
+            Response.Redirect("ABM_Usuarios.aspx");
 
         }
     }

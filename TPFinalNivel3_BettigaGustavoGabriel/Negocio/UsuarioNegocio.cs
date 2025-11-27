@@ -85,31 +85,36 @@ namespace Negocio
 
         public bool insertarUsuario(Usuario nuevo)
         {
-            
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            // Función local para mapear string vacío → NULL en DB
+            object ValorONull(string valor)
+            {
+                return string.IsNullOrWhiteSpace(valor)
+                    ? (object)DBNull.Value
+                    : valor.Trim();
+            }
+
             try
             {
-                datos.setearConsulta("INSERT INTO USERS (nombre, apellido, email, pass, urlImagenPerfil, admin) " +
-                                     "VALUES (@nombre, @apellido, @email, @pass, @url, @admin)");
-                datos.agregarParametro("@nombre", nuevo.nombre);
-                datos.agregarParametro("@apellido", nuevo.apellido);
-                datos.agregarParametro("@email", nuevo.email);
-                datos.agregarParametro("@pass", nuevo.password);
-                datos.agregarParametro("@url", (object)nuevo.urlImagenPerfil ?? DBNull.Value);
+                datos.setearConsulta(
+                    "INSERT INTO USERS (nombre, apellido, email, pass, urlImagenPerfil, admin) " +
+                    "VALUES (@nombre, @apellido, @email, @pass, @url, @admin)"
+                );
+
+                // Strings que pueden venir null o vacíos
+                datos.agregarParametro("@nombre", ValorONull(nuevo.nombre));
+                datos.agregarParametro("@apellido", ValorONull(nuevo.apellido));
+                datos.agregarParametro("@email", ValorONull(nuevo.email));
+                datos.agregarParametro("@pass", ValorONull(nuevo.password));
+
+                //  Imagen opcional (puede venir null)
+                datos.agregarParametro("@url", ValorONull(nuevo.urlImagenPerfil));
                 datos.agregarParametro("@admin", nuevo.esAdmin);
 
-               int filas = datos.ejecutarAccion();
+                int filas = datos.ejecutarAccion();
 
-                if (filas > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-
-
+                return filas > 0;
             }
             catch (Exception ex)
             {
@@ -119,7 +124,6 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-
         }
 
         public bool actualizarUsuario (Usuario usuario)
@@ -170,6 +174,31 @@ namespace Negocio
                 {
                     return false;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public int obtenerProximoId()
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT ISNULL(MAX(Id), 0) + 1 FROM USERS");
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                    return (int)datos.Lector[0];
+
+                return 1; // ✅ fallback seguro
             }
             catch (Exception ex)
             {

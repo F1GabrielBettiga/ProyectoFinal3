@@ -54,7 +54,7 @@ namespace CatalogoWeb
             }
             else
             {
-                // Código para agregar un nuevo artículo (no implementado en este snippet)
+                agregarUsuario();
             }
 
 
@@ -117,6 +117,55 @@ namespace CatalogoWeb
             }
         }
 
+        void agregarUsuario()
+        {
+            Usuario usuario = new Usuario();
+            UsuarioNegocio negocio = new UsuarioNegocio();
+
+            try
+            {
+   
+                // --- Email ---
+                usuario.email = string.IsNullOrWhiteSpace(txtEmail.Text)
+                    ? null
+                    : txtEmail.Text.Trim();
+
+                // --- Password ---
+                usuario.password = string.IsNullOrWhiteSpace(txtPassword.Text)
+                    ? null
+                    : txtPassword.Text.Trim();
+
+                // --- Nombre ---
+                usuario.nombre = string.IsNullOrWhiteSpace(txtNombre.Text)
+                    ? null
+                    : txtNombre.Text.Trim();
+
+                // --- apellido ---
+                usuario.apellido = string.IsNullOrWhiteSpace(txtApellido.Text)
+                    ? null
+                    : txtApellido.Text.Trim();
+                // --- esAdmin ---
+                usuario.esAdmin = ddlRol.SelectedValue.ToLower() == "true" ? true : false;
+                // --- UrlImagen ---
+                guardarImagenDePerfil(usuario);
+
+                // Ejecutar actualización
+                bool exito = negocio.insertarUsuario(usuario);
+
+                if (exito)
+                    Response.Redirect("AdminUsuarios.aspx");
+                else
+                {
+                    //lblMensajeError.Text = "Error al actualizar el artículo.";
+                    //lblMensajeError.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
         private void CargarDetalles(int id)
@@ -154,50 +203,50 @@ namespace CatalogoWeb
         {
             try
             {
-                // ¿HAY ARCHIVO NUEVO?
-                if (fileImagenUsuario.PostedFile != null && fileImagenUsuario.PostedFile.ContentLength > 0 && !string.IsNullOrEmpty(fileImagenUsuario.PostedFile.FileName))
+                //  ¿HAY ARCHIVO NUEVO?
+                if (fileImagenUsuario.PostedFile != null &&
+                    fileImagenUsuario.PostedFile.ContentLength > 0 &&
+                    !string.IsNullOrEmpty(fileImagenUsuario.PostedFile.FileName))
                 {
-                    string rutaFisica = Server.MapPath("~/Images/"); // carpeta interna
-                    string nombreArchivo = "perfil-" + user.id + ".jpg";
+                    UsuarioNegocio negocio = new UsuarioNegocio();
 
-                    // Guarda físicamente en la carpeta del proyecto
+                    //  Si el usuario todavía NO existe → usamos próximo ID
+                    int idParaNombre = user.id > 0
+                        ? user.id
+                        : negocio.obtenerProximoId();
+
+                    string rutaFisica = Server.MapPath("~/Images/");
+                    string nombreArchivo = $"perfil-{idParaNombre}.jpg";
+
                     fileImagenUsuario.PostedFile.SaveAs(rutaFisica + nombreArchivo);
 
-                    // Guarda la ruta virtual (accesible desde la web y portable entre equipos)
-                    user.urlImagenPerfil = "~/Images/" + nombreArchivo;
-
-                    // Actualiza el <asp:Image> para la vista previa
+                    user.urlImagenPerfil = $"~/Images/{nombreArchivo}";
                     imgUsuario.ImageUrl = user.urlImagenPerfil + "?v=" + DateTime.Now.Ticks;
                 }
                 else
                 {
-                    // NO SE SUBIÓ NADA NUEVO → CONSERVAR LA QUE YA TENÍA
+                    // NO SE SUBIÓ NUEVA → DECIDIR QUÉ GUARDAR
 
-                    // Si en la página hay alguna imagen cargada, la reutilizo
-                    if (!string.IsNullOrWhiteSpace(imgUsuario.ImageUrl))
+                    string urlActual = imgUsuario.ImageUrl?.Split('?')[0];
+
+                    //  Si sigue la default → NO guardar en BD
+                    if (string.IsNullOrWhiteSpace(urlActual) ||
+                        urlActual.EndsWith("no-user.jpg", StringComparison.OrdinalIgnoreCase) ||
+                        urlActual.EndsWith("no-image.png", StringComparison.OrdinalIgnoreCase))
                     {
-                        // Por si tiene el "?v=12345" de cache-busting, me quedo solo con la ruta
-                        string urlActual = imgUsuario.ImageUrl.Split('?')[0];
-
-                        // Si no es la imagen por defecto, la conservo
-                        if (!urlActual.EndsWith("no-image.png", StringComparison.OrdinalIgnoreCase))
-                        {
-                            user.urlImagenPerfil = urlActual;
-                        }
-                        else
-                        {
-                            // Imagen por defecto → guardo null en la entidad
-                            user.urlImagenPerfil = null;
-                        }
+                        user.urlImagenPerfil = null;
+                    }
+                    else
+                    {
+                        //  Conservar la imagen existente
+                        user.urlImagenPerfil = urlActual;
                     }
                 }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
         }
 
 
