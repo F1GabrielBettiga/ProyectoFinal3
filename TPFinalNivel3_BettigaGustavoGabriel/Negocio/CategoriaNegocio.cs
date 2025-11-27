@@ -132,5 +132,34 @@ namespace Negocio
 
 
         }
+
+        public bool eliminarCategoria(int id)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM CATEGORIAS WHERE Id = @Id");
+                datos.agregarParametro("@Id", id);
+                int filas = datos.ejecutarAccion();
+
+
+                if (filas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

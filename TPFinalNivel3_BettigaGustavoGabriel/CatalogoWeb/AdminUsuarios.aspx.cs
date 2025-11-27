@@ -33,9 +33,7 @@ namespace CatalogoWeb
             }
             else if (e.CommandName == "Borrar")
             {
-                // Confirmar o eliminar el artículo (ejemplo simple)
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                // negocio.EliminarArticulo(id);
+                eliminarUsuario(id);
 
                 // Recargamos la grilla
                 cargarGrid();
@@ -86,6 +84,19 @@ namespace CatalogoWeb
         {
             Response.Redirect("ABM_Usuarios.aspx");
 
+        }
+
+        private void eliminarUsuario(int id)
+        {
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            try
+            {
+                negocio.eliminarUsuario(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

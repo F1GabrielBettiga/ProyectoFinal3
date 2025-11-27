@@ -49,9 +49,7 @@ namespace CatalogoWeb
             }
             else if (e.CommandName == "Borrar")
             {
-                // Confirmar o eliminar el artículo (ejemplo simple)
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                // negocio.EliminarArticulo(id);
+                eliminarMarca(id);
 
                 // Recargamos la grilla
                 cargarGrid();
@@ -60,7 +58,7 @@ namespace CatalogoWeb
 
         }
 
-        void cargarGrid()
+        private void cargarGrid()
         {
             MarcaNegocio negocio = new MarcaNegocio();
 
@@ -87,6 +85,18 @@ namespace CatalogoWeb
 
         }
 
-        
+        private void eliminarMarca(int id)
+        {
+            MarcaNegocio negocio = new MarcaNegocio();
+            try
+            {
+                negocio.eliminarMarca(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

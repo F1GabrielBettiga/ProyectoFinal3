@@ -199,6 +199,35 @@ namespace Negocio
             }
         }
 
+        public bool eliminarArticulo(int id)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @Id");
+                datos.agregarParametro("@Id", id);
+                int filas = datos.ejecutarAccion();
+
+
+                if (filas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public int obtenerProximoId()
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
