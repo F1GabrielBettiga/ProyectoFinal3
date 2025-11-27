@@ -23,7 +23,7 @@ namespace Negocio
                 {
                     Categoria aux = new Categoria();
                     aux.id = (int)datos.Lector["Id"];
-                    aux.descripcion = datos.Lector["Descripcion"] != DBNull.Value? (string)datos.Lector["Descripcion"]: "-";
+                    aux.descripcion = datos.Lector["Descripcion"] != DBNull.Value ? (string)datos.Lector["Descripcion"] : "-";
 
                     lista.Add(aux);
                 }
@@ -54,7 +54,7 @@ namespace Negocio
 
             try
             {
-                
+
                 datos.setearConsulta(
                     "UPDATE CATEGORIAS SET " +
                     "Descripcion = @Descripcion " +
@@ -87,8 +87,50 @@ namespace Negocio
             }
         }
 
+        public bool agregarCategoria(Categoria cat)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            // Función local para mapear string -> valor o NULL
+            object ValorONull(string valor)
+            {
+                return string.IsNullOrWhiteSpace(valor)? (object)DBNull.Value: valor;
+            }
+
+
+            try
+            {
+
+                datos.setearConsulta("INSERT INTO CATEGORIAS (Descripcion)" +
+                                      "VALUES (@Descripcion);");
+
+                // Strings: si vienen null o vacíos -> DB NULL
+                datos.agregarParametro("@Descripcion", ValorONull(cat.descripcion));
+
+               
+
+                int filas = datos.ejecutarAccion();
+
+                if (filas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
 
 
+        }
     }
 }

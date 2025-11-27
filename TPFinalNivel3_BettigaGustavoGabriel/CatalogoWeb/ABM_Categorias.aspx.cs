@@ -36,7 +36,7 @@ namespace CatalogoWeb
             }
             else
             {
-                // Código para agregar un nuevo artículo (no implementado en este snippet)
+                agregarCategoria();
             }
 
 
@@ -101,5 +101,33 @@ namespace CatalogoWeb
         }
 
 
+        private void agregarCategoria()
+        {
+            try
+            {
+                Categoria categoria = new Categoria();
+                CategoriaNegocio negocio = new CategoriaNegocio();
+
+                
+                categoria.descripcion = txtNombreCategoria.Text;
+
+                bool exito = negocio.agregarCategoria(categoria); 
+
+                if (exito)
+                {
+                    Response.Redirect("AdminCategorias.aspx");
+                }
+                else
+                {
+                    //lblMensajeError.Text = "Error al actualizar el artículo.";
+                    //lblMensajeError.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }
