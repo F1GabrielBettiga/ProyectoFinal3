@@ -35,7 +35,7 @@ namespace CatalogoWeb
             }
             else
             {
-                // Código para agregar un nuevo artículo (no implementado en este snippet)
+                agregarArticulo();
             }
 
 
@@ -94,6 +94,77 @@ namespace CatalogoWeb
             }
         }
 
+        private void agregarArticulo()
+        {
+            Articulo articulo = new Articulo();
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            try
+            {
+                // --- Código ---
+                articulo.codigo = string.IsNullOrWhiteSpace(txtCodigo.Text)
+                    ? null
+                    : txtCodigo.Text.Trim();
+
+                // --- Nombre ---
+                articulo.nombre = string.IsNullOrWhiteSpace(txtNombre.Text)
+                    ? null
+                    : txtNombre.Text.Trim();
+
+                // --- Descripción ---
+                articulo.descripcion = string.IsNullOrWhiteSpace(txtDescripcion.Text)
+                    ? null
+                    : txtDescripcion.Text.Trim();
+
+                // --- Precio ---
+                if (string.IsNullOrWhiteSpace(txtPrecio.Text))
+                    articulo.precio = 0;
+                else
+                    articulo.precio = decimal.Parse(txtPrecio.Text);
+
+                // --- Marca ---
+                articulo.marca = new Marca();
+                articulo.marca.id = int.Parse(ddlMarca.SelectedValue);
+
+                // --- Categoría ---
+                articulo.categoria = new Categoria();
+                articulo.categoria.id = int.Parse(ddlCategoria.SelectedValue);
+
+                // --- Imagen (por ahora ignorada) ---
+
+                guardarImagenDeArticulo(articulo);
+
+
+
+                // Ejecuta
+                bool exito = negocio.agregarArticulo(articulo);
+
+                if (exito)
+                    Response.Redirect("AdminArticulos.aspx");
+                else
+                {
+                    //lblMensajeError.Text = "Error al actualizar el artículo.";
+                    //lblMensajeError.Visible = true;
+                }
+            }
+            catch (FormatException)
+            {
+                //lblMensajeError.Text = "El precio debe ser un número válido.";
+                //lblMensajeError.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+
+
+
+
 
         private void CargarImagen(Articulo articulo)
         {
@@ -137,54 +208,48 @@ namespace CatalogoWeb
                 $"this.onerror=null; this.src='{fallback}';";
         }
 
-        private void guardarImagenDePerfil(Articulo art)
+        private void guardarImagenDeArticulo(Articulo art)
         {
             try
             {
                 // ¿HAY ARCHIVO NUEVO?
-                if (txtImagen.PostedFile != null && txtImagen.PostedFile.ContentLength > 0 && !string.IsNullOrEmpty(txtImagen.PostedFile.FileName))
+                if (txtImagen.PostedFile != null &&
+                    txtImagen.PostedFile.ContentLength > 0 &&
+                    !string.IsNullOrEmpty(txtImagen.PostedFile.FileName))
                 {
-                    string rutaFisica = Server.MapPath("~/Images/"); // carpeta interna
-                    string nombreArchivo = "art-" + art.id + ".jpg";
+                    ArticuloNegocio negocio = new ArticuloNegocio();
+                    int proximoID = negocio.obtenerProximoId();
+                    string rutaFisica = Server.MapPath("~/Images/");
+                    string nombreArchivo = $"art-{proximoID}.jpg";
 
-                    // Guarda físicamente en la carpeta del proyecto
                     txtImagen.PostedFile.SaveAs(rutaFisica + nombreArchivo);
 
-                    // Guarda la ruta virtual (accesible desde la web y portable entre equipos)
-                    art.imagenUrl = "~/Images/" + nombreArchivo;
-
-                    // Actualiza el <asp:Image> para la vista previa
+                    art.imagenUrl = $"~/Images/{nombreArchivo}";
                     imgArticulo.ImageUrl = art.imagenUrl + "?v=" + DateTime.Now.Ticks;
                 }
                 else
                 {
-                    // NO SE SUBIÓ NADA NUEVO → CONSERVAR LA QUE YA TENÍA
+                    // NO SE SUBIÓ NADA NUEVO → DECIDIR QUÉ GUARDAR
 
-                    // Si en la página hay alguna imagen cargada, la reutilizo
-                    if (!string.IsNullOrWhiteSpace(imgArticulo.ImageUrl))
+                    string urlActual = imgArticulo.ImageUrl?.Split('?')[0];
+
+                    // Si la imagen mostrada es la default → NO GUARDAR
+                    if (string.IsNullOrWhiteSpace(urlActual) ||
+                        urlActual.EndsWith("no-image.png", StringComparison.OrdinalIgnoreCase))
                     {
-                        // Por si tiene el "?v=12345" de cache-busting, me quedo solo con la ruta
-                        string urlActual = imgArticulo.ImageUrl.Split('?')[0];
-
-                        // Si no es la imagen por defecto, la conservo
-                        if (!urlActual.EndsWith("no-image.png", StringComparison.OrdinalIgnoreCase))
-                        {
-                            art.imagenUrl = urlActual;
-                        }
-                        else
-                        {
-                            // Imagen por defecto → guardo null en la entidad
-                            art.imagenUrl = null;
-                        }
+                        art.imagenUrl = null; // → va DBNull en la BD
+                    }
+                    else
+                    {
+                        // Si ya tenía una imagen real, conservarla
+                        art.imagenUrl = urlActual;
                     }
                 }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
         }
 
 
@@ -256,7 +321,7 @@ namespace CatalogoWeb
 
                 // --- Imagen (por ahora ignorada) ---
 
-                guardarImagenDePerfil(articulo);
+                guardarImagenDeArticulo(articulo);
 
                 
 
