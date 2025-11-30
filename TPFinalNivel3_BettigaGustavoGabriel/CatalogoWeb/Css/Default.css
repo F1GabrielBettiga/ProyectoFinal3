@@ -5,84 +5,163 @@
 .titulo-lista-productos {
     margin-top: 20px;
     margin-bottom: 30px;
-    text-align: center; /* centra el texto */
+    text-align: center;
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #ffffff;
     position: relative;
-    display: inline-block; /* ocupa solo el ancho del texto */
-    left: 50%; /* centrado absoluto */
-    transform: translateX(-50%); /* corrige el centrado visual */
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+/* ===========================
+   LAYOUT GENERAL DEL HOME
+   =========================== */
 
+/* 👉 Volvemos a ancho completo y solo dejamos un padding suave */
+.home-layout {
+    margin-top: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* ===========================
+   PANEL DE FILTRO SECUNDARIO
+   =========================== */
+
+.filtro-secundario {
+    background-color: #0A192F;
+    border: 1px solid #0d6efd;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+    transition: transform 0.20s ease, box-shadow 0.20s ease;
+}
+
+@media (min-width: 992px) {
+    .filtro-secundario:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.55);
+    }
+}
+
+.titulo-filtro-secundario {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+}
+
+.filtro-secundario label {
+    color: #dcdcdc;
+    font-weight: 500;
+}
+
+.filtro-secundario .form-select,
+.filtro-secundario .form-control {
+    background-color: #112240;
+    border: 1px solid #1E3D6B;
+    color: #ffffff;
+}
+
+    .filtro-secundario .form-select:focus,
+    .filtro-secundario .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 4px rgba(13,110,253,0.7);
+    }
+
+.filtro-secundario .btn {
+    width: 48%;
+}
+
+@media (max-width: 991.98px) {
+    .filtro-secundario {
+        margin-bottom: 1.5rem;
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .filtro-secundario {
+        padding: 1rem;
+    }
+
+        .filtro-secundario .btn {
+            width: 49%;
+            font-size: 0.85rem;
+            padding: 0.35rem 0.5rem;
+        }
+}
 
 /* ===========================
    GRID DE TARJETAS
    =========================== */
 
 .productos-grid {
-    padding-left: 4rem; /* antes 1.5rem */
-    padding-right: 4rem; /* antes 1.5rem */
+    padding-left: 4rem;
+    padding-right: 4rem;
     margin-left: auto;
     margin-right: auto;
-    max-width: 1400px; /* mantiene el contenido centrado */
+    max-width: 1400px;
 }
 
-    /* Tarjeta de producto */
-    .productos-grid .tarjeta-producto {
-        height: 100%;
-        min-height: 320px;
-        border-radius: 8px;
-        background-color: #1E3D6B; /* azul más claro que el fondo general */
-        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-        transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
+@media (max-width: 991.98px) {
+    .productos-grid {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        max-width: 100%;
+    }
+}
+
+.productos-grid .tarjeta-producto {
+    height: 100%;
+    min-height: 320px;
+    border-radius: 8px;
+    background-color: #1E3D6B;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
+}
+
+    .productos-grid .tarjeta-producto:hover {
+        transform: translateY(-6px);
+        background-color: #1E3D6B;
+        box-shadow: 0 0 10px rgba(13, 110, 253, 0.7), 0 0 20px rgba(13, 110, 253, 0.4);
+        border: 1px solid #0d6efd;
     }
 
-        /* Hover con brillo */
-        .productos-grid .tarjeta-producto:hover {
-            transform: translateY(-6px);
-            background-color: #1E3D6B; /* mantiene el color base */
-            box-shadow: 0 0 10px rgba(13, 110, 253, 0.7), /* resplandor azul brillante */
-            0 0 20px rgba(13, 110, 253, 0.4); /* halo exterior más suave */
-            border: 1px solid #0d6efd; /* borde azul flúor */
-        }
+.productos-grid .img-producto {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
 
-    /* Imagen */
-    .productos-grid .img-producto {
-        width: 100%;
-        height: 300px;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
-        background-color: #ffffff;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-    }
+.productos-grid .card-body {
+    padding: 0.75rem;
+}
 
-    /* Cuerpo del contenido */
-    .productos-grid .card-body {
-        padding: 0.75rem;
-    }
+.productos-grid .titulo-producto {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #f1f1f1;
+}
 
-    /* Título del producto */
-    .productos-grid .titulo-producto {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-        color: #f1f1f1;
-    }
+.productos-grid .descripcion-producto {
+    font-size: 0.875rem;
+    max-height: 3.5em;
+    overflow: hidden;
+    color: #c9c9c9;
+}
 
-    /* Descripción */
-    .productos-grid .descripcion-producto {
-        font-size: 0.875rem;
-        max-height: 3.5em;
-        overflow: hidden;
-        color: #c9c9c9;
-    }
-
-    /* Botón */
-    .productos-grid .btn {
-        margin-top: 0.5rem;
-    }
+.productos-grid .btn {
+    margin-top: 0.5rem;
+}

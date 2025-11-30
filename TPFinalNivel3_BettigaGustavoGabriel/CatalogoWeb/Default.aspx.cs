@@ -110,5 +110,15 @@ namespace CatalogoWeb
                     $"this.onerror=null; this.src='{fallback}';";
             }
         }
+
+        protected void btnBuscarFiltros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
