@@ -48,5 +48,9 @@ namespace CatalogoWeb
             }
         }
 
+        protected void btnLimpiarBuscador_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

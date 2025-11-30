@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Css/site.css" />
 
-
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -28,19 +27,19 @@
 
                 <!-- BOTÓN DESPLEGABLE PARA PANTALLAS CHICAS-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- CONTENIDO PRINCIPAL -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- MENÚ IZQUIERDO -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                         <!-- ADMINISTRACIÓN (DESPLEGABLE) -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarAdmin"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Administración
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Administración
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarAdmin">
                                 <li><a class="dropdown-item" href="AdminArticulos.aspx">Artículos</a></li>
@@ -61,6 +60,18 @@
                         </li>
                     </ul>
 
+                    <!-- BUSCADOR GENERAL (CENTRADO ENTRE MENÚ Y BOTONES DERECHA) -->
+                    <div class="mx-auto d-flex align-items-center buscador-general">
+                        <asp:TextBox ID="txtBuscadorGeneral" runat="server"
+                            CssClass="form-control me-2"
+                            placeholder="Buscar productos..." />
+
+                        <asp:Button ID="btnLimpiarBuscador" runat="server"
+                            Text="Borrar"
+                            CssClass="btn btn-borrar-busqueda"
+                            OnClick="btnLimpiarBuscador_Click" />
+                    </div>
+
                     <!-- SECCIÓN DERECHA -->
                     <div class="d-flex align-items-center">
                         <asp:Button ID="btnLogin" runat="server" Text="Login"
@@ -75,8 +86,8 @@
                             AlternateText="Usuario" PostBackUrl="MiPerfil.aspx" />
 
                         <asp:Button ID="btnCerrarSesion" runat="server" Text="Salir"
-                            CssClass="btn btn-outline-primary me-2" 
-                            Onclick="btnCerrarSesion_Click" />
+                            CssClass="btn btn-outline-primary me-2"
+                            OnClick="btnCerrarSesion_Click" />
                     </div>
                 </div>
             </div>

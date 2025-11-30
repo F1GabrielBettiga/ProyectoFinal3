@@ -29,33 +29,74 @@ body {
             color: #0d6efd !important;
         }
 
+    /* Ajuste para centrar el buscador */
+    .navbar .buscador-general {
+        max-width: 500px;
+        width: 100%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
 
     /* ===========================
    DROPDOWN NAVBAR
    =========================== */
 
-    /* Fondo del menú desplegable */
     .navbar .dropdown-menu {
-        background-color: #000000; /* mismo fondo que la navbar */
-        border: 1px solid #111111; /* borde discreto oscuro */
-        border-radius: 0; /* sin esquinas redondeadas (más "pro") */
-        padding: 0; /* que no quede con mucho aire raro */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.7); /* leve sombra hacia abajo */
+        background-color: #000000;
+        border: 1px solid #111111;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
     }
 
-    /* Ítems dentro del dropdown */
     .navbar .dropdown-item {
-        color: #dcdcdc; /* mismo color que los links de la navbar */
-        font-family: "Segoe UI", Roboto, sans-serif; /* misma tipografía */
+        color: #dcdcdc;
+        font-family: "Segoe UI", Roboto, sans-serif;
         font-size: 0.95rem;
         padding: 0.5rem 1.25rem;
     }
 
-        /* Hover de cada opción del menú */
         .navbar .dropdown-item:hover,
         .navbar .dropdown-item:focus {
-            background-color: #1E3D6B; /* negro-azulado fachero */
-            color: #ffffff; /* texto bien claro */
+            background-color: #1E3D6B;
+            color: #ffffff;
+        }
+
+    /* ===========================
+   BUSCADOR GENERAL NAVBAR
+   =========================== */
+
+    .navbar .buscador-general {
+        max-width: 600px;
+        width: 100%;
+    }
+
+        .navbar .buscador-general input[type="text"] {
+            background-color: #111827;
+            border: 1px solid #334155;
+            color: #e5e7eb;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+
+            .navbar .buscador-general input[type="text"]:focus {
+                outline: none;
+                border-color: #0d6efd;
+                box-shadow: 0 0 6px rgba(13, 110, 253, 0.5);
+                background-color: #1e293b;
+            }
+
+    .navbar .btn-borrar-busqueda {
+        border: 1px solid #6b7280 !important;
+        color: #e5e7eb !important;
+        background-color: transparent !important;
+        transition: all 0.2s ease-in-out !important;
+    }
+
+        .navbar .btn-borrar-busqueda:hover {
+            background-color: #374151 !important;
+            border-color: #4b5563 !important;
         }
 
 /* ===========================
@@ -73,7 +114,7 @@ body {
         box-shadow: 0 0 4px rgba(13, 110, 253, 0.4);
     }
 
-/* Pequeña animación al pasar el mouse sobre cualquier botón */
+/* Animación para todos los botones */
 button,
 .btn {
     transition: transform 0.15s ease-in-out;
@@ -83,8 +124,6 @@ button,
     .btn:hover {
         transform: scale(1.03);
     }
-
-
 
 /* ===========================
    TEXTOS GENERALES
