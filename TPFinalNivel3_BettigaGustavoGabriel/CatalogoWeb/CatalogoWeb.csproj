@@ -87,6 +87,7 @@
     <Content Include="Css\DetalleProducto.css" />
     <Content Include="Css\Login.css" />
     <Content Include="Css\MiPerfil.css" />
+    <Content Include="Css\MisFavoritos.css" />
     <Content Include="Css\Registro.css" />
     <Content Include="Css\site.css" />
     <Content Include="Default.aspx" />
