@@ -75,6 +75,11 @@
         box-shadow: 0 0 4px rgba(13,110,253,0.7);
     }
 
+    .filtro-secundario .form-control::placeholder {
+        color: #9bb0d2;
+        opacity: 1; 
+    }
+
 .filtro-secundario .btn {
     width: 48%;
 }

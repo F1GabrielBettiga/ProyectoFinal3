@@ -16,14 +16,14 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta(
-                    "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, " +
-                    "       A.IdMarca AS MarcaId, M.Descripcion AS MarcaDescripcion, " +
-                    "       A.IdCategoria AS CategoriaId, C.Descripcion AS CategoriaDescripcion, " +
-                    "       A.ImagenUrl, A.Precio " +
-                    "FROM ARTICULOS A " +
-                    "INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
-                    "INNER JOIN MARCAS M     ON A.IdMarca = M.Id"
+                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, " +
+                                     "       A.IdMarca AS MarcaId, M.Descripcion AS MarcaDescripcion, " +
+                                     "       A.IdCategoria AS CategoriaId, C.Descripcion AS CategoriaDescripcion, " +
+                                     "       A.ImagenUrl, A.Precio " +
+                                     "FROM ARTICULOS A " +
+                                     "INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
+                                     "INNER JOIN MARCAS M     ON A.IdMarca = M.Id " +
+                                     "ORDER BY A.Nombre ASC"
                 );
 
                 datos.ejecutarLectura();
@@ -36,31 +36,31 @@ namespace Negocio
                     aux.id = datos.Lector["Id"] is DBNull ? 0 : (int)datos.Lector["Id"];
 
                     // Código
-                    aux.codigo = datos.Lector["Codigo"] is DBNull? null: datos.Lector["Codigo"].ToString();
+                    aux.codigo = datos.Lector["Codigo"] is DBNull ? null : datos.Lector["Codigo"].ToString();
 
                     // Nombre
-                    aux.nombre = datos.Lector["Nombre"] is DBNull? null: datos.Lector["Nombre"].ToString();
+                    aux.nombre = datos.Lector["Nombre"] is DBNull ? null : datos.Lector["Nombre"].ToString();
 
                     // Descripción
-                    aux.descripcion = datos.Lector["Descripcion"] is DBNull? null: datos.Lector["Descripcion"].ToString();
+                    aux.descripcion = datos.Lector["Descripcion"] is DBNull ? null : datos.Lector["Descripcion"].ToString();
 
                     // ImagenUrl (puede venir null → lo dejamos en null)
-                    aux.imagenUrl = datos.Lector["ImagenUrl"] is DBNull? null: datos.Lector["ImagenUrl"].ToString();
+                    aux.imagenUrl = datos.Lector["ImagenUrl"] is DBNull ? null : datos.Lector["ImagenUrl"].ToString();
 
                     // Precio
-                    aux.precio = datos.Lector["Precio"] is DBNull? 0m: (decimal)datos.Lector["Precio"];
+                    aux.precio = datos.Lector["Precio"] is DBNull ? 0m : (decimal)datos.Lector["Precio"];
 
                     // Marca
                     aux.marca = new Marca();
-                    aux.marca.id = datos.Lector["MarcaId"] is DBNull ? 0: (int)datos.Lector["MarcaId"];
+                    aux.marca.id = datos.Lector["MarcaId"] is DBNull ? 0 : (int)datos.Lector["MarcaId"];
 
-                    aux.marca.descripcion = datos.Lector["MarcaDescripcion"] is DBNull? null : datos.Lector["MarcaDescripcion"].ToString();
+                    aux.marca.descripcion = datos.Lector["MarcaDescripcion"] is DBNull ? null : datos.Lector["MarcaDescripcion"].ToString();
 
                     // Categoria
                     aux.categoria = new Categoria();
-                    aux.categoria.id = datos.Lector["CategoriaId"] is DBNull ? 0: (int)datos.Lector["CategoriaId"];
+                    aux.categoria.id = datos.Lector["CategoriaId"] is DBNull ? 0 : (int)datos.Lector["CategoriaId"];
 
-                    aux.categoria.descripcion = datos.Lector["CategoriaDescripcion"] is DBNull? null: datos.Lector["CategoriaDescripcion"].ToString();
+                    aux.categoria.descripcion = datos.Lector["CategoriaDescripcion"] is DBNull ? null : datos.Lector["CategoriaDescripcion"].ToString();
 
                     lista.Add(aux);
                 }
@@ -77,7 +77,7 @@ namespace Negocio
             }
         }
 
-        public bool actualizarArticulo (Articulo articulo)
+        public bool actualizarArticulo(Articulo articulo)
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
 
@@ -92,7 +92,7 @@ namespace Negocio
 
             try
             {
-                
+
                 datos.setearConsulta(
                     "UPDATE ARTICULOS SET " +
                     "Codigo = @Codigo, " +
@@ -111,7 +111,7 @@ namespace Negocio
                 datos.agregarParametro("@Descripcion", ValorONull(articulo.descripcion));
                 datos.agregarParametro("@ImagenUrl", ValorONull(articulo.imagenUrl));
 
-                
+
                 datos.agregarParametro("@IdMarca",
                     articulo.marca != null ? articulo.marca.id : (object)DBNull.Value);
 
@@ -160,7 +160,7 @@ namespace Negocio
             try
             {
 
-                datos.setearConsulta( "INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio)" +
+                datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio)" +
                                       "VALUES (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @imagenUrl, @precio);");
 
                 // Strings: si vienen null o vacíos -> DB NULL
@@ -257,7 +257,115 @@ namespace Negocio
             }
         }
 
+        public List<Articulo> FiltrarArticulos(int? idCategoria, int? idMarca, decimal? precioMin, decimal? precioMax)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
 
+            try
+            {
+                // ===========================
+                // 1) Base de la consulta
+                // ===========================
+                string query = @"
+            SELECT A.Id, A.Nombre, A.Descripcion, A.ImagenUrl,
+                   A.Precio, A.IdCategoria, A.IdMarca,
+                   C.Descripcion AS CategoriaDescripcion,
+                   M.Descripcion AS MarcaDescripcion
+            FROM ARTICULOS A
+            INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria
+            INNER JOIN MARCAS M ON M.Id = A.IdMarca
+            WHERE 1=1";
+
+                // ===========================
+                // 2) Armo el WHERE dinámico
+                //    (solo texto, sin parámetros todavía)
+                // ===========================
+                if ((idCategoria.HasValue) && (idCategoria.Value > 0))
+                {
+                    query += " AND A.IdCategoria = @idCategoria";
+                }
+
+                if ((idMarca.HasValue) && (idMarca.Value > 0))
+                {
+                    query += " AND A.IdMarca = @idMarca";
+                }
+
+                if (precioMin.HasValue)
+                {
+                    query += " AND A.Precio >= @precioMin";
+                }
+
+                if (precioMax.HasValue)
+                {
+                    query += " AND A.Precio <= @precioMax";
+                }
+
+                query += " ORDER BY A.Nombre ASC";
+
+                // ===========================
+                // 3) Ahora recién seteo la consulta
+                // ===========================
+                datos.setearConsulta(query);
+
+                // ===========================
+                // 4) Y recién acá agrego los parámetros
+                // ===========================
+                if ((idCategoria.HasValue) && (idCategoria.Value > 0))
+                {
+                    datos.agregarParametro("@idCategoria", idCategoria.Value);
+                }
+
+                if ((idMarca.HasValue) && (idMarca.Value > 0))
+                {
+                    datos.agregarParametro("@idMarca", idMarca.Value);
+                }
+
+                if (precioMin.HasValue)
+                {
+                    datos.agregarParametro("@precioMin", precioMin.Value);
+                }
+
+                if (precioMax.HasValue)
+                {
+                    datos.agregarParametro("@precioMax", precioMax.Value);
+                }
+
+                // ===========================
+                // 5) Ejecuto y mapeo
+                // ===========================
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+
+                    aux.id = (int)datos.Lector["Id"];
+                    aux.nombre = (string)datos.Lector["Nombre"];
+                    aux.descripcion = (string)datos.Lector["Descripcion"];
+                    aux.imagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.precio = (decimal)datos.Lector["Precio"];
+
+                    // ---- Categoria ----
+                    aux.categoria = new Categoria();
+                    aux.categoria.id = (int)datos.Lector["IdCategoria"];
+                    aux.categoria.descripcion = (string)datos.Lector["CategoriaDescripcion"];
+
+                    // ---- Marca ----
+                    aux.marca = new Marca();
+                    aux.marca.id = (int)datos.Lector["IdMarca"];
+                    aux.marca.descripcion = (string)datos.Lector["MarcaDescripcion"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }

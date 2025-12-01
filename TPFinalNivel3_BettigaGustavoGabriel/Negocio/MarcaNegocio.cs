@@ -161,6 +161,49 @@ namespace Negocio
             }
         }
 
+        public List<Marca> listarMarcasPorCategoria(int? idCategoria)
+        {
+            var lista = new List<Marca>();
+            var datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                if (idCategoria.HasValue && idCategoria.Value > 0)
+                {
+                    datos.setearConsulta(
+                        "SELECT DISTINCT M.Id, M.Descripcion " +
+                        "FROM MARCAS M " +
+                        "INNER JOIN ARTICULOS A ON A.IdMarca = M.Id " +
+                        "WHERE A.IdCategoria = @idCategoria " +
+                        "ORDER BY M.Descripcion");
+
+                    datos.agregarParametro("@idCategoria", idCategoria.Value);
+                }
+                else
+                {
+                    datos.setearConsulta(
+                        "SELECT Id, Descripcion " +
+                        "FROM MARCAS " +
+                        "ORDER BY Descripcion");
+                }
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    var m = new Marca();
+                    m.id = (int)datos.Lector["Id"];
+                    m.descripcion = (string)datos.Lector["Descripcion"];
+                    lista.Add(m);
+                }
+
+                return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
 
 
