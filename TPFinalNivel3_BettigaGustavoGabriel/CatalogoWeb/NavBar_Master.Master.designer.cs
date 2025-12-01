@@ -42,22 +42,22 @@ namespace CatalogoWeb
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// Control txtBuscadorGeneral.
+        /// Control txtBuscarGlobal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscadorGeneral;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarGlobal;
 
         /// <summary>
-        /// Control btnLimpiarBuscador.
+        /// Control btnBuscarGlobal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLimpiarBuscador;
+        protected global::System.Web.UI.WebControls.Button btnBuscarGlobal;
 
         /// <summary>
         /// Control btnLogin.

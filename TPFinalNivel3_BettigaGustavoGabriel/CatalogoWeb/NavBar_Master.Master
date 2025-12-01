@@ -62,14 +62,14 @@
 
                     <!-- BUSCADOR GENERAL (CENTRADO ENTRE MENÚ Y BOTONES DERECHA) -->
                     <div class="mx-auto d-flex align-items-center buscador-general">
-                        <asp:TextBox ID="txtBuscadorGeneral" runat="server"
+                        <asp:TextBox ID="txtBuscarGlobal" runat="server"
                             CssClass="form-control me-2"
                             placeholder="Buscar productos..." />
 
-                        <asp:Button ID="btnLimpiarBuscador" runat="server"
-                            Text="Borrar"
+                        <asp:Button ID="btnBuscarGlobal" runat="server"
+                            Text="Buscar"
                             CssClass="btn btn-borrar-busqueda"
-                            OnClick="btnLimpiarBuscador_Click" />
+                            OnClick="btnBuscarGlobal_Click" />                        
                     </div>
 
                     <!-- SECCIÓN DERECHA -->

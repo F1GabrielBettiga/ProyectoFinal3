@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,5 +53,37 @@ namespace CatalogoWeb
         {
 
         }
+
+        protected void btnBuscarGlobal_Click(object sender, EventArgs e)
+        {
+            BuscarDesdeNav();
+        }
+
+
+        private void BuscarDesdeNav()
+        {
+            // Tomo el texto del buscador
+            string texto = txtBuscarGlobal.Text.Trim();
+
+            // Si está vacío → limpio la lista filtrada
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                Session["listaArticulosFiltrada"] = null;
+            }
+            else
+            {
+                // Busco en la BD
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                List<Articulo> resultado = negocio.BuscarArticulosPorTexto(texto);
+
+                // Guardo la lista en sesión 
+                Session["listaArticulosFiltrada"] = resultado;
+            }
+
+            // Voy al Home (Default) para que pinte el grid con lo que haya en sesión
+            Response.Redirect("~/Default.aspx");
+        }
+
+
     }
 }

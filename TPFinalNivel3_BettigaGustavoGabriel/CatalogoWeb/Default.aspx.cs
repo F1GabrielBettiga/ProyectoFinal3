@@ -18,12 +18,12 @@ namespace CatalogoWeb
         }
         // Cuántos artículos mostramos por “página”
         private const int TamanioPagina = 4;
-        private  List<Articulo> listaArticulos
+        public List<Articulo> listaArticulos
         {
             get { return (List<Articulo>)Session["listaArticulos"]; }
             set { Session["listaArticulos"] = value; }
         }
-        private List<Articulo> listaArticulosFiltrada
+        public List<Articulo> listaArticulosFiltrada
         {
             get { return (List<Articulo>)Session["listaArticulosFiltrada"]; }
             set { Session["listaArticulosFiltrada"] = value; }
@@ -44,8 +44,15 @@ namespace CatalogoWeb
                 // 2) Arranco mostrando desde cero
                 cantidadMostrada = 0;
 
-                // 3) Llamo a cargarTarjetas para mostrar los primeros 8
-                cargarTarjetas(listaArticulos);
+                // Si hay búsqueda desde la navbar → uso la filtrada
+                if (listaArticulosFiltrada == null)
+                {
+                    cargarTarjetas(listaArticulos);
+                }
+                else
+                {
+                    cargarTarjetas(listaArticulosFiltrada);
+                }
             }
         }
 

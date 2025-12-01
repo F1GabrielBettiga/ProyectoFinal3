@@ -76,7 +76,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public bool actualizarArticulo(Articulo articulo)
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
@@ -142,8 +141,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
-
         public bool agregarArticulo(Articulo articulo)
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
@@ -198,7 +195,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public bool eliminarArticulo(int id)
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
@@ -227,7 +223,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public int obtenerProximoId()
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
@@ -256,7 +251,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public List<Articulo> FiltrarArticulos(int? idCategoria, int? idMarca, decimal? precioMin, decimal? precioMax)
         {
             List<Articulo> lista = new List<Articulo>();
@@ -360,6 +354,91 @@ namespace Negocio
                 }
 
                 return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Búsqueda global por texto en varios campos
+        public List<Articulo> BuscarArticulosPorTexto(string texto)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                // Si viene vacío, podés devolver lista vacía o la lista completa;
+                // por ahora devuelvo vacío para que no rompa.
+                if (string.IsNullOrWhiteSpace(texto))
+                {
+                    return new List<Articulo>();
+                }
+
+                string filtro = "%" + texto.Trim() + "%";
+
+                string query = @"
+            SELECT  A.Id,
+                    A.Codigo,
+                    A.Nombre,
+                    A.Descripcion,
+                    A.ImagenUrl,
+                    A.Precio,
+                    A.IdMarca      AS MarcaId,
+                    M.Descripcion  AS MarcaDescripcion,
+                    A.IdCategoria  AS CategoriaId,
+                    C.Descripcion  AS CategoriaDescripcion
+            FROM ARTICULOS A
+            INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id
+            INNER JOIN MARCAS     M ON A.IdMarca     = M.Id
+            WHERE
+                   (A.Codigo      LIKE @filtro)
+                OR (A.Nombre      LIKE @filtro)
+                OR (A.Descripcion LIKE @filtro)
+                OR (M.Descripcion LIKE @filtro)
+                OR (C.Descripcion LIKE @filtro)
+                OR (CONVERT(varchar(50), A.Precio) LIKE @filtro)
+            ORDER BY A.Nombre ASC";
+
+                // 1) Seteamos el texto de la consulta
+                datos.setearConsulta(query);
+
+                // 2) Agregamos el parámetro @filtro DESPUÉS de setearConsulta
+                datos.agregarParametro("@filtro", filtro);
+
+                // 3) Ejecutamos
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+
+                    aux.id = (int)datos.Lector["Id"];
+                    aux.codigo = (string)datos.Lector["Codigo"];
+                    aux.nombre = (string)datos.Lector["Nombre"];
+                    aux.descripcion = (string)datos.Lector["Descripcion"];
+                    aux.imagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.precio = (decimal)datos.Lector["Precio"];
+
+                    // --- Marca ---
+                    aux.marca = new Marca();
+                    aux.marca.id = (int)datos.Lector["MarcaId"];
+                    aux.marca.descripcion = (string)datos.Lector["MarcaDescripcion"];
+
+                    // --- Categoría ---
+                    aux.categoria = new Categoria();
+                    aux.categoria.id = (int)datos.Lector["CategoriaId"];
+                    aux.categoria.descripcion = (string)datos.Lector["CategoriaDescripcion"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
