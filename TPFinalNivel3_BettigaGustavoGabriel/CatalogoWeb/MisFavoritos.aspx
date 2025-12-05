@@ -5,24 +5,22 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
     <!-- ===========================
-     CUERPO PRINCIPAL
-     =========================== -->
-
+         CUERPO PRINCIPAL
+         =========================== -->
 
     <div class="container favoritos-layout">
 
         <!-- Título principal -->
-        <h1 class="titulo-favoritos text-center">Mis favoritos
-        </h1>
+        <h1 class="titulo-favoritos text-center">MIS FAVORITOS</h1>
 
-        <!-- PANEL AJAX (opcional) para futuros clicks en corazón, etc. -->
+        <!-- PANEL AJAX para la lista + botón Ver más -->
         <asp:UpdatePanel ID="updFavoritos" runat="server">
             <ContentTemplate>
 
                 <!-- LISTA DE FAVORITOS -->
-                <asp:Repeater ID="repFavoritos" runat="server">
+                <asp:Repeater ID="repFavoritos" runat="server"
+                    OnItemDataBound="repFavoritos_ItemDataBound">
                     <ItemTemplate>
 
                         <!-- Ítem tipo fila (estilo Mercado Libre) -->
@@ -36,7 +34,7 @@
                                     <asp:Image ID="imgProductoFav"
                                         runat="server"
                                         CssClass="img-favorito"
-                                        ImageUrl='<%# Eval("imagenUrl") %>' />
+                                        ImageUrl='<%# Eval("articulo.imagenUrl") %>' />
                                 </div>
 
                                 <!-- ===========================
@@ -45,19 +43,19 @@
                                 <div class="col-12 col-md-6 col-lg-7">
                                     <div class="favorito-texto">
                                         <h5 class="favorito-titulo">
-                                            <%# Eval("nombre") %>
+                                            <%# Eval("articulo.nombre") %>
                                         </h5>
 
                                         <p class="favorito-descripcion">
-                                            <%# Eval("descripcion") %>
+                                            <%# Eval("articulo.descripcion") %>
                                         </p>
 
                                         <asp:Button ID="btnVerDetalleFav"
                                             runat="server"
                                             Text="Ver detalle"
                                             CssClass="btn btn-primary btn-sm"
-                                            CommandArgument='<%# Eval("Id") %>'
-                                            OnClick="btnVerDetalleFav_Click"/>
+                                            CommandArgument='<%# Eval("articulo.Id") %>'
+                                            OnClick="btnVerDetalleFav_Click" />
                                     </div>
                                 </div>
 
@@ -70,7 +68,8 @@
 
                                     <!-- Precio -->
                                     <span class="favorito-precio">
-                                        <%# ((decimal)Eval("precio")).ToString("C", new System.Globalization.CultureInfo("es-AR")) %>
+                                        <%# ((decimal)Eval("articulo.precio"))
+                                                .ToString("C", new System.Globalization.CultureInfo("es-AR")) %>
                                     </span>
 
                                     <!-- Ícono de corazón (por ahora solo visual) -->
@@ -87,10 +86,18 @@
                     </ItemTemplate>
                 </asp:Repeater>
 
+                <!-- Botón Ver más (paginado) -->
+                <div class="text-center mt-3 mb-4">
+                    <asp:Button ID="btnCargarMasFav" runat="server"
+                        Text="Ver Más"
+                        CssClass="btn btn-outline-light"
+                        OnClick="btnCargarMasFav_Click" />
+                </div>
+
             </ContentTemplate>
         </asp:UpdatePanel>
 
-        <!-- Opcional: mensaje cuando no haya favoritos (lo manejás desde el code-behind) -->
+        <!-- Mensaje cuando no haya favoritos -->
         <asp:Label ID="lblSinFavoritos" runat="server"
             CssClass="texto-sin-favoritos text-center"
             Visible="false"
