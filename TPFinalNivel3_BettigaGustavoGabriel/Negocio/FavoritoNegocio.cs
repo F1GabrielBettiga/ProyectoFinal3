@@ -89,6 +89,32 @@ namespace Negocio
             }
         }
 
+        public void InsertarFavorito(int idUsuario, int idArticulo)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "INSERT INTO FAVORITOS (IdUser, IdArticulo) " +
+                    "VALUES (@idUsuario, @idArticulo)"
+                );
+
+                datos.agregarParametro("@idUsuario", idUsuario);
+                datos.agregarParametro("@idArticulo", idArticulo);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
     }
 }

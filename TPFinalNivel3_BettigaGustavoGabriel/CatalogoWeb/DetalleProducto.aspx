@@ -57,7 +57,8 @@
                         ImageUrl="~/Images/fav-empty.png"
                         AlternateText="Agregar a favoritos"
                         CssClass="btn-favorito"
-                        ToolTip="Agregar a favoritos" />
+                        ToolTip="Agregar a favoritos" 
+                        Onclick="btnAgregarFavorito_Click"/>
                 </div>
             </div>
         </div>

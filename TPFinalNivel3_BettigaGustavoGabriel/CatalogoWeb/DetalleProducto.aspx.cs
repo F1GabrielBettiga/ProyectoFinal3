@@ -93,6 +93,22 @@ namespace CatalogoWeb
             }
         }
 
+        protected void btnAgregarFavorito_Click(object sender, ImageClickEventArgs e)
+        {
+            if (Session["UsuarioLogueado"] == null)
+            {
+                Response.Redirect("Login.aspx", false);
+                return;
+            }
+            else
+            {
+                Usuario userLogueado = (Usuario)Session["UsuarioLogueado"];
+                string id = Request.QueryString["id"];
+                FavoritoNegocio favNegocio = new FavoritoNegocio();
 
+                favNegocio.InsertarFavorito(userLogueado.id, int.Parse(id));
+
+            }
+        }
     }
 }
