@@ -87,10 +87,12 @@ namespace CatalogoWeb
 
         private void eliminarMarca(int id)
         {
-            MarcaNegocio negocio = new MarcaNegocio();
+            MarcaNegocio negocioMarca = new MarcaNegocio();
+            ArticuloNegocio negocioArticulo = new ArticuloNegocio();
             try
             {
-                negocio.eliminarMarca(id);
+                negocioArticulo.ActualizarMarcaEnArticulos(id);
+                negocioMarca.eliminarMarca(id);
             }
             catch (Exception ex)
             {

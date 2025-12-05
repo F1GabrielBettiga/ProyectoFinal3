@@ -141,6 +141,56 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void ActualizarMarcaEnArticulos(int idMarca)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "UPDATE ARTICULOS " +
+                    "SET IdMarca = NULL " +
+                    "WHERE IdMarca = @idMarca"
+                );
+
+                datos.agregarParametro("@idMarca", idMarca);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void ActualizarCategoriaEnArticulos(int idCategoria)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "UPDATE ARTICULOS " +
+                    "SET IdCategoria = NULL " +
+                    "WHERE IdCategoria = @IdCategoria"
+                );
+
+                datos.agregarParametro("@IdCategoria", idCategoria);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public bool agregarArticulo(Articulo articulo)
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();

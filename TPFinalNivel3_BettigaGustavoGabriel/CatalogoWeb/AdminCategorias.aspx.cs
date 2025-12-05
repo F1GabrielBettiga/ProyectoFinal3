@@ -89,10 +89,12 @@ namespace CatalogoWeb
 
         private void eliminarCategoria(int id)
         {
-            CategoriaNegocio negocio = new CategoriaNegocio();
+            CategoriaNegocio negocioCategoria = new CategoriaNegocio();
+            ArticuloNegocio negocioArticulo = new ArticuloNegocio();
             try
             {
-                negocio.eliminarCategoria(id);
+                negocioArticulo.ActualizarCategoriaEnArticulos(id);
+                negocioCategoria.eliminarCategoria(id);
             }
             catch (Exception ex)
             {
