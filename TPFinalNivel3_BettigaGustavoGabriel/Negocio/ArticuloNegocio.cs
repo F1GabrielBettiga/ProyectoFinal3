@@ -16,14 +16,15 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, " +
-                                     "       A.IdMarca AS MarcaId, M.Descripcion AS MarcaDescripcion, " +
-                                     "       A.IdCategoria AS CategoriaId, C.Descripcion AS CategoriaDescripcion, " +
-                                     "       A.ImagenUrl, A.Precio " +
-                                     "FROM ARTICULOS A " +
-                                     "INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
-                                     "INNER JOIN MARCAS M     ON A.IdMarca = M.Id " +
-                                     "ORDER BY A.Nombre ASC"
+                datos.setearConsulta(
+                    "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, " +
+                    "       A.IdMarca AS MarcaId, M.Descripcion AS MarcaDescripcion, " +
+                    "       A.IdCategoria AS CategoriaId, C.Descripcion AS CategoriaDescripcion, " +
+                    "       A.ImagenUrl, A.Precio " +
+                    "FROM ARTICULOS A " +
+                    "LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +  
+                    "LEFT JOIN MARCAS M     ON A.IdMarca = M.Id " +      
+                    "ORDER BY A.Nombre ASC"
                 );
 
                 datos.ejecutarLectura();
@@ -32,35 +33,26 @@ namespace Negocio
                 {
                     Articulo aux = new Articulo();
 
-                    // Id (int, no debería ser null)
                     aux.id = datos.Lector["Id"] is DBNull ? 0 : (int)datos.Lector["Id"];
-
-                    // Código
                     aux.codigo = datos.Lector["Codigo"] is DBNull ? null : datos.Lector["Codigo"].ToString();
-
-                    // Nombre
                     aux.nombre = datos.Lector["Nombre"] is DBNull ? null : datos.Lector["Nombre"].ToString();
-
-                    // Descripción
                     aux.descripcion = datos.Lector["Descripcion"] is DBNull ? null : datos.Lector["Descripcion"].ToString();
-
-                    // ImagenUrl (puede venir null → lo dejamos en null)
                     aux.imagenUrl = datos.Lector["ImagenUrl"] is DBNull ? null : datos.Lector["ImagenUrl"].ToString();
-
-                    // Precio
                     aux.precio = datos.Lector["Precio"] is DBNull ? 0m : (decimal)datos.Lector["Precio"];
 
                     // Marca
                     aux.marca = new Marca();
                     aux.marca.id = datos.Lector["MarcaId"] is DBNull ? 0 : (int)datos.Lector["MarcaId"];
+                    aux.marca.descripcion = datos.Lector["MarcaDescripcion"] is DBNull
+                                            ? null
+                                            : datos.Lector["MarcaDescripcion"].ToString();
 
-                    aux.marca.descripcion = datos.Lector["MarcaDescripcion"] is DBNull ? null : datos.Lector["MarcaDescripcion"].ToString();
-
-                    // Categoria
+                    // Categoría
                     aux.categoria = new Categoria();
                     aux.categoria.id = datos.Lector["CategoriaId"] is DBNull ? 0 : (int)datos.Lector["CategoriaId"];
-
-                    aux.categoria.descripcion = datos.Lector["CategoriaDescripcion"] is DBNull ? null : datos.Lector["CategoriaDescripcion"].ToString();
+                    aux.categoria.descripcion = datos.Lector["CategoriaDescripcion"] is DBNull
+                                                ? null
+                                                : datos.Lector["CategoriaDescripcion"].ToString();
 
                     lista.Add(aux);
                 }
@@ -88,10 +80,8 @@ namespace Negocio
                     : valor;
             }
 
-
             try
             {
-
                 datos.setearConsulta(
                     "UPDATE ARTICULOS SET " +
                     "Codigo = @Codigo, " +
@@ -104,21 +94,28 @@ namespace Negocio
                     "WHERE Id = @Id"
                 );
 
-                // Strings: si vienen null o vacíos -> DB NULL
+                // ----- Strings: si vienen null o vacíos -> DB NULL -----
                 datos.agregarParametro("@Codigo", ValorONull(articulo.codigo));
                 datos.agregarParametro("@Nombre", ValorONull(articulo.nombre));
                 datos.agregarParametro("@Descripcion", ValorONull(articulo.descripcion));
                 datos.agregarParametro("@ImagenUrl", ValorONull(articulo.imagenUrl));
 
-
+                // ----- Marca -----
+                // Si la marca es null o su id es 0 ("Sin Marca") -> NULL en BD
                 datos.agregarParametro("@IdMarca",
-                    articulo.marca != null ? articulo.marca.id : (object)DBNull.Value);
+                    (articulo.marca == null || articulo.marca.id == 0)
+                        ? (object)DBNull.Value
+                        : articulo.marca.id);
 
+                // ----- Categoría -----
+                // Si la categoría es null o su id es 0 ("Sin Categoría") -> NULL en BD
                 datos.agregarParametro("@IdCategoria",
-                    articulo.categoria != null ? articulo.categoria.id : (object)DBNull.Value);
+                    (articulo.categoria == null || articulo.categoria.id == 0)
+                        ? (object)DBNull.Value
+                        : articulo.categoria.id);
 
+                // ----- Precio e Id -----
                 datos.agregarParametro("@Precio", articulo.precio);
-
                 datos.agregarParametro("@Id", articulo.id);
 
                 int filas = datos.ejecutarAccion();

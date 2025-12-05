@@ -258,13 +258,13 @@ namespace CatalogoWeb
             MarcaNegocio negocio = new MarcaNegocio();
             List<Marca> lista = negocio.listarMarcas();
 
-            // Enlazo la lista directamente al DropDownList
+           
+            lista.Insert(0, new Marca{ id = 0, descripcion = "Sin Marca"});
+
             ddlMarca.DataSource = lista;
-            ddlMarca.DataTextField = "descripcion";   // lo que ve el usuario
-            ddlMarca.DataValueField = "id";          // el valor que guardás (FK)
+            ddlMarca.DataTextField = "descripcion";
+            ddlMarca.DataValueField = "id";
             ddlMarca.DataBind();
-
-
         }
 
         void CargarDdlCategorias()
@@ -273,12 +273,12 @@ namespace CatalogoWeb
             List<Categoria> lista = negocio.listarCategorias();
 
             
+            lista.Insert(0, new Categoria { id = 0, descripcion = "Sin Categoría"});
+
             ddlCategoria.DataSource = lista;
-            ddlCategoria.DataTextField = "descripcion";   
-            ddlCategoria.DataValueField = "id";          
+            ddlCategoria.DataTextField = "descripcion";
+            ddlCategoria.DataValueField = "id";
             ddlCategoria.DataBind();
-
-
         }
 
         void actualizarArticulo()
@@ -307,25 +307,24 @@ namespace CatalogoWeb
 
                 // --- Precio ---
                 if (string.IsNullOrWhiteSpace(txtPrecio.Text))
-                    articulo.precio = 0; 
+                    articulo.precio = 0;
                 else
                     articulo.precio = decimal.Parse(txtPrecio.Text);
 
                 // --- Marca ---
                 articulo.marca = new Marca();
-                articulo.marca.id = int.Parse(ddlMarca.SelectedValue);
+                int idMarca = int.Parse(ddlMarca.SelectedValue);
+                articulo.marca.id = idMarca;   // 0 = Sin Marca
 
                 // --- Categoría ---
                 articulo.categoria = new Categoria();
-                articulo.categoria.id = int.Parse(ddlCategoria.SelectedValue);
+                int idCategoria = int.Parse(ddlCategoria.SelectedValue);
+                articulo.categoria.id = idCategoria; // 0 = Sin Categoría
 
-                // --- Imagen (por ahora ignorada) ---
-
+                // --- Imagen ---
                 guardarImagenDeArticulo(articulo);
 
-                
-
-                // Ejecutar actualización
+                // Ejecutar actualización en BD
                 bool exito = negocio.actualizarArticulo(articulo);
 
                 if (exito)

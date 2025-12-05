@@ -78,8 +78,8 @@ namespace CatalogoWeb
                 
                 lblNombre.Text = articulo.nombre;
                 lblCodigo.Text = articulo.codigo;
-                lblMarca.Text = articulo.marca != null ? articulo.marca.descripcion : "Sin marca";
-                lblCategoria.Text = articulo.categoria != null ? articulo.categoria.descripcion : "Sin categoría";
+                lblMarca.Text = (articulo.marca != null && articulo.marca.id != 0)? articulo.marca.descripcion: "Sin marca";
+                lblCategoria.Text = (articulo.categoria != null && articulo.categoria.id != 0)? articulo.categoria.descripcion: "Sin categoría";
                 lblPrecio.Text = "$" + articulo.precio.ToString("N2");
                 lblDescripcion.Text = articulo.descripcion;
 
