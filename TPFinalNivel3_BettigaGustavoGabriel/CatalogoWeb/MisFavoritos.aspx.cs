@@ -100,6 +100,20 @@ namespace CatalogoWeb
             cargarTarjetasFavoritos(listaFavoritos);
         }
 
+        protected void imgFavorito_Click(object sender, EventArgs e)
+        {
+            if (Session["UsuarioLogueado"] == null)
+            {
+                Response.Redirect("Login.aspx", false);
+                return;
+            }
+ 
+            ImageButton btn = (ImageButton)sender;
+            string idArticulo = btn.CommandArgument;
+
+            agregarQuitarFavorito(idArticulo);
+        }
+
         protected void repFavoritos_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -128,5 +142,27 @@ namespace CatalogoWeb
                 }
             }
         }
+
+        private void agregarQuitarFavorito(string id)
+        {
+            
+            Usuario userLogueado = (Usuario)Session["UsuarioLogueado"];
+            string idArticulo = id;
+            FavoritoNegocio favNegocio = new FavoritoNegocio();
+
+            if (favNegocio.EsFavorito(userLogueado.id, int.Parse(idArticulo)))
+            {
+                favNegocio.EliminarFavorito(userLogueado.id, int.Parse(idArticulo));
+
+            }
+            else
+            {
+
+                favNegocio.InsertarFavorito(userLogueado.id, int.Parse(idArticulo));
+
+            }
+            Response.Redirect("MisFavoritos.aspx", false);
+        }
+
     }
 }

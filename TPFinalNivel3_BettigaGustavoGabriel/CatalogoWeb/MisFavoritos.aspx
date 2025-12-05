@@ -73,11 +73,15 @@
                                     </span>
 
                                     <!-- Ícono de corazón (por ahora solo visual) -->
-                                    <asp:Image ID="imgFavorito"
-                                        runat="server"
+
+
+                                    <asp:ImageButton ID="imgFavorito" runat="server"
+                                        ImageUrl="~/Images/fav-full.png"
+                                        AlternateText="Quitar de favoritos"
                                         CssClass="icono-favorito"
-                                        ImageUrl="~/Images/fav-empty.png"
-                                        AlternateText="Quitar de favoritos" />
+                                        ToolTip="Quitar de favoritos"
+                                        CommandArgument='<%# Eval("articulo.Id") %>'
+                                        OnClick="imgFavorito_Click" />
                                 </div>
 
                             </div>
