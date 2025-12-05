@@ -114,6 +114,60 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void EliminarFavorito(int idUsuario, int idArticulo)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "DELETE FROM FAVORITOS WHERE IdUser = @idUser AND IdArticulo = @idArticulo"
+                );
+
+                datos.agregarParametro("@idUser", idUsuario);
+                datos.agregarParametro("@idArticulo", idArticulo);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public bool EsFavorito(int idUsuario, int idArticulo)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM FAVORITOS WHERE IdUser = @idUser AND IdArticulo = @idArticulo");
+                datos.agregarParametro("@idUser", idUsuario);
+                datos.agregarParametro("@idArticulo", idArticulo);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    return cantidad > 0;   // Si hay 1 o más registros, es favorito
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
 
     }

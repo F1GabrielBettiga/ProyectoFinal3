@@ -85,12 +85,37 @@ namespace CatalogoWeb
 
                 
                 CargarImagen(articulo);
+
+                chequearFavorito(articulo.id);
+
+
             }
             catch (Exception ex)
             {
                
                 throw ex;
             }
+        }
+
+        private void chequearFavorito(int artId)
+        {
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario user = (Usuario)Session["UsuarioLogueado"];
+                FavoritoNegocio favNegocio = new FavoritoNegocio();
+
+                bool esFavorito = favNegocio.EsFavorito(user.id, artId);
+
+                btnFavorito.ImageUrl = esFavorito
+                    ? "~/Images/fav-full.png"   // ❤️ está en favoritos
+                    : "~/Images/fav-empty.png"; // 🤍 no está en favoritos
+            }
+            else
+            {
+                // Si no está logueado, siempre gris
+                btnFavorito.ImageUrl = "~/Images/fav-empty.png";
+            }
+
         }
 
         protected void btnAgregarFavorito_Click(object sender, ImageClickEventArgs e)
@@ -102,13 +127,29 @@ namespace CatalogoWeb
             }
             else
             {
-                Usuario userLogueado = (Usuario)Session["UsuarioLogueado"];
-                string id = Request.QueryString["id"];
-                FavoritoNegocio favNegocio = new FavoritoNegocio();
-
-                favNegocio.InsertarFavorito(userLogueado.id, int.Parse(id));
+                agregarQuitarFavorito();
 
             }
+        }
+
+        private void agregarQuitarFavorito()
+        {
+            Usuario userLogueado = (Usuario)Session["UsuarioLogueado"];
+            string idArticulo = Request.QueryString["id"];
+            FavoritoNegocio favNegocio = new FavoritoNegocio();
+
+            if (favNegocio.EsFavorito(userLogueado.id, int.Parse(idArticulo)))
+            {
+                favNegocio.EliminarFavorito(userLogueado.id, int.Parse(idArticulo));
+
+            }
+            else
+            {
+
+                favNegocio.InsertarFavorito(userLogueado.id, int.Parse(idArticulo));
+
+            }
+            Response.Redirect("DetalleProducto.aspx?id=" + idArticulo, false);
         }
     }
 }
