@@ -36,7 +36,7 @@ namespace Negocio
             INNER JOIN MARCAS     M ON M.Id = A.IdMarca
             INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria
             WHERE F.IdUser = @idUsuario
-            ORDER BY A.Nombre";
+            ORDER BY F.Id DESC";
 
                 datos.setearConsulta(query);
                 datos.agregarParametro("@idUsuario", idUsuario);
@@ -128,6 +128,29 @@ namespace Negocio
                 datos.agregarParametro("@idArticulo", idArticulo);
 
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool EliminarFavoritoPorArticulo(int idArticulo)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("DELETE FROM FAVORITOS WHERE IdArticulo = @idArticulo");
+                datos.agregarParametro("@idArticulo", idArticulo);
+
+                int filasAfectadas = datos.ejecutarAccion();
+
+                // Si borró al menos un registro → TRUE
+                return filasAfectadas > 0;
             }
             catch (Exception ex)
             {

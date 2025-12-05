@@ -61,10 +61,12 @@ namespace CatalogoWeb
         }
         private void eliminarArticulo(int id)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
+            ArticuloNegocio negocioart = new ArticuloNegocio();
+            FavoritoNegocio negociofav = new FavoritoNegocio();
             try
             {
-                negocio.eliminarArticulo(id);
+                negociofav.EliminarFavoritoPorArticulo(id);
+                negocioart.eliminarArticulo(id);
             }
             catch (Exception ex)
             {
