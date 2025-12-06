@@ -38,12 +38,28 @@
                     <div class="mb-3">
                         <asp:Label ID="lblCodigo" runat="server" Text="Código" CssClass="form-label" />
                         <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control" />
+                        <asp:RegularExpressionValidator
+                            ID="revCodigo"
+                            runat="server"
+                            ControlToValidate="txtCodigo"
+                            ValidationExpression="^[a-zA-Z0-9]*$"
+                            ErrorMessage="Solo se permiten letras y números."
+                            CssClass="text-danger"
+                            Display="Dynamic" />
                     </div>
 
                     <!-- Nombre -->
                     <div class="mb-3">
                         <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label" />
                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
+                        <asp:RegularExpressionValidator
+                            ID="revNombre"
+                            runat="server"
+                            ControlToValidate="txtNombre"
+                            ValidationExpression="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
+                            ErrorMessage="Solo se permiten letras"
+                            CssClass="text-danger"
+                            Display="Dynamic" />
                     </div>
 
                     <!-- Descripción -->
@@ -52,12 +68,28 @@
                         <asp:TextBox ID="txtDescripcion" runat="server"
                             CssClass="form-control"
                             TextMode="MultiLine" Rows="3" />
+                        <asp:RegularExpressionValidator
+                            ID="revDescripcion"
+                            runat="server"
+                            ControlToValidate="txtDescripcion"
+                            ValidationExpression="^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$"
+                            ErrorMessage="Solo se permiten letras y números"
+                            CssClass="text-danger"
+                            Display="Dynamic" />
                     </div>
 
                     <!-- Precio -->
                     <div class="mb-3">
                         <asp:Label ID="lblPrecio" runat="server" Text="Precio" CssClass="form-label" />
                         <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" />
+                        <asp:RegularExpressionValidator
+                            ID="revPrecio"
+                            runat="server"
+                            ControlToValidate="txtPrecio"
+                            ValidationExpression="^[0-9]+([.,][0-9]+)?$"
+                            ErrorMessage="Ingrese un número válido"
+                            CssClass="text-danger"
+                            Display="Dynamic" />
                     </div>
 
                 </div>
@@ -94,7 +126,7 @@
                     <!-- Campo para cambiar la imagen (URL) -->
                     <div class="mb-3">
                         <asp:Label ID="lblUrlImagen" runat="server" Text="Cargar imagen" CssClass="form-label" />
-                        <input type="file" id="txtImagen" runat="server" class="form-control" onchange="mostrarVistaPrevia(this, 'imgArticulo')"  />
+                        <input type="file" id="txtImagen" runat="server" class="form-control" onchange="mostrarVistaPrevia(this, 'imgArticulo')" />
                     </div>
 
                 </div>
