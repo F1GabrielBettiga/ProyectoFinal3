@@ -132,7 +132,9 @@ namespace CatalogoWeb
 
         }
 
-
-
+        protected void btnCancelarMarca_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminMarcas.aspx");
+        }
     }
 }

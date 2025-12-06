@@ -14,7 +14,7 @@
         <!-- TARJETA PRINCIPAL -->
         <div class="abm-marca-card">
 
-            <!-- FILA ID (solo para editar; podés ocultarla en Page_Load si es alta) -->
+            <!-- FILA ID -->
             <asp:Panel ID="pnlIdMarca" runat="server" CssClass="fila-id-marca">
                 <div class="mb-3">
                     <asp:Label ID="lblIdMarca" runat="server"
@@ -34,6 +34,14 @@
                 <asp:TextBox ID="txtNombreMarca" runat="server"
                     CssClass="form-control"
                     Placeholder="Ej: Samsung, Apple, Logitech..." />
+                <asp:RegularExpressionValidator
+                    ID="revNombreMarca"
+                    runat="server"
+                    ControlToValidate="txtNombreMarca"
+                    CssClass="text-danger"
+                    ErrorMessage="Solo se permiten letras."
+                    ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$">
+                </asp:RegularExpressionValidator>
             </div>
 
             <!-- BOTONES -->
@@ -46,7 +54,8 @@
                 <asp:Button ID="btnCancelarMarca" runat="server"
                     Text="Cancelar"
                     CssClass="btn btn-outline-light"
-                    PostBackUrl="~/AdminMarcas.aspx" />
+                    PostBackUrl="~/AdminMarcas.aspx" 
+                    Onclick="btnCancelarMarca_Click"/>
             </div>
 
             <!-- MENSAJE DE ERROR -->

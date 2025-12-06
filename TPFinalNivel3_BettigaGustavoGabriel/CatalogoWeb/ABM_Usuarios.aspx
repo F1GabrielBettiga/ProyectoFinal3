@@ -46,6 +46,14 @@
                             CssClass="form-label" />
                         <asp:TextBox ID="txtNombre" runat="server"
                             CssClass="form-control" />
+                        <asp:RegularExpressionValidator
+                            ID="revNombreSoloLetras"
+                            runat="server"
+                            ControlToValidate="txtNombre"
+                            CssClass="text-danger"
+                            ErrorMessage="Solo se permiten letras."
+                            ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$">
+                        </asp:RegularExpressionValidator>
                     </div>
 
                     <!-- Apellido -->
@@ -55,6 +63,14 @@
                             CssClass="form-label" />
                         <asp:TextBox ID="txtApellido" runat="server"
                             CssClass="form-control" />
+                        <asp:RegularExpressionValidator
+                            ID="revApellidoSoloLetras"
+                            runat="server"
+                            ControlToValidate="txtApellido"
+                            CssClass="text-danger"
+                            ErrorMessage="Solo se permiten letras."
+                            ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$">
+                        </asp:RegularExpressionValidator>
                     </div>
 
                     <!-- Email -->
@@ -65,6 +81,14 @@
                         <asp:TextBox ID="txtEmail" runat="server"
                             CssClass="form-control"
                             TextMode="Email" />
+                        <asp:RegularExpressionValidator
+                            ID="revEmail"
+                            runat="server"
+                            ControlToValidate="txtEmail"
+                            CssClass="text-danger"
+                            ErrorMessage="Ingrese un correo electrónico válido."
+                            ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$">
+                        </asp:RegularExpressionValidator>
                     </div>
 
                     <!-- Contraseña -->
@@ -72,6 +96,7 @@
                         <asp:Label ID="lblPassword" runat="server"
                             Text="Contraseña"
                             CssClass="form-label" />
+
                         <div class="input-group">
                             <asp:TextBox ID="txtPassword" runat="server"
                                 CssClass="form-control"
@@ -83,8 +108,16 @@
                                 <span class="ms-1">👁️</span>
                             </span>
                         </div>
+                        <asp:RegularExpressionValidator
+                            ID="revPassStrong"
+                            runat="server"
+                            ControlToValidate="txtPassword"
+                            CssClass="text-danger"
+                            Display="Dynamic"
+                            ErrorMessage="La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número."
+                            ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
                     </div>
-
+                   
                 </div>
 
                 <!-- COLUMNA DERECHA: ROL + IMAGEN -->

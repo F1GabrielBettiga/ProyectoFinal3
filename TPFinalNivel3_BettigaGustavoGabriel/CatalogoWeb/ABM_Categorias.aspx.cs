@@ -129,5 +129,10 @@ namespace CatalogoWeb
             }
 
         }
+
+        protected void btnCancelarCategoria_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminCategorias.aspx");
+        }
     }
 }
