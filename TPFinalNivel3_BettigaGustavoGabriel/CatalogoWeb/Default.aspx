@@ -58,9 +58,11 @@
                         <div class="d-flex gap-2">
                             <asp:TextBox ID="txtPrecioMin" runat="server"
                                 CssClass="form-control"
+                                TextMode="Number"
                                 placeholder="Mín." />
                             <asp:TextBox ID="txtPrecioMax" runat="server"
                                 CssClass="form-control"
+                                TextMode="Number"
                                 placeholder="Máx." />
                         </div>
                     </div>
