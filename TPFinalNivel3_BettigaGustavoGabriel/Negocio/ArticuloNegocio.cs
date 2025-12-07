@@ -340,29 +340,30 @@ namespace Negocio
 
             try
             {
-                // ===========================
-                // 1) Base de la consulta
-                // ===========================
+                // 1) Base de la consulta: LEFT JOIN para traer también los que NO tienen marca/categoría
                 string query = @"
-            SELECT A.Id, A.Nombre, A.Descripcion, A.ImagenUrl,
-                   A.Precio, A.IdCategoria, A.IdMarca,
-                   C.Descripcion AS CategoriaDescripcion,
-                   M.Descripcion AS MarcaDescripcion
-            FROM ARTICULOS A
-            INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria
-            INNER JOIN MARCAS M ON M.Id = A.IdMarca
-            WHERE 1=1";
+        SELECT  A.Id,
+                A.Codigo,
+                A.Nombre,
+                A.Descripcion,
+                A.ImagenUrl,
+                A.Precio,
+                A.IdCategoria,
+                A.IdMarca,
+                C.Descripcion AS CategoriaDescripcion,
+                M.Descripcion AS MarcaDescripcion
+        FROM ARTICULOS A
+        LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id
+        LEFT JOIN MARCAS     M ON A.IdMarca     = M.Id
+        WHERE 1 = 1";
 
-                // ===========================
-                // 2) Armo el WHERE dinámico
-                //    (solo texto, sin parámetros todavía)
-                // ===========================
-                if ((idCategoria.HasValue) && (idCategoria.Value > 0))
+                // 2) WHERE dinámico
+                if (idCategoria.HasValue && idCategoria.Value > 0)
                 {
                     query += " AND A.IdCategoria = @idCategoria";
                 }
 
-                if ((idMarca.HasValue) && (idMarca.Value > 0))
+                if (idMarca.HasValue && idMarca.Value > 0)
                 {
                     query += " AND A.IdMarca = @idMarca";
                 }
@@ -379,37 +380,23 @@ namespace Negocio
 
                 query += " ORDER BY A.Nombre ASC";
 
-                // ===========================
-                // 3) Ahora recién seteo la consulta
-                // ===========================
+                // 3) Seteo consulta
                 datos.setearConsulta(query);
 
-                // ===========================
-                // 4) Y recién acá agrego los parámetros
-                // ===========================
-                if ((idCategoria.HasValue) && (idCategoria.Value > 0))
-                {
+                // 4) Parámetros
+                if (idCategoria.HasValue && idCategoria.Value > 0)
                     datos.agregarParametro("@idCategoria", idCategoria.Value);
-                }
 
-                if ((idMarca.HasValue) && (idMarca.Value > 0))
-                {
+                if (idMarca.HasValue && idMarca.Value > 0)
                     datos.agregarParametro("@idMarca", idMarca.Value);
-                }
 
                 if (precioMin.HasValue)
-                {
                     datos.agregarParametro("@precioMin", precioMin.Value);
-                }
 
                 if (precioMax.HasValue)
-                {
                     datos.agregarParametro("@precioMax", precioMax.Value);
-                }
 
-                // ===========================
-                // 5) Ejecuto y mapeo
-                // ===========================
+                // 5) Ejecutar y mapear
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -417,20 +404,25 @@ namespace Negocio
                     Articulo aux = new Articulo();
 
                     aux.id = (int)datos.Lector["Id"];
-                    aux.nombre = (string)datos.Lector["Nombre"];
-                    aux.descripcion = (string)datos.Lector["Descripcion"];
-                    aux.imagenUrl = (string)datos.Lector["ImagenUrl"];
-                    aux.precio = (decimal)datos.Lector["Precio"];
+                    aux.codigo = datos.Lector["Codigo"] is DBNull ? null : datos.Lector["Codigo"].ToString();
+                    aux.nombre = datos.Lector["Nombre"] is DBNull ? null : datos.Lector["Nombre"].ToString();
+                    aux.descripcion = datos.Lector["Descripcion"] is DBNull ? null : datos.Lector["Descripcion"].ToString();
+                    aux.imagenUrl = datos.Lector["ImagenUrl"] is DBNull ? null : datos.Lector["ImagenUrl"].ToString();
+                    aux.precio = datos.Lector["Precio"] is DBNull ? 0m : (decimal)datos.Lector["Precio"];
 
-                    // ---- Categoria ----
+                    // ---- Categoría (puede ser null) ----
                     aux.categoria = new Categoria();
-                    aux.categoria.id = (int)datos.Lector["IdCategoria"];
-                    aux.categoria.descripcion = (string)datos.Lector["CategoriaDescripcion"];
+                    aux.categoria.id = datos.Lector["IdCategoria"] is DBNull ? 0 : (int)datos.Lector["IdCategoria"];
+                    aux.categoria.descripcion = datos.Lector["CategoriaDescripcion"] is DBNull
+                                                ? null
+                                                : datos.Lector["CategoriaDescripcion"].ToString();
 
-                    // ---- Marca ----
+                    // ---- Marca (puede ser null) ----
                     aux.marca = new Marca();
-                    aux.marca.id = (int)datos.Lector["IdMarca"];
-                    aux.marca.descripcion = (string)datos.Lector["MarcaDescripcion"];
+                    aux.marca.id = datos.Lector["IdMarca"] is DBNull ? 0 : (int)datos.Lector["IdMarca"];
+                    aux.marca.descripcion = datos.Lector["MarcaDescripcion"] is DBNull
+                                            ? null
+                                            : datos.Lector["MarcaDescripcion"].ToString();
 
                     lista.Add(aux);
                 }
