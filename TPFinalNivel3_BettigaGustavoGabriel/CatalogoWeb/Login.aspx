@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CatalogoWeb.Login" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="Css/Login.css" />
+    <script src="<%: ResolveUrl("~/Scripts/perfil.js?v=" + DateTime.Now.Ticks) %>"></script>
 </asp:Content>
 
 
@@ -16,15 +18,32 @@
             <div class="mb-3">
                 <asp:Label ID="lblEmail" runat="server" Text="Correo electrónico" CssClass="form-label text-light" />
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" Placeholder="ejemplo@email.com" />
+                <asp:RegularExpressionValidator
+                    ID="revEmail"
+                    runat="server"
+                    ControlToValidate="txtEmail"
+                    CssClass="text-danger"
+                    ErrorMessage="Ingrese un correo electrónico válido."
+                    ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$">
+                </asp:RegularExpressionValidator>
             </div>
 
             <!-- Campo Contraseña -->
             <div class="mb-3">
-                <asp:Label ID="lblPassword" runat="server" Text="Contraseña" CssClass="form-label text-light" />
+                <asp:Label ID="lblPassword" runat="server"
+                    Text="Contraseña"
+                    CssClass="form-label text-light" />
+
                 <div class="input-group">
-                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" Placeholder="••••••••" />
+                    <asp:TextBox ID="txtPassword" runat="server"
+                        CssClass="form-control"
+                        TextMode="Password"
+                        ClientIDMode="Static"
+                        Placeholder="••••••••" />
+
                     <span class="input-group-text bg-dark text-light">
-                        <asp:CheckBox ID="chkMostrarPass" runat="server" AutoPostBack="true" OnCheckedChanged="chkMostrarPass_CheckedChanged" />
+                        <asp:CheckBox ID="chkMostrarPass" runat="server"
+                            onclick="togglePassword('txtPassword', this)" />
                         <span class="ms-1">👁️</span>
                     </span>
                 </div>

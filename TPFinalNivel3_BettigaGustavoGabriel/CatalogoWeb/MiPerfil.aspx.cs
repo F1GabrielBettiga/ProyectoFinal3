@@ -59,9 +59,15 @@ namespace CatalogoWeb
             {
                 lblNuevaPass.Visible = false;
                 txtNuevaPassword.Visible = false;
+                cvRepetirPassword.Visible = false;
+                revNuevaPassStrong.Visible = false;
 
                 lblRepetirPass.Visible = false;
                 txtRepetirPassword.Visible = false;
+                chkMostrarNuevaPass.Visible = false;
+                chkMostrarRepetirPass.Visible = false;
+                spanMostrarNuevaPass.Visible = false;
+                spanMostrarRepetirPass.Visible = false;
 
             }
             else
@@ -69,24 +75,15 @@ namespace CatalogoWeb
 
                 lblNuevaPass.Visible = true;
                 txtNuevaPassword.Visible = true;
+                cvRepetirPassword.Visible = true;
+                revNuevaPassStrong.Visible = true;
 
                 lblRepetirPass.Visible = true;
                 txtRepetirPassword.Visible = true;
+                spanMostrarNuevaPass.Visible = true;
+                spanMostrarRepetirPass.Visible = true;
             }
         }
-
-        protected void chkMostrarPassword_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkMostrarPassword.Checked)
-            {
-                txtPassword.TextMode = TextBoxMode.SingleLine;
-            }
-            else
-            {
-                txtPassword.TextMode = TextBoxMode.Password;
-            }
-        }
-
 
         private void CargarDetalles(int id)
         {
@@ -263,10 +260,6 @@ namespace CatalogoWeb
 
         }
 
-
-
-
-
         private void ModoSoloLectura()
         {
             
@@ -306,6 +299,6 @@ namespace CatalogoWeb
             btnCancelar.Visible = true;
         }
 
-
+        
     }
 }

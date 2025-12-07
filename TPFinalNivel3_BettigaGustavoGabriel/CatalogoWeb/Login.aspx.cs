@@ -26,21 +26,7 @@ namespace CatalogoWeb
             Response.Redirect("Registro.aspx");
 
         }
-
-        protected void chkMostrarPass_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkMostrarPass.Checked)
-            {
-                txtPassword.TextMode = TextBoxMode.SingleLine;
-            }
-            else
-            {
-                
-                txtPassword.TextMode = TextBoxMode.Password;
-            }
-
-
-        }
+   
 
         private void validarUsuario()
         {

@@ -52,6 +52,7 @@
                             ControlToValidate="txtNombre"
                             CssClass="text-danger"
                             ErrorMessage="Solo se permiten letras."
+                            Display="Dynamic"
                             ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$">
                         </asp:RegularExpressionValidator>
                     </div>
@@ -69,6 +70,7 @@
                             ControlToValidate="txtApellido"
                             CssClass="text-danger"
                             ErrorMessage="Solo se permiten letras."
+                            Display="Dynamic"
                             ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$">
                         </asp:RegularExpressionValidator>
                     </div>
@@ -87,6 +89,7 @@
                             ControlToValidate="txtEmail"
                             CssClass="text-danger"
                             ErrorMessage="Ingrese un correo electrónico válido."
+                            Display="Dynamic"
                             ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$">
                         </asp:RegularExpressionValidator>
                     </div>
@@ -100,24 +103,26 @@
                         <div class="input-group">
                             <asp:TextBox ID="txtPassword" runat="server"
                                 CssClass="form-control"
-                                TextMode="Password" />
+                                TextMode="Password"
+                                ClientIDMode="Static" />
+
                             <span class="input-group-text bg-dark text-light">
                                 <asp:CheckBox ID="chkMostrarPass" runat="server"
-                                    AutoPostBack="true"
-                                    OnCheckedChanged="chkMostrarPass_CheckedChanged" />
+                                    onclick="togglePassword('txtPassword', this)" />
                                 <span class="ms-1">👁️</span>
                             </span>
                         </div>
+
                         <asp:RegularExpressionValidator
                             ID="revPassStrong"
                             runat="server"
                             ControlToValidate="txtPassword"
                             CssClass="text-danger"
                             Display="Dynamic"
-                            ErrorMessage="La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número."
+                            ErrorMessage="La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número."                          
                             ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
                     </div>
-                   
+
                 </div>
 
                 <!-- COLUMNA DERECHA: ROL + IMAGEN -->

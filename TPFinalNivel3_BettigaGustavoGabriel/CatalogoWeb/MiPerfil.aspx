@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="Css/MiPerfil.css" />
-    <script src="<%: ResolveUrl("~/Scripts/perfil.js") %>"></script>
+    <script src="<%: ResolveUrl("~/Scripts/perfil.js?v=" + DateTime.Now.Ticks) %>"></script>
 </asp:Content>
 
 
@@ -26,7 +26,7 @@
 
                     <!-- Cargar nueva imagen -->
                     <% if (btnGuardar.Visible == true)
-                       { 
+                        {
                     %>
                     <div class="mt-3">
                         <input type="file" id="fileImagenUsuario" runat="server"
@@ -35,7 +35,7 @@
 
                     </div>
                     <%
-                       } 
+                        }
                     %>
 
                     <!-- Tipo de usuario (solo lectura) -->
@@ -58,6 +58,15 @@
                         <label>Nombre</label>
                         <asp:TextBox ID="txtNombre" runat="server"
                             CssClass="form-control"></asp:TextBox>
+                        <asp:RegularExpressionValidator
+                            ID="revNombrePerfil"
+                            runat="server"
+                            ControlToValidate="txtNombre"
+                            CssClass="text-danger"
+                            ErrorMessage="El nombre debe tener solo letras y al menos 4 caracteres."
+                            ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]{4,}$"
+                            Display="Dynamic">
+                        </asp:RegularExpressionValidator>
                     </div>
 
                     <!-- Apellido -->
@@ -65,6 +74,15 @@
                         <label>Apellido</label>
                         <asp:TextBox ID="txtApellido" runat="server"
                             CssClass="form-control"></asp:TextBox>
+                        <asp:RegularExpressionValidator
+                            ID="revApellidoPerfil"
+                            runat="server"
+                            ControlToValidate="txtApellido"
+                            CssClass="text-danger"
+                            ErrorMessage="El apellido debe tener solo letras y al menos 3 caracteres."
+                            ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]{3,}$"
+                            Display="Dynamic">
+                        </asp:RegularExpressionValidator>
                     </div>
 
                     <!-- Email -->
@@ -72,51 +90,113 @@
                         <label>Email</label>
                         <asp:TextBox ID="txtEmail" runat="server"
                             CssClass="form-control"></asp:TextBox>
+                        <asp:RegularExpressionValidator
+                            ID="revEmailPerfil"
+                            runat="server"
+                            ControlToValidate="txtEmail"
+                            CssClass="text-danger"
+                            ErrorMessage="Ingresá un correo electrónico válido."
+                            ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                            Display="Dynamic">
+                        </asp:RegularExpressionValidator>
                     </div>
 
-                    <!-- Contraseña actual + checkbox + botón Cambiar -->
+                    <!-- Contraseña actual + botón Cambiar -->
                     <div class="form-group">
                         <label>Contraseña</label>
 
-                        <div class="fila-password">
-                            <asp:TextBox ID="txtPassword" runat="server"                              
-                                CssClass="form-control campo-password"
-                                TextMode="Password"></asp:TextBox>
+                        <div class="input-group">
+                            <asp:TextBox ID="txtPassword" runat="server"
+                                CssClass="form-control"
+                                TextMode="Password"
+                                ClientIDMode="Static"></asp:TextBox>
 
-                            <asp:CheckBox ID="chkMostrarPassword" runat="server"
-                                Text="Mostrar"
-                                CssClass="chk-mostrar-password"
-                                AutoPostBack="true"
-                                OnCheckedChanged="chkMostrarPassword_CheckedChanged" />
-
-                            <asp:Button ID="btnCambiarPassword" runat="server"
-                                Text="Cambiar contraseña"
-                                CssClass="btn btn-outline-light btn-sm btn-cambiar-password"
-                                OnClick="btnCambiarPassword_Click" />
+                            <span class="input-group-text bg-dark text-light">
+                                <asp:CheckBox ID="chkMostrarPassword" runat="server"
+                                    onclick="togglePassword('txtPassword', this)" />
+                                <span class="ms-1">👁️</span>
+                            </span>
                         </div>
+
+                        <asp:Button ID="btnCambiarPassword" runat="server"
+                            Text="Cambiar contraseña"
+                            CssClass="btn btn-outline-light btn-sm mt-2"
+                            OnClick="btnCambiarPassword_Click" />
                     </div>
 
                     <!-- Nueva contraseña + repetir  -->
                     <div id="bloqueCambioPassword">
+
+                        <!-- Nueva contraseña -->
                         <div class="form-group">
                             <asp:Label ID="lblNuevaPass" runat="server"
                                 Text="Nueva contraseña"
                                 Visible="false"
                                 CssClass="form-label" />
-                            <asp:TextBox ID="txtNuevaPassword" Visible="false" runat="server"
-                                CssClass="form-control"
-                                TextMode="Password"></asp:TextBox>
+
+                            <div class="input-group">
+                                <asp:TextBox ID="txtNuevaPassword" runat="server"
+                                    CssClass="form-control"
+                                    TextMode="Password"
+                                    ClientIDMode="Static"
+                                    Visible="false"></asp:TextBox>
+
+                                <span id="spanMostrarNuevaPass" runat="server"
+                                    class="input-group-text bg-dark text-light"
+                                    visible="false">
+                                    <asp:CheckBox ID="chkMostrarNuevaPass" runat="server"
+                                        onclick="togglePassword('txtNuevaPassword', this)" />
+                                    <span class="ms-1">👁️</span>
+                                </span>
+                            </div>
+
+                            <asp:RegularExpressionValidator
+                                ID="revNuevaPassStrong"
+                                runat="server"
+                                ControlToValidate="txtNuevaPassword"
+                                CssClass="text-danger"
+                                Display="Dynamic"
+                                Visible="false"
+                                ErrorMessage="La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número."
+                                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
+                            </asp:RegularExpressionValidator>
                         </div>
 
+                        <!-- Repetir contraseña -->
                         <div class="form-group">
                             <asp:Label ID="lblRepetirPass" runat="server"
                                 Text="Repetir contraseña"
                                 Visible="false"
                                 CssClass="form-label" />
-                            <asp:TextBox ID="txtRepetirPassword" Visible="false" runat="server"
-                                CssClass="form-control"
-                                TextMode="Password"></asp:TextBox>
+
+                            <div class="input-group">
+                                <asp:TextBox ID="txtRepetirPassword" runat="server"
+                                    CssClass="form-control"
+                                    TextMode="Password"
+                                    ClientIDMode="Static"
+                                    Visible="false"></asp:TextBox>
+
+                                <span id="spanMostrarRepetirPass" runat="server"
+                                    class="input-group-text bg-dark text-light"
+                                    visible="false">
+                                    <asp:CheckBox ID="chkMostrarRepetirPass" runat="server"
+                                        onclick="togglePassword('txtRepetirPassword', this)" />
+                                    <span class="ms-1">👁️</span>
+                                </span>
+                            </div>
+
+                            <asp:CompareValidator
+                                ID="cvRepetirPassword"
+                                runat="server"
+                                ControlToValidate="txtRepetirPassword"
+                                ControlToCompare="txtNuevaPassword"
+                                CssClass="text-danger"
+                                Display="Dynamic"
+                                Visible="false"
+                                ErrorMessage="Las contraseñas no coinciden.">
+                            </asp:CompareValidator>
                         </div>
+
                     </div>
 
                     <!-- Botones de acción -->

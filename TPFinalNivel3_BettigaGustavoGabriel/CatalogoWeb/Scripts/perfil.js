@@ -14,3 +14,17 @@
         reader.readAsDataURL(input.files[0]); // convierte la imagen a base64 para mostrarla
     }
 }
+
+// =============================
+// Mostrar / Ocultar contraseña
+// =============================
+function togglePassword(inputId, chk) {
+    var input = document.getElementById(inputId);
+    if (!input) return;
+
+    if (chk.checked) {
+        input.setAttribute("type", "text");
+    } else {
+        input.setAttribute("type", "password");
+    }
+}
