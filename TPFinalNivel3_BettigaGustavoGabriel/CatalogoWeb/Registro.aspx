@@ -22,9 +22,23 @@
                 <asp:Label ID="lblNombre" runat="server"
                     Text="Nombre"
                     CssClass="form-label" />
+
                 <asp:TextBox ID="txtNombre" runat="server"
                     CssClass="form-control"
                     Placeholder="Escribí tu nombre" />
+
+
+                <asp:RequiredFieldValidator
+                    ID="rfvNombre"
+                    runat="server"
+                    ControlToValidate="txtNombre"
+                    CssClass="text-danger"
+                    ErrorMessage="El nombre es obligatorio."
+                    Display="Dynamic"
+                    ValidationGroup="Registro">
+                </asp:RequiredFieldValidator>
+
+
                 <asp:RegularExpressionValidator
                     ID="revNombreSoloLetrasMin4"
                     runat="server"
@@ -32,7 +46,8 @@
                     CssClass="text-danger"
                     ErrorMessage="El nombre debe tener solo letras y al menos 4 caracteres."
                     ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]{4,}$"
-                    Display="Dynamic">
+                    Display="Dynamic"
+                    ValidationGroup="Registro">
                 </asp:RegularExpressionValidator>
             </div>
 
@@ -41,9 +56,23 @@
                 <asp:Label ID="lblApellido" runat="server"
                     Text="Apellido"
                     CssClass="form-label" />
+
                 <asp:TextBox ID="txtApellido" runat="server"
                     CssClass="form-control"
                     Placeholder="Escribí tu apellido" />
+
+
+                <asp:RequiredFieldValidator
+                    ID="rfvApellido"
+                    runat="server"
+                    ControlToValidate="txtApellido"
+                    CssClass="text-danger"
+                    ErrorMessage="El apellido es obligatorio."
+                    Display="Dynamic"
+                    ValidationGroup="Registro">
+                </asp:RequiredFieldValidator>
+
+
                 <asp:RegularExpressionValidator
                     ID="revApellidoSoloLetrasMin3"
                     runat="server"
@@ -51,7 +80,8 @@
                     CssClass="text-danger"
                     ErrorMessage="El apellido debe tener solo letras y al menos 3 caracteres."
                     ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]{3,}$"
-                    Display="Dynamic">
+                    Display="Dynamic"
+                    ValidationGroup="Registro">
                 </asp:RegularExpressionValidator>
             </div>
 
@@ -60,10 +90,24 @@
                 <asp:Label ID="lblEmail" runat="server"
                     Text="Correo electrónico"
                     CssClass="form-label" />
+
                 <asp:TextBox ID="txtEmail" runat="server"
                     CssClass="form-control"
                     TextMode="Email"
                     Placeholder="tucorreo@ejemplo.com" />
+
+
+                <asp:RequiredFieldValidator
+                    ID="rfvEmail"
+                    runat="server"
+                    ControlToValidate="txtEmail"
+                    CssClass="text-danger"
+                    ErrorMessage="El correo electrónico es obligatorio."
+                    Display="Dynamic"
+                    ValidationGroup="Registro">
+                </asp:RequiredFieldValidator>
+
+
                 <asp:RegularExpressionValidator
                     ID="revEmailFormato"
                     runat="server"
@@ -71,7 +115,8 @@
                     CssClass="text-danger"
                     ErrorMessage="Ingresá un correo electrónico válido."
                     ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
-                    Display="Dynamic">
+                    Display="Dynamic"
+                    ValidationGroup="Registro">
                 </asp:RegularExpressionValidator>
             </div>
 
@@ -95,6 +140,18 @@
                     </span>
                 </div>
 
+
+                <asp:RequiredFieldValidator
+                    ID="rfvPassword"
+                    runat="server"
+                    ControlToValidate="txtPassword"
+                    CssClass="text-danger"
+                    ErrorMessage="La contraseña es obligatoria."
+                    Display="Dynamic"
+                    ValidationGroup="Registro">
+                </asp:RequiredFieldValidator>
+
+
                 <asp:RegularExpressionValidator
                     ID="revPassStrong"
                     runat="server"
@@ -102,9 +159,9 @@
                     CssClass="text-danger"
                     Display="Dynamic"
                     ErrorMessage="Debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número."
-                    ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
+                    ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+                    ValidationGroup="Registro" />
             </div>
-
 
             <!-- REPETIR CONTRASEÑA -->
             <div class="mb-3">
@@ -126,6 +183,18 @@
                     </span>
                 </div>
 
+
+                <asp:RequiredFieldValidator
+                    ID="rfvRepetirPassword"
+                    runat="server"
+                    ControlToValidate="txtRepetirPassword"
+                    CssClass="text-danger"
+                    ErrorMessage="Debés repetir la contraseña."
+                    Display="Dynamic"
+                    ValidationGroup="Registro">
+                </asp:RequiredFieldValidator>
+
+
                 <asp:CompareValidator
                     ID="cvRepetirPassword"
                     runat="server"
@@ -133,7 +202,8 @@
                     ControlToCompare="txtPassword"
                     ErrorMessage="Las contraseñas no coinciden."
                     CssClass="text-danger"
-                    Display="Dynamic">
+                    Display="Dynamic"
+                    ValidationGroup="Registro">
                 </asp:CompareValidator>
             </div>
 
@@ -142,21 +212,22 @@
                 <asp:Button ID="btnCrearCuenta" runat="server"
                     Text="Crear cuenta"
                     CssClass="btn btn-primary flex-fill"
-                    OnClick="btnCrearCuenta_Click" />
+                    OnClick="btnCrearCuenta_Click"
+                    ValidationGroup="Registro" />
                 <asp:Button ID="btnCancelar" runat="server"
                     Text="Cancelar"
                     CssClass="btn btn-outline-light flex-fill"
                     PostBackUrl="~/Default.aspx" />
             </div>
 
-            <!-- MENSAJE DE ERROR (opcional) -->
+            <!-- MENSAJE DE ERROR  -->
             <asp:Label ID="lblErrorRegistro" runat="server"
                 CssClass="registro-mensaje-error"
                 Visible="false" />
 
         </div>
 
-        <!-- FOOTER: YA TENÉS CUENTA -->
+        <!-- FOOTER -->
         <div class="registro-footer">
             ¿Ya tenés una cuenta?
             <asp:HyperLink ID="lnkIrLogin" runat="server"

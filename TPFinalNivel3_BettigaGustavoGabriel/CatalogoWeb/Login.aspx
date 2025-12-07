@@ -17,14 +17,33 @@
             <!-- Campo Email -->
             <div class="mb-3">
                 <asp:Label ID="lblEmail" runat="server" Text="Correo electrónico" CssClass="form-label text-light" />
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" Placeholder="ejemplo@email.com" />
+
+                <asp:TextBox ID="txtEmail" runat="server"
+                    CssClass="form-control"
+                    TextMode="Email"
+                    Placeholder="ejemplo@email.com" />
+
+                <!-- Email obligatorio -->
+                <asp:RequiredFieldValidator
+                    ID="rfvEmail"
+                    runat="server"
+                    ControlToValidate="txtEmail"
+                    CssClass="text-danger"
+                    ErrorMessage="El correo es obligatorio."
+                    Display="Dynamic"
+                    ValidationGroup="LoginGroup">
+                </asp:RequiredFieldValidator>
+
+                <!-- Validación de formato -->
                 <asp:RegularExpressionValidator
                     ID="revEmail"
                     runat="server"
                     ControlToValidate="txtEmail"
                     CssClass="text-danger"
                     ErrorMessage="Ingrese un correo electrónico válido."
-                    ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$">
+                    ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                    Display="Dynamic"
+                    ValidationGroup="LoginGroup">
                 </asp:RegularExpressionValidator>
             </div>
 
@@ -47,14 +66,31 @@
                         <span class="ms-1">👁️</span>
                     </span>
                 </div>
+
+                <!-- Contraseña obligatoria -->
+                <asp:RequiredFieldValidator
+                    ID="rfvPassword"
+                    runat="server"
+                    ControlToValidate="txtPassword"
+                    CssClass="text-danger"
+                    ErrorMessage="La contraseña es obligatoria."
+                    Display="Dynamic"
+                    ValidationGroup="LoginGroup">
+                </asp:RequiredFieldValidator>
             </div>
 
             <!-- Mensaje de error -->
-            <asp:Label ID="lblError" runat="server" CssClass="text-danger d-block text-center mb-3" Visible="false" />
+            <asp:Label ID="lblError" runat="server"
+                CssClass="text-danger d-block text-center mb-3"
+                Visible="false" />
 
             <!-- Botones -->
             <div class="d-grid mb-3">
-                <asp:Button ID="btnLogin" runat="server" Text="Iniciar sesión" CssClass="btn btn-primary btn-lg" OnClick="btnLogin_Click" />
+                <asp:Button ID="btnLogin" runat="server"
+                    Text="Iniciar sesión"
+                    CssClass="btn btn-primary btn-lg"
+                    OnClick="btnLogin_Click"
+                    ValidationGroup="LoginGroup" />
             </div>
 
             <div class="text-center">

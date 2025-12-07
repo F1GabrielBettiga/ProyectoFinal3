@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="abm-marca-container">
 
-        <!-- TÍTULO (se puede cambiar desde el code-behind: "Nueva marca" / "Editar marca") -->
+        <!-- TÍTULO -->
         <asp:Label ID="lblTituloABMMarca" runat="server"
             Text="Nueva marca"
             CssClass="titulo-abm-marca" />
@@ -31,16 +31,32 @@
                 <asp:Label ID="lblNombreMarca" runat="server"
                     Text="Nombre de la marca"
                     CssClass="form-label" />
+
                 <asp:TextBox ID="txtNombreMarca" runat="server"
                     CssClass="form-control"
                     Placeholder="Ej: Samsung, Apple, Logitech..." />
+
+                <!-- OBLIGATORIO -->
+                <asp:RequiredFieldValidator
+                    ID="rfvNombreMarca"
+                    runat="server"
+                    ControlToValidate="txtNombreMarca"
+                    CssClass="text-danger"
+                    ErrorMessage="El nombre de la marca es obligatorio."
+                    Display="Dynamic"
+                    ValidationGroup="Marca">
+                </asp:RequiredFieldValidator>
+
+                <!-- SOLO LETRAS -->
                 <asp:RegularExpressionValidator
                     ID="revNombreMarca"
                     runat="server"
                     ControlToValidate="txtNombreMarca"
                     CssClass="text-danger"
                     ErrorMessage="Solo se permiten letras."
-                    ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$">
+                    ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$"
+                    Display="Dynamic"
+                    ValidationGroup="Marca">
                 </asp:RegularExpressionValidator>
             </div>
 
@@ -49,16 +65,17 @@
                 <asp:Button ID="btnGuardarMarca" runat="server"
                     Text="Guardar"
                     CssClass="btn btn-primary me-2"
-                    OnClick="btnGuardarMarca_Click" />
+                    OnClick="btnGuardarMarca_Click"
+                    ValidationGroup="Marca" />
 
                 <asp:Button ID="btnCancelarMarca" runat="server"
                     Text="Cancelar"
                     CssClass="btn btn-outline-light"
-                    PostBackUrl="~/AdminMarcas.aspx" 
-                    Onclick="btnCancelarMarca_Click"/>
+                    PostBackUrl="~/AdminMarcas.aspx"
+                    OnClick="btnCancelarMarca_Click" />
             </div>
 
-            <!-- MENSAJE DE ERROR -->
+            <!-- MENSAJE ERROR -->
             <asp:Label ID="lblErrorMarca" runat="server"
                 CssClass="abm-marca-mensaje-error"
                 Visible="false" />
@@ -66,8 +83,4 @@
         </div>
 
     </div>
-
-
-
-
 </asp:Content>

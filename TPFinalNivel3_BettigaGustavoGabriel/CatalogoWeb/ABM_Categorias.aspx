@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="abm-categoria-container">
 
-        <!-- Título dinámico: "Nueva categoría" / "Editar categoría" -->
+        <!-- Título -->
         <asp:Label ID="lblTituloABMCategoria" runat="server"
             Text="Nueva categoría"
             CssClass="titulo-abm-categoria" />
@@ -31,16 +31,32 @@
                 <asp:Label ID="lblNombreCategoria" runat="server"
                     Text="Nombre de la categoría"
                     CssClass="form-label" />
+
                 <asp:TextBox ID="txtNombreCategoria" runat="server"
                     CssClass="form-control"
                     Placeholder="Ej: Periféricos, Monitores, Notebooks..." />
+
+
+                <asp:RequiredFieldValidator 
+                    ID="rfvNombreCategoria"
+                    runat="server"
+                    ControlToValidate="txtNombreCategoria"
+                    CssClass="text-danger"
+                    ErrorMessage="El nombre de la categoría es obligatorio."
+                    Display="Dynamic"
+                    ValidationGroup="Categoria">
+                </asp:RequiredFieldValidator>
+
+
                 <asp:RegularExpressionValidator
                     ID="revNombreCategoria"
                     runat="server"
                     ControlToValidate="txtNombreCategoria"
                     CssClass="text-danger"
                     ErrorMessage="Solo se permiten letras."
-                    ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$">
+                    ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$"
+                    Display="Dynamic"
+                    ValidationGroup="Categoria">
                 </asp:RegularExpressionValidator>
             </div>
 
@@ -49,13 +65,14 @@
                 <asp:Button ID="btnGuardarCategoria" runat="server"
                     Text="Guardar"
                     CssClass="btn btn-primary"
+                    ValidationGroup="Categoria"
                     OnClick="btnGuardarCategoria_Click" />
 
                 <asp:Button ID="btnCancelarCategoria" runat="server"
                     Text="Cancelar"
                     CssClass="btn btn-outline-light"
-                    PostBackUrl="~/AdminCategorias.aspx" 
-                    Onclick="btnCancelarCategoria_Click"/>
+                    PostBackUrl="~/AdminCategorias.aspx"
+                    OnClick="btnCancelarCategoria_Click" />
             </div>
 
             <!-- Mensaje de error -->

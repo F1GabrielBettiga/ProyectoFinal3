@@ -175,10 +175,8 @@ namespace CatalogoWeb
                 }
                 else
                 {
-                   
-                    usuario.password = string.IsNullOrWhiteSpace(txtPassword.Text)
-                        ? null
-                        : txtPassword.Text.Trim();
+
+                    usuario.password = usuario.password;
                 }
 
                 // --- Nombre ---
@@ -287,7 +285,7 @@ namespace CatalogoWeb
             txtNombre.ReadOnly = false;
             txtApellido.ReadOnly = false;
             txtEmail.ReadOnly = false;
-            txtPassword.ReadOnly = false;
+            
             
 
 

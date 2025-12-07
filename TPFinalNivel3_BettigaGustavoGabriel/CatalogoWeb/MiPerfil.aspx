@@ -13,9 +13,10 @@
     <div class="perfil-container">
         <div class="perfil-card">
             <div class="row">
+
                 <!-- ===========================
-                 COLUMNA IZQUIERDA
-                 =========================== -->
+                     COLUMNA IZQUIERDA
+                ============================ -->
                 <div class="col-md-4 col-sm-12 perfil-col-izquierda">
 
                     <!-- Imagen de perfil -->
@@ -26,19 +27,15 @@
 
                     <!-- Cargar nueva imagen -->
                     <% if (btnGuardar.Visible == true)
-                        {
-                    %>
+                        { %>
                     <div class="mt-3">
                         <input type="file" id="fileImagenUsuario" runat="server"
                             class="input-imagen-perfil"
                             onchange="mostrarVistaPrevia(this, 'imgPerfil')" />
-
                     </div>
-                    <%
-                        }
-                    %>
+                    <% } %>
 
-                    <!-- Tipo de usuario (solo lectura) -->
+                    <!-- Tipo de usuario -->
                     <div class="mt-3">
                         <asp:Label ID="lblTipoUsuarioTitulo" runat="server"
                             Text="Tipo de usuario:"
@@ -48,9 +45,10 @@
                     </div>
 
                 </div>
+
                 <!-- ===========================
-                 COLUMNA DERECHA
-                 =========================== -->
+                     COLUMNA DERECHA
+                ============================ -->
                 <div class="col-md-8 col-sm-12 perfil-col-derecha">
 
                     <!-- Nombre -->
@@ -58,6 +56,7 @@
                         <label>Nombre</label>
                         <asp:TextBox ID="txtNombre" runat="server"
                             CssClass="form-control"></asp:TextBox>
+
                         <asp:RegularExpressionValidator
                             ID="revNombrePerfil"
                             runat="server"
@@ -74,6 +73,7 @@
                         <label>Apellido</label>
                         <asp:TextBox ID="txtApellido" runat="server"
                             CssClass="form-control"></asp:TextBox>
+
                         <asp:RegularExpressionValidator
                             ID="revApellidoPerfil"
                             runat="server"
@@ -88,8 +88,21 @@
                     <!-- Email -->
                     <div class="form-group">
                         <label>Email</label>
+
                         <asp:TextBox ID="txtEmail" runat="server"
                             CssClass="form-control"></asp:TextBox>
+
+                        <asp:RequiredFieldValidator
+                            ID="rfvEmailPerfil"
+                            runat="server"
+                            ControlToValidate="txtEmail"
+                            CssClass="text-danger"
+                            ErrorMessage="El email es obligatorio."
+                            Display="Dynamic"
+                            ValidationGroup="Perfil">
+                        </asp:RequiredFieldValidator>
+
+                        <!-- Formato -->
                         <asp:RegularExpressionValidator
                             ID="revEmailPerfil"
                             runat="server"
@@ -97,11 +110,12 @@
                             CssClass="text-danger"
                             ErrorMessage="Ingresá un correo electrónico válido."
                             ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
-                            Display="Dynamic">
+                            Display="Dynamic"
+                            ValidationGroup="Perfil">
                         </asp:RegularExpressionValidator>
                     </div>
 
-                    <!-- Contraseña actual + botón Cambiar -->
+                    <!-- Contraseña actual -->
                     <div class="form-group">
                         <label>Contraseña</label>
 
@@ -124,7 +138,7 @@
                             OnClick="btnCambiarPassword_Click" />
                     </div>
 
-                    <!-- Nueva contraseña + repetir  -->
+                    <!-- Nueva contraseña + repetir -->
                     <div id="bloqueCambioPassword">
 
                         <!-- Nueva contraseña -->
@@ -199,16 +213,18 @@
 
                     </div>
 
-                    <!-- Botones de acción -->
+                    <!-- Botones -->
                     <div class="acciones-perfil">
                         <asp:Button ID="btnEditar" runat="server"
                             Text="Editar perfil"
                             CssClass="btn btn-outline-primary"
                             OnClick="btnEditar_Click" />
+
                         <asp:Button ID="btnGuardar" runat="server"
                             Text="Guardar cambios"
                             Visible="false"
                             CssClass="btn btn-primary me-2"
+                            ValidationGroup="Perfil"
                             OnClick="btnGuardar_Click" />
 
                         <asp:Button ID="btnCancelar" runat="server"
@@ -217,13 +233,16 @@
                             CssClass="btn btn-outline-light"
                             OnClick="btnCancelar_Click" />
                     </div>
+
                     <asp:Label ID="lblMensajeError" runat="server"
                         Text=""
                         Visible="false"
                         CssClass="form-label" />
+
                 </div>
             </div>
 
         </div>
     </div>
+
 </asp:Content>

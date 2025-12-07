@@ -35,6 +35,9 @@ namespace CatalogoWeb
 
             bool usuarioValido = negocio.obtenerUsuarioPorEmail(txtEmail.Text, txtPassword.Text, out usuario);
 
+            lblError.Text = "";
+            lblError.Visible = false;
+
             if (usuarioValido)
             {   
                 Session["UsuarioLogueado"] = usuario;

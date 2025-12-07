@@ -33,10 +33,10 @@
                 </div>
             </asp:Panel>
 
-            <!-- LAYOUT PRINCIPAL: DOS COLUMNAS -->
+            <!-- LAYOUT PRINCIPAL -->
             <div class="row g-3">
 
-                <!-- COLUMNA IZQUIERDA: DATOS PERSONALES -->
+                <!-- COLUMNA IZQUIERDA -->
                 <div class="col-md-7">
 
                     <!-- Nombre -->
@@ -83,6 +83,19 @@
                         <asp:TextBox ID="txtEmail" runat="server"
                             CssClass="form-control"
                             TextMode="Email" />
+
+                        
+                        <asp:RequiredFieldValidator
+                            ID="rfvEmail"
+                            runat="server"
+                            ControlToValidate="txtEmail"
+                            CssClass="text-danger"
+                            ErrorMessage="El correo electrónico es obligatorio."
+                            Display="Dynamic"
+                            ValidationGroup="UsuarioABM">
+                        </asp:RequiredFieldValidator>
+
+                        
                         <asp:RegularExpressionValidator
                             ID="revEmail"
                             runat="server"
@@ -90,6 +103,7 @@
                             CssClass="text-danger"
                             ErrorMessage="Ingrese un correo electrónico válido."
                             Display="Dynamic"
+                            ValidationGroup="UsuarioABM"
                             ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$">
                         </asp:RegularExpressionValidator>
                     </div>
@@ -113,19 +127,33 @@
                             </span>
                         </div>
 
+                        
+                        <asp:RequiredFieldValidator
+                            ID="rfvPassword"
+                            runat="server"
+                            ControlToValidate="txtPassword"
+                            CssClass="text-danger"
+                            ErrorMessage="La contraseña es obligatoria."
+                            Display="Dynamic"
+                            ValidationGroup="UsuarioABM">
+                        </asp:RequiredFieldValidator>
+
+                        
                         <asp:RegularExpressionValidator
                             ID="revPassStrong"
                             runat="server"
                             ControlToValidate="txtPassword"
                             CssClass="text-danger"
                             Display="Dynamic"
-                            ErrorMessage="La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número."                          
-                            ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
+                            ValidationGroup="UsuarioABM"
+                            ErrorMessage="La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número."
+                            ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
+                        </asp:RegularExpressionValidator>
                     </div>
 
                 </div>
 
-                <!-- COLUMNA DERECHA: ROL + IMAGEN -->
+                <!-- COLUMNA DERECHA -->
                 <div class="col-md-5">
 
                     <!-- Rol -->
@@ -167,11 +195,12 @@
                 </div>
             </div>
 
-            <!-- BOTONES DE ACCIÓN -->
+            <!-- BOTONES -->
             <div class="abm-usuario-botones text-center mt-4">
                 <asp:Button ID="btnGuardar" runat="server"
                     Text="Guardar"
                     CssClass="btn btn-primary me-2"
+                    ValidationGroup="UsuarioABM"
                     OnClick="btnGuardar_Click" />
 
                 <asp:Button ID="btnCancelar" runat="server"
@@ -183,6 +212,5 @@
         </div>
 
     </div>
-
 
 </asp:Content>

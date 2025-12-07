@@ -34,10 +34,23 @@
                 <!-- Columna izquierda-->
                 <div class="col-md-7">
 
-                    <!-- Código -->
+                    <!-- Código (OBLIGATORIO + LETRAS Y NÚMEROS) -->
                     <div class="mb-3">
                         <asp:Label ID="lblCodigo" runat="server" Text="Código" CssClass="form-label" />
                         <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control" />
+
+                        <!-- Obligatorio -->
+                        <asp:RequiredFieldValidator
+                            ID="rfvCodigo"
+                            runat="server"
+                            ControlToValidate="txtCodigo"
+                            CssClass="text-danger"
+                            ErrorMessage="El código es obligatorio."
+                            Display="Dynamic"
+                            ValidationGroup="Articulo">
+                        </asp:RequiredFieldValidator>
+
+                        <!-- Solo letras y números -->
                         <asp:RegularExpressionValidator
                             ID="revCodigo"
                             runat="server"
@@ -45,13 +58,27 @@
                             ValidationExpression="^[a-zA-Z0-9]*$"
                             ErrorMessage="Solo se permiten letras y números."
                             CssClass="text-danger"
-                            Display="Dynamic" />
+                            Display="Dynamic"
+                            ValidationGroup="Articulo" />
                     </div>
 
-                    <!-- Nombre -->
+                    <!-- Nombre (OBLIGATORIO + SOLO LETRAS) -->
                     <div class="mb-3">
                         <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label" />
                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
+
+                        <!-- Obligatorio -->
+                        <asp:RequiredFieldValidator
+                            ID="rfvNombre"
+                            runat="server"
+                            ControlToValidate="txtNombre"
+                            CssClass="text-danger"
+                            ErrorMessage="El nombre es obligatorio."
+                            Display="Dynamic"
+                            ValidationGroup="Articulo">
+                        </asp:RequiredFieldValidator>
+
+                        <!-- Solo letras -->
                         <asp:RegularExpressionValidator
                             ID="revNombre"
                             runat="server"
@@ -59,10 +86,11 @@
                             ValidationExpression="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
                             ErrorMessage="Solo se permiten letras"
                             CssClass="text-danger"
-                            Display="Dynamic" />
+                            Display="Dynamic"
+                            ValidationGroup="Articulo" />
                     </div>
 
-                    <!-- Descripción -->
+                    <!-- Descripción (opcional, letras y números) -->
                     <div class="mb-3">
                         <asp:Label ID="lblDescripcion" runat="server" Text="Descripción" CssClass="form-label" />
                         <asp:TextBox ID="txtDescripcion" runat="server"
@@ -75,13 +103,27 @@
                             ValidationExpression="^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$"
                             ErrorMessage="Solo se permiten letras y números"
                             CssClass="text-danger"
-                            Display="Dynamic" />
+                            Display="Dynamic"
+                            ValidationGroup="Articulo" />
                     </div>
 
-                    <!-- Precio -->
+                    <!-- Precio (OBLIGATORIO + NÚMERO / DECIMAL) -->
                     <div class="mb-3">
                         <asp:Label ID="lblPrecio" runat="server" Text="Precio" CssClass="form-label" />
                         <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" />
+
+                        <!-- Obligatorio -->
+                        <asp:RequiredFieldValidator
+                            ID="rfvPrecio"
+                            runat="server"
+                            ControlToValidate="txtPrecio"
+                            CssClass="text-danger"
+                            ErrorMessage="El precio es obligatorio."
+                            Display="Dynamic"
+                            ValidationGroup="Articulo">
+                        </asp:RequiredFieldValidator>
+
+                        <!-- Número / decimal -->
                         <asp:RegularExpressionValidator
                             ID="revPrecio"
                             runat="server"
@@ -89,7 +131,8 @@
                             ValidationExpression="^[0-9]+([.,][0-9]+)?$"
                             ErrorMessage="Ingrese un número válido"
                             CssClass="text-danger"
-                            Display="Dynamic" />
+                            Display="Dynamic"
+                            ValidationGroup="Articulo" />
                     </div>
 
                 </div>
@@ -123,10 +166,12 @@
                         </div>
                     </div>
 
-                    <!-- Campo para cambiar la imagen (URL) -->
+                    <!-- Campo para cambiar la imagen (URL / archivo) -->
                     <div class="mb-3">
                         <asp:Label ID="lblUrlImagen" runat="server" Text="Cargar imagen" CssClass="form-label" />
-                        <input type="file" id="txtImagen" runat="server" class="form-control" onchange="mostrarVistaPrevia(this, 'imgArticulo')" />
+                        <input type="file" id="txtImagen" runat="server"
+                            class="form-control"
+                            onchange="mostrarVistaPrevia(this, 'imgArticulo')" />
                     </div>
 
                 </div>
@@ -137,7 +182,8 @@
                 <asp:Button ID="btnGuardar" runat="server"
                     Text="Guardar"
                     CssClass="btn btn-primary me-2"
-                    OnClick="btnGuardar_Click" />
+                    OnClick="btnGuardar_Click"
+                    ValidationGroup="Articulo" />
 
                 <asp:Button ID="btnCancelar" runat="server"
                     Text="Cancelar"
