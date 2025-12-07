@@ -161,5 +161,43 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public bool ExisteDescripcion(string descripcion)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                // Normalizar entrada
+                string normalizada = descripcion.Trim().Replace(" ", "").ToUpper();
+
+                datos.setearConsulta(
+                    "SELECT COUNT(*) " +
+                    "FROM CATEGORIAS " +
+                    "WHERE REPLACE(UPPER(LTRIM(RTRIM(Descripcion))), ' ', '') = @desc"
+                );
+
+                datos.agregarParametro("@desc", normalizada);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    if (cantidad > 0)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

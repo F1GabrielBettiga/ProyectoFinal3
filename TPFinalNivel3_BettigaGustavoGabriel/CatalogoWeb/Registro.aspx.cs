@@ -21,7 +21,17 @@ namespace CatalogoWeb
         {
             if (validarCamposObligatorios())
             { 
-                crearCuenta(); 
+                if (ExisteMail(txtEmail.Text))
+                {
+                    lblErrorRegistro.Text = "El correo electrónico ya está registrado.";
+                    lblErrorRegistro.Visible = true;
+                    return;
+                }
+                else 
+                {
+                    crearCuenta();
+                }
+                    
             }
             
 
@@ -151,6 +161,19 @@ namespace CatalogoWeb
             }
 
             return true;
+        }
+
+        bool ExisteMail(string email)
+        {
+            UsuarioNegocio negocio = new UsuarioNegocio();
+
+            if (negocio.ExisteEmail(email))
+            {
+                
+                return true;
+            }
+
+            return false;
         }
 
 

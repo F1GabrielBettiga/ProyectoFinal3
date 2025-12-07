@@ -30,21 +30,53 @@ namespace CatalogoWeb
 
         protected void btnGuardarCategoria_Click(object sender, EventArgs e)
         {
+            // Normalizar el texto ingresado
+            string textoIngresado = txtNombreCategoria.Text.Trim().Replace(" ", "").ToUpper();
+
             if (!string.IsNullOrEmpty(Request.QueryString["id"]))
             {
-                if(validacionesCamposObligatorios())
+                if (validacionesCamposObligatorios())
                 {
-                    actualizarCategoria();  
+                    string id = Request.QueryString["id"];
+                    CategoriaNegocio negocio = new CategoriaNegocio();
+                    Categoria categoria = negocio.listarCategorias()
+                                                .FirstOrDefault(a => a.id == int.Parse(id));
+
+                    // Normalizar descripción actual
+                    string descripcionCategoria = categoria.descripcion.Trim().Replace(" ", "").ToUpper();
+
+                    // Si NO cambió la descripción → actualizar sin validar duplicados
+                    if (descripcionCategoria == textoIngresado)
+                    {
+                        actualizarCategoria();
+                    }
+                    else if (ExisteDescripcion(txtNombreCategoria.Text))
+                    {
+                        lblErrorCategoria.Text = "Categoría ya registrada.";
+                        lblErrorCategoria.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                        actualizarCategoria();
+                    }
                 }
-                
             }
             else
             {
                 if (validacionesCamposObligatorios())
                 {
-                    agregarCategoria();
+                    if (ExisteDescripcion(txtNombreCategoria.Text))
+                    {
+                        lblErrorCategoria.Text = "Categoría ya registrada.";
+                        lblErrorCategoria.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                        agregarCategoria();
+                    }
                 }
-                
             }
 
 
@@ -166,6 +198,19 @@ namespace CatalogoWeb
             }
 
             return true; 
+        }
+
+        bool ExisteDescripcion(string descripcion)
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+
+            if (negocio.ExisteDescripcion(descripcion))
+            {
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

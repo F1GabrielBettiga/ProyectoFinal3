@@ -30,20 +30,58 @@ namespace CatalogoWeb
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            
+            string codigoIngresado = (txtCodigo.Text ?? string.Empty).Trim().Replace(" ", "").ToUpper();
+
             if (!string.IsNullOrEmpty(Request.QueryString["id"]))
             {
+                
                 if (validarCamposObligatorios())
-                { 
-                    actualizarArticulo();
+                {
+                    string id = Request.QueryString["id"];
+                    ArticuloNegocio negocio = new ArticuloNegocio();
+                    Articulo articulo = negocio.listarArticulos().FirstOrDefault(a => a.id == int.Parse(id));
+
+                    if (articulo != null)
+                    {
+                        
+                        string codigoActualArticulo = (articulo.codigo ?? string.Empty).Trim().Replace(" ", "").ToUpper();
+
+                        
+                        if (codigoActualArticulo == codigoIngresado)
+                        {
+                            actualizarArticulo();
+                        }
+                        
+                        else if (ExisteCodigo(codigoIngresado))
+                        {
+                            lblError.Text = "El código ya está registrado.";
+                            lblError.Visible = true;
+                            return;
+                        }
+                        else
+                        {
+                            actualizarArticulo();
+                        }
+                    }
                 }
             }
             else
             {
+                
                 if (validarCamposObligatorios())
                 {
-                    agregarArticulo();
+                    if (ExisteCodigo(codigoIngresado))
+                    {
+                        lblError.Text = "El código ya está registrado.";
+                        lblError.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                        agregarArticulo();
+                    }
                 }
-                
             }
 
 
@@ -358,9 +396,9 @@ namespace CatalogoWeb
         {
             lblError.Visible = false;
 
-            // ================================
-            // 1) CÓDIGO (obligatorio + solo letras/números)
-            // ================================
+            
+            // 1) CÓDIGO
+            
             if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
                 lblError.Text = "El campo Código es obligatorio.";
@@ -375,9 +413,9 @@ namespace CatalogoWeb
                 return false;
             }
 
-            // ================================
-            // 2) NOMBRE (obligatorio + solo letras)
-            // ================================
+          
+            // 2) NOMBRE 
+            
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
                 lblError.Text = "El campo Nombre es obligatorio.";
@@ -392,9 +430,9 @@ namespace CatalogoWeb
                 return false;
             }
 
-            // ================================
-            // 3) PRECIO (obligatorio + número válido decimal)
-            // ================================
+          
+            // 3) PRECIO 
+          
             if (string.IsNullOrWhiteSpace(txtPrecio.Text))
             {
                 lblError.Text = "El campo Precio es obligatorio.";
@@ -409,10 +447,21 @@ namespace CatalogoWeb
                 return false;
             }
 
-            return true; // Si llegó hasta acá, está todo OK
+            return true; 
         }
 
+        bool ExisteCodigo(string codigo)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
 
+            if (negocio.ExisteArticulo(codigo))
+            {
+
+                return true;
+            }
+
+            return false;
+        }
 
 
 

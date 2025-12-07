@@ -39,16 +39,49 @@ namespace CatalogoWeb
             {
                 if (validacionesCamposObligatorios())
                 {
-                    actualizarUsuario();
+                    int id = (int)Session["UsuarioEditar"];
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+                    Usuario usuario = negocio.listarUsuarios().FirstOrDefault(a => a.id == id);
+
+                   
+                    string emailGuardado = (usuario.email ?? string.Empty).Trim().Replace(" ", "").ToLower();
+
+                    string emailPantalla = (txtEmail.Text ?? string.Empty).Trim().Replace(" ", "").ToLower();
+
+                    
+                    if (emailGuardado == emailPantalla)
+                    {
+                        actualizarUsuario();
+                    }
+                    
+                    else if (ExisteMail(txtEmail.Text))
+                    {
+                        lblError.Text = "El correo electrónico ya está registrado.";
+                        lblError.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                        actualizarUsuario();
+                    }
                 }
             }
             else
             {
                 if (validacionesCamposObligatorios())
                 {
-                    agregarUsuario();
+                    
+                    if (ExisteMail(txtEmail.Text))
+                    {
+                        lblError.Text = "El correo electrónico ya está registrado.";
+                        lblError.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                        agregarUsuario();
+                    }
                 }
-                
             }
 
 
@@ -342,6 +375,19 @@ namespace CatalogoWeb
             }
 
             return true; // Todo OK
+        }
+
+        bool ExisteMail(string email)
+        {
+            UsuarioNegocio negocio = new UsuarioNegocio();
+
+            if (negocio.ExisteEmail(email))
+            {
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

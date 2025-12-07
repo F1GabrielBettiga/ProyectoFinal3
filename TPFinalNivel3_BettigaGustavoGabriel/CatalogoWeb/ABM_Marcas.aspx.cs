@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -35,17 +36,47 @@ namespace CatalogoWeb
             {
                 if (validacionesCamposObligatorios())
                 {
-                    actualizarMarca();
-                }
+                    string id = Request.QueryString["id"];
+                    MarcaNegocio negocio = new MarcaNegocio();
+                    Marca marca = negocio.listarMarcas().FirstOrDefault(a => a.id == int.Parse(id));
+
                    
+                    string descMarcaBD = (marca.descripcion ?? string.Empty).Trim().Replace(" ", "").ToUpper();
+
+                    string descTextbox = (txtNombreMarca.Text ?? string.Empty).Trim().Replace(" ", "").ToUpper();
+
+                    
+                    if (descMarcaBD == descTextbox)
+                    {
+                        actualizarMarca();
+                    }
+                    else if (ExisteDescripcion(txtNombreMarca.Text))
+                    {
+                        lblErrorMarca.Text = "Marca ya registrada.";
+                        lblErrorMarca.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                        actualizarMarca();
+                    }
+                }
             }
             else
             {
                 if (validacionesCamposObligatorios())
                 {
-                    agregarMarca();
+                    if (ExisteDescripcion(txtNombreMarca.Text))
+                    {
+                        lblErrorMarca.Text = "Marca ya registrada.";
+                        lblErrorMarca.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                        agregarMarca();
+                    }
                 }
-                
             }
 
 
@@ -167,6 +198,19 @@ namespace CatalogoWeb
             }
 
             return true; 
+        }
+
+        bool ExisteDescripcion(string descripcion)
+        {
+            MarcaNegocio negocio = new MarcaNegocio();
+
+            if (negocio.ExisteMarca(descripcion))
+            {
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

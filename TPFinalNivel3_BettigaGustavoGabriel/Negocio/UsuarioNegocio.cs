@@ -42,8 +42,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
-
         public bool obtenerUsuarioPorEmail(string email, string password, out Usuario usuario)
         {
             usuario = null;
@@ -82,7 +80,6 @@ namespace Negocio
             }
 
         }
-
         public bool insertarUsuario(Usuario nuevo)
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
@@ -125,7 +122,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public bool actualizarUsuario (Usuario usuario)
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
@@ -184,8 +180,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
-
         public int obtenerProximoId()
         {
             AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
@@ -198,7 +192,43 @@ namespace Negocio
                 if (datos.Lector.Read())
                     return (int)datos.Lector[0];
 
-                return 1; // ✅ fallback seguro
+                return 1; 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool ExisteEmail(string email)
+        {
+            string emailNormalizado = (email ?? string.Empty).Trim().Replace(" ", "").ToLower();
+
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "SELECT COUNT(*) " +
+                    "FROM USERS " +
+                    "WHERE LOWER(REPLACE(Email, ' ', '')) = @Email"
+                );
+
+                datos.agregarParametro("@Email", emailNormalizado);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    if (cantidad > 0)
+                        return true;
+                }
+
+                return false;
             }
             catch (Exception ex)
             {

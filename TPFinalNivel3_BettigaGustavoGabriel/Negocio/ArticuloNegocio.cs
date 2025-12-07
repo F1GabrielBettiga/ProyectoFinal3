@@ -298,6 +298,41 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public bool ExisteArticulo(string codigo)
+        {
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                
+                string codigoNormalizado = (codigo ?? string.Empty).Trim().Replace(" ", "").ToUpper();
+
+                datos.setearConsulta(
+                    "SELECT COUNT(*) FROM ARTICULOS " +
+                    "WHERE REPLACE(UPPER(Codigo), ' ', '') = @Codigo"
+                );
+
+                datos.agregarParametro("@Codigo", codigoNormalizado);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    if (cantidad > 0)
+                        return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public List<Articulo> FiltrarArticulos(int? idCategoria, int? idMarca, decimal? precioMin, decimal? precioMax)
         {
             List<Articulo> lista = new List<Articulo>();
