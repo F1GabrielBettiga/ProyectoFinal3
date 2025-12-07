@@ -22,10 +22,10 @@ namespace Negocio
                 {
                     Usuario aux = new Usuario();
                     aux.id = (int)datos.Lector["Id"];
-                    aux.nombre = datos.Lector["nombre"] != DBNull.Value ? (string)datos.Lector["nombre"] : "-";
-                    aux.apellido = datos.Lector["apellido"] != DBNull.Value ? (string)datos.Lector["apellido"] : "-";
-                    aux.email = datos.Lector["email"] != DBNull.Value ? (string)datos.Lector["email"] : "-";
-                    aux.password = datos.Lector["pass"] != DBNull.Value ? (string)datos.Lector["pass"] : "-";
+                    aux.nombre = datos.Lector["nombre"] != DBNull.Value ? (string)datos.Lector["nombre"] : "";
+                    aux.apellido = datos.Lector["apellido"] != DBNull.Value ? (string)datos.Lector["apellido"] : "";
+                    aux.email = datos.Lector["email"] != DBNull.Value ? (string)datos.Lector["email"] : "";
+                    aux.password = datos.Lector["pass"] != DBNull.Value ? (string)datos.Lector["pass"] : "";
                     aux.urlImagenPerfil = datos.Lector["urlImagenPerfil"] != DBNull.Value ? (string)datos.Lector["urlImagenPerfil"] : null;
                     aux.esAdmin = datos.Lector["admin"] != DBNull.Value && (bool)datos.Lector["admin"];
 
@@ -57,10 +57,10 @@ namespace Negocio
                 {
                     usuario = new Usuario();
                     usuario.id = (int)datos.Lector["Id"];
-                    usuario.nombre = datos.Lector["nombre"] != DBNull.Value ? (string)datos.Lector["nombre"] : "-";
-                    usuario.apellido = datos.Lector["apellido"] != DBNull.Value ? (string)datos.Lector["apellido"] : "-";
-                    usuario.email = datos.Lector["email"] != DBNull.Value ? (string)datos.Lector["email"] : "-";
-                    usuario.password = datos.Lector["pass"] != DBNull.Value ? (string)datos.Lector["pass"] : "-";
+                    usuario.nombre = datos.Lector["nombre"] != DBNull.Value ? (string)datos.Lector["nombre"] : "";
+                    usuario.apellido = datos.Lector["apellido"] != DBNull.Value ? (string)datos.Lector["apellido"] : "";
+                    usuario.email = datos.Lector["email"] != DBNull.Value ? (string)datos.Lector["email"] : "";
+                    usuario.password = datos.Lector["pass"] != DBNull.Value ? (string)datos.Lector["pass"] : "";
                     usuario.urlImagenPerfil = datos.Lector["urlImagenPerfil"] != DBNull.Value ? (string)datos.Lector["urlImagenPerfil"] : null;
                     usuario.esAdmin = datos.Lector["admin"] != DBNull.Value && (bool)datos.Lector["admin"];
 

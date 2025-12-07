@@ -79,15 +79,7 @@
                         </asp:RequiredFieldValidator>
 
 
-                        <asp:RegularExpressionValidator
-                            ID="revNombre"
-                            runat="server"
-                            ControlToValidate="txtNombre"
-                            ValidationExpression="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"
-                            ErrorMessage="Solo se permiten letras"
-                            CssClass="text-danger"
-                            Display="Dynamic"
-                            ValidationGroup="Articulo" />
+                        
                     </div>
 
                     <!-- Descripción -->
@@ -96,15 +88,7 @@
                         <asp:TextBox ID="txtDescripcion" runat="server"
                             CssClass="form-control"
                             TextMode="MultiLine" Rows="3" />
-                        <asp:RegularExpressionValidator
-                            ID="revDescripcion"
-                            runat="server"
-                            ControlToValidate="txtDescripcion"
-                            ValidationExpression="^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$"
-                            ErrorMessage="Solo se permiten letras y números"
-                            CssClass="text-danger"
-                            Display="Dynamic"
-                            ValidationGroup="Articulo" />
+                        
                     </div>
 
                     <!-- Precio -->

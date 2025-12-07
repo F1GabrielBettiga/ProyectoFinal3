@@ -423,12 +423,7 @@ namespace CatalogoWeb
                 return false;
             }
 
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ\s]+$"))
-            {
-                lblError.Text = "El nombre solo puede contener letras.";
-                lblError.Visible = true;
-                return false;
-            }
+            
 
           
             // 3) PRECIO 
