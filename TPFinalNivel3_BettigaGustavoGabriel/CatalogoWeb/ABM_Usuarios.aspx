@@ -84,7 +84,7 @@
                             CssClass="form-control"
                             TextMode="Email" />
 
-                        
+
                         <asp:RequiredFieldValidator
                             ID="rfvEmail"
                             runat="server"
@@ -95,7 +95,7 @@
                             ValidationGroup="UsuarioABM">
                         </asp:RequiredFieldValidator>
 
-                        
+
                         <asp:RegularExpressionValidator
                             ID="revEmail"
                             runat="server"
@@ -127,7 +127,7 @@
                             </span>
                         </div>
 
-                        
+
                         <asp:RequiredFieldValidator
                             ID="rfvPassword"
                             runat="server"
@@ -138,7 +138,7 @@
                             ValidationGroup="UsuarioABM">
                         </asp:RequiredFieldValidator>
 
-                        
+
                         <asp:RegularExpressionValidator
                             ID="revPassStrong"
                             runat="server"
@@ -194,7 +194,10 @@
 
                 </div>
             </div>
-
+            <asp:Label ID="lblError" runat="server"
+                Text=""
+                Visible="false"
+                CssClass="registro-mensaje-error" />
             <!-- BOTONES -->
             <div class="abm-usuario-botones text-center mt-4">
                 <asp:Button ID="btnGuardar" runat="server"

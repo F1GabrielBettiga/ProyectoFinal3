@@ -37,12 +37,18 @@ namespace CatalogoWeb
         {
             if (Session["UsuarioEditar"] != null)
             {
-                actualizarUsuario();
-
+                if (validacionesCamposObligatorios())
+                {
+                    actualizarUsuario();
+                }
             }
             else
             {
-                agregarUsuario();
+                if (validacionesCamposObligatorios())
+                {
+                    agregarUsuario();
+                }
+                
             }
 
 
@@ -265,6 +271,77 @@ namespace CatalogoWeb
             }
 
 
+        }
+
+        private bool validacionesCamposObligatorios()
+        {
+            lblError.Visible = false;
+
+            
+            // 1) EMAIL 
+            
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                lblError.Text = "El campo Email es obligatorio.";
+                lblError.Visible = true;
+                return false;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                    txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                lblError.Text = "Ingrese un correo electrónico válido.";
+                lblError.Visible = true;
+                return false;
+            }
+
+           
+            // 2) CONTRASEÑA 
+          
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                lblError.Text = "El campo Contraseña es obligatorio.";
+                lblError.Visible = true;
+                return false;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                    txtPassword.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"))
+            {
+                lblError.Text = "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.";
+                lblError.Visible = true;
+                return false;
+            }
+
+            
+            // 3) NOMBRE 
+           
+            if (!string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                if (!System.Text.RegularExpressions.Regex.IsMatch(
+                        txtNombre.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$"))
+                {
+                    lblError.Text = "El nombre solo puede contener letras.";
+                    lblError.Visible = true;
+                    return false;
+                }
+            }
+
+           
+            // 4) APELLIDO 
+           
+            if (!string.IsNullOrWhiteSpace(txtApellido.Text))
+            {
+                if (!System.Text.RegularExpressions.Regex.IsMatch(
+                        txtApellido.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$"))
+                {
+                    lblError.Text = "El apellido solo puede contener letras.";
+                    lblError.Visible = true;
+                    return false;
+                }
+            }
+
+            return true; // Todo OK
         }
     }
 }

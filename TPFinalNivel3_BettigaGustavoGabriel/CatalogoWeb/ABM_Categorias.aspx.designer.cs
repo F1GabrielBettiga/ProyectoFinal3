@@ -87,6 +87,15 @@ namespace CatalogoWeb
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revNombreCategoria;
 
         /// <summary>
+        /// Control lblErrorCategoria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorCategoria;
+
+        /// <summary>
         /// Control btnGuardarCategoria.
         /// </summary>
         /// <remarks>
@@ -103,14 +112,5 @@ namespace CatalogoWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelarCategoria;
-
-        /// <summary>
-        /// Control lblErrorCategoria.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorCategoria;
     }
 }

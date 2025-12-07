@@ -18,7 +18,7 @@
 
         <div class="abm-articulo-card">
 
-            <!-- Fila ID (alineada a la izquierda, label arriba del campo) -->
+            <!-- Fila ID  -->
             <asp:Panel ID="pnlIdArticulo" runat="server" CssClass="fila-formulario fila-id">
                 <div class="mb-3">
                     <asp:Label ID="lblId" runat="server" Text="ID" CssClass="form-label lbl-id" />
@@ -34,12 +34,12 @@
                 <!-- Columna izquierda-->
                 <div class="col-md-7">
 
-                    <!-- Código (OBLIGATORIO + LETRAS Y NÚMEROS) -->
+                    <!-- Código  -->
                     <div class="mb-3">
                         <asp:Label ID="lblCodigo" runat="server" Text="Código" CssClass="form-label" />
                         <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control" />
 
-                        <!-- Obligatorio -->
+
                         <asp:RequiredFieldValidator
                             ID="rfvCodigo"
                             runat="server"
@@ -50,7 +50,7 @@
                             ValidationGroup="Articulo">
                         </asp:RequiredFieldValidator>
 
-                        <!-- Solo letras y números -->
+
                         <asp:RegularExpressionValidator
                             ID="revCodigo"
                             runat="server"
@@ -62,12 +62,12 @@
                             ValidationGroup="Articulo" />
                     </div>
 
-                    <!-- Nombre (OBLIGATORIO + SOLO LETRAS) -->
+                    <!-- Nombre -->
                     <div class="mb-3">
                         <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label" />
                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
 
-                        <!-- Obligatorio -->
+
                         <asp:RequiredFieldValidator
                             ID="rfvNombre"
                             runat="server"
@@ -78,7 +78,7 @@
                             ValidationGroup="Articulo">
                         </asp:RequiredFieldValidator>
 
-                        <!-- Solo letras -->
+
                         <asp:RegularExpressionValidator
                             ID="revNombre"
                             runat="server"
@@ -90,7 +90,7 @@
                             ValidationGroup="Articulo" />
                     </div>
 
-                    <!-- Descripción (opcional, letras y números) -->
+                    <!-- Descripción -->
                     <div class="mb-3">
                         <asp:Label ID="lblDescripcion" runat="server" Text="Descripción" CssClass="form-label" />
                         <asp:TextBox ID="txtDescripcion" runat="server"
@@ -107,12 +107,12 @@
                             ValidationGroup="Articulo" />
                     </div>
 
-                    <!-- Precio (OBLIGATORIO + NÚMERO / DECIMAL) -->
+                    <!-- Precio -->
                     <div class="mb-3">
                         <asp:Label ID="lblPrecio" runat="server" Text="Precio" CssClass="form-label" />
                         <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" />
 
-                        <!-- Obligatorio -->
+
                         <asp:RequiredFieldValidator
                             ID="rfvPrecio"
                             runat="server"
@@ -123,7 +123,7 @@
                             ValidationGroup="Articulo">
                         </asp:RequiredFieldValidator>
 
-                        <!-- Número / decimal -->
+
                         <asp:RegularExpressionValidator
                             ID="revPrecio"
                             runat="server"
@@ -177,6 +177,10 @@
                 </div>
             </div>
 
+            <asp:Label ID="lblError" runat="server"
+                Text=""
+                Visible="false"
+                CssClass="registro-mensaje-error" />
             <!-- Botones de acción -->
             <div class="abm-botones text-center mt-4">
                 <asp:Button ID="btnGuardar" runat="server"

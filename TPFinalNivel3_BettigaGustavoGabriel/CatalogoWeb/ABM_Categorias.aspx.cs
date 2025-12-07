@@ -32,11 +32,19 @@ namespace CatalogoWeb
         {
             if (!string.IsNullOrEmpty(Request.QueryString["id"]))
             {
-                actualizarCategoria();
+                if(validacionesCamposObligatorios())
+                {
+                    actualizarCategoria();  
+                }
+                
             }
             else
             {
-                agregarCategoria();
+                if (validacionesCamposObligatorios())
+                {
+                    agregarCategoria();
+                }
+                
             }
 
 
@@ -133,6 +141,31 @@ namespace CatalogoWeb
         protected void btnCancelarCategoria_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdminCategorias.aspx");
+        }
+
+
+        private bool validacionesCamposObligatorios()
+        {
+            lblErrorCategoria.Visible = false;
+
+            // 1) Nombre obligatorio
+            if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
+            {
+                lblErrorCategoria.Text = "El nombre de la categoría es obligatorio.";
+                lblErrorCategoria.Visible = true;
+                return false;
+            }
+
+            // 2) Solo letras
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                    txtNombreCategoria.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$"))
+            {
+                lblErrorCategoria.Text = "El nombre de la categoría solo puede contener letras.";
+                lblErrorCategoria.Visible = true;
+                return false;
+            }
+
+            return true; 
         }
     }
 }

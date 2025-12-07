@@ -36,7 +36,7 @@
                     CssClass="form-control"
                     Placeholder="Ej: Samsung, Apple, Logitech..." />
 
-                <!-- OBLIGATORIO -->
+                
                 <asp:RequiredFieldValidator
                     ID="rfvNombreMarca"
                     runat="server"
@@ -47,13 +47,13 @@
                     ValidationGroup="Marca">
                 </asp:RequiredFieldValidator>
 
-                <!-- SOLO LETRAS -->
+                
                 <asp:RegularExpressionValidator
                     ID="revNombreMarca"
                     runat="server"
                     ControlToValidate="txtNombreMarca"
                     CssClass="text-danger"
-                    ErrorMessage="Solo se permiten letras."
+                    ErrorMessage="El nombre de la marca solo puede contener letras."
                     ValidationExpression="^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$"
                     Display="Dynamic"
                     ValidationGroup="Marca">

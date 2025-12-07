@@ -33,11 +33,19 @@ namespace CatalogoWeb
 
             if (!string.IsNullOrEmpty(Request.QueryString["id"]))
             {
-                actualizarMarca();
+                if (validacionesCamposObligatorios())
+                {
+                    actualizarMarca();
+                }
+                   
             }
             else
             {
-                agregarMarca();
+                if (validacionesCamposObligatorios())
+                {
+                    agregarMarca();
+                }
+                
             }
 
 
@@ -135,6 +143,30 @@ namespace CatalogoWeb
         protected void btnCancelarMarca_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdminMarcas.aspx");
+        }
+
+        private bool validacionesCamposObligatorios()
+        {
+            lblErrorMarca.Visible = false;
+
+            // 1) Nombre obligatorio
+            if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
+            {
+                lblErrorMarca.Text = "El nombre de la marca es obligatorio.";
+                lblErrorMarca.Visible = true;
+                return false;
+            }
+
+            // 2) Solo letras
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                    txtNombreMarca.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$"))
+            {
+                lblErrorMarca.Text = "El nombre de la marca solo puede contener letras.";
+                lblErrorMarca.Visible = true;
+                return false;
+            }
+
+            return true; 
         }
     }
 }

@@ -37,7 +37,7 @@
                     Placeholder="Ej: Periféricos, Monitores, Notebooks..." />
 
 
-                <asp:RequiredFieldValidator 
+                <asp:RequiredFieldValidator
                     ID="rfvNombreCategoria"
                     runat="server"
                     ControlToValidate="txtNombreCategoria"
@@ -59,7 +59,10 @@
                     ValidationGroup="Categoria">
                 </asp:RegularExpressionValidator>
             </div>
-
+            <!-- Mensaje de error -->
+            <asp:Label ID="lblErrorCategoria" runat="server"
+                CssClass="abm-categoria-mensaje-error"
+                Visible="false" />
             <!-- Botones -->
             <div class="abm-categoria-botones d-flex justify-content-center gap-3 mt-3">
                 <asp:Button ID="btnGuardarCategoria" runat="server"
@@ -75,10 +78,7 @@
                     OnClick="btnCancelarCategoria_Click" />
             </div>
 
-            <!-- Mensaje de error -->
-            <asp:Label ID="lblErrorCategoria" runat="server"
-                CssClass="abm-categoria-mensaje-error"
-                Visible="false" />
+
         </div>
     </div>
 </asp:Content>

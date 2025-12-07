@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -30,12 +31,19 @@ namespace CatalogoWeb
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(Request.QueryString["id"]))
-            { 
-                actualizarArticulo();
+            {
+                if (validarCamposObligatorios())
+                { 
+                    actualizarArticulo();
+                }
             }
             else
             {
-                agregarArticulo();
+                if (validarCamposObligatorios())
+                {
+                    agregarArticulo();
+                }
+                
             }
 
 
@@ -344,6 +352,64 @@ namespace CatalogoWeb
             {
                 throw ex;
             }
+        }
+
+        private bool validarCamposObligatorios()
+        {
+            lblError.Visible = false;
+
+            // ================================
+            // 1) CÓDIGO (obligatorio + solo letras/números)
+            // ================================
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text))
+            {
+                lblError.Text = "El campo Código es obligatorio.";
+                lblError.Visible = true;
+                return false;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtCodigo.Text, @"^[a-zA-Z0-9]+$"))
+            {
+                lblError.Text = "El código solo puede contener letras y números.";
+                lblError.Visible = true;
+                return false;
+            }
+
+            // ================================
+            // 2) NOMBRE (obligatorio + solo letras)
+            // ================================
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                lblError.Text = "El campo Nombre es obligatorio.";
+                lblError.Visible = true;
+                return false;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ\s]+$"))
+            {
+                lblError.Text = "El nombre solo puede contener letras.";
+                lblError.Visible = true;
+                return false;
+            }
+
+            // ================================
+            // 3) PRECIO (obligatorio + número válido decimal)
+            // ================================
+            if (string.IsNullOrWhiteSpace(txtPrecio.Text))
+            {
+                lblError.Text = "El campo Precio es obligatorio.";
+                lblError.Visible = true;
+                return false;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtPrecio.Text, @"^[0-9]+([.,][0-9]+)?$"))
+            {
+                lblError.Text = "El precio debe ser un número válido.";
+                lblError.Visible = true;
+                return false;
+            }
+
+            return true; // Si llegó hasta acá, está todo OK
         }
 
 
