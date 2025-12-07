@@ -36,10 +36,11 @@ namespace CatalogoWeb
         {
             if (Session["UsuarioLogueado"] != null)
             {
+                if (validarCamposObligatorios())
+                {
+                    actualizarPerfil();
+                }
                 
-                actualizarPerfil();
-
-
             }
         }
 
@@ -297,6 +298,77 @@ namespace CatalogoWeb
             btnCancelar.Visible = true;
         }
 
-        
+        private bool validarCamposObligatorios()
+        {
+            lblMensajeError.Visible = false;
+
+            // 1) Email obligatorio
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                lblMensajeError.Text = "El campo Email es obligatorio.";
+                lblMensajeError.Visible = true;
+                return false;
+            }
+
+            // 2) Email con formato válido
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                    txtEmail.Text,
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                lblMensajeError.Text = "Ingresá un correo electrónico válido.";
+                lblMensajeError.Visible = true;
+                return false;
+            }
+
+            // 3) Contraseña actual obligatoria (cuando está visible = modo edición)
+            if (txtPassword.Visible && string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                lblMensajeError.Text = "Debés ingresar tu contraseña actual para guardar los cambios.";
+                lblMensajeError.Visible = true;
+                return false;
+            }
+
+            // 4) Si el usuario está cambiando la contraseña
+            if (txtNuevaPassword.Visible)
+            {
+                // 4.1) Nueva contraseña obligatoria
+                if (string.IsNullOrWhiteSpace(txtNuevaPassword.Text))
+                {
+                    lblMensajeError.Text = "La nueva contraseña es obligatoria.";
+                    lblMensajeError.Visible = true;
+                    return false;
+                }
+
+                // 4.2) Formato: mínimo 8, mayús, minúscula y número
+                if (!System.Text.RegularExpressions.Regex.IsMatch(
+                        txtNuevaPassword.Text,
+                        @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"))
+                {
+                    lblMensajeError.Text = "La nueva contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.";
+                    lblMensajeError.Visible = true;
+                    return false;
+                }
+
+                // 4.3) Repetir nueva contraseña obligatorio
+                if (string.IsNullOrWhiteSpace(txtRepetirPassword.Text))
+                {
+                    lblMensajeError.Text = "Debés repetir la nueva contraseña.";
+                    lblMensajeError.Visible = true;
+                    return false;
+                }
+
+                // 4.4) Las contraseñas deben coincidir
+                if (!txtNuevaPassword.Text.Equals(txtRepetirPassword.Text))
+                {
+                    lblMensajeError.Text = "Las nuevas contraseñas no coinciden.";
+                    lblMensajeError.Visible = true;
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
     }
 }

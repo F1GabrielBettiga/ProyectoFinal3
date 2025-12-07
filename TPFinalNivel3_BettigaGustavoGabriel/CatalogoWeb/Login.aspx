@@ -23,7 +23,7 @@
                     TextMode="Email"
                     Placeholder="ejemplo@email.com" />
 
-                <!-- Email obligatorio -->
+                
                 <asp:RequiredFieldValidator
                     ID="rfvEmail"
                     runat="server"
@@ -34,7 +34,7 @@
                     ValidationGroup="LoginGroup">
                 </asp:RequiredFieldValidator>
 
-                <!-- Validación de formato -->
+                
                 <asp:RegularExpressionValidator
                     ID="revEmail"
                     runat="server"
@@ -67,7 +67,7 @@
                     </span>
                 </div>
 
-                <!-- Contraseña obligatoria -->
+                
                 <asp:RequiredFieldValidator
                     ID="rfvPassword"
                     runat="server"

@@ -90,7 +90,7 @@
                         <label>Email</label>
 
                         <asp:TextBox ID="txtEmail" runat="server"
-                            CssClass="form-control"></asp:TextBox>
+                            TextMode="Email" CssClass="form-control"></asp:TextBox>
 
                         <asp:RequiredFieldValidator
                             ID="rfvEmailPerfil"
@@ -102,7 +102,7 @@
                             ValidationGroup="Perfil">
                         </asp:RequiredFieldValidator>
 
-                        <!-- Formato -->
+
                         <asp:RegularExpressionValidator
                             ID="revEmailPerfil"
                             runat="server"
@@ -213,6 +213,10 @@
 
                     </div>
 
+                    <asp:Label ID="lblMensajeError" runat="server"
+                        Text=""
+                        Visible="false"
+                        CssClass="registro-mensaje-error" />
                     <!-- Botones -->
                     <div class="acciones-perfil">
                         <asp:Button ID="btnEditar" runat="server"
@@ -234,10 +238,7 @@
                             OnClick="btnCancelar_Click" />
                     </div>
 
-                    <asp:Label ID="lblMensajeError" runat="server"
-                        Text=""
-                        Visible="false"
-                        CssClass="form-label" />
+
 
                 </div>
             </div>

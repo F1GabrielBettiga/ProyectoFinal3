@@ -19,7 +19,11 @@ namespace CatalogoWeb
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
-            crearCuenta();
+            if (validarCamposObligatorios())
+            { 
+                crearCuenta(); 
+            }
+            
 
         }
 
@@ -72,7 +76,7 @@ namespace CatalogoWeb
 
             if (usuarioValido)
             {
-                Session["Usuario"] = usuario.id;
+                Session["UsuarioLogueado"] = usuario;
                 Response.Redirect("MiPerfil.aspx");
             }
             else
@@ -84,7 +88,72 @@ namespace CatalogoWeb
 
         }
 
-        
+        private bool validarCamposObligatorios()
+        {
+            lblErrorRegistro.Visible = false;
+
+            // --------------------
+            // VALIDACIONES
+            // --------------------
+
+            // 1) Campos vacíos
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtPassword.Text) ||
+                string.IsNullOrWhiteSpace(txtRepetirPassword.Text))
+            {
+                lblErrorRegistro.Text = "Todos los campos son obligatorios.";
+                lblErrorRegistro.Visible = true;
+                return false;
+            }
+
+            // 2) Nombre: mínimo 3 letras, solo letras
+            if (txtNombre.Text.Length < 3 ||
+                !System.Text.RegularExpressions.Regex.IsMatch(txtNombre.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$"))
+            {
+                lblErrorRegistro.Text = "El nombre debe tener al menos 3 caracteres y solo letras.";
+                lblErrorRegistro.Visible = true;
+                return false;
+            }
+
+            // 3) Apellido: mínimo 3 letras, solo letras
+            if (txtApellido.Text.Length < 3 ||
+                !System.Text.RegularExpressions.Regex.IsMatch(txtApellido.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$"))
+            {
+                lblErrorRegistro.Text = "El apellido debe tener al menos 3 caracteres y solo letras.";
+                lblErrorRegistro.Visible = true;
+                return false;
+            }
+
+            // 4) Email en formato válido
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                lblErrorRegistro.Text = "Ingresá un correo electrónico válido.";
+                lblErrorRegistro.Visible = true;
+                return false;
+            }
+
+            // 5) Contraseña: mínimo 8 caracteres, 1 mayus, 1 minus, 1 número
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtPassword.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"))
+            {
+                lblErrorRegistro.Text = "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.";
+                lblErrorRegistro.Visible = true;
+                return false;
+            }
+
+            // 6) Las contraseñas deben coincidir
+            if (txtPassword.Text != txtRepetirPassword.Text)
+            {
+                lblErrorRegistro.Text = "Las contraseñas no coinciden.";
+                lblErrorRegistro.Visible = true;
+                return false;
+            }
+
+            return true;
+        }
+
+
     }
     
 }

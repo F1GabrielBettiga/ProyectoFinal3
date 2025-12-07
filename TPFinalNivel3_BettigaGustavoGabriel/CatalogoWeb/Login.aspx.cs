@@ -18,7 +18,25 @@ namespace CatalogoWeb
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            validarUsuario();
+            bool emailVacio = string.IsNullOrWhiteSpace(txtEmail.Text);
+            bool passVacia = string.IsNullOrWhiteSpace(txtPassword.Text);
+
+            if (!emailVacio && !passVacia)
+            {
+                // Si ambos tienen algo → seguimos con la validación de usuario
+                validarUsuario();
+            }
+            else
+            {
+                if (emailVacio && passVacia)
+                    lblError.Text = "Los campos Email y Contraseña son obligatorios.";
+                else if (emailVacio)
+                    lblError.Text = "El campo Email es obligatorio.";
+                else
+                    lblError.Text = "El campo Contraseña es obligatorio.";
+
+                lblError.Visible = true;
+            }
         }
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
