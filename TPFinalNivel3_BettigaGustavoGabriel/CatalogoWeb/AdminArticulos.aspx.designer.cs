@@ -24,6 +24,33 @@ namespace CatalogoWeb
         protected global::System.Web.UI.WebControls.Button btnNuevoArticulo;
 
         /// <summary>
+        /// Control txtBuscarArticulos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarArticulos;
+
+        /// <summary>
+        /// Control btnBuscarArticulos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarArticulos;
+
+        /// <summary>
+        /// Control btnLimpiarBusquedaArticulos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLimpiarBusquedaArticulos;
+
+        /// <summary>
         /// Control dgvArticulos.
         /// </summary>
         /// <remarks>

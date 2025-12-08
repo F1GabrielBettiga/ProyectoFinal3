@@ -98,5 +98,15 @@ namespace CatalogoWeb
                 throw ex;
             }
         }
+
+        protected void btnBuscarUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnLimpiarBusquedaUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -443,8 +443,8 @@ namespace Negocio
 
             try
             {
-                // Si viene vacío, podés devolver lista vacía o la lista completa;
-                // por ahora devuelvo vacío para que no rompa.
+                
+                // devuelvo vacío para que no rompa.
                 if (string.IsNullOrWhiteSpace(texto))
                 {
                     return new List<Articulo>();

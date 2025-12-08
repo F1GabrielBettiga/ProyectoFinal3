@@ -100,5 +100,14 @@ namespace CatalogoWeb
             }
         }
 
+        protected void btnBuscarMarca_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBorrarMarca_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

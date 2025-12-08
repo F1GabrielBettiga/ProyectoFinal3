@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="Css/AdminMarcas.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="header-admin-marcas">
         <h1 class="titulo-admin-marcas">Administración de Marcas</h1>
 
@@ -15,10 +16,35 @@
             OnClick="btnNuevaMarca_Click" />
     </div>
 
+    <!-- ===========================
+         BUSCADOR DE MARCAS
+         =========================== -->
+    <div class="buscador-admin-marcas">
+        <asp:TextBox
+            ID="txtBuscarMarcas"
+            runat="server"
+            CssClass="input-buscar-marcas"
+            placeholder="Buscar marca..." />
+
+        <asp:Button
+            ID="btnBuscarMarca"
+            runat="server"
+            Text="Buscar"
+            CssClass="btn-buscar-marca"
+            OnClick="btnBuscarMarca_Click" />
+
+        <asp:Button
+            ID="btnBorrarMarca"
+            runat="server"
+            Text="Borrar"
+            CssClass="btn-limpiar-busqueda-marcas"
+            OnClick="btnBorrarMarca_Click" />
+    </div>
+
     <asp:GridView
         ID="dgvMarcas"
         runat="server"
-        CssClass=" tabla-admin-marcas"
+        CssClass="tabla-admin-marcas"
         DataKeyNames="Id"
         AutoGenerateColumns="false"
         AllowPaging="true"
@@ -53,4 +79,5 @@
 
         <PagerStyle CssClass="pager-admin" HorizontalAlign="Center" />
     </asp:GridView>
+
 </asp:Content>

@@ -102,8 +102,14 @@ namespace CatalogoWeb
             }
         }
 
+        protected void btnBuscarCategoria_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        protected void btnLimpiarCategoria_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

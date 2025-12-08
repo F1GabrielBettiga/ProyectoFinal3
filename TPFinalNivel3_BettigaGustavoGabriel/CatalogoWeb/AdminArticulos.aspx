@@ -17,10 +17,27 @@
             OnClick="btnNuevoArticulo_Click" />
     </div>
 
+    <!-- BUSCADOR -->
+    <div class="buscador-admin-articulos">
+        <asp:TextBox ID="txtBuscarArticulos" runat="server"
+            CssClass="input-buscar-articulos"
+            Placeholder="Buscar por código, nombre, marca, categoría..." />
+        
+        <asp:Button ID="btnBuscarArticulos" runat="server"
+            Text="Buscar"
+            CssClass="btn-buscar-articulos"
+            OnClick="btnBuscarArticulos_Click" />
+
+        <asp:Button ID="btnLimpiarBusquedaArticulos" runat="server"
+            Text="Borrar"
+            CssClass="btn-limpiar-busqueda-articulos"
+            OnClick="btnLimpiarBusquedaArticulos_Click"/>
+    </div>
+
     <asp:GridView
         ID="dgvArticulos"
         runat="server"
-        CssClass=" tabla-admin-articulos"
+        CssClass="tabla-admin-articulos"
         DataKeyNames="Id"
         AutoGenerateColumns="false"
         AllowPaging="true"

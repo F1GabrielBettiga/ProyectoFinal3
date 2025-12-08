@@ -1,22 +1,51 @@
 ﻿<%@ Page Title="Administracion de Usuarios" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="AdminUsuarios.aspx.cs" Inherits="CatalogoWeb.AdminUsuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
+
     <link rel="stylesheet" type="text/css" href="Css/AdminUsuarios.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     <div class="header-admin-usuarios">
-     <h1 class="titulo-admin-usuarios">Administración de Usuarios</h1>
+    <div class="header-admin-usuarios">
+        <h1 class="titulo-admin-usuarios">Administración de Usuarios</h1>
 
-     <asp:Button
-         ID="btnNuevoUsuario"
-         runat="server"
-         Text="Crear usuario"
-         CssClass="btn-crear-usuario"
-         OnClick="btnNuevoUsuario_Click"/>
- </div>
+        <asp:Button
+            ID="btnNuevoUsuario"
+            runat="server"
+            Text="Crear usuario"
+            CssClass="btn-crear-usuario"
+            OnClick="btnNuevoUsuario_Click" />
+    </div>
+
+    <!-- ===========================
+         BUSCADOR DE USUARIOS
+         =========================== -->
+    <div class="buscador-admin-usuarios">
+        <asp:TextBox
+            ID="txtBuscarUsuario"
+            runat="server"
+            CssClass="input-buscar-usuarios"
+            Placeholder="Buscar por nombre, apellido, email..." />
+
+        <asp:Button
+            ID="btnBuscarUsuario"
+            runat="server"
+            Text="Buscar"
+            CssClass="btn-buscar-usuario"
+            OnClick="btnBuscarUsuario_Click" />
+
+        <asp:Button
+            ID="btnLimpiarBusquedaUsuario"
+            runat="server"
+            Text="Borrar"
+            CssClass="btn-borrar-usuario"
+            OnClick="btnLimpiarBusquedaUsuario_Click" />
+    </div>
+
+    <!-- ===========================
+         TABLA ADMINISTRAR USUARIOS
+         =========================== -->
 
     <asp:GridView
         ID="dgvUsuarios"
@@ -30,26 +59,20 @@
         OnRowCommand="dgvUsuarios_RowCommand">
 
         <Columns>
-            <%-- Id --%>
             <asp:BoundField HeaderText="Id" DataField="id" />
 
-            <%-- Nombre --%>
             <asp:BoundField HeaderText="Nombre" DataField="nombre" />
 
-            <%-- Apellido --%>
             <asp:BoundField HeaderText="Apellido" DataField="apellido" />
 
-            <%-- Email --%>
             <asp:BoundField HeaderText="Email" DataField="email" />
 
-            <%-- Rol (Admin / Usuario) --%>
             <asp:TemplateField HeaderText="Usuario">
                 <ItemTemplate>
                     <%# (bool)Eval("esAdmin") ? "Admin" : "Estándar" %>
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <%-- Acción --%>
             <asp:TemplateField HeaderText="Acción">
                 <ItemTemplate>
                     <asp:Button runat="server"
