@@ -13,7 +13,7 @@ namespace CatalogoWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            validarSesionActiva();
 
             CargarCampos();
         }
@@ -47,10 +47,7 @@ namespace CatalogoWeb
             }
         }
 
-        protected void btnLimpiarBuscador_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         protected void btnBuscarGlobal_Click(object sender, EventArgs e)
         {
@@ -75,5 +72,36 @@ namespace CatalogoWeb
 
             Response.Redirect("~/Default.aspx");
         }
+
+        private void validarSesionActiva()
+        {
+            //Con este if hacemos que pueda ingresar a cualquiera de esas 4 paginas sin logearse, pero no  a las demas 
+            if (!(Page is Login || Page is Default || Page is Registro ))
+            {
+                //entra si es admin o si no es admin
+                if (!Seguridad.ValidarSesionActiva(Session["UsuarioLogueado"]))
+                {
+                    Response.Redirect("Login.aspx");
+                    
+                }
+
+                // si no es admin y esta logeado solo puede entrar a InformacionUsuario y  las demas paginas que no necesita logearse
+                if (!(Page is MiPerfil || Page is MisFavoritos))
+                {
+
+                    if (!Seguridad.esAdmin(Session["UsuarioLogueado"]))
+                    {
+                        Response.Redirect("Login.aspx");
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+
     }
 }

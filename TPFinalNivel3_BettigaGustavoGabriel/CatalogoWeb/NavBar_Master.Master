@@ -36,6 +36,12 @@
                     <!-- MENÚ IZQUIERDO -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+                        <%
+                            if (Negocio.Seguridad.esAdmin(Session["UsuarioLogueado"]))
+                            {
+
+                        %>
+
                         <!-- ADMINISTRACIÓN (DESPLEGABLE) -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarAdmin"
@@ -49,17 +55,33 @@
                             </ul>
                         </li>
 
+                        <%   
+                            }
+                        %>
+
+
                         <!-- MI PERFIL -->
                         <li class="nav-item">
+                            <%
+                                if (Negocio.Seguridad.ValidarSesionActiva(Session["UsuarioLogueado"]))
+                                {
+                            %>
                             <a class="nav-link" href="MiPerfil.aspx">Mi perfil</a>
                         </li>
 
                         <!-- MIS FAVORITOS -->
                         <li class="nav-item">
                             <a class="nav-link" href="MisFavoritos.aspx">Favoritos</a>
+                            <% 
+                                }
+                            %>
                         </li>
                     </ul>
+                    <%
+                        if (System.IO.Path.GetFileName(Request.PhysicalPath).Equals("Default.aspx", StringComparison.OrdinalIgnoreCase))
+                        {
 
+                    %>
                     <!-- BUSCADOR GENERAL (CENTRADO ENTRE MENÚ Y BOTONES DERECHA) -->
                     <div class="mx-auto d-flex align-items-center buscador-general">
                         <asp:TextBox ID="txtBuscarGlobal" runat="server"
@@ -69,25 +91,40 @@
                         <asp:Button ID="btnBuscarGlobal" runat="server"
                             Text="Buscar"
                             CssClass="btn btn-borrar-busqueda"
-                            OnClick="btnBuscarGlobal_Click" />                        
+                            OnClick="btnBuscarGlobal_Click" />
                     </div>
+                    <%
+                        }
+                    %>
 
                     <!-- SECCIÓN DERECHA -->
                     <div class="d-flex align-items-center">
+
+                        <%
+                            if (!(Negocio.Seguridad.ValidarSesionActiva(Session["UsuarioLogueado"])))
+                            {
+                        %>
+
                         <asp:Button ID="btnLogin" runat="server" Text="Login"
                             CssClass="btn btn-outline-light me-2" PostBackUrl="~/Login.aspx" />
 
                         <asp:Button ID="btnRegister" runat="server" Text="Registrarse"
                             CssClass="btn btn-success me-2" PostBackUrl="~/Registro.aspx" />
-
+                        <%
+                            }
+                            else
+                        %>
+                        <% {  %>
                         <asp:ImageButton ID="imgBtnUsuario" runat="server"
                             ImageUrl="https://i.pinimg.com/236x/d4/74/1c/d4741cb779ddec6509ca1ae0cb137a7d.jpg"
                             CssClass="rounded-circle me-2" Width="40px" Height="40px"
                             AlternateText="Usuario" PostBackUrl="MiPerfil.aspx" />
 
+
                         <asp:Button ID="btnCerrarSesion" runat="server" Text="Salir"
                             CssClass="btn btn-outline-primary me-2"
                             OnClick="btnCerrarSesion_Click" />
+                        <% } %>
                     </div>
                 </div>
             </div>
