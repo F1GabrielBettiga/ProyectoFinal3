@@ -240,6 +240,55 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Marca> BuscarMarcasPorTexto(string texto)
+        {
+            List<Marca> lista = new List<Marca>();
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                // Sin texto → no busca nada
+                if (string.IsNullOrWhiteSpace(texto))
+                    return new List<Marca>();
+
+                string filtro = "%" + texto.Trim() + "%";
+
+                string query = @"
+        SELECT Id, Descripcion
+        FROM MARCAS
+        WHERE 
+               Descripcion LIKE @filtro
+            OR CONVERT(VARCHAR(10), Id) LIKE @filtro
+        ORDER BY Descripcion ASC";
+
+                datos.setearConsulta(query);
+                datos.agregarParametro("@filtro", filtro);
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Marca aux = new Marca();
+
+                    aux.id = (int)datos.Lector["Id"];
+                    aux.descripcion = datos.Lector["Descripcion"] != DBNull.Value
+                        ? (string)datos.Lector["Descripcion"]
+                        : "";
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }

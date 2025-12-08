@@ -18,21 +18,23 @@
     </div>
 
     <!-- BUSCADOR -->
-    <div class="buscador-admin-articulos">
-        <asp:TextBox ID="txtBuscarArticulos" runat="server"
-            CssClass="input-buscar-articulos"
-            Placeholder="Buscar por código, nombre, marca, categoría..." />
-        
-        <asp:Button ID="btnBuscarArticulos" runat="server"
-            Text="Buscar"
-            CssClass="btn-buscar-articulos"
-            OnClick="btnBuscarArticulos_Click" />
+    <asp:Panel runat="server" DefaultButton="btnBuscarArticulos">
+        <div class="buscador-admin-articulos">
+            <asp:TextBox ID="txtBuscarArticulos" runat="server"
+                CssClass="input-buscar-articulos"
+                Placeholder="Buscar por código, nombre, marca, categoría..." />
 
-        <asp:Button ID="btnLimpiarBusquedaArticulos" runat="server"
-            Text="Borrar"
-            CssClass="btn-limpiar-busqueda-articulos"
-            OnClick="btnLimpiarBusquedaArticulos_Click"/>
-    </div>
+            <asp:Button ID="btnBuscarArticulos" runat="server"
+                Text="Buscar"
+                CssClass="btn-buscar-articulos"
+                OnClick="btnBuscarArticulos_Click" />
+
+            <asp:Button ID="btnLimpiarBusquedaArticulos" runat="server"
+                Text="Borrar"
+                CssClass="btn-limpiar-busqueda-articulos"
+                OnClick="btnLimpiarBusquedaArticulos_Click" />
+        </div>
+    </asp:Panel>
 
     <asp:GridView
         ID="dgvArticulos"

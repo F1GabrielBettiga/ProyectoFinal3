@@ -19,27 +19,29 @@
     <!-- ===========================
          BUSCADOR DE MARCAS
          =========================== -->
-    <div class="buscador-admin-marcas">
-        <asp:TextBox
-            ID="txtBuscarMarcas"
-            runat="server"
-            CssClass="input-buscar-marcas"
-            placeholder="Buscar marca..." />
+    <asp:Panel runat="server" DefaultButton="btnBuscarMarca">
+        <div class="buscador-admin-marcas">
+            <asp:TextBox
+                ID="txtBuscarMarcas"
+                runat="server"
+                CssClass="input-buscar-marcas"
+                placeholder="Buscar marca..." />
 
-        <asp:Button
-            ID="btnBuscarMarca"
-            runat="server"
-            Text="Buscar"
-            CssClass="btn-buscar-marca"
-            OnClick="btnBuscarMarca_Click" />
+            <asp:Button
+                ID="btnBuscarMarca"
+                runat="server"
+                Text="Buscar"
+                CssClass="btn-buscar-marca"
+                OnClick="btnBuscarMarca_Click" />
 
-        <asp:Button
-            ID="btnBorrarMarca"
-            runat="server"
-            Text="Borrar"
-            CssClass="btn-limpiar-busqueda-marcas"
-            OnClick="btnBorrarMarca_Click" />
-    </div>
+            <asp:Button
+                ID="btnBorrarMarca"
+                runat="server"
+                Text="Borrar"
+                CssClass="btn-limpiar-busqueda-marcas"
+                OnClick="btnBorrarMarca_Click" />
+        </div>
+    </asp:Panel>
 
     <asp:GridView
         ID="dgvMarcas"

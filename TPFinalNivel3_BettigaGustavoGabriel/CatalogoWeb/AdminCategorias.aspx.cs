@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CatalogoWeb
 {
@@ -50,8 +51,7 @@ namespace CatalogoWeb
             else if (e.CommandName == "Borrar")
             {
                 eliminarCategoria(id);
-
-                // Recargamos la grilla
+                txtBuscarCategoria.Text = string.Empty;
                 cargarGrid();
             }
 
@@ -102,14 +102,35 @@ namespace CatalogoWeb
             }
         }
 
+        private void BuscarCategoria()
+        {
+            string texto = txtBuscarCategoria.Text.Trim();
+
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                cargarGrid();
+            }
+            else
+            {
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                List<Categoria> listaCategoriasAdminFiltrada = negocio.BuscarCategoriasPorTexto(texto);
+                dgvCategorias.DataSource = listaCategoriasAdminFiltrada;
+                dgvCategorias.DataBind();
+            }
+
+
+        }
+
         protected void btnBuscarCategoria_Click(object sender, EventArgs e)
         {
-
+            BuscarCategoria();
         }
 
         protected void btnLimpiarCategoria_Click(object sender, EventArgs e)
         {
-
+            txtBuscarCategoria.Text = string.Empty;
+            cargarGrid();
         }
     }
 }

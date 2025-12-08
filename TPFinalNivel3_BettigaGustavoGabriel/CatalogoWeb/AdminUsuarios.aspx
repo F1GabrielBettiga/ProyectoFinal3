@@ -21,27 +21,30 @@
     <!-- ===========================
          BUSCADOR DE USUARIOS
          =========================== -->
-    <div class="buscador-admin-usuarios">
-        <asp:TextBox
-            ID="txtBuscarUsuario"
-            runat="server"
-            CssClass="input-buscar-usuarios"
-            Placeholder="Buscar por nombre, apellido, email..." />
+    <asp:Panel runat="server" DefaultButton="btnBuscarUsuario">
+        <div class="buscador-admin-usuarios">
+            <asp:TextBox
+                ID="txtBuscarUsuario"
+                runat="server"
+                CssClass="input-buscar-usuarios"
+                Placeholder="Buscar por nombre, apellido, email..." />
 
-        <asp:Button
-            ID="btnBuscarUsuario"
-            runat="server"
-            Text="Buscar"
-            CssClass="btn-buscar-usuario"
-            OnClick="btnBuscarUsuario_Click" />
+            <asp:Button
+                ID="btnBuscarUsuario"
+                runat="server"
+                Text="Buscar"
+                CssClass="btn-buscar-usuario"
+                OnClick="btnBuscarUsuario_Click" />
 
-        <asp:Button
-            ID="btnLimpiarBusquedaUsuario"
-            runat="server"
-            Text="Borrar"
-            CssClass="btn-borrar-usuario"
-            OnClick="btnLimpiarBusquedaUsuario_Click" />
-    </div>
+            <asp:Button
+                ID="btnLimpiarBusquedaUsuario"
+                runat="server"
+                Text="Borrar"
+                CssClass="btn-borrar-usuario"
+                OnClick="btnLimpiarBusquedaUsuario_Click" />
+        </div>
+    </asp:Panel>
+
 
     <!-- ===========================
          TABLA ADMINISTRAR USUARIOS

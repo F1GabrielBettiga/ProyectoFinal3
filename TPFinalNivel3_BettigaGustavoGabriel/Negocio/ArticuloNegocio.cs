@@ -443,45 +443,37 @@ namespace Negocio
 
             try
             {
-                
-                // devuelvo vacío para que no rompa.
+                // Si viene vacío, devuelvo lista vacía (como ya tenías)
                 if (string.IsNullOrWhiteSpace(texto))
-                {
                     return new List<Articulo>();
-                }
 
                 string filtro = "%" + texto.Trim() + "%";
 
                 string query = @"
-            SELECT  A.Id,
-                    A.Codigo,
-                    A.Nombre,
-                    A.Descripcion,
-                    A.ImagenUrl,
-                    A.Precio,
-                    A.IdMarca      AS MarcaId,
-                    M.Descripcion  AS MarcaDescripcion,
-                    A.IdCategoria  AS CategoriaId,
-                    C.Descripcion  AS CategoriaDescripcion
-            FROM ARTICULOS A
-            INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id
-            INNER JOIN MARCAS     M ON A.IdMarca     = M.Id
-            WHERE
-                   (A.Codigo      LIKE @filtro)
-                OR (A.Nombre      LIKE @filtro)
-                OR (A.Descripcion LIKE @filtro)
-                OR (M.Descripcion LIKE @filtro)
-                OR (C.Descripcion LIKE @filtro)
-                OR (CONVERT(varchar(50), A.Precio) LIKE @filtro)
-            ORDER BY A.Nombre ASC";
+        SELECT  A.Id,
+                A.Codigo,
+                A.Nombre,
+                A.Descripcion,
+                A.ImagenUrl,
+                A.Precio,
+                A.IdMarca         AS MarcaId,
+                M.Descripcion     AS MarcaDescripcion,
+                A.IdCategoria     AS CategoriaId,
+                C.Descripcion     AS CategoriaDescripcion
+        FROM ARTICULOS A
+        LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id   -- <- LEFT JOIN
+        LEFT JOIN MARCAS     M ON A.IdMarca     = M.Id   -- <- LEFT JOIN
+        WHERE
+               (A.Codigo      LIKE @filtro)
+            OR (A.Nombre      LIKE @filtro)
+            OR (A.Descripcion LIKE @filtro)
+            OR (M.Descripcion LIKE @filtro)
+            OR (C.Descripcion LIKE @filtro)
+            OR (CONVERT(varchar(50), A.Precio) LIKE @filtro)
+        ORDER BY A.Nombre ASC";
 
-                // 1) Seteamos el texto de la consulta
                 datos.setearConsulta(query);
-
-                // 2) Agregamos el parámetro @filtro DESPUÉS de setearConsulta
                 datos.agregarParametro("@filtro", filtro);
-
-                // 3) Ejecutamos
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -489,21 +481,41 @@ namespace Negocio
                     Articulo aux = new Articulo();
 
                     aux.id = (int)datos.Lector["Id"];
-                    aux.codigo = (string)datos.Lector["Codigo"];
-                    aux.nombre = (string)datos.Lector["Nombre"];
-                    aux.descripcion = (string)datos.Lector["Descripcion"];
-                    aux.imagenUrl = (string)datos.Lector["ImagenUrl"];
-                    aux.precio = (decimal)datos.Lector["Precio"];
+                    aux.codigo = datos.Lector["Codigo"] is DBNull ? null : datos.Lector["Codigo"].ToString();
+                    aux.nombre = datos.Lector["Nombre"] is DBNull ? null : datos.Lector["Nombre"].ToString();
+                    aux.descripcion = datos.Lector["Descripcion"] is DBNull ? null : datos.Lector["Descripcion"].ToString();
+                    aux.imagenUrl = datos.Lector["ImagenUrl"] is DBNull ? null : datos.Lector["ImagenUrl"].ToString();
+                    aux.precio = datos.Lector["Precio"] is DBNull ? 0m : (decimal)datos.Lector["Precio"];
 
-                    // --- Marca ---
+                    // --- Marca (puede ser NULL) ---
                     aux.marca = new Marca();
-                    aux.marca.id = (int)datos.Lector["MarcaId"];
-                    aux.marca.descripcion = (string)datos.Lector["MarcaDescripcion"];
+                    if (datos.Lector["MarcaId"] is DBNull)
+                    {
+                        aux.marca.id = 0;
+                        aux.marca.descripcion = null;
+                    }
+                    else
+                    {
+                        aux.marca.id = (int)datos.Lector["MarcaId"];
+                        aux.marca.descripcion = datos.Lector["MarcaDescripcion"] is DBNull
+                            ? null
+                            : datos.Lector["MarcaDescripcion"].ToString();
+                    }
 
-                    // --- Categoría ---
+                    // --- Categoría (puede ser NULL) ---
                     aux.categoria = new Categoria();
-                    aux.categoria.id = (int)datos.Lector["CategoriaId"];
-                    aux.categoria.descripcion = (string)datos.Lector["CategoriaDescripcion"];
+                    if (datos.Lector["CategoriaId"] is DBNull)
+                    {
+                        aux.categoria.id = 0;
+                        aux.categoria.descripcion = null;
+                    }
+                    else
+                    {
+                        aux.categoria.id = (int)datos.Lector["CategoriaId"];
+                        aux.categoria.descripcion = datos.Lector["CategoriaDescripcion"] is DBNull
+                            ? null
+                            : datos.Lector["CategoriaDescripcion"].ToString();
+                    }
 
                     lista.Add(aux);
                 }

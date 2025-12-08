@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Dominio;
-using Negocio;
 
 namespace CatalogoWeb
 {
@@ -53,8 +54,7 @@ namespace CatalogoWeb
             {
                 
                 eliminarArticulo(id);
-
-                // Recargamos la grilla
+                txtBuscarArticulos.Text = string.Empty;
                 cargarGrid();
             }
 
@@ -101,13 +101,35 @@ namespace CatalogoWeb
 
         }
 
+        private void BuscarArticulo()
+        {
+            string texto = txtBuscarArticulos.Text.Trim();
+            
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                cargarGrid();
+            }
+            else
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                List<Articulo> listaArticulosAdminFiltrada = negocio.BuscarArticulosPorTexto(texto);
+                dgvArticulos.DataSource = listaArticulosAdminFiltrada;
+                dgvArticulos.DataBind();
+            }
+
+           
+        }
+
         protected void btnBuscarArticulos_Click(object sender, EventArgs e)
         {
-
+            BuscarArticulo();
         }
 
         protected void btnLimpiarBusquedaArticulos_Click(object sender, EventArgs e)
         {
+            txtBuscarArticulos.Text = string.Empty;
+            cargarGrid();
 
         }
     }

@@ -50,8 +50,7 @@ namespace CatalogoWeb
             else if (e.CommandName == "Borrar")
             {
                 eliminarMarca(id);
-
-                // Recargamos la grilla
+                txtBuscarMarcas.Text = string.Empty;
                 cargarGrid();
             }
 
@@ -100,14 +99,35 @@ namespace CatalogoWeb
             }
         }
 
+        private void BuscarMarca()
+        {
+            string texto = txtBuscarMarcas.Text.Trim();
+
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                cargarGrid();
+            }
+            else
+            {
+                MarcaNegocio negocio = new MarcaNegocio();
+                List<Marca> listaCategoriasAdminFiltrada = negocio.BuscarMarcasPorTexto(texto);
+                dgvMarcas.DataSource = listaCategoriasAdminFiltrada;
+                dgvMarcas.DataBind();
+            }
+
+
+        }
+
         protected void btnBuscarMarca_Click(object sender, EventArgs e)
         {
-
+            BuscarMarca();
         }
 
         protected void btnBorrarMarca_Click(object sender, EventArgs e)
         {
-
+            txtBuscarMarcas.Text = string.Empty;
+            cargarGrid();
         }
     }
 }

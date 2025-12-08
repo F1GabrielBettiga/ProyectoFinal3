@@ -34,8 +34,7 @@ namespace CatalogoWeb
             else if (e.CommandName == "Borrar")
             {
                 eliminarUsuario(id);
-
-                // Recargamos la grilla
+                txtBuscarUsuario.Text = string.Empty;
                 cargarGrid();
             }
 
@@ -99,14 +98,35 @@ namespace CatalogoWeb
             }
         }
 
+        private void BuscarUsuario()
+        {
+            string texto = txtBuscarUsuario.Text.Trim();
+
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                cargarGrid();
+            }
+            else
+            {
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                List<Usuario> listaUsuariosAdminFiltrada = negocio.BuscarUsuariosPorTexto(texto);
+                dgvUsuarios.DataSource = listaUsuariosAdminFiltrada;              
+                dgvUsuarios.DataBind();
+            }
+
+
+        }
+
         protected void btnBuscarUsuario_Click(object sender, EventArgs e)
         {
-
+            BuscarUsuario();
         }
 
         protected void btnLimpiarBusquedaUsuario_Click(object sender, EventArgs e)
         {
-
+            txtBuscarUsuario.Text = string.Empty;
+            cargarGrid();
         }
     }
 }

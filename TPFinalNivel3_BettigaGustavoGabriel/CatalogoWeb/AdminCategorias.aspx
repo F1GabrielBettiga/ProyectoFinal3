@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Administracion de Categorias" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="AdminCategorias.aspx.cs" Inherits="CatalogoWeb.AdminCategorias" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <link rel="stylesheet" type="text/css" href="Css/AdminCategorias.css" />
+    <link rel="stylesheet" type="text/css" href="Css/AdminCategorias.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -18,29 +19,30 @@
     <!-- ===============================
          BUSCADOR
          =============================== -->
-    <div class="buscador-admin-categorias">
+    <asp:Panel runat="server" DefaultButton="btnBuscarCategoria">
+        <div class="buscador-admin-categorias">
 
-        <asp:TextBox
-            ID="txtBuscarCategoria"
-            runat="server"
-            CssClass="input-buscar-categorias"
-            placeholder="Buscar por descripción..." />
+            <asp:TextBox
+                ID="txtBuscarCategoria"
+                runat="server"
+                CssClass="input-buscar-categorias"
+                placeholder="Buscar por descripción..." />
 
-        <asp:Button
-            ID="btnBuscarCategoria"
-            runat="server"
-            Text="Buscar"
-            CssClass="btn-buscar-categoria"
-            OnClick="btnBuscarCategoria_Click" />
+            <asp:Button
+                ID="btnBuscarCategoria"
+                runat="server"
+                Text="Buscar"
+                CssClass="btn-buscar-categoria"
+                OnClick="btnBuscarCategoria_Click" />
 
-        <asp:Button
-            ID="btnLimpiarCategoria"
-            runat="server"
-            Text="Borrar"
-            CssClass="btn-limpiar-busqueda-categoria"
-            OnClick="btnLimpiarCategoria_Click" />
-    </div>
-
+            <asp:Button
+                ID="btnLimpiarCategoria"
+                runat="server"
+                Text="Borrar"
+                CssClass="btn-limpiar-busqueda-categoria"
+                OnClick="btnLimpiarCategoria_Click" />
+        </div>
+    </asp:Panel>
     <asp:GridView
         ID="dgvCategorias"
         runat="server"
@@ -57,10 +59,10 @@
             <%-- ID --%>
             <asp:BoundField HeaderText="ID" DataField="id" />
 
-             <%-- Descripción --%>
+            <%-- Descripción --%>
             <asp:BoundField HeaderText="Categoría" DataField="descripcion" />
 
-             <%-- Acción --%>
+            <%-- Acción --%>
             <asp:TemplateField HeaderText="Acción">
                 <ItemTemplate>
                     <asp:Button runat="server"

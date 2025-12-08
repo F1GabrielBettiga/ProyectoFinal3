@@ -199,5 +199,54 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Categoria> BuscarCategoriasPorTexto(string texto)
+        {
+            List<Categoria> lista = new List<Categoria>();
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                // Si no hay texto → devuelvo vacío
+                if (string.IsNullOrWhiteSpace(texto))
+                    return new List<Categoria>();
+
+                string filtro = "%" + texto.Trim() + "%";
+
+                string query = @"
+        SELECT Id, Descripcion
+        FROM CATEGORIAS
+        WHERE 
+               Descripcion LIKE @filtro
+            OR CONVERT(VARCHAR(10), Id) LIKE @filtro
+        ORDER BY Descripcion ASC";
+
+                datos.setearConsulta(query);
+                datos.agregarParametro("@filtro", filtro);
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Categoria aux = new Categoria();
+
+                    aux.id = (int)datos.Lector["Id"];
+                    aux.descripcion = datos.Lector["Descripcion"] != DBNull.Value
+                        ? (string)datos.Lector["Descripcion"]
+                        : "";
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

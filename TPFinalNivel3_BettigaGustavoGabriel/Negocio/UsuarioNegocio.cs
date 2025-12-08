@@ -268,6 +268,78 @@ namespace Negocio
             }
         }
 
+        public List<Usuario> BuscarUsuariosPorTexto(string texto)
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos.AccesoDatos datos = new AccesoDatos.AccesoDatos();
+
+            try
+            {
+                // Si no hay texto → devuelvo vacío
+                if (string.IsNullOrWhiteSpace(texto))
+                    return new List<Usuario>();
+
+                string filtro = "%" + texto.Trim() + "%";
+
+                string query = @"
+        SELECT  Id,
+                Email,
+                Pass,
+                Nombre,
+                Apellido,
+                UrlImagenPerfil,
+                Admin
+        FROM USERS
+        WHERE
+               Email           LIKE @filtro
+            OR Pass            LIKE @filtro
+            OR Nombre          LIKE @filtro
+            OR Apellido        LIKE @filtro
+            OR UrlImagenPerfil LIKE @filtro
+            OR CONVERT(VARCHAR(10), Admin) LIKE @filtro
+        ORDER BY Nombre ASC";
+
+                datos.setearConsulta(query);
+                datos.agregarParametro("@filtro", filtro);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+
+                    aux.id = (int)datos.Lector["Id"];
+                    aux.email = (string)datos.Lector["Email"];
+                    aux.password = (string)datos.Lector["Pass"];
+
+                    aux.nombre = datos.Lector["Nombre"] != DBNull.Value
+                        ? (string)datos.Lector["Nombre"]
+                        : "";
+
+                    aux.apellido = datos.Lector["Apellido"] != DBNull.Value
+                        ? (string)datos.Lector["Apellido"]
+                        : "";
+
+                    aux.urlImagenPerfil = datos.Lector["UrlImagenPerfil"] != DBNull.Value
+                        ? (string)datos.Lector["UrlImagenPerfil"]
+                        : "";
+
+                    aux.esAdmin = (bool)datos.Lector["Admin"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
     }
 }
