@@ -85,6 +85,7 @@
     <Content Include="Css\AdminUsuarios.css" />
     <Content Include="Css\Default.css" />
     <Content Include="Css\DetalleProducto.css" />
+    <Content Include="Css\Error.css" />
     <Content Include="Css\Login.css" />
     <Content Include="Css\MiPerfil.css" />
     <Content Include="Css\MisFavoritos.css" />
@@ -92,6 +93,7 @@
     <Content Include="Css\site.css" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleProducto.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\fav-empty.png" />
     <Content Include="Images\no-image.png" />
@@ -173,6 +175,13 @@
     </Compile>
     <Compile Include="DetalleProducto.aspx.designer.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

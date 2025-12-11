@@ -1,30 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\",
+  "WorkspaceRootPath": "C:\\Users\\Gabriel\\Documents\\Curso Maxi Programa\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\catalogoweb\\navbar_master.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|solutionrelative:catalogoweb\\navbar_master.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|c:\\users\\gabriel bettiga\\documents\\curso maxi programa\\nivel 3\\proyectofinal3\\tpfinalnivel3_bettigagustavogabriel\\catalogoweb\\css\\abm_usuarios.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|solutionrelative:catalogoweb\\css\\abm_usuarios.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|c:\\users\\gabriel bettiga\\documents\\curso maxi programa\\nivel 3\\proyectofinal3\\tpfinalnivel3_bettigagustavogabriel\\catalogoweb\\miperfil.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|solutionrelative:catalogoweb\\miperfil.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\catalogoweb\\miperfil.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|solutionrelative:catalogoweb\\miperfil.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\catalogoweb\\detalleproducto.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|solutionrelative:catalogoweb\\detalleproducto.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\catalogoweb\\detalleproducto.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|solutionrelative:catalogoweb\\detalleproducto.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|c:\\users\\gabriel\\documents\\curso maxi programa\\proyectofinal3\\tpfinalnivel3_bettigagustavogabriel\\catalogoweb\\error.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{3956B332-1307-4935-BD50-9B59F4372D78}|CatalogoWeb\\CatalogoWeb.csproj|solutionrelative:catalogoweb\\error.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,82 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ABM_Usuarios.css",
-              "DocumentMoniker": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\Css\\ABM_Usuarios.css",
-              "RelativeDocumentMoniker": "CatalogoWeb\\Css\\ABM_Usuarios.css",
-              "ToolTip": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\Css\\ABM_Usuarios.css",
-              "RelativeToolTip": "CatalogoWeb\\Css\\ABM_Usuarios.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-12-11T05:14:06.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MiPerfil.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\MiPerfil.aspx.cs",
-              "RelativeDocumentMoniker": "CatalogoWeb\\MiPerfil.aspx.cs",
-              "ToolTip": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\MiPerfil.aspx.cs",
-              "RelativeToolTip": "CatalogoWeb\\MiPerfil.aspx.cs",
-              "ViewState": "AgIAACsBAAAAAAAAAAAswD0BAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T20:41:50.256Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MiPerfil.aspx",
-              "DocumentMoniker": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\MiPerfil.aspx",
-              "RelativeDocumentMoniker": "CatalogoWeb\\MiPerfil.aspx",
-              "ToolTip": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\MiPerfil.aspx",
-              "RelativeToolTip": "CatalogoWeb\\MiPerfil.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-12-08T20:41:48.361Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "NavBar_Master.Master",
-              "DocumentMoniker": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\NavBar_Master.Master",
-              "RelativeDocumentMoniker": "CatalogoWeb\\NavBar_Master.Master",
-              "ToolTip": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\NavBar_Master.Master",
-              "RelativeToolTip": "CatalogoWeb\\NavBar_Master.Master",
+              "Title": "Error.aspx",
+              "DocumentMoniker": "C:\\Users\\Gabriel\\Documents\\Curso Maxi Programa\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\Error.aspx",
+              "RelativeDocumentMoniker": "CatalogoWeb\\Error.aspx",
+              "ToolTip": "C:\\Users\\Gabriel\\Documents\\Curso Maxi Programa\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\Error.aspx",
+              "RelativeToolTip": "CatalogoWeb\\Error.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-12-08T20:38:29.134Z",
+              "WhenOpened": "2025-12-11T11:26:14.406Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DetalleProducto.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\DetalleProducto.aspx.cs",
-              "RelativeDocumentMoniker": "CatalogoWeb\\DetalleProducto.aspx.cs",
-              "ToolTip": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\DetalleProducto.aspx.cs",
-              "RelativeToolTip": "CatalogoWeb\\DetalleProducto.aspx.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwBkAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T20:29:01.617Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DetalleProducto.aspx",
-              "DocumentMoniker": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\DetalleProducto.aspx",
-              "RelativeDocumentMoniker": "CatalogoWeb\\DetalleProducto.aspx",
-              "ToolTip": "C:\\Users\\Gabriel Bettiga\\Documents\\Curso Maxi Programa\\Nivel 3\\ProyectoFinal3\\TPFinalNivel3_BettigaGustavoGabriel\\CatalogoWeb\\DetalleProducto.aspx",
-              "RelativeToolTip": "CatalogoWeb\\DetalleProducto.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-12-08T20:23:16.206Z"
             }
           ]
         }
