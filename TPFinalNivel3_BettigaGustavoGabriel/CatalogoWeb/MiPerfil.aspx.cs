@@ -319,14 +319,7 @@ namespace CatalogoWeb
                 lblMensajeError.Visible = true;
                 return false;
             }
-
-            // 3) Contraseña actual obligatoria (cuando está visible = modo edición)
-            if (txtPassword.Visible && string.IsNullOrWhiteSpace(txtPassword.Text))
-            {
-                lblMensajeError.Text = "Debés ingresar tu contraseña actual para guardar los cambios.";
-                lblMensajeError.Visible = true;
-                return false;
-            }
+          
 
             // 4) Si el usuario está cambiando la contraseña
             if (txtNuevaPassword.Visible)

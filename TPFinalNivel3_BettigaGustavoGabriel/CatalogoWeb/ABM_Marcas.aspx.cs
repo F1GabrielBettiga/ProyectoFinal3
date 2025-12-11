@@ -130,8 +130,9 @@ namespace CatalogoWeb
 
                 txtIdMarca.Text = marca.id.ToString();
                 txtNombreMarca.Text = marca.descripcion;
+                pnlIdMarca.Visible = true;
 
-               
+
 
             }
             catch (Exception ex)

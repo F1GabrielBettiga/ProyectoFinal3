@@ -112,32 +112,32 @@
 
 
 /* ===========================
-   IMAGEN DE PERFIL
+   IMAGEN DE PERFIL REDONDA
    =========================== */
 
-/* Marco donde va la imagen actual */
+
 .abm-usuario-imagen-wrapper {
     background-color: #000000;
-    border-radius: 8px;
+    border-radius: 50%; 
     padding: 8px;
+    width: 180px;
+    height: 180px;
     text-align: center;
-    border: 1px solid #0d6efd;
+    border: 2px solid #0d6efd;
+    margin: 0 auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-/* Imagen de preview del usuario */
+/* Imagen redonda */
 .abm-img-usuario {
-    max-width: 100%;
-    max-height: 220px;
-    object-fit: contain;
-    background-color: #ffffff;
-    border-radius: 6px;
-}
-
-/* Input file para nueva imagen */
-.abm-usuario-card input[type="file"] {
-    background-color: #0b1b33;
-    border: 1px solid #000000;
-    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 50%; 
+    background-color: #000000;
 }
 
 

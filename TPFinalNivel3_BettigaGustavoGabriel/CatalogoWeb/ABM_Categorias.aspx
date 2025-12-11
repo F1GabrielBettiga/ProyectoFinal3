@@ -15,7 +15,7 @@
         <div class="abm-categoria-card">
 
             <!-- Fila ID -->
-            <asp:Panel ID="pnlIdCategoria" runat="server" CssClass="fila-id-categoria">
+            <asp:Panel ID="pnlIdCategoria" runat="server" Visible="false"  CssClass="fila-id-categoria">
                 <div class="mb-3">
                     <asp:Label ID="lblIdCategoria" runat="server"
                         Text="ID"

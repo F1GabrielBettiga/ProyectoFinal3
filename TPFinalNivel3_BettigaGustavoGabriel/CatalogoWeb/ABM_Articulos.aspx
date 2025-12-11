@@ -19,11 +19,11 @@
         <div class="abm-articulo-card">
 
             <!-- Fila ID  -->
-            <asp:Panel ID="pnlIdArticulo" runat="server" CssClass="fila-formulario fila-id">
+            <asp:Panel ID="pnlIdArticulo" runat="server" Visible="false" CssClass="fila-formulario fila-id">
                 <div class="mb-3">
                     <asp:Label ID="lblId" runat="server" Text="ID" CssClass="form-label lbl-id" />
                     <asp:TextBox ID="txtId" runat="server"
-                        CssClass="form-control input-id"
+                        CssClass="form-control input-id"                     
                         ReadOnly="true" />
                 </div>
             </asp:Panel>

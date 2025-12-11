@@ -15,7 +15,7 @@
         <div class="abm-marca-card">
 
             <!-- FILA ID -->
-            <asp:Panel ID="pnlIdMarca" runat="server" CssClass="fila-id-marca">
+            <asp:Panel ID="pnlIdMarca" runat="server" Visible="false" CssClass="fila-id-marca">
                 <div class="mb-3">
                     <asp:Label ID="lblIdMarca" runat="server"
                         Text="ID"

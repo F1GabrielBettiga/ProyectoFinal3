@@ -23,6 +23,7 @@ namespace CatalogoWeb
                 {
                         string id = Request.QueryString["id"];
                         CargarDetalles(int.Parse(id));
+                    
                 }
             }
 
@@ -131,7 +132,8 @@ namespace CatalogoWeb
                 }
 
                 CargarImagen(articulo);
-                
+                pnlIdArticulo.Visible = true;
+
             }
             catch (Exception ex)
             {

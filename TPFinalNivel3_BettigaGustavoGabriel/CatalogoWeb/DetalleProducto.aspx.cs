@@ -21,6 +21,10 @@ namespace CatalogoWeb
                 {
                     CargarDetalles(int.Parse(id));
                 }
+                else
+                {
+                    Response.Redirect("Default.aspx");
+                }
             }
 
 
@@ -141,15 +145,16 @@ namespace CatalogoWeb
             if (favNegocio.EsFavorito(userLogueado.id, int.Parse(idArticulo)))
             {
                 favNegocio.EliminarFavorito(userLogueado.id, int.Parse(idArticulo));
-
+                chequearFavorito(int.Parse(idArticulo));
             }
             else
             {
 
                 favNegocio.InsertarFavorito(userLogueado.id, int.Parse(idArticulo));
+                chequearFavorito(int.Parse(idArticulo));
 
             }
-            Response.Redirect("DetalleProducto.aspx?id=" + idArticulo, false);
+           
         }
     }
 }

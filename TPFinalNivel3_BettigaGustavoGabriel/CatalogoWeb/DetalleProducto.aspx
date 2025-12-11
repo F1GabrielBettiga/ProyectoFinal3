@@ -53,12 +53,16 @@
                         CssClass="btn btn-outline-light"
                         PostBackUrl="~/Default.aspx" />
 
-                    <asp:ImageButton ID="btnFavorito" runat="server"
-                        ImageUrl="~/Images/fav-empty.png"
-                        AlternateText="Agregar a favoritos"
-                        CssClass="btn-favorito"
-                        ToolTip="Agregar a favoritos" 
-                        Onclick="btnAgregarFavorito_Click"/>
+                    <asp:UpdatePanel ID="updFavorito" runat="server">
+                        <ContentTemplate>
+                            <asp:ImageButton ID="btnFavorito" runat="server"
+                                ImageUrl="~/Images/fav-empty.png"
+                                AlternateText="Agregar a favoritos"
+                                CssClass="btn-favorito"
+                                ToolTip="Agregar a favoritos"
+                                OnClick="btnAgregarFavorito_Click" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>

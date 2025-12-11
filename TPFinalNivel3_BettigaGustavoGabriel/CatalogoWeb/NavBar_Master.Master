@@ -115,11 +115,11 @@
                             else
                         %>
                         <% {  %>
+
                         <asp:ImageButton ID="imgBtnUsuario" runat="server"
                             ImageUrl="https://i.pinimg.com/236x/d4/74/1c/d4741cb779ddec6509ca1ae0cb137a7d.jpg"
                             CssClass="rounded-circle me-2" Width="40px" Height="40px"
                             AlternateText="Usuario" PostBackUrl="MiPerfil.aspx" />
-
 
                         <asp:Button ID="btnCerrarSesion" runat="server" Text="Salir"
                             CssClass="btn btn-outline-primary me-2"

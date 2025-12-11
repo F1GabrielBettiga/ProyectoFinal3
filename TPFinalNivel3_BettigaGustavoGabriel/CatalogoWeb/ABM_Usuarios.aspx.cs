@@ -217,6 +217,7 @@ namespace CatalogoWeb
                 txtPassword.Attributes["value"] = usuario.password;
                 ddlRol.SelectedValue = usuario.esAdmin.ToString().ToLower();
                 CargarImagen(usuario);
+                pnlIdUsuario.Visible = true;
 
             }
             catch (Exception ex)

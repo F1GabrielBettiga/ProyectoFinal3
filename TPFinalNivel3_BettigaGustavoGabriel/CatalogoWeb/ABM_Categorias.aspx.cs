@@ -129,7 +129,7 @@ namespace CatalogoWeb
 
                 txtIdCategoria.Text = categoria.id.ToString();
                 txtNombreCategoria.Text = categoria.descripcion;
-
+                pnlIdCategoria.Visible = true;
 
 
             }

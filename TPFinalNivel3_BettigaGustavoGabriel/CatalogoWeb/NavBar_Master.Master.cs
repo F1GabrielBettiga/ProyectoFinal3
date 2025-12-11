@@ -76,7 +76,7 @@ namespace CatalogoWeb
         private void validarSesionActiva()
         {
             //Con este if hacemos que pueda ingresar a cualquiera de esas 4 paginas sin logearse, pero no  a las demas 
-            if (!(Page is Login || Page is Default || Page is Registro ))
+            if (!(Page is Login || Page is Default || Page is Registro ||  Page is DetalleProducto))
             {
                 //entra si es admin o si no es admin
                 if (!Seguridad.ValidarSesionActiva(Session["UsuarioLogueado"]))

@@ -18,7 +18,7 @@
         <div class="abm-usuario-card">
 
             <!-- FILA ID -->
-            <asp:Panel ID="pnlIdUsuario" runat="server" CssClass="fila-id-usuario">
+            <asp:Panel ID="pnlIdUsuario" runat="server" Visible="false" CssClass="fila-id-usuario">
                 <div class="row g-2 align-items-center">
                     <div class="col-auto">
                         <asp:Label ID="lblIdUsuario" runat="server"
@@ -175,7 +175,7 @@
                             CssClass="form-label" />
                         <div class="abm-usuario-imagen-wrapper">
                             <asp:Image ID="imgUsuario" runat="server"
-                                ClientIDMode="Static"
+                                Display="Dynamic" 
                                 ImageUrl="~/Images/no-user.jpg"
                                 CssClass="img-fluid abm-img-usuario"
                                 AlternateText="Imagen de usuario" />
