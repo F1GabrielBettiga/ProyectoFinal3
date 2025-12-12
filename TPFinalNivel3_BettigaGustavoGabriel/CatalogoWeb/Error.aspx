@@ -13,15 +13,10 @@
 
             <!-- Título técnico -->
             <h1 class="error-title">
-                Error en la aplicación
-            </h1>
+                ERROR
+            </h1>          
 
-            <!-- Mensaje general -->
-            <p class="error-message">
-                Ocurrió un error inesperado mientras se procesaba tu solicitud.
-            </p>
-
-            <!-- Mensaje dinámico más amigable (opcional, desde el servidor) -->
+            <!-- Mensaje dinámico más amigable  -->
             <asp:Label
                 ID="lblMensajeError"
                 runat="server"
@@ -39,7 +34,7 @@
                     CssClass="error-technical-text">
                 </asp:Label>
             </asp:Panel>
-
+            
             <!-- Botón de acción -->
             <div class="error-actions">
                 <asp:Button

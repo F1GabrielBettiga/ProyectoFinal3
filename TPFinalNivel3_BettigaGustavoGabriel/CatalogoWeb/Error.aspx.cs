@@ -33,8 +33,8 @@ namespace CatalogoWeb
                 lblDetalleError.Text = Session["ErrorTecnico"].ToString();
             }
             else
-            {
-                lblDetalleError.Text = "No se ha recibido información técnica del error.";
+            {               
+                pnlDetalleTecnico.Visible = false;
             }
 
             // Limpieza de sesión

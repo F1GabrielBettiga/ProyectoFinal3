@@ -47,7 +47,7 @@ namespace CatalogoWeb
             }
         }
 
-        
+
 
         protected void btnBuscarGlobal_Click(object sender, EventArgs e)
         {
@@ -73,16 +73,24 @@ namespace CatalogoWeb
             Response.Redirect("~/Default.aspx");
         }
 
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
+        }
+
         private void validarSesionActiva()
         {
             //Con este if hacemos que pueda ingresar a cualquiera de esas 4 paginas sin logearse, pero no  a las demas 
-            if (!(Page is Login || Page is Default || Page is Registro ||  Page is DetalleProducto || Page is Error))
+            if (!(Page is Login || Page is Default || Page is Registro || Page is DetalleProducto || Page is Error))
             {
                 //entra si es admin o si no es admin
                 if (!Seguridad.ValidarSesionActiva(Session["UsuarioLogueado"]))
                 {
+                   
                     Response.Redirect("Login.aspx");
-                    
+
                 }
 
                 // si no es admin y esta logeado solo puede entrar a InformacionUsuario y  las demas paginas que no necesita logearse
@@ -91,7 +99,8 @@ namespace CatalogoWeb
 
                     if (!Seguridad.esAdmin(Session["UsuarioLogueado"]))
                     {
-                        Response.Redirect("Login.aspx");
+                        string mensajeUsuario = "No tienes permisos para acceder a la página solicitada.";
+                        RedirigirConError(mensajeUsuario);
 
                     }
 

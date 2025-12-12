@@ -460,6 +460,13 @@ namespace CatalogoWeb
             return false;
         }
 
+        private void RedirigirConError(string mensajeUsuario, Exception ex)
+        {
+            Session["ErrorMensajeUsuario"] = mensajeUsuario;
+            Session["ErrorDetalleTecnico"] = ex.ToString();
+            Response.Redirect("Error.aspx", false);
+        }
+
 
 
     }
