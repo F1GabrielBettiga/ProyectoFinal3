@@ -36,7 +36,7 @@
                     CssClass="form-control"
                     Placeholder="Ej: Samsung, Apple, Logitech..." />
 
-                
+
                 <asp:RequiredFieldValidator
                     ID="rfvNombreMarca"
                     runat="server"
@@ -47,7 +47,7 @@
                     ValidationGroup="Marca">
                 </asp:RequiredFieldValidator>
 
-                
+
                 <asp:RegularExpressionValidator
                     ID="revNombreMarca"
                     runat="server"
@@ -62,17 +62,21 @@
 
             <!-- BOTONES -->
             <div class="abm-marca-botones text-center mt-3">
+
                 <asp:Button ID="btnGuardarMarca" runat="server"
                     Text="Guardar"
                     CssClass="btn btn-primary me-2"
+                    ValidationGroup="Marca"
                     OnClick="btnGuardarMarca_Click"
-                    ValidationGroup="Marca" />
+                    OnClientClick="if (typeof(Page_ClientValidate) === 'function' && !Page_ClientValidate('Marca')) return false; return confirm('¿Seguro que querés guardar la marca?');" />
 
                 <asp:Button ID="btnCancelarMarca" runat="server"
                     Text="Cancelar"
                     CssClass="btn btn-outline-light"
                     PostBackUrl="~/AdminMarcas.aspx"
-                    OnClick="btnCancelarMarca_Click" />
+                    OnClick="btnCancelarMarca_Click"
+                    OnClientClick="return confirm('¿Seguro que querés cancelar? Se perderán los cambios.');" />
+
             </div>
 
             <!-- MENSAJE ERROR -->

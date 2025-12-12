@@ -21,7 +21,6 @@
    LAYOUT GENERAL DEL HOME
    =========================== */
 
-/* 👉 Volvemos a ancho completo y solo dejamos un padding suave */
 .home-layout {
     margin-top: 20px;
     padding-left: 1rem;
@@ -29,7 +28,7 @@
 }
 
 /* ===========================
-   PANEL DE FILTRO SECUNDARIO
+   PANEL FILTRO
    =========================== */
 
 .filtro-secundario {
@@ -38,69 +37,6 @@
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 3px 12px rgba(0,0,0,0.4);
-    transition: transform 0.20s ease, box-shadow 0.20s ease;
-}
-
-@media (min-width: 992px) {
-    .filtro-secundario:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.55);
-    }
-}
-
-.titulo-filtro-secundario {
-    text-transform: uppercase;
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #ffffff;
-    margin-bottom: 1.25rem;
-}
-
-.filtro-secundario label {
-    color: #dcdcdc;
-    font-weight: 500;
-}
-
-.filtro-secundario .form-select,
-.filtro-secundario .form-control {
-    background-color: #112240;
-    border: 1px solid #1E3D6B;
-    color: #ffffff;
-}
-
-    .filtro-secundario .form-select:focus,
-    .filtro-secundario .form-control:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 4px rgba(13,110,253,0.7);
-    }
-
-    .filtro-secundario .form-control::placeholder {
-        color: #9bb0d2;
-        opacity: 1; 
-    }
-
-.filtro-secundario .btn {
-    width: 48%;
-}
-
-@media (max-width: 991.98px) {
-    .filtro-secundario {
-        margin-bottom: 1.5rem;
-        padding: 1.25rem;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .filtro-secundario {
-        padding: 1rem;
-    }
-
-        .filtro-secundario .btn {
-            width: 49%;
-            font-size: 0.85rem;
-            padding: 0.35rem 0.5rem;
-        }
 }
 
 /* ===========================
@@ -110,86 +46,122 @@
 .productos-grid {
     padding-left: 4rem;
     padding-right: 4rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     max-width: 1400px;
 }
 
-@media (max-width: 991.98px) {
-    .productos-grid {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        max-width: 100%;
-    }
-}
-
-.productos-grid .tarjeta-producto {
-    height: 100%;
-    min-height: 320px;
-    border-radius: 8px;
-    background-color: #1E3D6B;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
-}
-
-    .productos-grid .tarjeta-producto:hover {
-        transform: translateY(-6px);
+    .productos-grid .tarjeta-producto {
+        height: 100%;
+        min-height: 360px;
+        border-radius: 8px;
         background-color: #1E3D6B;
-        box-shadow: 0 0 10px rgba(13, 110, 253, 0.7), 0 0 20px rgba(13, 110, 253, 0.4);
-        border: 1px solid #0d6efd;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        overflow: hidden; /* 🔑 clave */
     }
 
-.productos-grid .img-producto {
-    width: 100%;
-    height: 300px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
+    .productos-grid .img-producto {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+        background-color: #ffffff;
+    }
 
-.productos-grid .card-body {
-    padding: 0.75rem;
-}
+    /* ===========================
+   CUERPO DE LA CARD
+   =========================== */
 
-.productos-grid .titulo-producto {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #f1f1f1;
-}
+    .productos-grid .card-body {
+        padding: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; 
+    }
 
-.productos-grid .descripcion-producto {
-    font-size: 0.875rem;
-    max-height: 3.5em;
-    overflow: hidden;
-    color: #c9c9c9;
-}
+    .productos-grid .titulo-producto {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+        color: #f1f1f1;
+    }
 
-.productos-grid .btn {
-    margin-top: 0.5rem;
-}
+    
+    .productos-grid .descripcion-producto {
+        font-size: 0.875rem;
+        color: #c9c9c9;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.3em;
+        max-height: 1.3em; 
+        margin-bottom: 0.6rem;
+    }
+
+    /* ===========================
+   BOTÓN
+   =========================== */
+
+    .productos-grid .btn {
+        margin-top: auto; 
+        align-self: flex-start; 
+    }
 
 /* ===========================
-   MENSAJE "SIN REGISTROS"
+   MENSAJE SIN REGISTROS
    =========================== */
 
 .mensaje-sin-articulos {
     width: 95%;
     margin: 14px auto 18px auto;
     padding: 14px 16px;
-    display: block;
     text-align: center;
     background: rgba(3, 10, 24, 0.85);
     border: 1px dashed rgba(13, 110, 253, 0.65);
     border-radius: 10px;
     color: #e9ecef;
     font-weight: 600;
-    letter-spacing: 0.2px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
     .mensaje-sin-articulos::before {
         content: "📦 ";
     }
+
+/* ===========================
+   FILTRO (DDL + INPUTS + BOTONES)
+   =========================== */
+
+.filtro-secundario label {
+    color: #dcdcdc;
+    font-weight: 500;
+}
+
+/* DropDownLists + TextBoxes */
+.filtro-secundario .form-select,
+.filtro-secundario .form-control {
+    background-color: #112240 !important;
+    border: 1px solid #1E3D6B !important;
+    color: #ffffff !important;
+}
+
+    .filtro-secundario .form-select:focus,
+    .filtro-secundario .form-control:focus {
+        border-color: #0d6efd !important;
+        box-shadow: 0 0 4px rgba(13,110,253,0.7) !important;
+        outline: none !important;
+    }
+
+    .filtro-secundario .form-control::placeholder {
+        color: #9bb0d2 !important;
+        opacity: 1;
+    }
+
+
+.filtro-secundario .form-select {
+    color-scheme: dark;
+}
+
+/* Botones del filtro */
+.filtro-secundario .btn {
+    width: auto !important;
+    min-width: 110px;
+}

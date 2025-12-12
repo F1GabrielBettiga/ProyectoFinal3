@@ -176,7 +176,7 @@
                         <div class="abm-usuario-imagen-wrapper">
                             <asp:Image ID="imgUsuario" runat="server"
                                 ClientIDMode="Static"
-                                Display="Dynamic" 
+                                Display="Dynamic"
                                 ImageUrl="~/Images/no-user.jpg"
                                 CssClass="img-fluid abm-img-usuario"
                                 AlternateText="Imagen de usuario" />
@@ -201,16 +201,20 @@
                 CssClass="registro-mensaje-error" />
             <!-- BOTONES -->
             <div class="abm-usuario-botones text-center mt-4">
+
                 <asp:Button ID="btnGuardar" runat="server"
                     Text="Guardar"
                     CssClass="btn btn-primary me-2"
                     ValidationGroup="UsuarioABM"
-                    OnClick="btnGuardar_Click" />
+                    OnClick="btnGuardar_Click"
+                    OnClientClick="if (typeof(Page_ClientValidate) === 'function' && !Page_ClientValidate('UsuarioABM')) return false; return confirm('¿Seguro que querés guardar el usuario?');" />
 
                 <asp:Button ID="btnCancelar" runat="server"
                     Text="Cancelar"
                     CssClass="btn btn-outline-light"
-                    OnClick="btnCancelar_Click" />
+                    OnClick="btnCancelar_Click"
+                    OnClientClick="return confirm('¿Seguro que querés cancelar? Se perderán los cambios.');" />
+
             </div>
 
         </div>

@@ -87,7 +87,7 @@ namespace CatalogoWeb
             if (usuarioValido)
             {
                 Session["UsuarioLogueado"] = usuario;
-                Response.Redirect("MiPerfil.aspx");
+                Response.Redirect("MiPerfil.aspx",false);
             }
             else
             {

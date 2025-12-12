@@ -82,6 +82,7 @@
 
             <asp:TemplateField HeaderText="Acción">
                 <ItemTemplate>
+
                     <asp:Button runat="server"
                         Text="Editar"
                         CssClass="btn btn-primary btn-sm"
@@ -92,7 +93,9 @@
                         Text="Borrar"
                         CssClass="btn btn-danger btn-sm"
                         CommandName="Borrar"
-                        CommandArgument='<%# Eval("Id") %>' />
+                        CommandArgument='<%# Eval("Id") %>'
+                        OnClientClick="return confirm('¿Seguro que querés eliminar este registro? Esta acción no se puede deshacer.');" />
+
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

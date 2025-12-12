@@ -171,12 +171,14 @@
                     Text="Guardar"
                     CssClass="btn btn-primary me-2"
                     OnClick="btnGuardar_Click"
-                    ValidationGroup="Articulo" />
+                    ValidationGroup="Articulo"
+                    OnClientClick="if (typeof(Page_ClientValidate) === 'function' && !Page_ClientValidate('Articulo')) return false; return confirm('¿Seguro que querés guardar este artículo?');" />
 
                 <asp:Button ID="btnCancelar" runat="server"
                     Text="Cancelar"
                     CssClass="btn btn-outline-light"
-                    OnClick="btnCancelar_Click" />
+                    OnClick="btnCancelar_Click"
+                    OnClientClick="return confirm('¿Seguro que querés cancelar? Se perderán los cambios.');" />
             </div>
 
         </div>

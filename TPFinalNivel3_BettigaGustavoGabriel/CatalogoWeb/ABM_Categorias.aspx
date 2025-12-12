@@ -15,7 +15,7 @@
         <div class="abm-categoria-card">
 
             <!-- Fila ID -->
-            <asp:Panel ID="pnlIdCategoria" runat="server" Visible="false"  CssClass="fila-id-categoria">
+            <asp:Panel ID="pnlIdCategoria" runat="server" Visible="false" CssClass="fila-id-categoria">
                 <div class="mb-3">
                     <asp:Label ID="lblIdCategoria" runat="server"
                         Text="ID"
@@ -65,17 +65,21 @@
                 Visible="false" />
             <!-- Botones -->
             <div class="abm-categoria-botones d-flex justify-content-center gap-3 mt-3">
+
                 <asp:Button ID="btnGuardarCategoria" runat="server"
                     Text="Guardar"
                     CssClass="btn btn-primary"
                     ValidationGroup="Categoria"
-                    OnClick="btnGuardarCategoria_Click" />
+                    OnClick="btnGuardarCategoria_Click"
+                    OnClientClick="if (typeof(Page_ClientValidate) === 'function' && !Page_ClientValidate('Categoria')) return false; return confirm('¿Seguro que querés guardar la categoría?');" />
 
                 <asp:Button ID="btnCancelarCategoria" runat="server"
                     Text="Cancelar"
                     CssClass="btn btn-outline-light"
                     PostBackUrl="~/AdminCategorias.aspx"
-                    OnClick="btnCancelarCategoria_Click" />
+                    OnClick="btnCancelarCategoria_Click"
+                    OnClientClick="return confirm('¿Seguro que querés cancelar? Se perderán los cambios.');" />
+
             </div>
 
 

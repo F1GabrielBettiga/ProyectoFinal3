@@ -219,6 +219,7 @@
                         CssClass="registro-mensaje-error" />
                     <!-- Botones -->
                     <div class="acciones-perfil">
+
                         <asp:Button ID="btnEditar" runat="server"
                             Text="Editar perfil"
                             CssClass="btn btn-outline-primary"
@@ -229,13 +230,16 @@
                             Visible="false"
                             CssClass="btn btn-primary me-2"
                             ValidationGroup="Perfil"
-                            OnClick="btnGuardar_Click" />
+                            OnClick="btnGuardar_Click"
+                            OnClientClick="if (typeof(Page_ClientValidate) === 'function' && !Page_ClientValidate('Perfil')) return false; return confirm('¿Seguro que querés guardar los cambios del perfil?');" />
 
                         <asp:Button ID="btnCancelar" runat="server"
                             Text="Cancelar"
                             Visible="false"
                             CssClass="btn btn-outline-light"
-                            OnClick="btnCancelar_Click" />
+                            OnClick="btnCancelar_Click"
+                            OnClientClick="return confirm('¿Seguro que querés cancelar? Se perderán los cambios realizados.');" />
+
                     </div>
 
 
