@@ -63,16 +63,18 @@ namespace CatalogoWeb
 
         private void cargarTarjetasFavoritos(List<Favorito> fuente)
         {
-            if (fuente == null || fuente.Count == 0)
+            bool hayRegistros = fuente != null && fuente.Count > 0;
+
+            lblSinFavoritos.Visible = !hayRegistros;
+            repFavoritos.Visible = hayRegistros;
+            btnCargarMasFav.Visible = hayRegistros;
+
+            if (!hayRegistros)
             {
-                repFavoritos.Visible = false;
-                lblSinFavoritos.Visible = true;
-                btnCargarMasFav.Visible = false;
+                repFavoritos.DataSource = null;
+                repFavoritos.DataBind();
                 return;
             }
-
-            repFavoritos.Visible = true;
-            lblSinFavoritos.Visible = false;
 
             // Cuántos faltan por mostrar
             int restantes = fuente.Count - cantidadMostrada;
@@ -92,7 +94,7 @@ namespace CatalogoWeb
             repFavoritos.DataBind();
 
             // Si ya mostré todos, oculto el botón “Ver más”
-            btnCargarMasFav.Visible = cantidadMostrada < fuente.Count;
+            btnCargarMasFav.Visible = (cantidadMostrada < fuente.Count);
         }
 
         protected void btnCargarMasFav_Click(object sender, EventArgs e)

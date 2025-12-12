@@ -71,7 +71,7 @@ namespace CatalogoWeb
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("No se pudo crear la cuenta.", ex);
             }
 
 
@@ -174,6 +174,13 @@ namespace CatalogoWeb
             }
 
             return false;
+        }
+
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
 
 

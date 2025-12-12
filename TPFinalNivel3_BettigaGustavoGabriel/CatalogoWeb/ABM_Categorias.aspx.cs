@@ -96,17 +96,18 @@ namespace CatalogoWeb
 
                 if (exito)
                 {
-                    Response.Redirect("AdminCategorias.aspx");
+                    
+                    Response.Redirect("AdminCategorias.aspx",false);
                 }
                 else
                 {
-                    //lblMensajeError.Text = "Error al actualizar el artículo.";
-                    //lblMensajeError.Visible = true;
+                    lblErrorCategoria.Text = "Error al actualizar el artículo.";
+                    lblErrorCategoria.Visible = true;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Error al actualizar la categoría.", ex);
             }
         }
 
@@ -155,24 +156,24 @@ namespace CatalogoWeb
 
                 if (exito)
                 {
-                    Response.Redirect("AdminCategorias.aspx");
+                    Response.Redirect("AdminCategorias.aspx", false);
                 }
                 else
                 {
-                    //lblMensajeError.Text = "Error al actualizar el artículo.";
-                    //lblMensajeError.Visible = true;
+                    lblErrorCategoria.Text = "Error al actualizar el artículo.";
+                    lblErrorCategoria.Visible = true;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Error al agregar la categoría.", ex);
             }
 
         }
 
         protected void btnCancelarCategoria_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AdminCategorias.aspx");
+            Response.Redirect("AdminCategorias.aspx", false);
         }
 
 
@@ -211,6 +212,13 @@ namespace CatalogoWeb
             }
 
             return false;
+        }
+
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
     }
 }

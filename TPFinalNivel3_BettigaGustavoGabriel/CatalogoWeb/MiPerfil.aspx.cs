@@ -113,7 +113,7 @@ namespace CatalogoWeb
             catch (Exception ex)
             {
 
-                throw ex;
+                RedirigirConError("Ocurrió un error al cargar los detalles del usuario.", ex);
             }
         }
 
@@ -205,7 +205,7 @@ namespace CatalogoWeb
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Ocurrió un error al actualizar el perfil.", ex);
             }
         }
 
@@ -254,7 +254,7 @@ namespace CatalogoWeb
             catch (Exception ex)
             {
 
-                throw ex;
+                RedirigirConError("Ocurrió un error al guardar la imagen de perfil.", ex);
             }
 
         }
@@ -360,6 +360,13 @@ namespace CatalogoWeb
             }
 
             return true;
+        }
+
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
 
 

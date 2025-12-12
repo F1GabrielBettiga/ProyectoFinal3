@@ -23,7 +23,7 @@
                 <div class="mb-3">
                     <asp:Label ID="lblId" runat="server" Text="ID" CssClass="form-label lbl-id" />
                     <asp:TextBox ID="txtId" runat="server"
-                        CssClass="form-control input-id"                     
+                        CssClass="form-control input-id"
                         ReadOnly="true" />
                 </div>
             </asp:Panel>
@@ -79,7 +79,7 @@
                         </asp:RequiredFieldValidator>
 
 
-                        
+
                     </div>
 
                     <!-- Descripción -->
@@ -88,7 +88,7 @@
                         <asp:TextBox ID="txtDescripcion" runat="server"
                             CssClass="form-control"
                             TextMode="MultiLine" Rows="3" />
-                        
+
                     </div>
 
                     <!-- Precio -->
@@ -164,7 +164,7 @@
             <asp:Label ID="lblError" runat="server"
                 Text=""
                 Visible="false"
-                CssClass="registro-mensaje-error" />
+                CssClass="mensaje-error" />
             <!-- Botones de acción -->
             <div class="abm-botones text-center mt-4">
                 <asp:Button ID="btnGuardar" runat="server"

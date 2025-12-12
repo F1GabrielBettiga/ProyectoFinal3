@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Administracion de Articulos" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="AdminArticulos.aspx.cs" Inherits="CatalogoWeb.AdminArticulos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" type="text/css" href="Css/AdminArticulos.css" />
+    <link rel="stylesheet" type="text/css" href="Css/AdminArticulos.css?v=1" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -35,6 +35,15 @@
                 OnClick="btnLimpiarBusquedaArticulos_Click" />
         </div>
     </asp:Panel>
+
+    <!-- MENSAJE CUANDO NO HAY ARTÍCULOS -->
+    <asp:Label
+        ID="lblSinArticulos"
+        runat="server"
+        Visible="false"
+        CssClass="mensaje-sin-articulos"
+        Text="No hay artículos cargados todavía.">
+    </asp:Label>
 
     <asp:GridView
         ID="dgvArticulos"

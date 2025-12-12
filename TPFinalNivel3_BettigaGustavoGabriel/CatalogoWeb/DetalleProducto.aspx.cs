@@ -97,7 +97,7 @@ namespace CatalogoWeb
             catch (Exception ex)
             {
                
-                throw ex;
+                RedirigirConError("Ocurrió un error al cargar los detalles del producto.", ex);
             }
         }
 
@@ -155,6 +155,12 @@ namespace CatalogoWeb
 
             }
            
+        }
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
     }
 }

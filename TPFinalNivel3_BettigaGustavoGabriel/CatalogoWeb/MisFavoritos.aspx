@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="MisFavoritos.aspx.cs" Inherits="CatalogoWeb.MisFavoritos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" type="text/css" href="Css/MisFavoritos.css" />
+    <link rel="stylesheet" type="text/css" href="Css/MisFavoritos.css?v=1" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -103,7 +103,7 @@
 
         <!-- Mensaje cuando no haya favoritos -->
         <asp:Label ID="lblSinFavoritos" runat="server"
-            CssClass="texto-sin-favoritos text-center"
+            CssClass="mensaje-sin-articulos"
             Visible="false"
             Text="Todavía no tenés productos en favoritos." />
     </div>

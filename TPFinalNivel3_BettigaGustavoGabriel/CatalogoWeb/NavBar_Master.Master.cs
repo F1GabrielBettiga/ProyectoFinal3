@@ -21,7 +21,7 @@ namespace CatalogoWeb
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             Session.Clear(); //BORRAMOS TODO PORQUE NO QUEREMOS NADA QUE CORRESPONDA A ESE USUARIO
-            Response.Redirect("Login.aspx");
+            Response.Redirect("Login.aspx",false);
         }
 
         private void CargarCampos()
@@ -70,7 +70,7 @@ namespace CatalogoWeb
                 Session["listaArticulosFiltrada"] = resultado;
             }
 
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/Default.aspx",false);
         }
 
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
@@ -89,7 +89,7 @@ namespace CatalogoWeb
                 if (!Seguridad.ValidarSesionActiva(Session["UsuarioLogueado"]))
                 {
                    
-                    Response.Redirect("Login.aspx");
+                    Response.Redirect("Login.aspx", false);
 
                 }
 

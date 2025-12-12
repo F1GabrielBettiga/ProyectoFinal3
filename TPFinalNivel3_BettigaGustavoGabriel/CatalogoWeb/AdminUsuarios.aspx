@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <link rel="stylesheet" type="text/css" href="Css/AdminUsuarios.css" />
+    <link rel="stylesheet" type="text/css" href="Css/AdminUsuarios.css?v=1" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -45,11 +45,18 @@
         </div>
     </asp:Panel>
 
+    <!-- MENSAJE CUANDO NO HAY REGISTROS -->
+    <asp:Label
+        ID="lblSinArticulos"
+        runat="server"
+        Visible="false"
+        CssClass="mensaje-sin-articulos"
+        Text="No hay usuarios cargados todavía.">
+    </asp:Label>
 
     <!-- ===========================
          TABLA ADMINISTRAR USUARIOS
          =========================== -->
-
     <asp:GridView
         ID="dgvUsuarios"
         runat="server"
@@ -63,11 +70,8 @@
 
         <Columns>
             <asp:BoundField HeaderText="Id" DataField="id" />
-
             <asp:BoundField HeaderText="Nombre" DataField="nombre" />
-
             <asp:BoundField HeaderText="Apellido" DataField="apellido" />
-
             <asp:BoundField HeaderText="Email" DataField="email" />
 
             <asp:TemplateField HeaderText="Usuario">

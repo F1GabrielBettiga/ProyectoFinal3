@@ -25,7 +25,7 @@ namespace CatalogoWeb
 
         protected void btnNuevoArticulo_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ABM_Articulos.aspx");
+            Response.Redirect("ABM_Articulos.aspx",false);
         }
 
         protected void dgvArticulos_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -48,7 +48,7 @@ namespace CatalogoWeb
             if (e.CommandName == "Editar")
             {
                 // Redirigir a la pantalla de edición
-                Response.Redirect("ABM_Articulos.aspx?id=" + id);
+                Response.Redirect("ABM_Articulos.aspx?id=" + id, false);
             }
             else if (e.CommandName == "Borrar")
             {
@@ -70,35 +70,34 @@ namespace CatalogoWeb
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("No se pudo eliminar el artículo.", ex);
             }
         }
 
         private void cargarGrid()
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-
             try
             {
-                List<Articulo> lista = negocio.listarArticulos();
+                ArticuloNegocio negocio = new ArticuloNegocio();
+
+                List<Articulo> lista = negocio.listarArticulos() ?? new List<Articulo>();
                 Session["listaArticulos"] = lista;
 
-                if (lista == null || lista.Count == 0)
-                {
-                    // Si por alguna razón no trajo nada, vuelve a intentar
-                    lista = negocio.listarArticulos();
-                    Session["listaArticulos"] = lista;
-                }
+                bool hayArticulos = lista.Count > 0;
+
+              
+                lblSinArticulos.Visible = !hayArticulos;
+
+               
+                dgvArticulos.Visible = hayArticulos;
 
                 dgvArticulos.DataSource = lista;
                 dgvArticulos.DataBind();
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("No se pudieron cargar los artículos.", ex);
             }
-
-
         }
 
         private void BuscarArticulo()
@@ -131,6 +130,12 @@ namespace CatalogoWeb
             txtBuscarArticulos.Text = string.Empty;
             cargarGrid();
 
+        }
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
     }
 }

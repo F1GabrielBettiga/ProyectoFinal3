@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Administracion de Categorias" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="AdminCategorias.aspx.cs" Inherits="CatalogoWeb.AdminCategorias" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" type="text/css" href="Css/AdminCategorias.css" />
+    <link rel="stylesheet" type="text/css" href="Css/AdminCategorias.css?v=1" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -43,6 +43,16 @@
                 OnClick="btnLimpiarCategoria_Click" />
         </div>
     </asp:Panel>
+
+    <!-- MENSAJE CUANDO NO HAY REGISTROS -->
+    <asp:Label
+        ID="lblSinArticulos"
+        runat="server"
+        Visible="false"
+        CssClass="mensaje-sin-articulos"
+        Text="No hay categorías cargadas todavía.">
+    </asp:Label>
+
     <asp:GridView
         ID="dgvCategorias"
         runat="server"

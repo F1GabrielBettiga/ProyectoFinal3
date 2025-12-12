@@ -97,17 +97,17 @@ namespace CatalogoWeb
 
                 if (exito)
                 {
-                    Response.Redirect("AdminMarcas.aspx");
+                    Response.Redirect("AdminMarcas.aspx",false);
                 }
                 else
                 {
-                    //lblMensajeError.Text = "Error al actualizar el artículo.";
-                    //lblMensajeError.Visible = true;
+                    lblErrorMarca.Text = "Error al actualizar el artículo.";
+                    lblErrorMarca.Visible = true;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Error al actualizar la marca.", ex);
             }
         }
 
@@ -138,7 +138,7 @@ namespace CatalogoWeb
             catch (Exception ex)
             {
 
-                throw ex;
+                RedirigirConError("Error al cargar los detalles de la marca.", ex);
             }
         }
 
@@ -157,24 +157,24 @@ namespace CatalogoWeb
 
                 if (exito)
                 {
-                    Response.Redirect("AdminMarcas.aspx");
+                    Response.Redirect("AdminMarcas.aspx", false);
                 }
                 else
                 {
-                    //lblMensajeError.Text = "Error al actualizar el artículo.";
-                    //lblMensajeError.Visible = true;
+                    lblErrorMarca.Text = "Error al actualizar el artículo.";
+                    lblErrorMarca.Visible = true;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Error al agregar la marca.", ex);
             }
 
         }
 
         protected void btnCancelarMarca_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AdminMarcas.aspx");
+            Response.Redirect("AdminMarcas.aspx", false);
         }
 
         private bool validacionesCamposObligatorios()
@@ -212,6 +212,13 @@ namespace CatalogoWeb
             }
 
             return false;
+        }
+
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
     }
 }

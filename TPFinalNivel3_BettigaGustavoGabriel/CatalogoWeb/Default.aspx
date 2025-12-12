@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CatalogoWeb.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" type="text/css" href="Css/Default.css" />
+    <link rel="stylesheet" type="text/css" href="Css/Default.css?v=1" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -23,9 +23,7 @@
                     <asp:UpdatePanel ID="updFiltros" runat="server">
                         <ContentTemplate>
 
-                            <!-- ===========================
-                                 Filtro por Categoría
-                                 =========================== -->
+                            <!-- Filtro por Categoría -->
                             <div class="mb-3">
                                 <label for="ddlFiltroCategoria" class="form-label">Categoría</label>
                                 <asp:DropDownList ID="ddlFiltroCategoria" runat="server"
@@ -35,9 +33,7 @@
                                 </asp:DropDownList>
                             </div>
 
-                            <!-- ===========================
-                                 Filtro por Marca
-                                 =========================== -->
+                            <!-- Filtro por Marca -->
                             <div class="mb-3">
                                 <label for="ddlFiltroMarca" class="form-label">Marca</label>
                                 <asp:DropDownList ID="ddlFiltroMarca" runat="server"
@@ -50,9 +46,7 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
 
-                    <!-- ===========================
-                         Rango de precios
-                         =========================== -->
+                    <!-- Rango de precios -->
                     <div class="mb-3 mt-2">
                         <label class="form-label">Rango de precios</label>
                         <div class="d-flex gap-2">
@@ -67,9 +61,7 @@
                         </div>
                     </div>
 
-                    <!-- ===========================
-                         Botones Buscar y Borrar
-                         =========================== -->
+                    <!-- Botones Buscar y Borrar -->
                     <div class="d-flex justify-content-between mt-3">
                         <asp:Button ID="btnBuscarFiltros" runat="server"
                             Text="Buscar"
@@ -88,6 +80,16 @@
                  COLUMNA DERECHA: GRID DE PRODUCTOS
                  =========================== -->
             <div class="col-12 col-md-8 col-lg-9">
+
+                <!-- MENSAJE CUANDO NO HAY REGISTROS -->
+                <asp:Label
+                    ID="lblSinArticulos"
+                    runat="server"
+                    Visible="false"
+                    CssClass="mensaje-sin-articulos"
+                    Text="No hay artículos para mostrar.">
+                </asp:Label>
+
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4 productos-grid">
                     <asp:Repeater ID="repetidorDeTarjetas" runat="server"
                         OnItemDataBound="repetidorDeTarjetas_ItemDataBound">

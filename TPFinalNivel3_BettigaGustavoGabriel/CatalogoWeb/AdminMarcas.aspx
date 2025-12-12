@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="AdminMarcas.aspx.cs" Inherits="CatalogoWeb.AdminMarcas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" type="text/css" href="Css/AdminMarcas.css" />
+    <link rel="stylesheet" type="text/css" href="Css/AdminMarcas.css?v=1" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -42,6 +42,15 @@
                 OnClick="btnBorrarMarca_Click" />
         </div>
     </asp:Panel>
+
+    <!-- MENSAJE CUANDO NO HAY REGISTROS -->
+    <asp:Label
+        ID="lblSinArticulos"
+        runat="server"
+        Visible="false"
+        CssClass="mensaje-sin-articulos"
+        Text="No hay marcas cargadas todavía.">
+    </asp:Label>
 
     <asp:GridView
         ID="dgvMarcas"

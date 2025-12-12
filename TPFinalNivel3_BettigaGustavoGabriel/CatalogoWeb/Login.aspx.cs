@@ -41,7 +41,7 @@ namespace CatalogoWeb
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Registro.aspx");
+            Response.Redirect("Registro.aspx",false);
 
         }
    
@@ -59,7 +59,7 @@ namespace CatalogoWeb
             if (usuarioValido)
             {   
                 Session["UsuarioLogueado"] = usuario;
-                Response.Redirect("MiPerfil.aspx");
+                Response.Redirect("MiPerfil.aspx",false);
             }
             else
             {
@@ -70,6 +70,13 @@ namespace CatalogoWeb
 
 
 
+        }
+
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
 
 

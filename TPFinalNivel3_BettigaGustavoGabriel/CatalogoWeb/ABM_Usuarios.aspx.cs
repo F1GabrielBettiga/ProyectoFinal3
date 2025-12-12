@@ -52,6 +52,7 @@ namespace CatalogoWeb
                     if (emailGuardado == emailPantalla)
                     {
                         actualizarUsuario();
+                        
                     }
                     
                     else if (ExisteMail(txtEmail.Text))
@@ -90,7 +91,8 @@ namespace CatalogoWeb
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AdminUsuarios.aspx");
+            Session.Remove("UsuarioEditar");
+            Response.Redirect("AdminUsuarios.aspx", false);
 
         }
 
@@ -131,16 +133,19 @@ namespace CatalogoWeb
                 bool exito = negocio.actualizarUsuario(usuario);
 
                 if (exito)
-                    Response.Redirect("AdminUsuarios.aspx");
+                {
+                    Session.Remove("UsuarioEditar");
+                    Response.Redirect("AdminUsuarios.aspx", false);
+                }
                 else
                 {
-                    //lblMensajeError.Text = "Error al actualizar el artículo.";
-                    //lblMensajeError.Visible = true;
+                    lblError.Text = "Error al actualizar el artículo.";
+                    lblError.Visible = true;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Error al actualizar el usuario.", ex);
             }
         }
 
@@ -180,16 +185,16 @@ namespace CatalogoWeb
                 bool exito = negocio.insertarUsuario(usuario);
 
                 if (exito)
-                    Response.Redirect("AdminUsuarios.aspx");
+                    Response.Redirect("AdminUsuarios.aspx", false);
                 else
                 {
-                    //lblMensajeError.Text = "Error al actualizar el artículo.";
-                    //lblMensajeError.Visible = true;
+                    lblError.Text = "Error al actualizar el artículo.";
+                    lblError.Visible = true;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+               RedirigirConError("Error al agregar el usuario.", ex);
             }
         }
 
@@ -273,7 +278,7 @@ namespace CatalogoWeb
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Error al guardar la imagen de perfil.", ex);
             }
         }
 
@@ -389,6 +394,13 @@ namespace CatalogoWeb
             }
 
             return false;
+        }
+
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
     }
 }

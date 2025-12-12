@@ -51,6 +51,15 @@ namespace CatalogoWeb
         protected global::System.Web.UI.WebControls.Button btnBorrarMarca;
 
         /// <summary>
+        /// Control lblSinArticulos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSinArticulos;
+
+        /// <summary>
         /// Control dgvMarcas.
         /// </summary>
         /// <remarks>

@@ -175,6 +175,7 @@
                             CssClass="form-label" />
                         <div class="abm-usuario-imagen-wrapper">
                             <asp:Image ID="imgUsuario" runat="server"
+                                ClientIDMode="Static"
                                 Display="Dynamic" 
                                 ImageUrl="~/Images/no-user.jpg"
                                 CssClass="img-fluid abm-img-usuario"

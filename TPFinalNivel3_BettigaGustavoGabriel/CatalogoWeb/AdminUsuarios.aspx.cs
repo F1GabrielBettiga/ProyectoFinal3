@@ -29,7 +29,7 @@ namespace CatalogoWeb
                 // Redirigir a la pantalla de edición
 
                 Session["UsuarioEditar"] = id;
-                Response.Redirect("ABM_Usuarios.aspx");
+                Response.Redirect("ABM_Usuarios.aspx",false);
             }
             else if (e.CommandName == "Borrar")
             {
@@ -52,36 +52,34 @@ namespace CatalogoWeb
 
         }
 
-        void cargarGrid()
+        private void cargarGrid()
         {
-            UsuarioNegocio negocio = new UsuarioNegocio();
-
             try
             {
-                List<Usuario> lista = negocio.listarUsuarios();
+                UsuarioNegocio negocio = new UsuarioNegocio();
+
+                List<Usuario> lista = negocio.listarUsuarios() ?? new List<Usuario>();
                 Session["listaUsuarios"] = lista;
 
-                if (lista == null || lista.Count == 0)
-                {
-                    // Si por alguna razón no trajo nada, vuelve a intentar
-                    lista = negocio.listarUsuarios();
-                    Session["listaUsuarios"] = lista;
-                }
+                bool hayRegistros = lista.Count > 0;
 
+                // Label “estado vacío” (unificado)
+                lblSinArticulos.Visible = !hayRegistros;
+
+                // Grid
+                dgvUsuarios.Visible = hayRegistros;
                 dgvUsuarios.DataSource = lista;
                 dgvUsuarios.DataBind();
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("No se pudieron cargar los usuarios.", ex);
             }
-
-
         }
 
         protected void btnNuevoUsuario_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ABM_Usuarios.aspx");
+            Response.Redirect("ABM_Usuarios.aspx", false);
 
         }
 
@@ -94,7 +92,7 @@ namespace CatalogoWeb
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("No se pudo eliminar el usuario.", ex);
             }
         }
 
@@ -127,6 +125,12 @@ namespace CatalogoWeb
         {
             txtBuscarUsuario.Text = string.Empty;
             cargarGrid();
+        }
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
     }
 }

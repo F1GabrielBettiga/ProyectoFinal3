@@ -138,7 +138,7 @@ namespace CatalogoWeb
             catch (Exception ex)
             {
 
-                throw ex;
+                RedirigirConError("Error al cargar los detalles del artículo.", ex);
             }
         }
 
@@ -188,21 +188,20 @@ namespace CatalogoWeb
                 bool exito = negocio.agregarArticulo(articulo);
 
                 if (exito)
-                    Response.Redirect("AdminArticulos.aspx");
+                    Response.Redirect("AdminArticulos.aspx",false);
                 else
                 {
-                    //lblMensajeError.Text = "Error al actualizar el artículo.";
-                    //lblMensajeError.Visible = true;
+                    lblError.Text = "Error al actualizar el artículo.";
+                    lblError.Visible = true;
                 }
             }
             catch (FormatException)
             {
-                //lblMensajeError.Text = "El precio debe ser un número válido.";
-                //lblMensajeError.Visible = true;
+                
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Error al agregar el artículo.", ex);
             }
         }
 
@@ -296,7 +295,7 @@ namespace CatalogoWeb
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Error al guardar la imagen del artículo.", ex);
             }
         }
 
@@ -376,21 +375,22 @@ namespace CatalogoWeb
                 bool exito = negocio.actualizarArticulo(articulo);
 
                 if (exito)
-                    Response.Redirect("AdminArticulos.aspx");
+                    Response.Redirect("AdminArticulos.aspx", false);
+                    
                 else
                 {
-                    //lblMensajeError.Text = "Error al actualizar el artículo.";
-                    //lblMensajeError.Visible = true;
+                    lblError.Text = "Error al actualizar el artículo.";
+                    lblError.Visible = true;
                 }
             }
             catch (FormatException)
             {
-                //lblMensajeError.Text = "El precio debe ser un número válido.";
-                //lblMensajeError.Visible = true;
+                lblError.Text = "El precio debe ser un número válido.";
+                lblError.Visible = true;
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("Error al actualizar el artículo.", ex);
             }
         }
 
@@ -460,10 +460,10 @@ namespace CatalogoWeb
             return false;
         }
 
-        private void RedirigirConError(string mensajeUsuario, Exception ex)
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
-            Session["ErrorMensajeUsuario"] = mensajeUsuario;
-            Session["ErrorDetalleTecnico"] = ex.ToString();
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
             Response.Redirect("Error.aspx", false);
         }
 

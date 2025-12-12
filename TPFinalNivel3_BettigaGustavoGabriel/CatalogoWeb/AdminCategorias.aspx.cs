@@ -22,7 +22,7 @@ namespace CatalogoWeb
 
         protected void btnNuevaCategoria_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ABM_Categorias.aspx");
+            Response.Redirect("ABM_Categorias.aspx",false);
         }
 
         protected void dgvCategorias_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -62,29 +62,27 @@ namespace CatalogoWeb
 
         private void cargarGrid()
         {
-            CategoriaNegocio negocio = new CategoriaNegocio();
-
             try
             {
-                List<Categoria> lista = negocio.listarCategorias();
+                CategoriaNegocio negocio = new CategoriaNegocio();
+
+                List<Categoria> lista = negocio.listarCategorias() ?? new List<Categoria>();
                 Session["listaCategorias"] = lista;
 
-                if (lista == null || lista.Count == 0)
-                {
-                    // Si por alguna razón no trajo nada, vuelve a intentar
-                    lista = negocio.listarCategorias();
-                    Session["listaCategorias"] = lista;
-                }
+                bool hayRegistros = lista.Count > 0;
 
+          
+                lblSinArticulos.Visible = !hayRegistros;
+
+          
+                dgvCategorias.Visible = hayRegistros;
                 dgvCategorias.DataSource = lista;
                 dgvCategorias.DataBind();
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("No se pudieron cargar las categorías.", ex);
             }
-
-
         }
 
         private void eliminarCategoria(int id)
@@ -98,7 +96,7 @@ namespace CatalogoWeb
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("No se pudo eliminar la categoría.", ex);
             }
         }
 
@@ -131,6 +129,13 @@ namespace CatalogoWeb
         {
             txtBuscarCategoria.Text = string.Empty;
             cargarGrid();
+        }
+
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
     }
 }

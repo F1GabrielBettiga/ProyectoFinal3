@@ -22,7 +22,7 @@ namespace CatalogoWeb
 
         protected void btnNuevaMarca_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ABM_Marcas.aspx");
+            Response.Redirect("ABM_Marcas.aspx",false);
         }
 
         protected void dgvMarcas_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -59,31 +59,28 @@ namespace CatalogoWeb
 
         private void cargarGrid()
         {
-            MarcaNegocio negocio = new MarcaNegocio();
-
             try
             {
-                List<Marca> lista = negocio.listarMarcas();
+                MarcaNegocio negocio = new MarcaNegocio();
+
+                List<Marca> lista = negocio.listarMarcas() ?? new List<Marca>();
                 Session["listaMarcas"] = lista;
 
-                if (lista == null || lista.Count == 0)
-                {
-                    // Si por alguna razón no trajo nada, vuelve a intentar
-                    lista = negocio.listarMarcas();
-                    Session["listaMarcas"] = lista;
-                }
+                bool hayRegistros = lista.Count > 0;
 
+
+                lblSinArticulos.Visible = !hayRegistros;
+
+
+                dgvMarcas.Visible = hayRegistros;
                 dgvMarcas.DataSource = lista;
                 dgvMarcas.DataBind();
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("No se pudieron cargar las marcas.", ex);
             }
-
-
         }
-
         private void eliminarMarca(int id)
         {
             MarcaNegocio negocioMarca = new MarcaNegocio();
@@ -95,7 +92,7 @@ namespace CatalogoWeb
             }
             catch (Exception ex)
             {
-                throw ex;
+                RedirigirConError("No se pudo eliminar la marca.", ex);
             }
         }
 
@@ -128,6 +125,14 @@ namespace CatalogoWeb
         {
             txtBuscarMarcas.Text = string.Empty;
             cargarGrid();
+        }
+
+
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
         }
     }
 }

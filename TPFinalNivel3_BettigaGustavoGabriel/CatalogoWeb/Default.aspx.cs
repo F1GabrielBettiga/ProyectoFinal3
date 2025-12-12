@@ -62,7 +62,7 @@ namespace CatalogoWeb
         {
             Button btn = (Button)sender;
             string id = btn.CommandArgument;
-            Response.Redirect("DetalleProducto.aspx?id=" + id);
+            Response.Redirect("DetalleProducto.aspx?id=" + id,false);
 
         }
         protected void btnCargarMas_Click(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace CatalogoWeb
         }
         protected void btnBuscarFiltros_Click(object sender, EventArgs e)
         {
-            {
+           
                 int? idCategoria = int.Parse(ddlFiltroCategoria.SelectedValue);
                 int? idMarca = int.Parse(ddlFiltroMarca.SelectedValue);
 
@@ -111,7 +111,7 @@ namespace CatalogoWeb
                 cantidadMostrada = 0;
 
                 cargarTarjetas(listaArticulosFiltrada);
-            }
+            
 
         }
         protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
@@ -170,10 +170,15 @@ namespace CatalogoWeb
         }
         private void cargarTarjetas(List<Articulo> origen)
         {
-            // Si la lista está vacía o nula, oculto el botón y limpio el repeater
-            if (origen == null || origen.Count == 0)
+            // Estado vacío
+            bool hayRegistros = origen != null && origen.Count > 0;
+
+            lblSinArticulos.Visible = !hayRegistros;
+            repetidorDeTarjetas.Visible = hayRegistros;
+            btnCargarMas.Visible = hayRegistros;
+
+            if (!hayRegistros)
             {
-                btnCargarMas.Visible = false;
                 repetidorDeTarjetas.DataSource = null;
                 repetidorDeTarjetas.DataBind();
                 return;
@@ -189,17 +194,15 @@ namespace CatalogoWeb
             cantidadMostrada += aTomar;
 
             // Tomo desde el inicio hasta "cantidadMostrada"
-            var listaParcial = origen
-                                .Take(cantidadMostrada)
-                                .ToList();
+            var listaParcial = origen.Take(cantidadMostrada).ToList();
 
-            // Bindeo al Repeater SOLO esa porción
+            // Bindeo al Repeater
             repetidorDeTarjetas.DataSource = listaParcial;
             repetidorDeTarjetas.DataBind();
 
-            // Si ya mostré todos, oculto el botón Cargar más
+            // Si ya mostré todos, oculto el botón "Ver Más"
             btnCargarMas.Visible = (cantidadMostrada < origen.Count);
-        }      
+        }
         private void CargarDdlCategorias()
         {
             CategoriaNegocio negocio = new CategoriaNegocio();
@@ -241,6 +244,13 @@ namespace CatalogoWeb
                 ddlFiltroMarca.Items.Insert(0, new ListItem("Todos", "0"));
             }
         }
-      
+
+        private void RedirigirConError(string mensajeUsuario, Exception ex = null)
+        {
+            Session["ErrorUsuario"] = mensajeUsuario;
+            Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
+            Response.Redirect("Error.aspx", false);
+        }
+
     }
 }
