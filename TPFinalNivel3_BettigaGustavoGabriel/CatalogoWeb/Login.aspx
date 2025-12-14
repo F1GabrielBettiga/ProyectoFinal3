@@ -21,9 +21,9 @@
                 <asp:TextBox ID="txtEmail" runat="server"
                     CssClass="form-control"
                     TextMode="Email"
+                    MaxLength="100"
                     Placeholder="ejemplo@email.com" />
 
-                
                 <asp:RequiredFieldValidator
                     ID="rfvEmail"
                     runat="server"
@@ -34,7 +34,6 @@
                     ValidationGroup="LoginGroup">
                 </asp:RequiredFieldValidator>
 
-                
                 <asp:RegularExpressionValidator
                     ID="revEmail"
                     runat="server"
@@ -58,6 +57,7 @@
                         CssClass="form-control"
                         TextMode="Password"
                         ClientIDMode="Static"
+                        MaxLength="20"
                         Placeholder="••••••••" />
 
                     <span class="input-group-text bg-dark text-light">
@@ -67,7 +67,6 @@
                     </span>
                 </div>
 
-                
                 <asp:RequiredFieldValidator
                     ID="rfvPassword"
                     runat="server"
@@ -95,10 +94,12 @@
 
             <div class="text-center">
                 <span class="text-light">¿No tenés cuenta?</span>
-                <asp:Button ID="btnCrearCuenta" runat="server" Text="Crear cuenta" CssClass="btn btn-outline-light btn-sm ms-2" OnClick="btnCrearCuenta_Click" />
+                <asp:Button ID="btnCrearCuenta" runat="server"
+                    Text="Crear cuenta"
+                    CssClass="btn btn-outline-light btn-sm ms-2"
+                    OnClick="btnCrearCuenta_Click" />
             </div>
         </div>
     </div>
-
 
 </asp:Content>

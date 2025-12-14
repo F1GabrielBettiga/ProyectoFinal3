@@ -5,6 +5,7 @@
     <script src="<%: ResolveUrl("~/Scripts/perfil.js?v=" + DateTime.Now.Ticks) %>"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <!-- CONTENEDOR GENERAL -->
     <div class="registro-container">
 
@@ -25,8 +26,8 @@
 
                 <asp:TextBox ID="txtNombre" runat="server"
                     CssClass="form-control"
-                    Placeholder="Escribí tu nombre" />
-
+                    Placeholder="Escribí tu nombre"
+                    MaxLength="50" />
 
                 <asp:RequiredFieldValidator
                     ID="rfvNombre"
@@ -37,7 +38,6 @@
                     Display="Dynamic"
                     ValidationGroup="Registro">
                 </asp:RequiredFieldValidator>
-
 
                 <asp:RegularExpressionValidator
                     ID="revNombreSoloLetrasMin4"
@@ -59,8 +59,8 @@
 
                 <asp:TextBox ID="txtApellido" runat="server"
                     CssClass="form-control"
-                    Placeholder="Escribí tu apellido" />
-
+                    Placeholder="Escribí tu apellido"
+                    MaxLength="50" />
 
                 <asp:RequiredFieldValidator
                     ID="rfvApellido"
@@ -71,7 +71,6 @@
                     Display="Dynamic"
                     ValidationGroup="Registro">
                 </asp:RequiredFieldValidator>
-
 
                 <asp:RegularExpressionValidator
                     ID="revApellidoSoloLetrasMin3"
@@ -94,8 +93,8 @@
                 <asp:TextBox ID="txtEmail" runat="server"
                     CssClass="form-control"
                     TextMode="Email"
+                    MaxLength="100"
                     Placeholder="tucorreo@ejemplo.com" />
-
 
                 <asp:RequiredFieldValidator
                     ID="rfvEmail"
@@ -106,7 +105,6 @@
                     Display="Dynamic"
                     ValidationGroup="Registro">
                 </asp:RequiredFieldValidator>
-
 
                 <asp:RegularExpressionValidator
                     ID="revEmailFormato"
@@ -131,7 +129,8 @@
                         CssClass="form-control"
                         TextMode="Password"
                         ClientIDMode="Static"
-                        Placeholder="Escribí una contraseña" />
+                        Placeholder="Escribí una contraseña"
+                        MaxLength="20" />
 
                     <span class="input-group-text bg-dark text-light">
                         <asp:CheckBox ID="chkMostrarPass" runat="server"
@@ -139,7 +138,6 @@
                         <span class="ms-1">👁️</span>
                     </span>
                 </div>
-
 
                 <asp:RequiredFieldValidator
                     ID="rfvPassword"
@@ -150,7 +148,6 @@
                     Display="Dynamic"
                     ValidationGroup="Registro">
                 </asp:RequiredFieldValidator>
-
 
                 <asp:RegularExpressionValidator
                     ID="revPassStrong"
@@ -174,7 +171,8 @@
                         CssClass="form-control"
                         TextMode="Password"
                         ClientIDMode="Static"
-                        Placeholder="Repetí la contraseña" />
+                        Placeholder="Repetí la contraseña"
+                        MaxLength="20" />
 
                     <span class="input-group-text bg-dark text-light">
                         <asp:CheckBox ID="chkMostrarRepetirPass" runat="server"
@@ -182,7 +180,6 @@
                         <span class="ms-1">👁️</span>
                     </span>
                 </div>
-
 
                 <asp:RequiredFieldValidator
                     ID="rfvRepetirPassword"
@@ -193,7 +190,6 @@
                     Display="Dynamic"
                     ValidationGroup="Registro">
                 </asp:RequiredFieldValidator>
-
 
                 <asp:CompareValidator
                     ID="cvRepetirPassword"
@@ -238,6 +234,5 @@
         </div>
 
     </div>
-
 
 </asp:Content>

@@ -34,7 +34,8 @@
 
                 <asp:TextBox ID="txtNombreMarca" runat="server"
                     CssClass="form-control"
-                    Placeholder="Ej: Samsung, Apple, Logitech..." />
+                    Placeholder="Ej: Samsung, Apple, Logitech..." 
+                    MaxLength="50"/>
 
 
                 <asp:RequiredFieldValidator

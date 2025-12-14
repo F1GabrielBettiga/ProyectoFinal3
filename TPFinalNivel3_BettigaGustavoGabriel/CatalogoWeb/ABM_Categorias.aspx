@@ -34,7 +34,8 @@
 
                 <asp:TextBox ID="txtNombreCategoria" runat="server"
                     CssClass="form-control"
-                    Placeholder="Ej: Periféricos, Monitores, Notebooks..." />
+                    Placeholder="Ej: Periféricos, Monitores, Notebooks..."
+                    MaxLength="50" />
 
 
                 <asp:RequiredFieldValidator

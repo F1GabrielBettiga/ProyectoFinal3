@@ -45,7 +45,8 @@
                             Text="Nombre"
                             CssClass="form-label" />
                         <asp:TextBox ID="txtNombre" runat="server"
-                            CssClass="form-control" />
+                            CssClass="form-control"
+                            MaxLength="50" />
                         <asp:RegularExpressionValidator
                             ID="revNombreSoloLetras"
                             runat="server"
@@ -63,7 +64,8 @@
                             Text="Apellido"
                             CssClass="form-label" />
                         <asp:TextBox ID="txtApellido" runat="server"
-                            CssClass="form-control" />
+                            CssClass="form-control"
+                            MaxLength="50" />
                         <asp:RegularExpressionValidator
                             ID="revApellidoSoloLetras"
                             runat="server"
@@ -82,7 +84,8 @@
                             CssClass="form-label" />
                         <asp:TextBox ID="txtEmail" runat="server"
                             CssClass="form-control"
-                            TextMode="Email" />
+                            TextMode="Email"
+                            MaxLength="100" />
 
 
                         <asp:RequiredFieldValidator
@@ -118,7 +121,8 @@
                             <asp:TextBox ID="txtPassword" runat="server"
                                 CssClass="form-control"
                                 TextMode="Password"
-                                ClientIDMode="Static" />
+                                ClientIDMode="Static"
+                                MaxLength="20" />
 
                             <span class="input-group-text bg-dark text-light">
                                 <asp:CheckBox ID="chkMostrarPass" runat="server"

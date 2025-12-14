@@ -55,7 +55,8 @@
                     <div class="form-group">
                         <label>Nombre</label>
                         <asp:TextBox ID="txtNombre" runat="server"
-                            CssClass="form-control"></asp:TextBox>
+                            CssClass="form-control"
+                            MaxLength="50"></asp:TextBox>
 
                         <asp:RegularExpressionValidator
                             ID="revNombrePerfil"
@@ -72,7 +73,8 @@
                     <div class="form-group">
                         <label>Apellido</label>
                         <asp:TextBox ID="txtApellido" runat="server"
-                            CssClass="form-control"></asp:TextBox>
+                            CssClass="form-control"
+                            MaxLength="50"></asp:TextBox>
 
                         <asp:RegularExpressionValidator
                             ID="revApellidoPerfil"
@@ -90,7 +92,9 @@
                         <label>Email</label>
 
                         <asp:TextBox ID="txtEmail" runat="server"
-                            TextMode="Email" CssClass="form-control"></asp:TextBox>
+                            TextMode="Email"
+                            CssClass="form-control"
+                            MaxLength="100"></asp:TextBox>
 
                         <asp:RequiredFieldValidator
                             ID="rfvEmailPerfil"
@@ -101,7 +105,6 @@
                             Display="Dynamic"
                             ValidationGroup="Perfil">
                         </asp:RequiredFieldValidator>
-
 
                         <asp:RegularExpressionValidator
                             ID="revEmailPerfil"
@@ -123,7 +126,8 @@
                             <asp:TextBox ID="txtPassword" runat="server"
                                 CssClass="form-control"
                                 TextMode="Password"
-                                ClientIDMode="Static"></asp:TextBox>
+                                ClientIDMode="Static"
+                                MaxLength="20"></asp:TextBox>
 
                             <span class="input-group-text bg-dark text-light">
                                 <asp:CheckBox ID="chkMostrarPassword" runat="server"
@@ -153,7 +157,8 @@
                                     CssClass="form-control"
                                     TextMode="Password"
                                     ClientIDMode="Static"
-                                    Visible="false"></asp:TextBox>
+                                    Visible="false"
+                                    MaxLength="20"></asp:TextBox>
 
                                 <span id="spanMostrarNuevaPass" runat="server"
                                     class="input-group-text bg-dark text-light"
@@ -188,7 +193,8 @@
                                     CssClass="form-control"
                                     TextMode="Password"
                                     ClientIDMode="Static"
-                                    Visible="false"></asp:TextBox>
+                                    Visible="false"
+                                    MaxLength="20"></asp:TextBox>
 
                                 <span id="spanMostrarRepetirPass" runat="server"
                                     class="input-group-text bg-dark text-light"
@@ -217,6 +223,7 @@
                         Text=""
                         Visible="false"
                         CssClass="registro-mensaje-error" />
+
                     <!-- Botones -->
                     <div class="acciones-perfil">
 
@@ -241,8 +248,6 @@
                             OnClientClick="return confirm('¿Seguro que querés cancelar? Se perderán los cambios realizados.');" />
 
                     </div>
-
-
 
                 </div>
             </div>
