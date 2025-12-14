@@ -17,7 +17,7 @@
             <p class="registro-subtitle">
                 Completá tus datos para registrarte en el catálogo.
             </p>
-
+             <asp:Panel runat="server" DefaultButton="btnCrearCuenta">
             <!-- NOMBRE -->
             <div class="mb-3">
                 <asp:Label ID="lblNombre" runat="server"
@@ -216,12 +216,15 @@
                     PostBackUrl="~/Default.aspx" />
             </div>
 
+
+
             <!-- MENSAJE DE ERROR  -->
             <asp:Label ID="lblErrorRegistro" runat="server"
                 CssClass="registro-mensaje-error"
                 Visible="false" />
-
+</asp:Panel>
         </div>
+         
 
         <!-- FOOTER -->
         <div class="registro-footer">
