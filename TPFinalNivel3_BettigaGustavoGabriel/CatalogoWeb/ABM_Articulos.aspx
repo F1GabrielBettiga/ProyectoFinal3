@@ -4,6 +4,7 @@
 
     <link rel="stylesheet" type="text/css" href="Css/ABM_Articulos.css" />
     <script src="<%: ResolveUrl("~/Scripts/perfil.js") %>"></script>
+    <script src="<%: ResolveUrl("~/Scripts/ABM_Articulos.js") %>"></script>
 </asp:Content>
 
 
@@ -37,8 +38,9 @@
                     <!-- Código  -->
                     <div class="mb-3">
                         <asp:Label ID="lblCodigo" runat="server" Text="Código" CssClass="form-label" />
-                        <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control" />
-
+                        <asp:TextBox ID="txtCodigo" runat="server"
+                            CssClass="form-control"
+                            MaxLength="50" />
 
                         <asp:RequiredFieldValidator
                             ID="rfvCodigo"
@@ -49,7 +51,6 @@
                             Display="Dynamic"
                             ValidationGroup="Articulo">
                         </asp:RequiredFieldValidator>
-
 
                         <asp:RegularExpressionValidator
                             ID="revCodigo"
@@ -65,8 +66,9 @@
                     <!-- Nombre -->
                     <div class="mb-3">
                         <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label" />
-                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
-
+                        <asp:TextBox ID="txtNombre" runat="server"
+                            CssClass="form-control"
+                            MaxLength="50" />
 
                         <asp:RequiredFieldValidator
                             ID="rfvNombre"
@@ -77,25 +79,29 @@
                             Display="Dynamic"
                             ValidationGroup="Articulo">
                         </asp:RequiredFieldValidator>
-
-
-
                     </div>
 
                     <!-- Descripción -->
                     <div class="mb-3">
                         <asp:Label ID="lblDescripcion" runat="server" Text="Descripción" CssClass="form-label" />
+
                         <asp:TextBox ID="txtDescripcion" runat="server"
                             CssClass="form-control"
-                            TextMode="MultiLine" Rows="3" />
+                            TextMode="MultiLine" Rows="3"
+                            MaxLength="150"
+                            ClientIDMode="Static"
+                            oninput="contarYLimitarTexto('txtDescripcion', 'contadorDescripcion', 150)"
+                             />
 
+                        <small id="contadorDescripcion" class="contador-caracteres" data-max="150">0/150</small>
                     </div>
 
                     <!-- Precio -->
                     <div class="mb-3">
                         <asp:Label ID="lblPrecio" runat="server" Text="Precio" CssClass="form-label" />
-                        <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" />
-
+                        <asp:TextBox ID="txtPrecio" runat="server"
+                            CssClass="form-control"
+                            MaxLength="15" />
 
                         <asp:RequiredFieldValidator
                             ID="rfvPrecio"
@@ -106,7 +112,6 @@
                             Display="Dynamic"
                             ValidationGroup="Articulo">
                         </asp:RequiredFieldValidator>
-
 
                         <asp:RegularExpressionValidator
                             ID="revPrecio"
@@ -150,7 +155,7 @@
                         </div>
                     </div>
 
-                    <!-- Campo para cambiar la imagen (URL / archivo) -->
+                    <!-- Campo para cambiar la imagen (archivo) -->
                     <div class="mb-3">
                         <asp:Label ID="lblUrlImagen" runat="server" Text="Cargar imagen" CssClass="form-label" />
                         <input type="file" id="txtImagen" runat="server"
@@ -165,6 +170,7 @@
                 Text=""
                 Visible="false"
                 CssClass="mensaje-error" />
+
             <!-- Botones de acción -->
             <div class="abm-botones text-center mt-4">
                 <asp:Button ID="btnGuardar" runat="server"
@@ -183,6 +189,6 @@
 
         </div>
 
-    </div>
+    </div>   
 
 </asp:Content>

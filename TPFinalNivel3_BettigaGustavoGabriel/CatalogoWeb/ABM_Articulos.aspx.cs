@@ -132,6 +132,7 @@ namespace CatalogoWeb
                 }
 
                 CargarImagen(articulo);
+                ViewState["ImagenOriginal"] = articulo.imagenUrl;
                 pnlIdArticulo.Visible = true;
 
             }
@@ -259,13 +260,14 @@ namespace CatalogoWeb
         {
             try
             {
-                // ¿HAY ARCHIVO NUEVO?
+                // 1) Si subieron un archivo nuevo -> guardar imagen local
                 if (txtImagen.PostedFile != null &&
                     txtImagen.PostedFile.ContentLength > 0 &&
                     !string.IsNullOrEmpty(txtImagen.PostedFile.FileName))
                 {
                     ArticuloNegocio negocio = new ArticuloNegocio();
                     int proximoID = negocio.obtenerProximoId();
+
                     string rutaFisica = Server.MapPath("~/Images/");
                     string nombreArchivo = $"art-{proximoID}.jpg";
 
@@ -273,25 +275,28 @@ namespace CatalogoWeb
 
                     art.imagenUrl = $"~/Images/{nombreArchivo}";
                     imgArticulo.ImageUrl = art.imagenUrl + "?v=" + DateTime.Now.Ticks;
+
+                    return;
                 }
-                else
+
+                // 2) No subieron nada -> decidir qué guardar según lo que se ve en imgArticulo
+                string urlActual = imgArticulo.ImageUrl ?? "";
+
+                // Si es imagen local con cache-buster (?v=...) -> lo limpiamos
+                if (urlActual.StartsWith("~/Images/", StringComparison.OrdinalIgnoreCase) && urlActual.Contains("?v="))
+                    urlActual = urlActual.Split(new[] { "?v=" }, StringSplitOptions.None)[0];
+
+                // Si la imagen que se ve es la default -> NO actualizar (mantener la original)
+                if (string.IsNullOrWhiteSpace(urlActual) ||
+                    urlActual.EndsWith("no-image.png", StringComparison.OrdinalIgnoreCase) ||
+                    urlActual.EndsWith("/Images/no-image.png", StringComparison.OrdinalIgnoreCase))
                 {
-                    // NO SE SUBIÓ NADA NUEVO → DECIDIR QUÉ GUARDAR
-
-                    string urlActual = imgArticulo.ImageUrl?.Split('?')[0];
-
-                    // Si la imagen mostrada es la default → NO GUARDAR
-                    if (string.IsNullOrWhiteSpace(urlActual) ||
-                        urlActual.EndsWith("no-image.png", StringComparison.OrdinalIgnoreCase))
-                    {
-                        art.imagenUrl = null; // → va DBNull en la BD
-                    }
-                    else
-                    {
-                        // Si ya tenía una imagen real, conservarla
-                        art.imagenUrl = urlActual;
-                    }
+                    art.imagenUrl = ViewState["ImagenOriginal"] as string;
+                    return;
                 }
+
+                // Si se ve una imagen real -> guardar exactamente esa URL (externa o local)
+                art.imagenUrl = urlActual;
             }
             catch (Exception ex)
             {

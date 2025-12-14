@@ -194,3 +194,23 @@
         font-size: 1.6rem;
     }
 }
+
+/* ===========================
+   CONTADOR DE CARACTERES
+   =========================== */
+
+.contador-caracteres {
+    font-size: 0.75rem;
+    text-align: right;
+    margin-top: 4px;
+    color: #9bb0d2;
+    transition: color 0.2s ease;
+}
+
+    .contador-caracteres.warning {
+        color: #ffc107; /* amarillo */
+    }
+
+    .contador-caracteres.danger {
+        color: #dc3545; /* rojo */
+    }

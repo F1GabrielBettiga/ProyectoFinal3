@@ -16,27 +16,27 @@ namespace Negocio
 
             try
             {
-                // Consulta: favoritos del usuario + datos completos del artículo
+                
                 string query = @"
-            SELECT 
-                F.Id              AS IdFavorito,
-                F.IdUser          AS IdUser,
-                A.Id              AS IdArticulo,
-                A.Codigo,
-                A.Nombre,
-                A.Descripcion,
-                A.ImagenUrl,
-                A.Precio,
-                A.IdMarca,
-                M.Descripcion     AS MarcaDescripcion,
-                A.IdCategoria,
-                C.Descripcion     AS CategoriaDescripcion
-            FROM FAVORITOS F
-            INNER JOIN ARTICULOS  A ON A.Id = F.IdArticulo
-            INNER JOIN MARCAS     M ON M.Id = A.IdMarca
-            INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria
-            WHERE F.IdUser = @idUsuario
-            ORDER BY F.Id DESC";
+                SELECT 
+                 F.Id              AS IdFavorito,
+                 F.IdUser          AS IdUser,
+                 A.Id              AS IdArticulo,
+                 A.Codigo,
+                 A.Nombre,
+                 A.Descripcion,
+                 A.ImagenUrl,
+                 A.Precio,
+                 A.IdMarca,
+                 M.Descripcion     AS MarcaDescripcion,
+                 A.IdCategoria,
+                 C.Descripcion     AS CategoriaDescripcion
+                 FROM FAVORITOS F
+                 INNER JOIN ARTICULOS  A ON A.Id = F.IdArticulo
+                 LEFT JOIN MARCAS     M ON M.Id = A.IdMarca
+                 LEFT JOIN CATEGORIAS C ON C.Id = A.IdCategoria
+                 WHERE F.IdUser = @idUsuario
+                 ORDER BY F.Id DESC";
 
                 datos.setearConsulta(query);
                 datos.agregarParametro("@idUsuario", idUsuario);
@@ -55,25 +55,39 @@ namespace Negocio
                     // ====== Artículo ======
                     Articulo art = new Articulo();
                     art.id = (int)datos.Lector["IdArticulo"];
-                    art.codigo = (string)datos.Lector["Codigo"];
-                    art.nombre = (string)datos.Lector["Nombre"];
-                    art.descripcion = (string)datos.Lector["Descripcion"];
-                    art.imagenUrl = (string)datos.Lector["ImagenUrl"];
-                    art.precio = (decimal)datos.Lector["Precio"];
+
+                    art.codigo = datos.Lector["Codigo"] == DBNull.Value ? "" : (string)datos.Lector["Codigo"];
+                    art.nombre = datos.Lector["Nombre"] == DBNull.Value ? "" : (string)datos.Lector["Nombre"];
+                    art.descripcion = datos.Lector["Descripcion"] == DBNull.Value ? "" : (string)datos.Lector["Descripcion"];
+                    art.imagenUrl = datos.Lector["ImagenUrl"] == DBNull.Value ? "" : (string)datos.Lector["ImagenUrl"];
+                    art.precio = datos.Lector["Precio"] == DBNull.Value ? 0m : (decimal)datos.Lector["Precio"];
 
                     // ---- Marca ----
-                    art.marca = new Marca();
-                    art.marca.id = (int)datos.Lector["IdMarca"];
-                    art.marca.descripcion = (string)datos.Lector["MarcaDescripcion"];
+                    
+                    if (datos.Lector["IdMarca"] == DBNull.Value)
+                    {
+                        art.marca = null; 
+                    }
+                    else
+                    {
+                        art.marca = new Marca();
+                        art.marca.id = (int)datos.Lector["IdMarca"];
+                        art.marca.descripcion = datos.Lector["MarcaDescripcion"] == DBNull.Value ? "" : (string)datos.Lector["MarcaDescripcion"];
+                    }
 
                     // ---- Categoría ----
-                    art.categoria = new Categoria();
-                    art.categoria.id = (int)datos.Lector["IdCategoria"];
-                    art.categoria.descripcion = (string)datos.Lector["CategoriaDescripcion"];
+                    if (datos.Lector["IdCategoria"] == DBNull.Value)
+                    {
+                        art.categoria = null; 
+                    }
+                    else
+                    {
+                        art.categoria = new Categoria();
+                        art.categoria.id = (int)datos.Lector["IdCategoria"];
+                        art.categoria.descripcion = datos.Lector["CategoriaDescripcion"] == DBNull.Value ? "" : (string)datos.Lector["CategoriaDescripcion"];
+                    }
 
-                    
                     fav.articulo = art;
-
                     lista.Add(fav);
                 }
 

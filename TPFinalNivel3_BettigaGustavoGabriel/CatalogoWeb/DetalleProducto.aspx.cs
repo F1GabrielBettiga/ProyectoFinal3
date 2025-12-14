@@ -36,30 +36,42 @@ namespace CatalogoWeb
 
         private void CargarImagen(Articulo articulo)
         {
+            // Imagen de respaldo
             string fallback = ResolveUrl("~/Images/no-image.png");
 
-            //Si no hay imagen o vino algo inválido
-            if (string.IsNullOrWhiteSpace(articulo.imagenUrl))
+            // Si el campo está vacío o tiene texto inválido
+            if (string.IsNullOrEmpty(articulo.imagenUrl) ||
+                articulo.imagenUrl.Length < 5 ||
+                articulo.imagenUrl.IndexOf("sin_imagen_para_que_de_error", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                articulo.imagenUrl.IndexOf("noimage", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 imgProducto.ImageUrl = fallback;
                 return;
             }
 
-            //Normalizo removiendo el ?v=123 si existiera
-            string imagenUrl = articulo.imagenUrl.Split('?')[0].Trim();
+            // Normalizo la url que viene de la BD
+            string imagenUrl = articulo.imagenUrl.Trim();
 
-            //Si es URL completa (http/https)
+            // Si es una URL completa (http o https)
             if (Uri.IsWellFormedUriString(imagenUrl, UriKind.Absolute))
             {
                 imgProducto.ImageUrl = imagenUrl;
             }
             else
             {
-                //ruta interna del proyecto
-                imgProducto.ImageUrl = ResolveUrl(imagenUrl);
+                //  Si el campo urlImagenPerfil está vacío o nulo
+                if (string.IsNullOrEmpty(imagenUrl))
+                {
+                    imgProducto.ImageUrl = fallback;
+                }
+                else
+                {
+                    //  Si tiene algo, usamos lo que vino
+                    imgProducto.ImageUrl = imagenUrl;
+                }
             }
 
-            //Si falla al cargar en el navegador → fallback automático
+            // Si la imagen falla al cargar en el navegador, usar la de respaldo
             imgProducto.Attributes["onerror"] =
                 $"this.onerror=null; this.src='{fallback}';";
         }
@@ -82,8 +94,8 @@ namespace CatalogoWeb
                 
                 lblNombre.Text = articulo.nombre;
                 lblCodigo.Text = articulo.codigo;
-                lblMarca.Text = (articulo.marca != null && articulo.marca.id != 0)? articulo.marca.descripcion: "Sin marca";
-                lblCategoria.Text = (articulo.categoria != null && articulo.categoria.id != 0)? articulo.categoria.descripcion: "Sin categoría";
+                lblMarca.Text = (articulo.marca == null || string.IsNullOrWhiteSpace(articulo.marca.descripcion)) ? "Sin marca": articulo.marca.descripcion;
+                lblCategoria.Text = (articulo.categoria == null || string.IsNullOrWhiteSpace(articulo.categoria.descripcion)) ? "Sin categoría": articulo.categoria.descripcion;
                 lblPrecio.Text = "$" + articulo.precio.ToString("N2");
                 lblDescripcion.Text = articulo.descripcion;
 
