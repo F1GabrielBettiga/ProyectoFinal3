@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="ABM_Usuarios.aspx.cs" Inherits="CatalogoWeb.ABM_Usuarios" %>
+﻿<%@ Page Title="ABM Usuarios" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="ABM_Usuarios.aspx.cs" Inherits="CatalogoWeb.ABM_Usuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="<%: ResolveUrl("~/Scripts/perfil.js") %>"></script>
@@ -207,7 +207,7 @@
             <div class="abm-usuario-botones text-center mt-4">
 
                 <asp:Button ID="btnGuardar" runat="server"
-                    Text="Guardar"
+                    Text="Crear"
                     CssClass="btn btn-primary me-2"
                     ValidationGroup="UsuarioABM"
                     OnClick="btnGuardar_Click"

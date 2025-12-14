@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="ABM_Categorias.aspx.cs" Inherits="CatalogoWeb.ABM_Categorias" %>
+﻿<%@ Page Title="ABM Categorias" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="ABM_Categorias.aspx.cs" Inherits="CatalogoWeb.ABM_Categorias" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="Css/ABM_Categorias.css" />
@@ -68,7 +68,7 @@
             <div class="abm-categoria-botones d-flex justify-content-center gap-3 mt-3">
 
                 <asp:Button ID="btnGuardarCategoria" runat="server"
-                    Text="Guardar"
+                    Text="Crear"
                     CssClass="btn btn-primary"
                     ValidationGroup="Categoria"
                     OnClick="btnGuardarCategoria_Click"

@@ -137,3 +137,31 @@ h1, h2, h3, h4, h5, h6 {
 p {
     color: #e6e6e6;
 }
+
+
+/* ============================
+   LOGO / MARCA NAVBAR
+   ============================ */
+
+.navbar-logo {
+    width: 48px;
+    height: 38px;
+    object-fit: cover;
+    display: block;
+    border-radius: 0 !important; /* 🔥 pisa rounded-circle */
+}
+
+/* Ajuste fino para alinear con texto */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1rem;
+    gap: 6px;
+}
+
+/* En pantallas chicas */
+@media (max-width: 576px) {
+    .navbar-logo {
+        width: 28px;
+        height: 28px;
+    }
+}

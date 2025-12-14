@@ -18,7 +18,7 @@ namespace CatalogoWeb
 
                 if (!string.IsNullOrEmpty(Request.QueryString["id"]))
                 {
-                    lblTituloABMCategoria.Text = "Editar categoría";
+                    
                     string id = Request.QueryString["id"];
                     CargarDetalles(int.Parse(id));
                 }
@@ -131,6 +131,8 @@ namespace CatalogoWeb
                 txtIdCategoria.Text = categoria.id.ToString();
                 txtNombreCategoria.Text = categoria.descripcion;
                 pnlIdCategoria.Visible = true;
+                lblTituloABMCategoria.Text = "Editar categoría";
+                btnGuardarCategoria.Text = "Modificar";
 
 
             }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="ABM_Articulos.aspx.cs" Inherits="CatalogoWeb.ABM_Articulos" %>
+﻿<%@ Page Title="ABM Articulos" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="ABM_Articulos.aspx.cs" Inherits="CatalogoWeb.ABM_Articulos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -174,7 +174,7 @@
             <!-- Botones de acción -->
             <div class="abm-botones text-center mt-4">
                 <asp:Button ID="btnGuardar" runat="server"
-                    Text="Guardar"
+                    Text="Crear"
                     CssClass="btn btn-primary me-2"
                     OnClick="btnGuardar_Click"
                     ValidationGroup="Articulo"

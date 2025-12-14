@@ -20,7 +20,7 @@ namespace CatalogoWeb
                 
                 if (!string.IsNullOrEmpty(Request.QueryString["id"]))
                 {
-                    lblTituloABMMarca.Text = "Editar marca";
+                    
                     string id = Request.QueryString["id"];
                     CargarDetalles(int.Parse(id));
                 }
@@ -131,6 +131,8 @@ namespace CatalogoWeb
                 txtIdMarca.Text = marca.id.ToString();
                 txtNombreMarca.Text = marca.descripcion;
                 pnlIdMarca.Visible = true;
+                lblTituloABMMarca.Text = "Editar marca";
+                btnGuardarMarca.Text = "Modificar";
 
 
 

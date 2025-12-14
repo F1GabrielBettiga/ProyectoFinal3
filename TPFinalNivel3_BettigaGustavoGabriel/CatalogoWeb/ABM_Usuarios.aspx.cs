@@ -20,7 +20,7 @@ namespace CatalogoWeb
 
                 if (Session["UsuarioEditar"] != null)
                 {
-                    lblTituloABMUsuario.Text = "Modificar Usuario";
+                    
                     int id = (int)Session["UsuarioEditar"];
 
                     CargarDetalles(id);
@@ -223,6 +223,9 @@ namespace CatalogoWeb
                 ddlRol.SelectedValue = usuario.esAdmin.ToString().ToLower();
                 CargarImagen(usuario);
                 pnlIdUsuario.Visible = true;
+                lblTituloABMUsuario.Text = "Modificar Usuario";
+                btnGuardar.Text = "Modificar";
+
 
             }
             catch (Exception ex)

@@ -1,23 +1,4 @@
 ﻿/* ===========================
-   TÍTULO LISTA DE PRODUCTOS
-   =========================== */
-
-.titulo-lista-productos {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #ffffff;
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* ===========================
    LAYOUT GENERAL DEL HOME
    =========================== */
 
@@ -28,7 +9,7 @@
 }
 
 /* ===========================
-   PANEL FILTRO
+   PANEL FILTRO (ESTILO ORIGINAL)
    =========================== */
 
 .filtro-secundario {
@@ -37,6 +18,45 @@
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+}
+
+.titulo-filtro-secundario {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.filtro-secundario label {
+    color: #dcdcdc;
+    font-weight: 500;
+}
+
+/* Inputs y selects */
+.filtro-secundario .form-select,
+.filtro-secundario .form-control {
+    background-color: #112240 !important;
+    border: 1px solid #1E3D6B !important;
+    color: #ffffff !important;
+}
+
+    .filtro-secundario .form-select:focus,
+    .filtro-secundario .form-control:focus {
+        border-color: #0d6efd !important;
+        box-shadow: 0 0 4px rgba(13,110,253,0.7) !important;
+        outline: none !important;
+    }
+
+    .filtro-secundario .form-control::placeholder {
+        color: #9bb0d2 !important;
+    }
+
+.filtro-secundario .form-select {
+    color-scheme: dark;
+}
+
+.filtro-secundario .btn {
+    min-width: 110px;
 }
 
 /* ===========================
@@ -50,61 +70,79 @@
     max-width: 1400px;
 }
 
-    .productos-grid .tarjeta-producto {
-        height: 100%;
-        min-height: 360px;
-        border-radius: 8px;
-        background-color: #1E3D6B;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-        overflow: hidden; /* 🔑 clave */
-    }
+/* Card */
+.tarjeta-producto {
+    background-color: #1E3D6B;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-    .productos-grid .img-producto {
-        width: 100%;
-        height: 300px;
-        object-fit: contain;
-        background-color: #ffffff;
-    }
+/* Imagen */
+.img-producto {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    background-color: #ffffff;
+}
 
-    /* ===========================
-   CUERPO DE LA CARD
+/* Body */
+.tarjeta-producto .card-body {
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Título */
+.titulo-producto {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
+}
+
+/* Descripción (1 sola línea) */
+.descripcion-producto {
+    font-size: 0.85rem;
+    color: #cfd8e3;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3em;
+    margin-bottom: 0.8rem;
+}
+
+/* ===========================
+   FOOTER DE TARJETA
    =========================== */
 
-    .productos-grid .card-body {
-        padding: 0.75rem;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden; 
+.card-footer-producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: #1E3D6B;
+}
+
+    /* Botón */
+    .card-footer-producto .btn {
+        font-size: 0.8rem;
+        padding: 4px 10px;
     }
 
-    .productos-grid .titulo-producto {
-        font-size: 1rem;
-        margin-bottom: 0.4rem;
-        color: #f1f1f1;
-    }
-
-    
-    .productos-grid .descripcion-producto {
-        font-size: 0.875rem;
-        color: #c9c9c9;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 1.3em;
-        max-height: 1.3em; 
-        margin-bottom: 0.6rem;
-    }
-
-    /* ===========================
-   BOTÓN
-   =========================== */
-
-    .productos-grid .btn {
-        margin-top: auto; 
-        align-self: flex-start; 
-    }
+/* Precio */
+.precio-producto {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #22c55e;
+    white-space: nowrap;
+}
 
 /* ===========================
    MENSAJE SIN REGISTROS
@@ -125,43 +163,3 @@
     .mensaje-sin-articulos::before {
         content: "📦 ";
     }
-
-/* ===========================
-   FILTRO (DDL + INPUTS + BOTONES)
-   =========================== */
-
-.filtro-secundario label {
-    color: #dcdcdc;
-    font-weight: 500;
-}
-
-/* DropDownLists + TextBoxes */
-.filtro-secundario .form-select,
-.filtro-secundario .form-control {
-    background-color: #112240 !important;
-    border: 1px solid #1E3D6B !important;
-    color: #ffffff !important;
-}
-
-    .filtro-secundario .form-select:focus,
-    .filtro-secundario .form-control:focus {
-        border-color: #0d6efd !important;
-        box-shadow: 0 0 4px rgba(13,110,253,0.7) !important;
-        outline: none !important;
-    }
-
-    .filtro-secundario .form-control::placeholder {
-        color: #9bb0d2 !important;
-        opacity: 1;
-    }
-
-
-.filtro-secundario .form-select {
-    color-scheme: dark;
-}
-
-/* Botones del filtro */
-.filtro-secundario .btn {
-    width: auto !important;
-    min-width: 110px;
-}

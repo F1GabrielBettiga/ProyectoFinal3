@@ -96,6 +96,8 @@
     <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\fav-empty.png" />
+    <Content Include="Images\favicon.png" />
+    <Content Include="Images\Imagen-Pagina.png" />
     <Content Include="Images\no-image.png" />
     <Content Include="Images\no-user.jpg" />
     <Content Include="Login.aspx" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="AdminMarcas.aspx.cs" Inherits="CatalogoWeb.AdminMarcas" %>
+﻿<%@ Page Title="Administracion de Marcas" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="AdminMarcas.aspx.cs" Inherits="CatalogoWeb.AdminMarcas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="Css/AdminMarcas.css?v=1" />

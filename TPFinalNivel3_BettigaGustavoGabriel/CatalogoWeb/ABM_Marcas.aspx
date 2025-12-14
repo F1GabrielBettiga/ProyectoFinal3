@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="ABM_Marcas.aspx.cs" Inherits="CatalogoWeb.ABM_Marcas" %>
+﻿<%@ Page Title="ABM Marcas" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="ABM_Marcas.aspx.cs" Inherits="CatalogoWeb.ABM_Marcas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="Css/ABM_Marcas.css" />
@@ -65,7 +65,7 @@
             <div class="abm-marca-botones text-center mt-3">
 
                 <asp:Button ID="btnGuardarMarca" runat="server"
-                    Text="Guardar"
+                    Text="Crear"
                     CssClass="btn btn-primary me-2"
                     ValidationGroup="Marca"
                     OnClick="btnGuardarMarca_Click"
