@@ -1,0 +1,167 @@
+﻿/* ===========================
+   ESTILOS GENERALES DEL SITIO
+   =========================== */
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 70px; /* 👉 esto baja todo el contenido */
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background-color: #001E3C;
+    color: #f8f9fa;
+}
+
+/* ===========================
+   NAVBAR
+   =========================== */
+
+.navbar {
+    background-color: #000000 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+    .navbar a.nav-link {
+        color: #dcdcdc !important;
+        transition: color 0.3s ease;
+    }
+
+        .navbar a.nav-link:hover {
+            color: #0d6efd !important;
+        }
+
+    /* Ajuste para centrar el buscador */
+    .navbar .buscador-general {
+        max-width: 500px;
+        width: 100%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* ===========================
+   DROPDOWN NAVBAR
+   =========================== */
+
+    .navbar .dropdown-menu {
+        background-color: #000000;
+        border: 1px solid #111111;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .navbar .dropdown-item {
+        color: #dcdcdc;
+        font-family: "Segoe UI", Roboto, sans-serif;
+        font-size: 0.95rem;
+        padding: 0.5rem 1.25rem;
+    }
+
+        .navbar .dropdown-item:hover,
+        .navbar .dropdown-item:focus {
+            background-color: #1E3D6B;
+            color: #ffffff;
+        }
+
+    /* ===========================
+   BUSCADOR GENERAL NAVBAR
+   =========================== */
+
+    .navbar .buscador-general {
+        max-width: 600px;
+        width: 100%;
+    }
+
+        .navbar .buscador-general input[type="text"] {
+            background-color: #111827;
+            border: 1px solid #334155;
+            color: #e5e7eb;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+
+            .navbar .buscador-general input[type="text"]:focus {
+                outline: none;
+                border-color: #0d6efd;
+                box-shadow: 0 0 6px rgba(13, 110, 253, 0.5);
+                background-color: #1e293b;
+            }
+
+    .navbar .btn-borrar-busqueda {
+        border: 1px solid #6b7280 !important;
+        color: #e5e7eb !important;
+        background-color: transparent !important;
+        transition: all 0.2s ease-in-out !important;
+    }
+
+        .navbar .btn-borrar-busqueda:hover {
+            background-color: #374151 !important;
+            border-color: #4b5563 !important;
+        }
+
+/* ===========================
+   BOTONES GENERALES
+   =========================== */
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    transition: all 0.2s ease-in-out;
+}
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+        box-shadow: 0 0 4px rgba(13, 110, 253, 0.4);
+    }
+
+/* Animación para todos los botones */
+button,
+.btn {
+    transition: transform 0.15s ease-in-out;
+}
+
+    button:hover,
+    .btn:hover {
+        transform: scale(1.03);
+    }
+
+/* ===========================
+   TEXTOS GENERALES
+   =========================== */
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+p {
+    color: #e6e6e6;
+}
+
+
+/* ============================
+   LOGO / MARCA NAVBAR
+   ============================ */
+
+.navbar-logo {
+    width: 48px;
+    height: 38px;
+    object-fit: cover;
+    display: block;
+    border-radius: 0 !important; /* 🔥 pisa rounded-circle */
+}
+
+/* Ajuste fino para alinear con texto */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1rem;
+    gap: 6px;
+}
+
+/* En pantallas chicas */
+@media (max-width: 576px) {
+    .navbar-logo {
+        width: 28px;
+        height: 28px;
+    }
+}

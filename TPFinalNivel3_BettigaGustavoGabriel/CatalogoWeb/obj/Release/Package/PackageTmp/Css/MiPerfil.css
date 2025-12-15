@@ -1,0 +1,200 @@
+﻿/* ===========================
+   CONTENEDOR GENERAL
+   =========================== */
+/* Envuelve toda la sección "Mi Perfil" */
+.perfil-container {
+    max-width: 900px;
+    margin: 30px auto 50px auto;
+    padding: 0 15px;
+}
+
+/* Título principal "Mi Perfil" */
+.titulo-perfil {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+/* Tarjeta principal que contiene todo el perfil */
+.perfil-card {
+    background-color: #1E3D6B;
+    border-radius: 12px;
+    border: 1px solid #000000;
+    padding: 24px 22px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+    /* Efecto hover tipo "neón" suave */
+    .perfil-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 25px rgba(13, 110, 253, 0.85), 0 0 50px rgba(13, 110, 253, 0.45), inset 0 0 15px rgba(13, 110, 253, 0.25);
+    }
+
+/* ===========================
+   COLUMNA IZQUIERDA
+   =========================== */
+/* Columna donde va la imagen y tipo de usuario */
+.perfil-col-izquierda {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Imagen de perfil (redonda) */
+.img-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffffff;
+    background-color: #000000;
+}
+
+/* Input File para cambiar la imagen */
+.input-imagen-perfil {
+    width: 100%;
+    background-color: #0b1b33;
+    border: 1px solid #000000;
+    color: #ffffff;
+    font-size: 0.9rem;
+    padding: 6px;
+}
+
+/* Texto "Tipo de usuario:" */
+.etiqueta-tipo-usuario {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f5f5f5;
+    margin-bottom: 2px;
+}
+
+/* Valor del tipo de usuario (Admin / Estándar) */
+.valor-tipo-usuario {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #ffe082;
+}
+
+/* ===========================
+   COLUMNA DERECHA
+   =========================== */
+/* Columna donde van los campos de texto */
+.perfil-col-derecha .form-group {
+    margin-bottom: 12px;
+}
+
+/* Etiquetas de los campos (Nombre, Apellido, etc.) */
+.perfil-col-derecha label {
+    color: #f5f5f5;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+/* TextBox generales de Mi Perfil */
+.perfil-col-derecha .form-control {
+    background-color: #0b1b33;
+    border: 1px solid #000000;
+    color: #ffffff;
+}
+
+    /* Placeholder clarito */
+    .perfil-col-derecha .form-control::placeholder {
+        color: #9ba3c5;
+    }
+
+    /* Foco en inputs */
+    .perfil-col-derecha .form-control:focus {
+        background-color: #0b1b33;
+        border-color: #0d6efd;
+        outline: none;
+        box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.35);
+    }
+
+/* ===========================
+   BLOQUE CONTRASEÑA
+   =========================== */
+/* Contenedor horizontal: textbox + checkbox + botón */
+.fila-password {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* TextBox de contraseña actual */
+.campo-password {
+    flex: 1;
+}
+
+/* Check "Mostrar" */
+.chk-mostrar-password {
+    color: #f5f5f5;
+    font-size: 0.85rem;
+}
+
+/* Botón "Cambiar contraseña" */
+.btn-cambiar-password {
+    white-space: nowrap;
+}
+
+/* Bloque para nueva contraseña y repetir */
+#bloqueCambioPassword .form-group {
+    margin-top: 8px;
+}
+
+/* ===========================
+   BOTONES DE ACCIÓN
+   =========================== */
+/* Contenedor de los botones Guardar / Volver */
+.acciones-perfil {
+    margin-top: 18px;
+}
+
+    /* Botón Guardar cambios */
+    .acciones-perfil .btn-primary {
+        min-width: 150px;
+        font-weight: 600;
+    }
+
+    /* Botón Volver al inicio */
+    .acciones-perfil .btn-outline-light {
+        min-width: 150px;
+        font-weight: 600;
+    }
+
+    /* Animación suave en hover (aprovechando estilo general de botones) */
+    .acciones-perfil .btn {
+        transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+        .acciones-perfil .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.4);
+        }
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 768px) {
+    .perfil-card {
+        padding: 18px 16px;
+    }
+
+    .titulo-perfil {
+        font-size: 1.7rem;
+    }
+
+    .fila-password {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-cambiar-password {
+        width: 100%;
+    }
+}

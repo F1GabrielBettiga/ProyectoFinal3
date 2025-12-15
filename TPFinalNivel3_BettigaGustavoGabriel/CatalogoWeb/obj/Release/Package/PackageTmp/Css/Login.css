@@ -1,0 +1,178 @@
+﻿/* ===========================
+   CONTENEDOR GENERAL LOGIN
+   =========================== */
+
+.login-container {
+    max-width: 420px;
+    margin: 40px auto 50px auto;
+    padding: 0 15px;
+}
+
+/* ===========================
+   TARJETA LOGIN - MISMO EFECTO QUE REGISTRO
+   =========================== */
+
+.login-card {
+    background-color: #1E3D6B;
+    border-radius: 12px;
+    padding: 26px 24px;
+    border: 1px solid #000000;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+    .login-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 25px rgba(13, 110, 253, 0.85), 0 0 50px rgba(13, 110, 253, 0.45), inset 0 0 15px rgba(13, 110, 253, 0.25);
+    }
+
+
+/* ===========================
+   TÍTULO Y SUBTÍTULO
+   =========================== */
+
+/* "Bienvenido", "Iniciar sesión", etc. */
+.login-title {
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+/* Texto de ayuda bajo el título */
+.login-subtitle {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #d0d4e4;
+    margin-bottom: 20px;
+}
+
+
+/* ===========================
+   CAMPOS DE ENTRADA
+   =========================== */
+
+/* Etiquetas "Correo", "Contraseña" */
+.login-card .form-label {
+    color: #f5f5f5;
+    font-weight: 500;
+}
+
+/* Inputs generales */
+.login-card .form-control {
+    background-color: #0b1b33;
+    border: 1px solid #000000;
+    color: #ffffff;
+}
+
+    /* Placeholder clarito */
+    .login-card .form-control::placeholder {
+        color: #9ba3c5;
+    }
+
+    /* Input al hacer foco */
+    .login-card .form-control:focus {
+        background-color: #0b1b33;
+        border-color: #0d6efd;
+        outline: none;
+        box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.35);
+    }
+
+/* Grupo de contraseña (checkbox + ojo) */
+.login-card .input-group-text {
+    background-color: #0b1b33;
+    border: 1px solid #000000;
+    color: #ffffff;
+}
+
+    /* Emoji / texto dentro del input-group */
+    .login-card .input-group-text span {
+        font-size: 0.9rem;
+    }
+
+
+/* ===========================
+   CHECK "MOSTRAR CONTRASEÑA"
+   =========================== */
+
+.chk-mostrar-pass-label {
+    color: #e2e2e2;
+    margin-left: 4px;
+    font-size: 0.85rem;
+}
+
+
+/* ===========================
+   BOTONES
+   =========================== */
+
+/* Botón principal "Iniciar sesión" */
+.login-card .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    width: 100%;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, transform 0.12s ease-in-out;
+}
+
+    .login-card .btn-primary:hover {
+        background-color: #0b5ed7;
+        box-shadow: 0 0 12px rgba(13, 110, 253, 0.65);
+        transform: translateY(-1px);
+    }
+
+/* Link / botón "Crear cuenta" si lo usás como enlace aparte */
+.link-crear-cuenta {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    font-size: 0.9rem;
+    color: #c5d6ff;
+    text-decoration: none;
+}
+
+    .link-crear-cuenta:hover {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+
+/* ===========================
+   MENSAJES DE ERROR / INFO
+   =========================== */
+
+.login-mensaje-error {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #ffb3b3;
+    text-align: center;
+}
+
+/* Si usás ValidationSummary o labels de error, podés colgarlos de acá */
+.validation-summary-errors {
+    color: #ffb3b3;
+    font-size: 0.85rem;
+}
+
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (max-width: 576px) {
+    .login-container {
+        margin-top: 25px;
+    }
+
+    .login-card {
+        padding: 18px 16px;
+    }
+
+    .login-title {
+        font-size: 1.6rem;
+    }
+}

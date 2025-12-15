@@ -121,7 +121,7 @@ namespace CatalogoWeb
             if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
     {
                
-                string fallback = ResolveUrl("~/Images/no-image.png");
+                string fallback = ResolveUrl("/Images/no-image.png");
 
                 // Obtengo el objeto Favorito del ítem
                 Favorito fav = (Favorito)e.Item.DataItem;

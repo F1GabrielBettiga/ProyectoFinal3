@@ -19,7 +19,7 @@ namespace AccesoDatos
         }
         public AccesoDatos()
         {
-            conexion = new SqlConnection("data source=.\\SQLEXPRESS; initial catalog=CATALOGO_WEB_DB; integrated security=sspi");
+            conexion = new SqlConnection("workstation id=CATALOGO_BETTIGA_WEB_DB.mssql.somee.com;packet size=4096;user id=GabrielBettiga_SQLLogin_1;pwd=ni15tbt2sy;data source=CATALOGO_BETTIGA_WEB_DB.mssql.somee.com;persist security info=False;initial catalog=CATALOGO_BETTIGA_WEB_DB;TrustServerCertificate=True");
             comando = new SqlCommand();
             comando.Connection = conexion;
         }

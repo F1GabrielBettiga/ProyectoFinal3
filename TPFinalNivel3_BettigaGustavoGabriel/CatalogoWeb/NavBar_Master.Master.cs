@@ -26,25 +26,34 @@ namespace CatalogoWeb
 
         private void CargarCampos()
         {
-            // Imagen de respaldo (por defecto)
-            string fallback = ResolveUrl("~/Images/no-user.jpg");
+            // Imagen por defecto
+            string fallback = ResolveUrl("/Images/no-user.jpg");
 
             Usuario usuarioLogueado = Session["UsuarioLogueado"] as Usuario;
 
+            // Si no hay usuario en sesión
             if (usuarioLogueado == null)
             {
                 imgBtnUsuario.ImageUrl = fallback;
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(usuarioLogueado.urlImagenPerfil))
-            {
-                imgBtnUsuario.ImageUrl = usuarioLogueado.urlImagenPerfil + "?v=" + DateTime.Now.Ticks;
-            }
-            else
+            // Si NO tiene imagen cargada → default
+            if (string.IsNullOrWhiteSpace(usuarioLogueado.urlImagenPerfil))
             {
                 imgBtnUsuario.ImageUrl = fallback;
+                return;
             }
+
+            // Si tiene imagen → asegurar URL válida
+            string url = usuarioLogueado.urlImagenPerfil.Trim();
+
+            // Por si viene con ~
+            if (url.StartsWith("~"))
+                url = ResolveUrl(url);
+
+            // Cache buster
+            imgBtnUsuario.ImageUrl = url + "?v=" + DateTime.Now.Ticks;
         }
 
 
@@ -70,7 +79,7 @@ namespace CatalogoWeb
                 Session["listaArticulosFiltrada"] = resultado;
             }
 
-            Response.Redirect("~/Default.aspx",false);
+            Response.Redirect("/Default.aspx",false);
         }
 
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)

@@ -62,7 +62,7 @@ namespace CatalogoWeb
         {
             Button btn = (Button)sender;
             string id = btn.CommandArgument;
-            Response.Redirect("DetalleProducto.aspx?id=" + id,false);
+            Response.Redirect("DetalleProducto.aspx?id=" + id, false);
 
         }
         protected void btnCargarMas_Click(object sender, EventArgs e)
@@ -78,41 +78,46 @@ namespace CatalogoWeb
         }
         protected void btnBuscarFiltros_Click(object sender, EventArgs e)
         {
-           
-                int? idCategoria = int.Parse(ddlFiltroCategoria.SelectedValue);
-                int? idMarca = int.Parse(ddlFiltroMarca.SelectedValue);
+            lblErrorFiltro.Visible = false;
+            lblErrorFiltro.Text = "";
 
-                decimal? precioMin = null;
-                decimal? precioMax = null;
-                decimal tempMin;
-                decimal tempMax;
+            int? idCategoria = int.Parse(ddlFiltroCategoria.SelectedValue);
+            int? idMarca = int.Parse(ddlFiltroMarca.SelectedValue);
 
-                ArticuloNegocio negocio = new ArticuloNegocio();
+            decimal? precioMin = null;
+            decimal? precioMax = null;
+            decimal tempMin;
+            decimal tempMax;
 
+            ArticuloNegocio negocio = new ArticuloNegocio();
 
+            // Convertir valor 0 "sin filtro"
+            if (idCategoria == 0)
+                idCategoria = null;
 
-                // Convertir valor 0 "sin filtro"
-                if (idCategoria == 0)
-                    idCategoria = null;
+            if (idMarca == 0)
+                idMarca = null;
 
-                if (idMarca == 0)
-                    idMarca = null;
+            // Precio mínimo
+            if (decimal.TryParse(txtPrecioMin.Text, out tempMin))
+                precioMin = tempMin;
 
-                // Precio mínimo
-                if (decimal.TryParse(txtPrecioMin.Text, out tempMin))
-                { precioMin = tempMin; }
+            // Precio máximo
+            if (decimal.TryParse(txtPrecioMax.Text, out tempMax))
+                precioMax = tempMax;
 
-                // Precio máximo
-                if (decimal.TryParse(txtPrecioMax.Text, out tempMax))
-                { precioMax = tempMax; }
+            //VALIDACIÓN DE RANGO
+            if (precioMin.HasValue && precioMax.HasValue && precioMin >= precioMax)
+            {
+                lblErrorFiltro.Text = "El precio mínimo debe ser menor que el precio máximo.";
+                lblErrorFiltro.Visible = true;
+                return;
+            }
 
-                listaArticulosFiltrada = negocio.FiltrarArticulos(idCategoria, idMarca, precioMin, precioMax);
+            listaArticulosFiltrada = negocio.FiltrarArticulos(idCategoria, idMarca, precioMin, precioMax);
 
-                cantidadMostrada = 0;
-
-                cargarTarjetas(listaArticulosFiltrada);
-            
-
+            cantidadMostrada = 0;
+            cargarTarjetas(listaArticulosFiltrada);
         }
         protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
         {
@@ -156,7 +161,20 @@ namespace CatalogoWeb
                 var articulo = (Articulo)e.Item.DataItem;
                 var img = (Image)e.Item.FindControl("imgProducto");
 
-                string fallback = ResolveUrl("~/Images/no-image.png");
+                string fallback = ResolveUrl("/Images/no-image.png");
+
+
+                // Si el campo está vacío o tiene texto inválido
+                if (string.IsNullOrEmpty(articulo.imagenUrl) ||
+                    articulo.imagenUrl.Length < 5 ||
+                    articulo.imagenUrl.IndexOf("sin_imagen_para_que_de_error", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    articulo.imagenUrl.IndexOf("noimage", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    img.ImageUrl = fallback;
+                    return;
+                }
+
+
 
                 // Asigna la imagen (o fallback si viene null/vacía)
                 img.ImageUrl = string.IsNullOrWhiteSpace(articulo.imagenUrl)
@@ -168,6 +186,7 @@ namespace CatalogoWeb
                     $"this.onerror=null; this.src='{fallback}';";
             }
         }
+
         private void cargarTarjetas(List<Articulo> origen)
         {
             // Estado vacío
@@ -213,7 +232,7 @@ namespace CatalogoWeb
             ddlFiltroCategoria.DataTextField = "descripcion";
             ddlFiltroCategoria.DataValueField = "id";
             ddlFiltroCategoria.DataBind();
-            
+
             ddlFiltroCategoria.Items.Insert(0, new ListItem("Todos", "0"));
 
 

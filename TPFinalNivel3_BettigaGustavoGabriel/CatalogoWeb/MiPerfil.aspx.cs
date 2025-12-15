@@ -120,28 +120,32 @@ namespace CatalogoWeb
 
         private void CargarImagen(Usuario usuario)
         {
-            // Imagen de respaldo (por defecto)
-            string fallback = ResolveUrl("~/Images/no-user.jpg");
+            // Imagen por defecto
+            string fallback = ResolveUrl("/Images/no-user.jpg");
 
-            // 1) Si el usuario vino nulo (no hay nada en Session, por ejemplo)
+            // 1) Usuario nulo
             if (usuario == null)
             {
                 imgPerfil.ImageUrl = fallback;
                 return;
             }
 
-            // 2) Si el campo urlImagenPerfil está vacío o nulo
-            if (string.IsNullOrEmpty(usuario.urlImagenPerfil))
+            // 2) No tiene imagen cargada
+            if (string.IsNullOrWhiteSpace(usuario.urlImagenPerfil))
             {
                 imgPerfil.ImageUrl = fallback;
-            }
-            else
-            {
-                // 3) Si tiene algo, usamos lo que vino
-                imgPerfil.ImageUrl = usuario.urlImagenPerfil;
+                return;
             }
 
+            // 3) Tiene imagen → asegurar URL válida
+            string url = usuario.urlImagenPerfil.Trim();
 
+            // Por si viene con ~
+            if (url.StartsWith("~"))
+                url = ResolveUrl(url);
+
+            // Cache buster para hosting
+            imgPerfil.ImageUrl = url + "?v=" + DateTime.Now.Ticks;
         }
 
 
@@ -216,14 +220,14 @@ namespace CatalogoWeb
                 // ¿HAY ARCHIVO NUEVO?
                 if (fileImagenUsuario.PostedFile != null && fileImagenUsuario.PostedFile.ContentLength > 0 && !string.IsNullOrEmpty(fileImagenUsuario.PostedFile.FileName))
                 {
-                    string rutaFisica = Server.MapPath("~/Images/"); // carpeta interna
+                    string rutaFisica = Server.MapPath("/Images/"); // carpeta interna
                     string nombreArchivo = "perfil-" + user.id + ".jpg";
 
                     // Guarda físicamente en la carpeta del proyecto
                     fileImagenUsuario.PostedFile.SaveAs(rutaFisica + nombreArchivo);
 
                     // Guarda la ruta virtual (accesible desde la web y portable entre equipos)
-                    user.urlImagenPerfil = "~/Images/" + nombreArchivo;
+                    user.urlImagenPerfil = "/Images/" + nombreArchivo;
 
                     // Actualiza el <asp:Image> para la vista previa
                     imgPerfil.ImageUrl = user.urlImagenPerfil + "?v=" + DateTime.Now.Ticks;

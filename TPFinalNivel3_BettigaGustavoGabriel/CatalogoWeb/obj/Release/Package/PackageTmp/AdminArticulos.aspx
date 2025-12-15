@@ -1,0 +1,116 @@
+﻿<%@ Page Title="Administracion de Articulos" Language="C#" MasterPageFile="~/NavBar_Master.Master" AutoEventWireup="true" CodeBehind="AdminArticulos.aspx.cs" Inherits="CatalogoWeb.AdminArticulos" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" type="text/css" href="Css/AdminArticulos.css?v=1" />
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div class="header-admin-articulos">
+        <h1 class="titulo-admin-articulos">Administración de Artículos</h1>
+
+        <asp:Button
+            ID="btnNuevoArticulo"
+            runat="server"
+            Text="Crear artículo"
+            CssClass="btn-crear-articulo"
+            OnClick="btnNuevoArticulo_Click" />
+    </div>
+
+    <!-- BUSCADOR -->
+    <asp:Panel runat="server" DefaultButton="btnBuscarArticulos">
+        <div class="buscador-admin-articulos">
+            <asp:TextBox ID="txtBuscarArticulos" runat="server"
+                CssClass="input-buscar-articulos"
+                Placeholder="Buscar por código, nombre, marca, categoría..." />
+
+            <asp:Button ID="btnBuscarArticulos" runat="server"
+                Text="Buscar"
+                CssClass="btn-buscar-articulos"
+                OnClick="btnBuscarArticulos_Click" />
+
+            <asp:Button ID="btnLimpiarBusquedaArticulos" runat="server"
+                Text="Borrar"
+                CssClass="btn-limpiar-busqueda-articulos"
+                OnClick="btnLimpiarBusquedaArticulos_Click" />
+        </div>
+    </asp:Panel>
+
+    <!-- MENSAJE CUANDO NO HAY ARTÍCULOS -->
+    <asp:Label
+        ID="lblSinArticulos"
+        runat="server"
+        Visible="false"
+        CssClass="mensaje-sin-articulos"
+        Text="No hay artículos cargados todavía.">
+    </asp:Label>
+
+    <asp:GridView
+        ID="dgvArticulos"
+        runat="server"
+        CssClass="tabla-admin-articulos"
+        DataKeyNames="Id"
+        AutoGenerateColumns="false"
+        AllowPaging="true"
+        PageSize="4"
+        OnPageIndexChanging="dgvArticulos_PageIndexChanging"
+        OnRowCommand="dgvArticulos_RowCommand">
+
+        <Columns>
+            <%-- Código --%>
+            <asp:BoundField HeaderText="Código" DataField="codigo" />
+
+            <%-- Nombre --%>
+            <asp:BoundField HeaderText="Nombre" DataField="nombre" />
+
+            <%-- Descripción --%>
+            <asp:BoundField HeaderText="Descripción" DataField="descripcion" />
+
+            <%-- Marca --%>
+            <asp:TemplateField HeaderText="Marca">
+                <ItemTemplate>
+                    <%# Eval("marca.descripcion") %>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+            <%-- Categoría  --%>
+            <asp:TemplateField HeaderText="Categoría">
+                <ItemTemplate>
+                    <%# Eval("categoria.descripcion") %>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+            <%-- URL imagen --%>
+            <asp:BoundField HeaderText="URL Imagen" DataField="imagenUrl" />
+
+            <%-- Precio --%>
+            <asp:BoundField HeaderText="Precio"
+                DataField="precio"
+                DataFormatString="${0:N2}"
+                HtmlEncode="false" />
+
+            <%-- Acción --%>
+            <asp:TemplateField HeaderText="Acción">
+                <ItemTemplate>
+
+                    <asp:Button runat="server"
+                        Text="Editar"
+                        CssClass="btn btn-primary btn-sm"
+                        CommandName="Editar"
+                        CommandArgument='<%# Eval("Id") %>' />
+
+                    <asp:Button runat="server"
+                        Text="Borrar"
+                        CssClass="btn btn-danger btn-sm"
+                        CommandName="Borrar"
+                        CommandArgument='<%# Eval("Id") %>'
+                        OnClientClick="return confirm('¿Seguro que querés eliminar este registro? Esta acción no se puede deshacer.');" />
+
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+
+        <PagerStyle CssClass="pager-admin" HorizontalAlign="Center" />
+    </asp:GridView>
+
+</asp:Content>

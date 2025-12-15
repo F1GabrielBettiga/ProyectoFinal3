@@ -1,0 +1,165 @@
+﻿/* ===========================
+   LAYOUT GENERAL DEL HOME
+   =========================== */
+
+.home-layout {
+    margin-top: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* ===========================
+   PANEL FILTRO (ESTILO ORIGINAL)
+   =========================== */
+
+.filtro-secundario {
+    background-color: #0A192F;
+    border: 1px solid #0d6efd;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+}
+
+.titulo-filtro-secundario {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.filtro-secundario label {
+    color: #dcdcdc;
+    font-weight: 500;
+}
+
+/* Inputs y selects */
+.filtro-secundario .form-select,
+.filtro-secundario .form-control {
+    background-color: #112240 !important;
+    border: 1px solid #1E3D6B !important;
+    color: #ffffff !important;
+}
+
+    .filtro-secundario .form-select:focus,
+    .filtro-secundario .form-control:focus {
+        border-color: #0d6efd !important;
+        box-shadow: 0 0 4px rgba(13,110,253,0.7) !important;
+        outline: none !important;
+    }
+
+    .filtro-secundario .form-control::placeholder {
+        color: #9bb0d2 !important;
+    }
+
+.filtro-secundario .form-select {
+    color-scheme: dark;
+}
+
+.filtro-secundario .btn {
+    min-width: 110px;
+}
+
+/* ===========================
+   GRID DE TARJETAS
+   =========================== */
+
+.productos-grid {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+/* Card */
+.tarjeta-producto {
+    background-color: #1E3D6B;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Imagen */
+.img-producto {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    background-color: #ffffff;
+}
+
+/* Body */
+.tarjeta-producto .card-body {
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Título */
+.titulo-producto {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
+}
+
+/* Descripción (1 sola línea) */
+.descripcion-producto {
+    font-size: 0.85rem;
+    color: #cfd8e3;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3em;
+    margin-bottom: 0.8rem;
+}
+
+/* ===========================
+   FOOTER DE TARJETA
+   =========================== */
+
+.card-footer-producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: #1E3D6B;
+}
+
+    /* Botón */
+    .card-footer-producto .btn {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+
+/* Precio */
+.precio-producto {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #22c55e;
+    white-space: nowrap;
+}
+
+/* ===========================
+   MENSAJE SIN REGISTROS
+   =========================== */
+
+.mensaje-sin-articulos {
+    width: 95%;
+    margin: 14px auto 18px auto;
+    padding: 14px 16px;
+    text-align: center;
+    background: rgba(3, 10, 24, 0.85);
+    border: 1px dashed rgba(13, 110, 253, 0.65);
+    border-radius: 10px;
+    color: #e9ecef;
+    font-weight: 600;
+}
+
+    .mensaje-sin-articulos::before {
+        content: "📦 ";
+    }

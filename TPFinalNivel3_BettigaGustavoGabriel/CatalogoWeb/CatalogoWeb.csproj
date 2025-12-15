@@ -95,7 +95,17 @@
     <Content Include="DetalleProducto.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\art-1.jpg" />
+    <Content Include="Images\art-10.jpg" />
+    <Content Include="Images\art-11.jpg" />
+    <Content Include="Images\art-12.jpg" />
+    <Content Include="Images\art-13.jpg" />
+    <Content Include="Images\art-6.jpg" />
+    <Content Include="Images\art-7.jpg" />
+    <Content Include="Images\art-8.jpg" />
+    <Content Include="Images\art-9.jpg" />
     <Content Include="Images\fav-empty.png" />
+    <Content Include="Images\fav-full.png" />
     <Content Include="Images\favicon.png" />
     <Content Include="Images\Imagen-Pagina.png" />
     <Content Include="Images\no-image.png" />

@@ -1,0 +1,136 @@
+﻿/* =========================== LAYOUT GENERAL PANTALLA ERROR =========================== */
+
+.error-page-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 16px 24px;
+    background: rgba(0, 0, 0, 0.35);
+    overflow-y: auto;
+}
+
+/* =========================== TARJETA =========================== */
+
+.error-card {
+    width: 100%;
+    max-width: 650px;
+    max-height: calc(100vh - 120px);
+    overflow: hidden;
+    background: radial-gradient(circle at top left, #182b4d 0%, #071225 45%, #020713 100%);
+    border-radius: 16px;
+    padding: 32px 30px 28px 30px;
+    border: 1px solid rgba(13, 110, 253, 0.7);
+    box-shadow: 0 0 18px rgba(13, 110, 253, 0.3), 0 8px 25px rgba(0, 0, 0, 0.65);
+    color: #e9ecef;
+    text-align: center;
+}
+
+/* =========================== ICONO =========================== */
+
+.error-icon {
+    font-size: 70px;
+    line-height: 1;
+    margin-bottom: 18px;
+    color: #ff4b6b;
+    text-shadow: 0 0 10px rgba(255, 75, 107, 0.75);
+}
+
+/* =========================== TÍTULO =========================== */
+
+.error-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+/* =========================== MENSAJE USUARIO =========================== */
+
+.error-message-main {
+    font-size: 1.05rem;
+    color: #ced4da;
+    margin-bottom: 22px;
+}
+
+/* =========================== DETALLE TÉCNICO =========================== */
+
+.error-technical-panel {
+    margin: 10px auto 24px auto;
+    padding: 14px 24px;
+    background: rgba(3, 10, 24, 0.9);
+    border-radius: 10px;
+    border: 1px solid rgba(220, 53, 69, 0.7);
+    text-align: left;
+    max-height: 40vh;
+    overflow-y: auto;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.65);
+}
+
+.error-technical-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    color: #ffb3bd;
+}
+
+.error-technical-text {
+    display: block;
+    font-family: Consolas, Menlo, Monaco, monospace;
+    font-size: 0.87rem;
+    color: #f1f3f5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    padding-right: 8px;
+}
+
+/* =========================== SCROLLBAR DETALLE =========================== */
+
+.error-technical-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.error-technical-panel::-webkit-scrollbar-track {
+    background: #050b16;
+}
+
+.error-technical-panel::-webkit-scrollbar-thumb {
+    background: #173d72;
+    border-radius: 4px;
+}
+
+/* =========================== BOTÓN VOLVER =========================== */
+
+.error-actions {
+    margin-top: 4px;
+}
+
+.btn-error-home {
+    padding: 0.55rem 1.4rem;
+    border-radius: 10px;
+    border: 1px solid #0d6efd;
+    background: linear-gradient(135deg, #0d6efd, #1a86ff);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.98rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+    .btn-error-home:hover {
+        background: linear-gradient(135deg, #0b5ed7, #1776e0);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-error-home:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.45);
+    }

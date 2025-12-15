@@ -1,0 +1,12 @@
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\bin\Release\AccesoDatos.dll
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\bin\Release\AccesoDatos.pdb
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\obj\Release\AccesoDatos.csproj.AssemblyReference.cache
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\obj\Release\AccesoDatos.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\obj\Release\AccesoDatos.dll
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\obj\Release\AccesoDatos.pdb
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\bin\Release\AccesoDatos.dll
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\bin\Release\AccesoDatos.pdb
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\obj\Release\AccesoDatos.csproj.AssemblyReference.cache
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\obj\Release\AccesoDatos.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\obj\Release\AccesoDatos.dll
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\AccesoDatos\obj\Release\AccesoDatos.pdb

@@ -1,0 +1,22 @@
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\Negocio.dll
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\Negocio.pdb
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\AccesoDatos.dll
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\Dominio.dll
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\AccesoDatos.pdb
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\Dominio.pdb
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.csproj.AssemblyReference.cache
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.csproj.Up2Date
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.dll
+C:\Users\Gabriel Bettiga\Documents\Curso Maxi Programa\Nivel 3\ProyectoFinal3\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.pdb
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\Negocio.dll
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\Negocio.pdb
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\AccesoDatos.dll
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\Dominio.dll
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\AccesoDatos.pdb
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\bin\Release\Dominio.pdb
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.csproj.AssemblyReference.cache
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.csproj.Up2Date
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.dll
+C:\Users\Gabriel Bettiga\Desktop\TPFinalNivel3_BettigaGustavoGabriel\Negocio\obj\Release\Negocio.pdb

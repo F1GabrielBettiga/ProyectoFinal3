@@ -251,12 +251,12 @@ namespace CatalogoWeb
                         ? user.id
                         : negocio.obtenerProximoId();
 
-                    string rutaFisica = Server.MapPath("~/Images/");
+                    string rutaFisica = Server.MapPath("/Images/");
                     string nombreArchivo = $"perfil-{idParaNombre}.jpg";
 
                     fileImagenUsuario.PostedFile.SaveAs(rutaFisica + nombreArchivo);
 
-                    user.urlImagenPerfil = $"~/Images/{nombreArchivo}";
+                    user.urlImagenPerfil = $"/Images/{nombreArchivo}";
                     imgUsuario.ImageUrl = user.urlImagenPerfil + "?v=" + DateTime.Now.Ticks;
                 }
                 else
@@ -292,7 +292,7 @@ namespace CatalogoWeb
         private void CargarImagen(Usuario usuario)
         {
             // Imagen de respaldo (por defecto)
-            string fallback = ResolveUrl("~/Images/no-user.jpg");
+            string fallback = ResolveUrl("/Images/no-user.jpg");
 
             // 1) Si el usuario vino nulo (no hay nada en Session, por ejemplo)
             if (usuario == null)

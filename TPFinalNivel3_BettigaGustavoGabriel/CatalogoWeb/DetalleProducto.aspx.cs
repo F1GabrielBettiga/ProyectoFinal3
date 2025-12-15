@@ -37,7 +37,7 @@ namespace CatalogoWeb
         private void CargarImagen(Articulo articulo)
         {
             // Imagen de respaldo
-            string fallback = ResolveUrl("~/Images/no-image.png");
+            string fallback = ResolveUrl("/Images/no-image.png");
 
             // Si el campo está vacío o tiene texto inválido
             if (string.IsNullOrEmpty(articulo.imagenUrl) ||
@@ -123,13 +123,13 @@ namespace CatalogoWeb
                 bool esFavorito = favNegocio.EsFavorito(user.id, artId);
 
                 btnFavorito.ImageUrl = esFavorito
-                    ? "~/Images/fav-full.png"   // ❤️ está en favoritos
-                    : "~/Images/fav-empty.png"; // 🤍 no está en favoritos
+                    ? "/Images/fav-full.png"   // ❤️ está en favoritos
+                    : "/Images/fav-empty.png"; // 🤍 no está en favoritos
             }
             else
             {
                 // Si no está logueado, siempre gris
-                btnFavorito.ImageUrl = "~/Images/fav-empty.png";
+                btnFavorito.ImageUrl = "/Images/fav-empty.png";
             }
 
         }
