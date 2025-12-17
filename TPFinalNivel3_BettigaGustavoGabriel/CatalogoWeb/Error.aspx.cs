@@ -14,7 +14,6 @@ namespace CatalogoWeb
             if (!IsPostBack)
                 CargarMensajesDeError();
         }
-
         private void CargarMensajesDeError()
         {
             // Mensaje amigable para el usuario

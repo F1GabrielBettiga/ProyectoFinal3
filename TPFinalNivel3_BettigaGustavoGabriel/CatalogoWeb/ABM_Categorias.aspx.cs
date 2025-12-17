@@ -81,7 +81,6 @@ namespace CatalogoWeb
 
 
         }
-
         private void actualizarCategoria()
         {
             try
@@ -110,8 +109,6 @@ namespace CatalogoWeb
                 RedirigirConError("Error al actualizar la categoría.", ex);
             }
         }
-
-
         private void CargarDetalles(int id)
         {
             try
@@ -142,8 +139,6 @@ namespace CatalogoWeb
                 throw ex;
             }
         }
-
-
         private void agregarCategoria()
         {
             try
@@ -172,18 +167,15 @@ namespace CatalogoWeb
             }
 
         }
-
         protected void btnCancelarCategoria_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdminCategorias.aspx", false);
         }
-
-
         private bool validacionesCamposObligatorios()
         {
             lblErrorCategoria.Visible = false;
 
-            // 1) Nombre obligatorio
+            //Nombre obligatorio
             if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
             {
                 lblErrorCategoria.Text = "El nombre de la categoría es obligatorio.";
@@ -191,7 +183,7 @@ namespace CatalogoWeb
                 return false;
             }
 
-            // 2) Solo letras
+            // Solo letras
             if (!System.Text.RegularExpressions.Regex.IsMatch(
                     txtNombreCategoria.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$"))
             {
@@ -202,7 +194,6 @@ namespace CatalogoWeb
 
             return true; 
         }
-
         bool ExisteDescripcion(string descripcion)
         {
             CategoriaNegocio negocio = new CategoriaNegocio();
@@ -215,7 +206,6 @@ namespace CatalogoWeb
 
             return false;
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

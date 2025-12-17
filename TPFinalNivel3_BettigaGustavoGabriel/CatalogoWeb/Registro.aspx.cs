@@ -16,7 +16,6 @@ namespace CatalogoWeb
         {
 
         }
-
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
             if (validarCamposObligatorios())
@@ -36,7 +35,6 @@ namespace CatalogoWeb
             
 
         }
-
         private void crearCuenta()
         {
             Usuario usuario = new Usuario();
@@ -76,7 +74,6 @@ namespace CatalogoWeb
 
 
         }
-
         private void validarUsuario(string mail, string password)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
@@ -97,7 +94,6 @@ namespace CatalogoWeb
 
 
         }
-
         private bool validarCamposObligatorios()
         {
             lblErrorRegistro.Visible = false;
@@ -162,7 +158,6 @@ namespace CatalogoWeb
 
             return true;
         }
-
         bool ExisteMail(string email)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
@@ -175,7 +170,6 @@ namespace CatalogoWeb
 
             return false;
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

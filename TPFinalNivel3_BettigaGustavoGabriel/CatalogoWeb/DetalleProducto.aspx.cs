@@ -30,10 +30,6 @@ namespace CatalogoWeb
 
 
         }
-
-
-
-
         private void CargarImagen(Articulo articulo)
         {
             // Imagen de respaldo
@@ -75,7 +71,6 @@ namespace CatalogoWeb
             imgProducto.Attributes["onerror"] =
                 $"this.onerror=null; this.src='{fallback}';";
         }
-
         private void CargarDetalles(int id)
         {
             try
@@ -112,7 +107,6 @@ namespace CatalogoWeb
                 RedirigirConError("Ocurrió un error al cargar los detalles del producto.", ex);
             }
         }
-
         private void chequearFavorito(int artId)
         {
             if (Session["UsuarioLogueado"] != null)
@@ -123,8 +117,8 @@ namespace CatalogoWeb
                 bool esFavorito = favNegocio.EsFavorito(user.id, artId);
 
                 btnFavorito.ImageUrl = esFavorito
-                    ? "/Images/fav-full.png"   // ❤️ está en favoritos
-                    : "/Images/fav-empty.png"; // 🤍 no está en favoritos
+                    ? "/Images/fav-full.png"   // está en favoritos
+                    : "/Images/fav-empty.png"; //no está en favoritos
             }
             else
             {
@@ -133,7 +127,6 @@ namespace CatalogoWeb
             }
 
         }
-
         protected void btnAgregarFavorito_Click(object sender, ImageClickEventArgs e)
         {
             if (Session["UsuarioLogueado"] == null)
@@ -147,7 +140,6 @@ namespace CatalogoWeb
 
             }
         }
-
         private void agregarQuitarFavorito()
         {
             Usuario userLogueado = (Usuario)Session["UsuarioLogueado"];

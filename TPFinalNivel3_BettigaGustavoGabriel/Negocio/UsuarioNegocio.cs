@@ -137,7 +137,7 @@ namespace Negocio
 
             try
             {
-                //"urlImagenPerfil = @UrlImagenPerfil " 
+                
                 datos.setearConsulta(
                     "UPDATE USERS SET " +
                     "email = @Email, " +

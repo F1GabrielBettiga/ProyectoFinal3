@@ -340,7 +340,7 @@ namespace Negocio
 
             try
             {
-                // 1) Base de la consulta: LEFT JOIN para traer también los que NO tienen marca/categoría
+                
                 string query = @"
         SELECT  A.Id,
                 A.Codigo,
@@ -357,7 +357,7 @@ namespace Negocio
         LEFT JOIN MARCAS     M ON A.IdMarca     = M.Id
         WHERE 1 = 1";
 
-                // 2) WHERE dinámico
+               
                 if (idCategoria.HasValue && idCategoria.Value > 0)
                 {
                     query += " AND A.IdCategoria = @idCategoria";
@@ -380,10 +380,10 @@ namespace Negocio
 
                 query += " ORDER BY A.Nombre ASC";
 
-                // 3) Seteo consulta
+                
                 datos.setearConsulta(query);
 
-                // 4) Parámetros
+                
                 if (idCategoria.HasValue && idCategoria.Value > 0)
                     datos.agregarParametro("@idCategoria", idCategoria.Value);
 
@@ -396,7 +396,7 @@ namespace Negocio
                 if (precioMax.HasValue)
                     datos.agregarParametro("@precioMax", precioMax.Value);
 
-                // 5) Ejecutar y mapear
+                
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -443,7 +443,7 @@ namespace Negocio
 
             try
             {
-                // Si viene vacío, devuelvo lista vacía (como ya tenías)
+                // Si viene vacío, devuelvo lista vacía 
                 if (string.IsNullOrWhiteSpace(texto))
                     return new List<Articulo>();
 

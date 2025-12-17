@@ -32,7 +32,6 @@ namespace CatalogoWeb
 
         }
 
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             if (Session["UsuarioEditar"] != null)
@@ -88,14 +87,12 @@ namespace CatalogoWeb
 
 
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Session.Remove("UsuarioEditar");
             Response.Redirect("AdminUsuarios.aspx", false);
 
         }
-
         void actualizarUsuario()
         {
             Usuario usuario = new Usuario();
@@ -148,7 +145,6 @@ namespace CatalogoWeb
                 RedirigirConError("Error al actualizar el usuario.", ex);
             }
         }
-
         void agregarUsuario()
         {
             Usuario usuario = new Usuario();
@@ -197,9 +193,6 @@ namespace CatalogoWeb
                RedirigirConError("Error al agregar el usuario.", ex);
             }
         }
-
-
-
         private void CargarDetalles(int id)
         {
             try
@@ -234,7 +227,6 @@ namespace CatalogoWeb
                 throw ex;
             }
         }
-
         private void guardarImagenDePerfil(Usuario user)
         {
             try
@@ -284,43 +276,37 @@ namespace CatalogoWeb
                 RedirigirConError("Error al guardar la imagen de perfil.", ex);
             }
         }
-
-
-
-
-
         private void CargarImagen(Usuario usuario)
         {
             // Imagen de respaldo (por defecto)
             string fallback = ResolveUrl("/Images/no-user.jpg");
 
-            // 1) Si el usuario vino nulo (no hay nada en Session, por ejemplo)
+            // Si el usuario vino nulo (no hay nada en Session, por ejemplo)
             if (usuario == null)
             {
                 imgUsuario.ImageUrl = fallback;
                 return;
             }
 
-            // 2) Si el campo urlImagenPerfil está vacío o nulo
+            // Si el campo urlImagenPerfil está vacío o nulo
             if (string.IsNullOrEmpty(usuario.urlImagenPerfil))
             {
                 imgUsuario.ImageUrl = fallback;
             }
             else
             {
-                // 3) Si tiene algo, usamos lo que vino
+                // Si tiene algo, usamos lo que vino
                 imgUsuario.ImageUrl = usuario.urlImagenPerfil;
             }
 
 
         }
-
         private bool validacionesCamposObligatorios()
         {
             lblError.Visible = false;
 
             
-            // 1) EMAIL 
+            // EMAIL 
             
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
@@ -338,7 +324,7 @@ namespace CatalogoWeb
             }
 
            
-            // 2) CONTRASEÑA 
+            //  CONTRASEÑA 
           
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
@@ -356,7 +342,7 @@ namespace CatalogoWeb
             }
 
             
-            // 3) NOMBRE 
+            // NOMBRE 
            
             if (!string.IsNullOrWhiteSpace(txtNombre.Text))
             {
@@ -370,7 +356,7 @@ namespace CatalogoWeb
             }
 
            
-            // 4) APELLIDO 
+            // APELLIDO 
            
             if (!string.IsNullOrWhiteSpace(txtApellido.Text))
             {
@@ -385,7 +371,6 @@ namespace CatalogoWeb
 
             return true; // Todo OK
         }
-
         bool ExisteMail(string email)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
@@ -398,7 +383,6 @@ namespace CatalogoWeb
 
             return false;
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

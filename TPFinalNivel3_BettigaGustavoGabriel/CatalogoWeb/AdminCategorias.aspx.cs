@@ -24,7 +24,6 @@ namespace CatalogoWeb
         {
             Response.Redirect("ABM_Categorias.aspx",false);
         }
-
         protected void dgvCategorias_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvCategorias.PageIndex = e.NewPageIndex;
@@ -36,7 +35,6 @@ namespace CatalogoWeb
             dgvCategorias.DataBind();
 
         }
-
         protected void dgvCategorias_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
@@ -57,9 +55,6 @@ namespace CatalogoWeb
 
 
         }
-
-
-
         private void cargarGrid()
         {
             try
@@ -84,7 +79,6 @@ namespace CatalogoWeb
                 RedirigirConError("No se pudieron cargar las categorías.", ex);
             }
         }
-
         private void eliminarCategoria(int id)
         {
             CategoriaNegocio negocioCategoria = new CategoriaNegocio();
@@ -99,7 +93,6 @@ namespace CatalogoWeb
                 RedirigirConError("No se pudo eliminar la categoría.", ex);
             }
         }
-
         private void BuscarCategoria()
         {
             string texto = txtBuscarCategoria.Text.Trim();
@@ -119,18 +112,15 @@ namespace CatalogoWeb
 
 
         }
-
         protected void btnBuscarCategoria_Click(object sender, EventArgs e)
         {
             BuscarCategoria();
         }
-
         protected void btnLimpiarCategoria_Click(object sender, EventArgs e)
         {
             txtBuscarCategoria.Text = string.Empty;
             cargarGrid();
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

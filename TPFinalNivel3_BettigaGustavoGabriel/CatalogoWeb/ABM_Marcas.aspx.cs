@@ -82,7 +82,6 @@ namespace CatalogoWeb
 
 
         }
-
         private void actualizarMarca()
         {
             try
@@ -110,8 +109,6 @@ namespace CatalogoWeb
                 RedirigirConError("Error al actualizar la marca.", ex);
             }
         }
-
-
         private void CargarDetalles(int id)
         {
             try
@@ -143,7 +140,6 @@ namespace CatalogoWeb
                 RedirigirConError("Error al cargar los detalles de la marca.", ex);
             }
         }
-
         private void agregarMarca()
         {
 
@@ -173,17 +169,15 @@ namespace CatalogoWeb
             }
 
         }
-
         protected void btnCancelarMarca_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdminMarcas.aspx", false);
         }
-
         private bool validacionesCamposObligatorios()
         {
             lblErrorMarca.Visible = false;
 
-            // 1) Nombre obligatorio
+            // Nombre obligatorio
             if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
             {
                 lblErrorMarca.Text = "El nombre de la marca es obligatorio.";
@@ -191,7 +185,7 @@ namespace CatalogoWeb
                 return false;
             }
 
-            // 2) Solo letras
+            // Solo letras
             if (!System.Text.RegularExpressions.Regex.IsMatch(
                     txtNombreMarca.Text, @"^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$"))
             {
@@ -202,7 +196,6 @@ namespace CatalogoWeb
 
             return true; 
         }
-
         bool ExisteDescripcion(string descripcion)
         {
             MarcaNegocio negocio = new MarcaNegocio();
@@ -215,7 +208,6 @@ namespace CatalogoWeb
 
             return false;
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

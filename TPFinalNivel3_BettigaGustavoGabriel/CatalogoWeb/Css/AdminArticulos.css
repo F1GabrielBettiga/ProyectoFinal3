@@ -9,9 +9,9 @@
     margin: 20px auto 25px auto;
     display: flex;
     align-items: center;
-    justify-content: center; /* centra el H1 */
-    position: relative; /* permite ubicar el botón */
-    padding-right: 160px; /* espacio para que el botón no invada el título */
+    justify-content: center; 
+    position: relative; 
+    padding-right: 160px; 
 }
 
 /* Ajusto el título dentro del header */
@@ -29,14 +29,14 @@
    =========================== */
 
 .btn-crear-articulo {
-    position: absolute; /* fija el botón dentro del header */
-    right: 0; /* alineado a la derecha */
-    top: 50%; /* centrado verticalmente */
+    position: absolute; 
+    right: 0; 
+    top: 50%; 
     transform: translateY(-50%);
     padding: 0.45rem 1.1rem;
     border-radius: 6px;
     border: 1px solid #198754;
-    background: #1fb06a; /* verde que combina con la pantalla */
+    background: #1fb06a; 
     color: #ffffff;
     font-weight: 600;
     font-size: 0.95rem;
@@ -68,12 +68,12 @@
 .tabla-admin-articulos {
     width: 95%;
     margin: 0 auto 20px auto;
-    background-color: #1E3D6B; /* color base de la tabla */
-    border: 1px solid #000000; /* borde negro */
+    background-color: #1E3D6B; 
+    border: 1px solid #000000; 
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45); /* leve glow alrededor */
-    overflow: hidden; /* el borde redondeado también afecta al contenido */
-    table-layout: fixed; /* reparte el ancho según las columnas que marcamos */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45); 
+    overflow: hidden; 
+    table-layout: fixed; 
 }
 
     /* Cabecera */
@@ -89,7 +89,7 @@
         text-align: left;
     }
 
-    /* Filas base (impares) – mismo azul que la cabecera */
+    /* Filas base (impares)  */
     .tabla-admin-articulos td {
         padding: 0.6rem 1rem;
         color: #e6e6e6;
@@ -100,7 +100,7 @@
         text-overflow: ellipsis;
     }
 
-    /* Filas rayadas (pares) – fondo negro */
+    /* Filas rayadas (pares)*/
     .tabla-admin-articulos tbody tr:nth-child(even) td {
         background-color: #000000;
     }
@@ -117,17 +117,6 @@
         text-align: center;
     }
 
-    /* ===========================
-   ANCHOS DE COLUMNAS
-   (1 = Código, 2 = Nombre, 3 = Descripción, 4 = Marca,
-    5 = Categoría, 6 = URL, 7 = Precio, 8 = Acción)
-   =========================== */
-
-    /* ===========================
-   ANCHOS DE COLUMNAS
-   (1 = Código, 2 = Nombre, 3 = Descripción, 4 = Marca,
-    5 = Categoría, 6 = URL, 7 = Precio, 8 = Acción)
-   =========================== */
 
     /* Código */
     .tabla-admin-articulos th:nth-child(1),
@@ -159,7 +148,7 @@
         width: 9%;
     }
 
-    /* URL Imagen (un pelito más grande para compensar) */
+    /* URL Imagen  */
     .tabla-admin-articulos th:nth-child(6),
     .tabla-admin-articulos td:nth-child(6) {
         width: 8%;
@@ -171,7 +160,7 @@
         width: 8%;
     }
 
-    /* Acción – más ancha para que entren Editar y Borrar */
+    /* Acción  */
     .tabla-admin-articulos th:nth-child(8),
     .tabla-admin-articulos td:nth-child(8) {
         width: 17%;
@@ -179,7 +168,7 @@
 
 
 
-    /* Acción (ya no corta la palabra) */
+  
 
 
     /* ===========================

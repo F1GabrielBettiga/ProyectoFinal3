@@ -167,7 +167,7 @@
         font-weight: 600;
     }
 
-    /* Animación suave en hover (aprovechando estilo general de botones) */
+    /* Animación suave en hover  */
     .acciones-perfil .btn {
         transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }

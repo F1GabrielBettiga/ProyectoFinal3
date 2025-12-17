@@ -23,7 +23,6 @@ namespace CatalogoWeb
             Session.Clear(); //BORRAMOS TODO PORQUE NO QUEREMOS NADA QUE CORRESPONDA A ESE USUARIO
             Response.Redirect("Login.aspx",false);
         }
-
         private void CargarCampos()
         {
             // Imagen por defecto
@@ -55,14 +54,10 @@ namespace CatalogoWeb
             // Cache buster
             imgBtnUsuario.ImageUrl = url + "?v=" + DateTime.Now.Ticks;
         }
-
-
-
         protected void btnBuscarGlobal_Click(object sender, EventArgs e)
         {
             BuscarDesdeNav();
         }
-
         private void BuscarDesdeNav()
         {
             string texto = txtBuscarGlobal.Text.Trim();
@@ -81,14 +76,12 @@ namespace CatalogoWeb
 
             Response.Redirect("/Default.aspx",false);
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;
             Session["ErrorTecnico"] = ex != null ? ex.ToString() : null;
             Response.Redirect("Error.aspx", false);
         }
-
         private void validarSesionActiva()
         {
             //Con este if hacemos que pueda ingresar a cualquiera de esas 4 paginas sin logearse, pero no  a las demas 

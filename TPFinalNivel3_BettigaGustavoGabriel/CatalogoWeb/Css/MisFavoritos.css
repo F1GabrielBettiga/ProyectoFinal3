@@ -21,7 +21,7 @@
 
 
 /* ===========================
-   CARD FAVORITO (fila tipo MercadoLibre)
+   CARD FAVORITO 
    =========================== */
 
 .favorito-item {
@@ -75,7 +75,7 @@
     font-size: 0.9rem;
     color: #c9c9c9;
     margin-bottom: 0.6rem;
-    max-height: 3.6em; /* 2–3 líneas */
+    max-height: 3.6em; 
     overflow: hidden;
 }
 
@@ -92,14 +92,13 @@
 .favorito-precio {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #4caf50; /* verde precio */
+    color: #4caf50;
 }
 
 .icono-favorito {
     width: 32px;
     height: 32px;
-    cursor: pointer; /* por ahora solo visual,
-                        pero ya queda listo para el click futuro */
+    cursor: pointer; 
 }
 
 
@@ -108,7 +107,7 @@
    RESPONSIVE
    =========================== */
 
-/* En pantallas chicas, alineamos todo al centro y se apilan bonito */
+
 @media (max-width: 768px) {
 
     .favorito-item {

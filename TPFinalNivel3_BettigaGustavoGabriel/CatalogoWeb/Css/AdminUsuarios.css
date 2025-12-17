@@ -7,12 +7,12 @@
     margin: 20px auto 25px auto;
     display: flex;
     align-items: center;
-    justify-content: center; /* centra el H1 */
-    position: relative; /* permite ubicar el botón */
-    padding-right: 160px; /* espacio para que el botón no invada el título */
+    justify-content: center; 
+    position: relative; 
+    padding-right: 160px; 
 }
 
-/* Ajusto el título dentro del header */
+
 .titulo-admin-usuarios {
     margin: 0;
     font-size: 2rem;
@@ -27,14 +27,14 @@
    =========================== */
 
 .btn-crear-usuario {
-    position: absolute; /* fija el botón dentro del header */
-    right: 0; /* alineado a la derecha */
-    top: 50%; /* centrado verticalmente */
+    position: absolute; 
+    right: 0; 
+    top: 50%; 
     transform: translateY(-50%);
     padding: 0.45rem 1.1rem;
     border-radius: 6px;
     border: 1px solid #198754;
-    background: #1fb06a; /* verde que combina con la pantalla */
+    background: #1fb06a; 
     color: #ffffff;
     font-weight: 600;
     font-size: 0.95rem;
@@ -67,12 +67,12 @@
 .tabla-admin-usuarios {
     width: 95%;
     margin: 0 auto 20px auto;
-    background-color: #1E3D6B; /* color base de la tabla */
-    border: 1px solid #000000; /* borde negro */
+    background-color: #1E3D6B;
+    border: 1px solid #000000; 
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45); /* leve glow alrededor */
-    overflow: hidden; /* el borde redondeado también afecta al contenido */
-    table-layout: fixed; /* reparte el ancho según las columnas que marcamos */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45); 
+    overflow: hidden; 
+    table-layout: fixed; 
 }
 
     /* Cabecera */
@@ -88,7 +88,7 @@
         text-align: left;
     }
 
-    /* Filas base (impares) – mismo azul que la cabecera */
+    /* Filas base */
     .tabla-admin-usuarios td {
         padding: 0.6rem 1rem;
         color: #e6e6e6;
@@ -99,28 +99,24 @@
         text-overflow: ellipsis;
     }
 
-    /* Filas rayadas (pares) – fondo negro */
+    /* Filas rayadas */
     .tabla-admin-usuarios tbody tr:nth-child(even) td {
         background-color: #000000;
     }
 
-    /* Hover sobre cualquier fila */
+    /* Hover*/
     .tabla-admin-usuarios tbody tr:hover td {
         background-color: #2a4c82 !important;
         transition: background-color 0.15s ease-in-out;
     }
 
-    /* Columna de Acción centrada */
+    /* Columna de Acción */
     .tabla-admin-usuarios td:last-child,
     .tabla-admin-usuarios th:last-child {
         text-align: center;
     }
 
-    /* ===========================
-   ANCHOS DE COLUMNAS
-   (1 = Id, 2 = Nombre, 3 = Apellido,
-    4 = Email, 5 = Usuario, 6 = Acción)
-   =========================== */
+
 
     /* Id */
     .tabla-admin-usuarios th:nth-child(1),

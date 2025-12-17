@@ -87,13 +87,11 @@ namespace CatalogoWeb
 
 
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdminArticulos.aspx");
 
         }
-
         private void CargarDetalles(int id)
         {
             try
@@ -142,7 +140,6 @@ namespace CatalogoWeb
                 RedirigirConError("Error al cargar los detalles del artículo.", ex);
             }
         }
-
         private void agregarArticulo()
         {
             Articulo articulo = new Articulo();
@@ -205,15 +202,6 @@ namespace CatalogoWeb
                 RedirigirConError("Error al agregar el artículo.", ex);
             }
         }
-
-
-
-
-
-
-
-
-
         private void CargarImagen(Articulo articulo)
         {
             // Imagen de respaldo
@@ -255,7 +243,6 @@ namespace CatalogoWeb
             imgArticulo.Attributes["onerror"] =
                 $"this.onerror=null; this.src='{fallback}';";
         }
-
         private void guardarImagenDeArticulo(Articulo art)
         {
             try
@@ -267,26 +254,26 @@ namespace CatalogoWeb
                 {
                     ArticuloNegocio negocio = new ArticuloNegocio();
 
-                    // 👉 EXISTE → USAR ID
-                    // 👉 NUEVO → USAR PRÓXIMO ID
+                    // EXISTE → USAR ID
+                    // NUEVO → USAR PRÓXIMO ID
                     int idParaNombre = art.id > 0
                         ? art.id
                         : negocio.obtenerProximoId();
 
-                    // ✔ SOLO ACÁ SE USA ~
+                    // SOLO ACÁ SE USA ~
                     string rutaFisica = Server.MapPath("~/Images/");
                     string nombreArchivo = $"art-{idParaNombre}.jpg";
 
                     txtImagen.PostedFile.SaveAs(rutaFisica + nombreArchivo);
 
-                    // ❌ SIN ~ EN LA URL
+                    //  SIN ~ EN LA URL
                     art.imagenUrl = $"/Images/{nombreArchivo}";
                     imgArticulo.ImageUrl = art.imagenUrl + "?v=" + DateTime.Now.Ticks;
 
                     return;
                 }
 
-                // 2) NO SE SUBIÓ IMAGEN → MANTENER LA ACTUAL
+                //  NO SE SUBIÓ IMAGEN → MANTENER LA ACTUAL
                 string urlActual = imgArticulo.ImageUrl?.Split('?')[0];
 
                 if (string.IsNullOrWhiteSpace(urlActual) ||
@@ -304,8 +291,6 @@ namespace CatalogoWeb
                 RedirigirConError("Error al guardar la imagen del artículo.", ex);
             }
         }
-
-
         void CargarDdlMarcas()
         {
             MarcaNegocio negocio = new MarcaNegocio();
@@ -319,7 +304,6 @@ namespace CatalogoWeb
             ddlMarca.DataValueField = "id";
             ddlMarca.DataBind();
         }
-
         void CargarDdlCategorias()
         {
             CategoriaNegocio negocio = new CategoriaNegocio();
@@ -333,7 +317,6 @@ namespace CatalogoWeb
             ddlCategoria.DataValueField = "id";
             ddlCategoria.DataBind();
         }
-
         void actualizarArticulo()
         {
             Articulo articulo = new Articulo();
@@ -399,13 +382,12 @@ namespace CatalogoWeb
                 RedirigirConError("Error al actualizar el artículo.", ex);
             }
         }
-
         private bool validarCamposObligatorios()
         {
             lblError.Visible = false;
 
             
-            // 1) CÓDIGO
+            // CÓDIGO
             
             if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
@@ -422,7 +404,7 @@ namespace CatalogoWeb
             }
 
           
-            // 2) NOMBRE 
+            //  NOMBRE 
             
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
@@ -434,7 +416,7 @@ namespace CatalogoWeb
             
 
           
-            // 3) PRECIO 
+            // PRECIO 
           
             if (string.IsNullOrWhiteSpace(txtPrecio.Text))
             {
@@ -452,7 +434,6 @@ namespace CatalogoWeb
 
             return true; 
         }
-
         bool ExisteCodigo(string codigo)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
@@ -465,7 +446,6 @@ namespace CatalogoWeb
 
             return false;
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

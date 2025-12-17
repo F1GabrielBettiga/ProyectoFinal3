@@ -38,14 +38,11 @@ namespace CatalogoWeb
                 lblError.Visible = true;
             }
         }
-
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
             Response.Redirect("Registro.aspx",false);
 
         }
-   
-
         private void validarUsuario()
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
@@ -71,7 +68,6 @@ namespace CatalogoWeb
 
 
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

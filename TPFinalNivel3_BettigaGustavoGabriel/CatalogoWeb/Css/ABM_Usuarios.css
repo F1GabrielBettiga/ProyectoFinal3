@@ -30,7 +30,7 @@
    =========================== */
 
 .abm-usuario-card {
-    background-color: #1E3D6B; /* mismo azul que el resto del sitio */
+    background-color: #1E3D6B; 
     border-radius: 10px;
     padding: 20px 22px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
@@ -51,7 +51,7 @@
         font-weight: 500;
     }
 
-    /* TextBox del ID (readonly) */
+    /* TextBox del ID  */
     .fila-id-usuario .txt-id-usuario {
         background-color: #0b1b33;
         border: 1px solid #000000;

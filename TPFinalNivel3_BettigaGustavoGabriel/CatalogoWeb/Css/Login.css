@@ -152,7 +152,7 @@
     text-align: center;
 }
 
-/* Si usás ValidationSummary o labels de error, podés colgarlos de acá */
+
 .validation-summary-errors {
     color: #ffb3b3;
     font-size: 0.85rem;

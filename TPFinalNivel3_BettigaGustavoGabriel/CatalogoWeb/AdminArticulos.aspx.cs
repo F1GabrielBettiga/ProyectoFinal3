@@ -27,7 +27,6 @@ namespace CatalogoWeb
         {
             Response.Redirect("ABM_Articulos.aspx",false);
         }
-
         protected void dgvArticulos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvArticulos.PageIndex = e.NewPageIndex;
@@ -39,7 +38,6 @@ namespace CatalogoWeb
             dgvArticulos.DataBind();
 
         }
-
         protected void dgvArticulos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Obtenemos el ID del artículo
@@ -73,7 +71,6 @@ namespace CatalogoWeb
                 RedirigirConError("No se pudo eliminar el artículo.", ex);
             }
         }
-
         private void cargarGrid()
         {
             try
@@ -99,7 +96,6 @@ namespace CatalogoWeb
                 RedirigirConError("No se pudieron cargar los artículos.", ex);
             }
         }
-
         private void BuscarArticulo()
         {
             string texto = txtBuscarArticulos.Text.Trim();
@@ -119,12 +115,10 @@ namespace CatalogoWeb
 
            
         }
-
         protected void btnBuscarArticulos_Click(object sender, EventArgs e)
         {
             BuscarArticulo();
         }
-
         protected void btnLimpiarBusquedaArticulos_Click(object sender, EventArgs e)
         {
             txtBuscarArticulos.Text = string.Empty;

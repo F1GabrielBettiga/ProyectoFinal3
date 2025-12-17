@@ -56,8 +56,6 @@ namespace CatalogoWeb
             }
         }
 
-
-
         protected void btnVerDetalle_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -186,7 +184,6 @@ namespace CatalogoWeb
                     $"this.onerror=null; this.src='{fallback}';";
             }
         }
-
         private void cargarTarjetas(List<Articulo> origen)
         {
             // Estado vacío
@@ -263,7 +260,6 @@ namespace CatalogoWeb
                 ddlFiltroMarca.Items.Insert(0, new ListItem("Todos", "0"));
             }
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

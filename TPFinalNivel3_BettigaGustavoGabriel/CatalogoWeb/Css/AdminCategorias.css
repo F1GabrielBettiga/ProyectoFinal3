@@ -7,9 +7,9 @@
     margin: 20px auto 25px auto;
     display: flex;
     align-items: center;
-    justify-content: center; /* centra el H1 */
-    position: relative; /* permite ubicar el botón */
-    padding-right: 160px; /* espacio para que el botón no invada el título */
+    justify-content: center; 
+    position: relative;
+    padding-right: 160px;
 }
 
 /* Ajusto el título dentro del header */
@@ -27,14 +27,14 @@
    =========================== */
 
 .btn-crear-categoria {
-    position: absolute; /* fija el botón dentro del header */
-    right: 0; /* alineado a la derecha */
-    top: 50%; /* centrado verticalmente */
+    position: absolute; 
+    right: 0; 
+    top: 50%; 
     transform: translateY(-50%);
     padding: 0.45rem 1.1rem;
     border-radius: 6px;
     border: 1px solid #198754;
-    background: #1fb06a; /* verde que combina con la pantalla */
+    background: #1fb06a; 
     color: #ffffff;
     font-weight: 600;
     font-size: 0.95rem;
@@ -66,14 +66,14 @@
    =========================== */
 
 .tabla-admin-categorias {
-    width: 60%; /* un poco más angosta que la de artículos */
-    margin: 0 auto 20px auto; /* centrada */
-    background-color: #1E3D6B; /* azul base */
-    border: 1px solid #000000; /* borde negro */
+    width: 60%; 
+    margin: 0 auto 20px auto; 
+    background-color: #1E3D6B; 
+    border: 1px solid #000000; 
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
     overflow: hidden;
-    table-layout: fixed; /* fija los anchos de columnas */
+    table-layout: fixed;
 }
 
     /* Cabecera */
@@ -118,10 +118,6 @@
     }
 
 
-    /* ===========================
-   ANCHOS DE COLUMNAS
-   (1 = Id, 2 = Descripción, 3 = Acción)
-   =========================== */
 
     /* Id (angosta) */
     .tabla-admin-categorias th:nth-child(1),
@@ -200,7 +196,7 @@
    =========================== */
 
 .buscador-admin-categorias {
-    width: 50%; /* Igual que artículos y usuarios */
+    width: 50%; 
     margin: 0 auto 15px auto;
     display: flex;
     align-items: center;

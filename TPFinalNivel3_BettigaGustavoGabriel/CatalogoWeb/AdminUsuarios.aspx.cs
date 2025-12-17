@@ -39,7 +39,6 @@ namespace CatalogoWeb
             }
 
         }
-
         protected void dgvUsuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvUsuarios.PageIndex = e.NewPageIndex;
@@ -51,7 +50,6 @@ namespace CatalogoWeb
             dgvUsuarios.DataBind();
 
         }
-
         private void cargarGrid()
         {
             try
@@ -76,13 +74,11 @@ namespace CatalogoWeb
                 RedirigirConError("No se pudieron cargar los usuarios.", ex);
             }
         }
-
         protected void btnNuevoUsuario_Click(object sender, EventArgs e)
         {
             Response.Redirect("ABM_Usuarios.aspx", false);
 
         }
-
         private void eliminarUsuario(int id)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
@@ -95,7 +91,6 @@ namespace CatalogoWeb
                 RedirigirConError("No se pudo eliminar el usuario.", ex);
             }
         }
-
         private void BuscarUsuario()
         {
             string texto = txtBuscarUsuario.Text.Trim();
@@ -115,12 +110,10 @@ namespace CatalogoWeb
 
 
         }
-
         protected void btnBuscarUsuario_Click(object sender, EventArgs e)
         {
             BuscarUsuario();
         }
-
         protected void btnLimpiarBusquedaUsuario_Click(object sender, EventArgs e)
         {
             txtBuscarUsuario.Text = string.Empty;

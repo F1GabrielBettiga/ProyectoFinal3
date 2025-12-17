@@ -6,7 +6,7 @@
     max-width: 1000px;
     margin: 20px auto 40px auto;
     padding: 20px 24px;
-    background-color: #1E3D6B; /* similar a tarjetas / admin */
+    background-color: #1E3D6B; 
     border-radius: 10px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
@@ -33,7 +33,7 @@
     margin-bottom: 25px;
 }
 
-    /* Para resaltar un poquito las etiquetas "Código", "Marca", "Categoría" */
+    
     .subtitulo-detalle span {
         font-weight: 600;
         color: #e6e6e6;
@@ -46,7 +46,7 @@
 
 .detalle-producto {
     display: flex;
-    flex-wrap: wrap; /* para que en pantallas chicas se apile */
+    flex-wrap: wrap; 
     gap: 20px;
 }
 
@@ -63,7 +63,7 @@
         max-width: 100%;
         max-height: 380px;
         border-radius: 8px;
-        background-color: #ffffff; /* como las tarjetas de la home */
+        background-color: #ffffff; 
         padding: 8px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.35);
     }
@@ -90,7 +90,7 @@
 .precio {
     font-size: 1.6rem;
     font-weight: 700;
-    color: #00e676; /* verde llamativo para el precio */
+    color: #00e676; 
     margin-bottom: 12px;
 }
 
@@ -113,8 +113,7 @@
     gap: 10px;
 }
 
-    /* Botón "Volver al inicio" ya trae clases de Bootstrap (btn btn-outline-light),
-   pero le damos un leve ajuste si hace falta */
+    /* Botón "Volver al inicio" */
     .acciones-detalle .btn {
         font-size: 0.95rem;
         padding: 6px 14px;

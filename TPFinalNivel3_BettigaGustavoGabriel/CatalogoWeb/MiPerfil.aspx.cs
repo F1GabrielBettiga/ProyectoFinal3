@@ -43,17 +43,14 @@ namespace CatalogoWeb
                 
             }
         }
-
         protected void btnEditar_Click(object sender, EventArgs e)
         {
             ModoEdicion();
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect(Request.RawUrl, false);
         }
-
         protected void btnCambiarPassword_Click(object sender, EventArgs e)
         {
             if (txtNuevaPassword.Visible == true)
@@ -85,7 +82,6 @@ namespace CatalogoWeb
                 spanMostrarRepetirPass.Visible = true;
             }
         }
-
         private void CargarDetalles(int id)
         {
             try
@@ -116,8 +112,6 @@ namespace CatalogoWeb
                 RedirigirConError("Ocurrió un error al cargar los detalles del usuario.", ex);
             }
         }
-
-
         private void CargarImagen(Usuario usuario)
         {
             // Imagen por defecto
@@ -147,8 +141,6 @@ namespace CatalogoWeb
             // Cache buster para hosting
             imgPerfil.ImageUrl = url + "?v=" + DateTime.Now.Ticks;
         }
-
-
         void actualizarPerfil()
         {
             Usuario usuario = new Usuario();
@@ -212,7 +204,6 @@ namespace CatalogoWeb
                 RedirigirConError("Ocurrió un error al actualizar el perfil.", ex);
             }
         }
-
         private void guardarImagenDePerfil(Usuario user)
         {
             try
@@ -262,7 +253,6 @@ namespace CatalogoWeb
             }
 
         }
-
         private void ModoSoloLectura()
         {
             
@@ -283,7 +273,6 @@ namespace CatalogoWeb
             btnGuardar.Visible = false;  
             btnCancelar.Visible = false;
         }
-
         private void ModoEdicion()
         {
            
@@ -301,7 +290,6 @@ namespace CatalogoWeb
             btnGuardar.Visible = true;
             btnCancelar.Visible = true;
         }
-
         private bool validarCamposObligatorios()
         {
             lblMensajeError.Visible = false;
@@ -365,7 +353,6 @@ namespace CatalogoWeb
 
             return true;
         }
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

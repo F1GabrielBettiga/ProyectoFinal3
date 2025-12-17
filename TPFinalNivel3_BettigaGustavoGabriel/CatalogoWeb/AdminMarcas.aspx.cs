@@ -24,7 +24,6 @@ namespace CatalogoWeb
         {
             Response.Redirect("ABM_Marcas.aspx",false);
         }
-
         protected void dgvMarcas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvMarcas.PageIndex = e.NewPageIndex;
@@ -36,7 +35,6 @@ namespace CatalogoWeb
             dgvMarcas.DataBind();
 
         }
-
         protected void dgvMarcas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Obtenemos el ID del artículo
@@ -56,7 +54,6 @@ namespace CatalogoWeb
 
 
         }
-
         private void cargarGrid()
         {
             try
@@ -95,7 +92,6 @@ namespace CatalogoWeb
                 RedirigirConError("No se pudo eliminar la marca.", ex);
             }
         }
-
         private void BuscarMarca()
         {
             string texto = txtBuscarMarcas.Text.Trim();
@@ -115,19 +111,15 @@ namespace CatalogoWeb
 
 
         }
-
         protected void btnBuscarMarca_Click(object sender, EventArgs e)
         {
             BuscarMarca();
         }
-
         protected void btnBorrarMarca_Click(object sender, EventArgs e)
         {
             txtBuscarMarcas.Text = string.Empty;
             cargarGrid();
         }
-
-
         private void RedirigirConError(string mensajeUsuario, Exception ex = null)
         {
             Session["ErrorUsuario"] = mensajeUsuario;

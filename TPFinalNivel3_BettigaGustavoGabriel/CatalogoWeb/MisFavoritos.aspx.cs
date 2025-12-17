@@ -13,13 +13,11 @@ namespace CatalogoWeb
     {
         // Tamaño de página (cuántos favoritos se agregan por cada "Ver más")
         private const int TamanioPagina = 2;
-
         private List<Favorito> listaFavoritos
         {
             get { return (List<Favorito>)Session["listaFavoritos"]; }
             set { Session["listaFavoritos"] = value; }
         }
-
         // Cuántos favoritos llevo mostrados
         private int cantidadMostrada
         {
@@ -60,7 +58,6 @@ namespace CatalogoWeb
             string idArticulo = btn.CommandArgument;
             Response.Redirect("DetalleProducto.aspx?id=" + idArticulo, false);
         }
-
         private void cargarTarjetasFavoritos(List<Favorito> fuente)
         {
             bool hayRegistros = fuente != null && fuente.Count > 0;
@@ -96,12 +93,10 @@ namespace CatalogoWeb
             // Si ya mostré todos, oculto el botón “Ver más”
             btnCargarMasFav.Visible = (cantidadMostrada < fuente.Count);
         }
-
         protected void btnCargarMasFav_Click(object sender, EventArgs e)
         {
             cargarTarjetasFavoritos(listaFavoritos);
         }
-
         protected void imgFavorito_Click(object sender, EventArgs e)
         {
             if (Session["UsuarioLogueado"] == null)
@@ -115,7 +110,6 @@ namespace CatalogoWeb
 
             agregarQuitarFavorito(idArticulo);
         }
-
         protected void repFavoritos_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -144,7 +138,6 @@ namespace CatalogoWeb
                 }
             }
         }
-
         private void agregarQuitarFavorito(string id)
         {
             
